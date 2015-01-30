@@ -1,0 +1,44 @@
+{
+  "Case" : {
+    "CaseName" : "ProtoCase",
+    "SeriesIndex" : 0,
+    "Scenario" : null
+  },
+  "PhaseResults" : [ {
+    "PhaseName" : "Declaration",
+    "Metrics" : [ {
+      "MetricName" : "Time",
+      "MetricValue" : 9500
+    } ]
+  }, {
+    "PhaseName" : "Multiple",
+    "Metrics" : [ {
+      "MetricName" : "Time",
+      "MetricValue" : 7338
+    } ]
+  }, {
+    "PhaseName" : "Multiple",
+    "Metrics" : [ {
+      "MetricName" : "Time",
+      "MetricValue" : 1118
+    } ]
+  }, {
+    "PhaseName" : "Multiple",
+    "Metrics" : [ {
+      "MetricName" : "Time",
+      "MetricValue" : 1043
+    } ]
+  }, {
+    "PhaseName" : "Multiple",
+    "Metrics" : [ {
+      "MetricName" : "Time",
+      "MetricValue" : 989
+    } ]
+  }, {
+    "PhaseName" : "Multiple",
+    "Metrics" : [ {
+      "MetricName" : "Time",
+      "MetricValue" : 1049
+    } ]
+  } ]
+}

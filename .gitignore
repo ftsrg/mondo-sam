@@ -1,4 +1,6 @@
-results/
+/results/
 .Rhistory
 bin/
 target/
+.settings/
+__pycache__/
