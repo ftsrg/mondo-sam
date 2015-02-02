@@ -27,6 +27,7 @@ public class PhaseResult {
 	}
 	
 	public boolean isMeasuredPhase(){
+		if (metrics.size() == 0) return false;
 		for(BenchmarkMetric m : metrics){
 			if(m.isMeasured() == true)
 				return true;

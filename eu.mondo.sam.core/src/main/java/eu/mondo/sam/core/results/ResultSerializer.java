@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class ResultSerializer {
 	
-	public static void serializeToJson(BenchmarkResult bmr){
+	public static void serializeToJson(BenchmarkResult bmr, String folderPath, String fileName){
 		ObjectMapper mapper = new ObjectMapper();
 		// to enable standard indentation ("pretty-printing"):
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -17,15 +17,15 @@ public class ResultSerializer {
 		// (without this setting, an exception is thrown in those cases)
 		mapper.enable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 		mapper.setVisibilityChecker(mapper.getVisibilityChecker().with(JsonAutoDetect.Visibility.NONE));
-		String filePath = "../results/results.json";
+		String filePath = folderPath + fileName;
 		try{
-			File dir = new File("../results");
+			File dir = new File(folderPath);
 			dir.mkdir();
 			mapper.writeValue(new File(filePath), bmr);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Create JSON file: results/" + filePath);
+		System.out.println("Create JSON file: " + filePath);
 	}
 	
 	/*

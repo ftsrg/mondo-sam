@@ -9,20 +9,19 @@ import eu.mondo.sam.core.cases.BenchmarkCase;
 
 public class BenchmarkResult {
 
-	//@JsonProperty("Config")
-	//private BenchmarkConfig benchmarkConfig;
-	
-	/*@JsonProperty("Metrics")
-	private List<BenchmarkMetric> metrics;
-	*/
 	@JsonProperty("Case")
 	private BenchmarkCase benchmarkCase;
 	
 	@JsonProperty("PhaseResults")
 	private List<PhaseResult> phaseResults;
+
+	private static String resultPath;
+	
+	static{
+		resultPath = "../results/json/";
+	}
 	
 	public BenchmarkResult(){
-		//metrics = new ArrayList<BenchmarkMetric>();
 		phaseResults = new ArrayList<PhaseResult>();
 	}
 	
@@ -36,18 +35,16 @@ public class BenchmarkResult {
 	}
 	
 	public void publishResults(){
-		ResultSerializer.serializeToJson(this);
+		String tool = benchmarkCase.getTool();
+		String scenario = benchmarkCase.getScenario();
+		String benchCase = benchmarkCase.getCaseName();
+		int size = benchmarkCase.getSize();
+		int runIndex = benchmarkCase.getRunIndex();
+		String fileName = tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index" + runIndex + ".json";
+		ResultSerializer.serializeToJson(this, resultPath, fileName);
 	}
 	
-	/*public void storeMetric(BenchmarkMetric m) throws CloneNotSupportedException{
-		//BenchmarkMetric metric = new BenchmarkMetric(m.getMetricName());
-		//metric.setValue(m.getValue());
-		System.out.println("Before clone: " + m.getValue());
-		BenchmarkMetric metric = m.clone();
-		System.out.println("After clone: " + metric.getValue());
-		metrics.add(metric);
-	}*/
-	
-	
-	
+	public static void changeResultPath(String p){
+		resultPath = p;
+	}
 }

@@ -12,5 +12,14 @@ public class ChangesMetric extends BenchmarkMetric{
 	public ChangesMetric(String name) {
 		super(name);
 	}
+	
+	public void setChangesValue(int changesValue) {
+		this.changesValue = changesValue;
+		this.measured = true;
+	}
+	
+	public BenchmarkMetric clone() throws CloneNotSupportedException{
+		return (BenchmarkMetric) super.clone();
+	}
 
 }

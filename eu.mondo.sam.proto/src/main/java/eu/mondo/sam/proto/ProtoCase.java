@@ -27,16 +27,23 @@ public class ProtoCase extends BenchmarkCase{
 
 	@Override
 	public BenchmarkCase buildCase() {
+		this.scenario = this.protoConfig.getScenario();
+		this.runIndex = this.protoConfig.getRunIndex();
+		this.size = this.protoConfig.getSize();
+		this.tool = this.protoConfig.getTool();
+		this.caseName = "ProtoCase";
+		
 		MultiplePhase multiple = new MultiplePhase("Multiple");
 		DeclarationPhase declaration = new DeclarationPhase("Declaration");
+		
 		BenchmarkMetric decChanges = new BenchmarkMetric("Declaration Changes");
 		BenchmarkMetric changes = new BenchmarkMetric("Changes");
-		BenchmarkMetric time = new BenchmarkMetric("Time");
 		BenchmarkMetric steps = new BenchmarkMetric("Steps");
-		model = new ProtoModel(0);
+		model = new ProtoModel(2);
 		
-		multiple.addMetrics(changes, time, steps);
+		multiple.addMetrics(changes, steps);
 		declaration.addMetrics(decChanges);
+		
 		BenchmarkPhaseGroup group1 = new BenchmarkPhaseGroup();
 		group1.addPhase(declaration);
 		BenchmarkPhaseGroup group2 = new BenchmarkPhaseGroup();

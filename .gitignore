@@ -4,3 +4,5 @@ bin/
 target/
 .settings/
 __pycache__/
+/diagrams/
+.pydevproject

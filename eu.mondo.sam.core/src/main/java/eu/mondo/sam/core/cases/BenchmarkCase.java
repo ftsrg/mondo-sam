@@ -14,15 +14,20 @@ public abstract class BenchmarkCase {
 	
 	protected List<BenchmarkPhaseGroup> groups;
 	
-	@JsonProperty("SeriesIndex")
-	private int seriesIndex;
+	@JsonProperty("RunIndex")
+	protected int runIndex;
 	
 	@JsonProperty("Scenario")
-	private String scenario;
+	protected String scenario;
+	
+	@JsonProperty("Tool")
+	protected String tool;
+	
+	@JsonProperty("Size")
+	protected int size;
 	
 	public BenchmarkCase(String name){
 		this.groups = new ArrayList<BenchmarkPhaseGroup>();
-		this.caseName = name;
 	}
 		
 	protected void addPhaseGroups(BenchmarkPhaseGroup... groups){
@@ -42,4 +47,32 @@ public abstract class BenchmarkCase {
 		return caseName;
 	}
 	
+	public boolean isInitialized(){
+		if (this.caseName == null || 
+			this.size == 0 ||
+			this.scenario == null ||
+			this.tool == null ||
+			this.runIndex == 0)return false;
+		return true;
+	}
+	
+	public String getCaseName() {
+		return caseName;
+	}
+	
+	public int getRunIndex() {
+		return runIndex;
+	}
+	
+	public String getScenario() {
+		return scenario;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public String getTool() {
+		return tool;
+	}
 }

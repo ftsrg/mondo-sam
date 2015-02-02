@@ -62,13 +62,14 @@ def convert_results_to_csv(json_objects, csvpath):
     with open(csvpath, mode='w') as csvfile:
         headers = set()
         for result in json_objects:
-            keys = set(result["Config"].keys())
-            if ("Case" in keys):
-                keys.remove("Case")
-            keys.update(set(result["Config"]["Case"].keys()))
-            if ("Phases" in keys):
-                keys.remove("Phases")
-            for phase in result["Config"]["Case"]["Phases"]:
+            keys = set(result["Case"].keys())
+            if ("PhaseResults" in keys):
+                keys.remove("PhaseResults")
+            #if (result["PhaseResults"].hasKey() == True):
+            #    keys.update(set(result["PhaseResults"].keys()))
+            #if ("Phases" in keys):
+            #    keys.remove("Phases")
+            for phase in result["PhaseResults"]:
                 keys.update(set(phase.keys()))
                 for metric in phase["Metrics"]:
                     keys.update(set(metric.keys()))
@@ -83,13 +84,13 @@ def convert_results_to_csv(json_objects, csvpath):
             row = dict()
             for h in headers:
                 row.update({h:"NaN"})
-            for k in result["Config"].keys():
+            for k in result["Case"].keys():
                 if (k in headers):
-                    row.update({k:result["Config"][k]})
-            for k in result["Config"]["Case"].keys():
-                if (k in headers):
-                    row.update({k:result["Config"]["Case"][k]})
-            for phase in result["Config"]["Case"]["Phases"]:
+                    row.update({k:result["Case"][k]})
+            #for k in result["PhaseResults"].keys():
+            #    if (k in headers):
+            #        row.update({k:result["PhaseResults"][k]})
+            for phase in result["PhaseResults"]:
                 for k in phase.keys():
                     if (k in headers):
                         row.update({k:phase[k]})
@@ -117,16 +118,16 @@ if (__name__ == "__main__"):
                       formatter_class=argparse.ArgumentDefaultsHelpFormatter \
                       )
     parser.add_argument("-j","--jsonfile",
-                        default="../../results/json/results.json",
-                        help="Path of the JSON file where"+\
+                        default="../../results/results.json",
+                        help="Path of the JSON file where "+\
                              "results will be merged.")
     parser.add_argument("-c","--csvfile",
                         default="../../results/results.csv",
-                        help="Path of the CSV file where the"+\
+                        help="Path of the CSV file where the "+\
                              "results will be merged"
                         )
     parser.add_argument("-s","--source",
-                        default="../../results",
+                        default="../../results/json",
                         help="Path of the results json files location."
                         )
     args = parser.parse_args()

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class BenchmarkPhase {
 
-	@JsonProperty("PhaseName")
 	protected String phaseName;
 
 	protected List<BenchmarkMetric> metrics;
@@ -41,6 +40,6 @@ public abstract class BenchmarkPhase {
 		return phaseName;
 	}
 
-	public abstract void execute(PhaseResult phaseResult) throws PhaseInterruptedException;
+	public abstract void execute() throws PhaseInterruptedException;
 	
 }

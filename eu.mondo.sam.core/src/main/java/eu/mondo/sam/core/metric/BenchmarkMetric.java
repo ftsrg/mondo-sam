@@ -27,11 +27,10 @@ public class BenchmarkMetric implements Cloneable{
 	public boolean isMeasured(){
 		return this.measured;
 	}
-	/*
+	
 	public BenchmarkMetric clone() throws CloneNotSupportedException{
 		return (BenchmarkMetric) super.clone();
-		
-	}*/
+	}
 	
 	public long getValue() {
 		return value;
@@ -40,6 +39,10 @@ public class BenchmarkMetric implements Cloneable{
 	@Override
 	public String toString() {
 		return this.metricName + " " + this.value;
+	}
+	
+	public void setMeasured(boolean measured) {
+		this.measured = measured;
 	}
 
 }
