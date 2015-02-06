@@ -1,7 +1,7 @@
 package eu.mondo.sam.proto;
 
 import eu.mondo.sam.core.cases.CaseBuilder;
-import eu.mondo.sam.core.phases.BenchmarkEngine;
+import eu.mondo.sam.core.BenchmarkEngine;
 
 public class ProtoEngine extends BenchmarkEngine{
 

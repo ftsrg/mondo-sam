@@ -12,6 +12,9 @@ public class PhaseResult {
 	@JsonProperty("PhaseName")
 	private String phaseName;
 	
+	@JsonProperty("Sequence")
+	private String sequence;
+	
 	@JsonProperty("Metrics")
 	private List<BenchmarkMetric> metrics;
 	
@@ -37,6 +40,10 @@ public class PhaseResult {
 	
 	public void setPhaseName(String phaseName) {
 		this.phaseName = phaseName;
+	}
+	
+	public void setSequence(int iteration, int loop){
+		this.sequence = iteration + "." + loop;
 	}
 	
 }

@@ -3,7 +3,7 @@ package eu.mondo.sam.proto;
 
 import org.apache.commons.cli.ParseException;
 
-import eu.mondo.sam.core.phases.BenchmarkEngine;
+import eu.mondo.sam.core.BenchmarkEngine;
 
 public class ProtoMain {
 
