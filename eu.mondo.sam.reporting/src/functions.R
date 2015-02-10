@@ -4,7 +4,7 @@ load <- function(path){
 }
 
 
-preprocess <- function(){
+preprocess <- function(results){
   
   unique_scenarios <- unique(subset(results, CaseName == "ProtoCase")$Scenario)
   
@@ -57,5 +57,17 @@ preprocess <- function(){
   }
   
   return(subtables)
+}
+
+createPlot <- function(results, settings){
   
+  plot <- ggplot(results, aes(x=Size, y=MetricValue)) +
+    geom_line(aes(group=Tool, colour=Tool)) +
+    geom_point(aes(shape=Tool, colour=Tool)) +
+    xlab(settings@xLabel) +
+    ylab(settings@yLabel) +
+    ggtitle(label = settings@title)
+
+  
+  return (plot)
 }
