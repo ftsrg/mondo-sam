@@ -1,65 +1,227 @@
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("ggplot2",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr",  quietly=T, verbose=F, warn.conflicts=FALSE)
-library(shiny)
+library(shiny, quietly=T, verbose=F, warn.conflicts=FALSE)
 source("functions.R")
 source("plot.R")
 
 results <- load("../../results/results.csv")
 subtables <- preprocess(results)
 
-iteration <- c(0,0)
+#iteration <- c(0,0)
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
     
-  output$plot <- renderPlot({
-    if (is.null(input$metric) | is.null(input$phase))
+  
+  values <- reactiveValues(iteration = c(0,0))
+  values$settings <- PlotSettings(theme="Default")
+#   values$iteration <- c(0,0)   
+  values$results <- results
+  values$subtables <- subtables
+  #values$settings <- setTheme(values$settings, "Default")
+  
+  
+  refreshSettingsTitle <- observe({
+    print("refreshSettingsTitle")
+    # create dependencies:case,phase,scenario,metric
+    if (is.null(input$mix))
       return()
-    if (input$mix == FALSE){
-      sub <- subset(subtables[[input$scenario]][[input$phase]], MetricName==input$metric,
-                    select=c(Tool, MetricValue, Size))
-      if (!is.null(input$iteration))
-        if (iteration[1] > 0){
-          first <- TRUE
-          for(iter in iteration[1]:iteration[2]){
-            sub <- subset(subtables[[input$scenario]][[input$phase]], Iteration==iter & MetricName==input$metric,
-                          select=c(Tool, MetricValue, Size))
-            if(first == TRUE){
-              merged <- sub
-              first <- FALSE
-            }
-            else
-              merged <- rbind(merged,sub)
-          }
-          sub <- ddply(merged, c("Tool", "Size"),summarise,
-                       MetricValue=sum(MetricValue))
-        }
-    }
-    else if(input$mix == TRUE){
-      sub <- subset(results, Scenario == input$scenario & CaseName == input$case & 
-                      MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName))
-      first <- TRUE
-      if (length(input$mixphase) == 0)
-        return()
-      for(phase in input$mixphase){
-        if (first == TRUE){
-          merged <- subset(sub, PhaseName == phase)
-          first <- FALSE
-        }
-        else
-          merged <- rbind(merged, subset(sub, PhaseName == phase))
+    if (is.null(input$case))
+      return()
+    if (is.null(input$phase))
+      return()
+    if (is.null(input$scenario))
+      return()
+    if (is.null(input$metric))
+      return()
+    isolate({
+      title <- isolate(input$title)
+      title <- gsub("CASENAME", input$case, title)
+      if (input$mix == TRUE){
+        phases <- ""
+        for(p in input$mixphase)
+          phases  <- paste(phases, p, sep=' ')
+        title <- gsub("PHASENAME", phases, title)
       }
-      sub <- ddply(merged, c("Tool", "Size"), summarise,
-                      MetricValue = sum(MetricValue))
-    }
+      title <- gsub("PHASENAME", input$phase, title)
+      title <- gsub("METRICNAME", input$metric, title)
+      title <- gsub("SCENARIO", input$scenario, title)
+      values$settings <- setTitle(values$settings, title)
+    })
+  })
 
+  changeSettings <- observe({
+    print("changeSettings")
+    # add dependencies
+    input$xlabel
+    input$ylabel
+    input$xaxis
+    input$yaxis
+    input$theme
+    input$title
+    if (is.null(input$mix))
+      return()
+    if (is.null(isolate(input$case)))
+      return()
+    if (is.null(isolate(input$phase)))
+      return()
+    if (is.null(isolate(input$scenario)))
+      return()
+    if (is.null(isolate(input$metric)))
+      return()
     
-    settings <- PlotSettings()
-    settings <- setLabels(settings, input$xlabel, input$ylabel)
-    settings <- setTitle(settings, input$title)
-    settings <- setAxis(settings, input$xaxis, input$yaxis)
-    plot <- createPlot(sub, settings)
+    isolate({
+      values$settings <- setLabels(values$settings, input$xlabel, input$ylabel)
+      
+      title <- isolate(input$title)
+      title <- gsub("CASENAME", input$case, title)
+      if (input$mix == TRUE){
+        phases <- ""
+        for(p in input$mixphase)
+          phases  <- paste(phases, p, sep=' ')
+        title <- gsub("PHASENAME", phases, title)
+      }
+      title <- gsub("PHASENAME", input$phase, title)
+      title <- gsub("METRICNAME", input$metric, title)
+      title <- gsub("SCENARIO", input$scenario, title)
+      values$settings <- setTitle(values$settings, title)
+      
+      values$settings <- setAxis(values$settings, input$xaxis, input$yaxis)
+      values$settings <- setTheme(values$settings, input$theme)
+      print("Settings done")
+    })
+  })
+  
+  changeIteration <- observe({
+    print("Iteration obs called")
+    if (is.null(input$iteration))
+      return()
+    values$iteration <- input$iteration
+    
+  })
+  
+  # observer for title
+  appendTitle <- observe({
+    # create dependency to the titleInsert button
+    if(input$titleInsert == 0)
+      return()
+    isolate({
+      titleTemplate <- toupper(input$titleTemplate)
+      oldTitle <- input$title
+      updateTextInput(session, "title", value = paste(oldTitle, titleTemplate))
+    })
+  })
+  
+  # observer for the filename
+  changeFilename <- observe({
+    # create dependency to the publishInsert button
+    if(input$publishInsert == 0)
+      return()
+    
+    publishTemplate <- toupper(isolate(input$publishTemplate))
+    oldFilename <- isolate(input$filename)
+    updateTextInput(session, "filename", value = paste(oldFilename, publishTemplate, sep=''))
+  })
+  
+  # observer for publishing
+  publish <- observe({
+    # create dependency to publish button
+    if(input$publish == 0)
+      return()
+    isolate({
+      filename <- input$filename
+      format <- input$format
+      file <- paste("../../diagrams/", filename, ".", tolower(format), sep='')
+      file <- gsub("CASENAME", input$case, file)
+      file <- gsub("METRICNAME", input$metric, file)
+      if ("scenarios" %in% input$publishGroup == TRUE){
+        for(scenario in names(values$subtables)){
+          print(scenario)
+#           sub <- values$subtables[[scenario]][[input$phase]]
+          sub <- createSubFrame(scenario)
+          if (is.null(sub))
+            return()
+          
+          if (input$mix == TRUE){
+            phases <- ""
+            for(p in input$mixphase)
+              phases  <- paste(phases, p, sep=' ')
+            file <- gsub("PHASENAME", phases, file)
+          }
+          file <- gsub("PHASENAME", input$phase, file)
+#           newFile <- file
+          newFile <- gsub("SCENARIO", scenario, file)
+          plot <- createPlot(sub,values$settings)
+          print(newFile)
+          ggsave(plot = plot,filename = newFile, width=14, height=7, dpi=192)
+        }
+      }
+      
+    })
+    
+  })
+  
+  createSubFrame <- function(scenario){
+    print("createSubFrame")
+    isolate({
+      print(values$iteration[[1]])
+      if (input$mix == FALSE){
+        sub <- subset(values$subtables[[scenario]][[input$phase]], MetricName==input$metric,
+                      select=c(Tool, MetricValue, Size))
+        #if (!is.null(input$iteration))
+          if (values$iteration[[1]] > 0){
+            first <- TRUE
+            for(iter in values$iteration[[1]]:values$iteration[[2]]){
+              sub <- subset(values$subtables[[scenario]][[input$phase]], Iteration==iter & MetricName==input$metric,
+                            select=c(Tool, MetricValue, Size))
+              if(first == TRUE){
+                merged <- sub
+                first <- FALSE
+              }
+              else
+                merged <- rbind(merged,sub)
+            }
+            sub <- ddply(merged, c("Tool", "Size"),summarise,
+                         MetricValue=sum(MetricValue))
+          }
+      }
+      else if(input$mix == TRUE){
+        sub <- subset(values$results, Scenario == scenario & CaseName == input$case & 
+                        MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName))
+        first <- TRUE
+        print(input$mixphase)
+        if (length(input$mixphase) == 0)
+          return()
+        for(phase in input$mixphase){
+          if (first == TRUE){
+            merged <- subset(sub, PhaseName == phase)
+            first <- FALSE
+          }
+          else
+            merged <- rbind(merged, subset(sub, PhaseName == phase))
+        }
+        sub <- ddply(merged, c("Tool", "Size"), summarise,
+                     MetricValue = sum(MetricValue))
+      }
+    })
+  }
+  
+  
+  output$plot <- renderPlot({
+    print("output$plot")
+    if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
+      return()
+    # add dependencies
+    input$iteration
+    input$mixphase
+
+
+    sub <- createSubFrame(input$scenario)
+    if (is.null(sub))
+      return()
+    plot <- createPlot(sub, values$settings)
     print(plot)
+    #ggsave(plot=plot,filename="../../diagrams/testplot.png", width=14, height=7, dpi=192)
   })
   
   output$scenario <- renderUI({
@@ -159,32 +321,60 @@ shinyServer(function(input, output) {
   })
   
   output$iteration <- renderUI({
+    print("Iteration called")
+    input$phase
     if (is.null(input$metric))
       return()
-    iteration <<- input$iteration # used globally
-    if (input$mix == FALSE){
-      max_value <- max(subset(subtables[[input$scenario]][[input$phase]], MetricName == input$metric)$Iteration)
-      if(max_value > 1){
-        if(is.null(iteration)) # first initialization
-          iteration <<- c(1,1) # used globally
-        sliderInput("iteration", "Iterations",
-                    min=1,
-                    max=max_value,
-                    value=c(iteration[1], iteration[2]),
-                    step=1
-        )
+#      if (is.null(input$iteration) == FALSE)
+#        values$iteration <- input$iteration
+    
+    isolate({
+      values$iteration <- c(1,1)
+      print(values$iteration)
+      if (input$mix == FALSE){
+        max_value <- max(subset(subtables[[input$scenario]][[input$phase]], MetricName == input$metric)$Iteration)
+        if(max_value > 1){
+          #         if(values$iteration[[1]] == 0)
+          #           values$iteration <- c(1,1)
+          
+          if (values$iteration[[1]] == 0){
+            minRange <- 1
+            maxRange <- 1
+          }
+          else {
+            minRange <- values$iteration[[1]]
+            maxRange <- values$iteration[[2]]
+          }
+          sliderInput("iteration", "Iterations",
+                      min=1,
+                      max=max_value,
+                      value=c(minRange, maxRange),
+                      step=1
+          )
+        }
+        else if (is.null(input$iteration) == FALSE){
+          print("delete iteration")
+          values$iteration <- c(0,0) # set to default
+          return() # to remove slider
+        }
       }
-      else if (is.null(input$iteration) == FALSE){
-        iteration <<- c(0,0)
-        return() # to remove slider
-      }
-    }
+    })
   })
   
-  output$axis <- renderUI({
-    
-    
-    
+  output$title <- renderUI({
+    textInput("title", "Title",
+              value="SCENARIO CASENAME PHASENAME")
+  })
+  
+  output$titleTemplate <- renderUI({
+    selectInput("titleTemplate", "Templates",
+                choices=c("CaseName", "Scenario", "PhaseName", "MetricName"))
+  })
+  
+  output$publishTemplate <- renderUI({
+    print("publishTemplate called")
+    selectInput("publishTemplate", "Templates",
+                choices=c("CaseName", "Scenario", "PhaseName", "MetricName"))
   })
   
 })
