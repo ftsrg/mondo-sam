@@ -23,13 +23,6 @@ public class MultiplePhase extends BenchmarkPhase{
 		number *= 2;
 		if (number > 32)
 			throw new PhaseInterruptedException();
-		metrics.get(0).setValue(number);
-		metrics.get(1).setValue(number/4);
-		//BenchmarkMetric m1 = new BenchmarkMetric("Changes");
-		//BenchmarkMetric m2 = new BenchmarkMetric("Steps");
-		//m1.setValue(number);
-		//m2.setValue(number/4);
 		protoCase.getModel().setNumber(number);
-		//result.addMetrics(metrics.get(0), metrics.get(1));
 	}
 }

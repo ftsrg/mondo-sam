@@ -19,7 +19,6 @@ public class DeclarationPhase extends BenchmarkPhase{
 
 	@Override
 	public void execute() throws PhaseInterruptedException {
-		metrics.get(0).setValue(17);
 	}
 	
 	/*public void setCm(ChangesMetric cm) {

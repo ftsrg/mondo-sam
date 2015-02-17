@@ -1,5 +1,4 @@
 package eu.mondo.sam.core.results;
-
 import eu.mondo.sam.core.metric.BenchmarkMetric;
 
 import java.util.ArrayList;
@@ -16,26 +15,27 @@ public class PhaseResult {
 	private String sequence;
 	
 	@JsonProperty("Metrics")
-	private List<BenchmarkMetric> metrics;
+	private List<MetricResult> metrics;
 	
 	
 	public PhaseResult(){
-		this.metrics = new ArrayList<BenchmarkMetric>();
+		this.metrics = new ArrayList<MetricResult>();
 	}
 	
+	/**
+	 * 
+	 * @param metrics
+	 */
 	public void addMetrics(BenchmarkMetric... metrics){
 		for(BenchmarkMetric m : metrics){
-			this.metrics.add(m);
+			MetricResult result = new MetricResult();
+			result.setName(m.getMetricName());
+			String value = m.getValue();
+			if (value == null)
+				throw new NullPointerException("Metric's value is not initialized");
+			result.setValue(value);
+			this.metrics.add(result);
 		}
-	}
-	
-	public boolean isMeasuredPhase(){
-		if (metrics.size() == 0) return false;
-		for(BenchmarkMetric m : metrics){
-			if(m.isMeasured() == true)
-				return true;
-		}
-		return false;
 	}
 	
 	public void setPhaseName(String phaseName) {

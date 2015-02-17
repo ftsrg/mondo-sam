@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ChangesMetric extends BenchmarkMetric{
 
-	@JsonProperty("ChangesValue")
 	private int changesValue;
 	
 	public ChangesMetric(String name) {
@@ -15,11 +14,11 @@ public class ChangesMetric extends BenchmarkMetric{
 	
 	public void setChangesValue(int changesValue) {
 		this.changesValue = changesValue;
-		this.measured = true;
 	}
 	
-	public BenchmarkMetric clone() throws CloneNotSupportedException{
-		return (BenchmarkMetric) super.clone();
+	@Override
+	public String getValue() {
+		return Integer.toString(changesValue);
 	}
 
 }

@@ -7,11 +7,12 @@ import eu.mondo.sam.core.cases.CaseBuilder;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.core.results.PhaseResult;
+import eu.mondo.sam.core.metric.TimerMetric;
 import eu.mondo.sam.core.metric.BenchmarkMetric;
 import eu.mondo.sam.core.phases.PhaseInterruptedException;
 import eu.mondo.sam.core.phases.BenchmarkPhaseGroup;
 
-import com.google.common.base.Stopwatch;
+
 
 public class BenchmarkEngine {
 
@@ -33,27 +34,23 @@ public class BenchmarkEngine {
 				for(BenchmarkPhase phase : group.getPhases()){
 					PhaseResult result = new PhaseResult();
 					result.setPhaseName(phase.getPhaseName());
-					BenchmarkMetric timer = new BenchmarkMetric("Time");
+					TimerMetric timer = new TimerMetric("Time");
 					
-					Stopwatch stopwatch = Stopwatch.createStarted();
-					
+					timer.startMeasure();
 					try {
 						phase.execute();
 					} catch (PhaseInterruptedException e) {
 						continue;
 					}
 					finally{
-						stopwatch.stop();
+						timer.stopMeasure();
 					}
-					long time = stopwatch.elapsed(TimeUnit.NANOSECONDS);
-					timer.setValue(time);
 					for (BenchmarkMetric m : phase.getMetrics()){
-						if (m.isMeasured())
-							result.addMetrics(m.clone());
+						result.addMetrics(m);
 					}
 					result.addMetrics(timer);
 					result.setSequence(iteration, i+1);
-					benchmarkResult.storeResults(result);
+					benchmarkResult.addResults(result);
 				}
 			}
 			iteration++;

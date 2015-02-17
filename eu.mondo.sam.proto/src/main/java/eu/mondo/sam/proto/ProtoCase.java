@@ -36,13 +36,13 @@ public class ProtoCase extends BenchmarkCase{
 		MultiplePhase multiple = new MultiplePhase("Multiple");
 		DeclarationPhase declaration = new DeclarationPhase("Declaration");
 		
-		BenchmarkMetric decChanges = new BenchmarkMetric("Declaration Changes");
-		BenchmarkMetric changes = new BenchmarkMetric("Changes");
-		BenchmarkMetric steps = new BenchmarkMetric("Steps");
+//		BenchmarkMetric decChanges = new BenchmarkMetric("Declaration Changes");
+		BenchmarkMetric changes = new ChangesMetric("Changes");
+//		BenchmarkMetric steps = new BenchmarkMetric("Steps");
 		model = new ProtoModel(2);
 		
-		multiple.addMetrics(changes, steps);
-		declaration.addMetrics(decChanges);
+		multiple.addMetrics(changes);
+		declaration.addMetrics();
 		
 		BenchmarkPhaseGroup group1 = new BenchmarkPhaseGroup();
 		group1.addPhase(declaration);

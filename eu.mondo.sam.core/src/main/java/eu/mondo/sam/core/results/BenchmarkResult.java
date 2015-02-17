@@ -29,9 +29,8 @@ public class BenchmarkResult {
 		this.benchmarkCase = benchmarkCase;
 	}
 	
-	public void storeResults(PhaseResult result){
-		if (result.isMeasuredPhase() == true)
-			this.phaseResults.add(result);
+	public void addResults(PhaseResult result){
+		this.phaseResults.add(result);
 	}
 	
 	public void publishResults(){
