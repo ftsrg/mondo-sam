@@ -7,7 +7,7 @@ import eu.mondo.sam.core.BenchmarkEngine;
 
 public class ProtoMain {
 
-	public static void main(String[] args) throws ParseException, CloneNotSupportedException{
+	public static void main(String[] args) throws ParseException{
 		ProtoConfig protoConfig = new ProtoConfig(args);
 		ProtoEngine protoEngine = new ProtoEngine(new ProtoCaseBuilder());
 		protoEngine.setProtoConfig(protoConfig);

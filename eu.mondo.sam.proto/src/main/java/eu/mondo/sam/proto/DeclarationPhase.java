@@ -1,10 +1,10 @@
 package eu.mondo.sam.proto;
 
-import eu.mondo.sam.core.phases.BenchmarkPhase;
+import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.phases.PhaseInterruptedException;
 import eu.mondo.sam.core.results.PhaseResult;
 
-public class DeclarationPhase extends BenchmarkPhase{
+public class DeclarationPhase extends AtomicPhase{
 
 	private ProtoCase protoCase;
 	//private ChangesMetric cm;
@@ -18,7 +18,7 @@ public class DeclarationPhase extends BenchmarkPhase{
 	}
 
 	@Override
-	public void execute() throws PhaseInterruptedException {
+	public void execute(){
 	}
 	
 	/*public void setCm(ChangesMetric cm) {

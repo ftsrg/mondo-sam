@@ -2,7 +2,9 @@ package eu.mondo.sam.proto;
 
 import eu.mondo.sam.core.cases.BenchmarkCase;
 import eu.mondo.sam.core.metric.BenchmarkMetric;
-import eu.mondo.sam.core.phases.BenchmarkPhaseGroup;
+import eu.mondo.sam.core.phases.IterationPhase;
+import eu.mondo.sam.core.phases.SequencePhase;
+
 
 public class ProtoCase extends BenchmarkCase{
 
@@ -41,16 +43,16 @@ public class ProtoCase extends BenchmarkCase{
 //		BenchmarkMetric steps = new BenchmarkMetric("Steps");
 		model = new ProtoModel(2);
 		
+		IterationPhase iter = new IterationPhase(0, 3);
+		SequencePhase seq = new SequencePhase();
+		iter.setPhase(multiple);
+		seq.addPhases(declaration, iter);
+		
+		
+		
 		multiple.addMetrics(changes);
-		declaration.addMetrics();
 		
-		BenchmarkPhaseGroup group1 = new BenchmarkPhaseGroup();
-		group1.addPhase(declaration);
-		BenchmarkPhaseGroup group2 = new BenchmarkPhaseGroup();
-		group2.addPhase(multiple);
-		group2.setLoop(5);
-		
-		this.addPhaseGroups(group1, group2);
+		this.addPhases(seq);
 		declaration.setProtoCase(this);
 		multiple.setProtoCase(this);
 		return this;

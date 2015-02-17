@@ -42,8 +42,8 @@ public class PhaseResult {
 		this.phaseName = phaseName;
 	}
 	
-	public void setSequence(int iteration, int loop){
-		this.sequence = iteration + "." + loop;
+	public void setSequence(int iteration){
+		this.sequence = Integer.toString(iteration);
 	}
 	
 }

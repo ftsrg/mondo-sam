@@ -18,7 +18,7 @@ public class ProtoEngine extends BenchmarkEngine{
 	}
 	
 	@Override
-	public void runBenchmark() throws CloneNotSupportedException{
+	public void runBenchmark(){
 		protoConfig.processArguments();
 		protoCaseBuilder.setProtoConfig(protoConfig);
 		super.runBenchmark();

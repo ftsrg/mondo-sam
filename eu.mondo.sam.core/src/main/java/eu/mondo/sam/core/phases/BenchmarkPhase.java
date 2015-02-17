@@ -1,45 +1,7 @@
 package eu.mondo.sam.core.phases;
 
-import eu.mondo.sam.core.metric.BenchmarkMetric;
-import eu.mondo.sam.core.results.PhaseResult;
+public interface  BenchmarkPhase {
 
-import java.util.List;
-import java.util.ArrayList;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public abstract class BenchmarkPhase {
-
-	protected String phaseName;
-
-	protected List<BenchmarkMetric> metrics;
-	
-	public BenchmarkPhase(String name){
-		metrics = new ArrayList<BenchmarkMetric>();
-		this.phaseName = name;
-	}
-	
-	public void addMetrics(BenchmarkMetric... metrics){
-		if (metrics.length > 0)
-			for(BenchmarkMetric m:metrics){
-				if(this.metrics.contains(m) == false)
-					this.metrics.add(m);
-		}
-	}
-	
-	public String getPhaseName() {
-		return phaseName;
-	}
-	
-	public List<BenchmarkMetric> getMetrics() {
-		return metrics;
-	}
-	
-	@Override
-	public String toString() {
-		return phaseName;
-	}
-
-	public abstract void execute() throws PhaseInterruptedException;
-	
+	public BenchmarkPhase nextPhase();
+	public boolean hasNext();
 }

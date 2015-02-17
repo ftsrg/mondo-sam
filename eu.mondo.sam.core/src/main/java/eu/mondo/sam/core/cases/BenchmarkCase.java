@@ -1,8 +1,9 @@
 package eu.mondo.sam.core.cases;
 
-import eu.mondo.sam.core.phases.BenchmarkPhaseGroup;
+import eu.mondo.sam.core.phases.AtomicPhase;
+import eu.mondo.sam.core.phases.BenchmarkPhase;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +13,7 @@ public abstract class BenchmarkCase {
 	@JsonProperty("CaseName")
 	protected String caseName;
 	
-	protected List<BenchmarkPhaseGroup> groups;
+	protected LinkedList<BenchmarkPhase> phases;
 	
 	@JsonProperty("RunIndex")
 	protected int runIndex;
@@ -27,33 +28,40 @@ public abstract class BenchmarkCase {
 	protected int size;
 	
 	public BenchmarkCase(String name){
-		this.groups = new ArrayList<BenchmarkPhaseGroup>();
+		this.phases = new LinkedList<BenchmarkPhase>();
 	}
 		
-	protected void addPhaseGroups(BenchmarkPhaseGroup... groups){
-		for(BenchmarkPhaseGroup g:groups){
-			this.groups.add(g);
+	protected void addPhases(BenchmarkPhase... phases){
+		for(BenchmarkPhase p:phases){
+			this.phases.add(p);
 		}
 	}
 	
-	public List<BenchmarkPhaseGroup> getGroups() {
-		return groups;
+	public List<BenchmarkPhase> getPhases() {
+		return phases;
 	}
 	
 	public abstract BenchmarkCase buildCase();
 	
+	public boolean hasPhase(){
+		return this.phases.isEmpty() ? false : true;
+	}
+	
+	public AtomicPhase getNextPhase(){
+		if (phases.isEmpty() == false){
+			BenchmarkPhase phase = phases.getFirst();
+			AtomicPhase followingPhase = (AtomicPhase) phase.nextPhase();
+			if (phase.hasNext() == false)
+				phases.poll();
+			return followingPhase;
+		}
+		return null;
+		
+	}
+	
 	@Override
 	public String toString() {
 		return caseName;
-	}
-	
-	public boolean isInitialized(){
-		if (this.caseName == null || 
-			this.size == 0 ||
-			this.scenario == null ||
-			this.tool == null ||
-			this.runIndex == 0)return false;
-		return true;
 	}
 	
 	public String getCaseName() {

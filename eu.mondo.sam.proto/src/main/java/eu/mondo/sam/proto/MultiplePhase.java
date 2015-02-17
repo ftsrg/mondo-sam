@@ -1,11 +1,11 @@
 package eu.mondo.sam.proto;
 
 import eu.mondo.sam.core.metric.BenchmarkMetric;
-import eu.mondo.sam.core.phases.BenchmarkPhase;
+import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.phases.PhaseInterruptedException;
 import eu.mondo.sam.core.results.PhaseResult;
 
-public class MultiplePhase extends BenchmarkPhase{
+public class MultiplePhase extends AtomicPhase{
 
 	private ProtoCase protoCase;
 	
@@ -18,11 +18,10 @@ public class MultiplePhase extends BenchmarkPhase{
 	}
 
 	@Override
-	public void execute() throws PhaseInterruptedException {
+	public void execute() {
 		int number = protoCase.getModel().getNumber();
 		number *= 2;
-		if (number > 32)
-			throw new PhaseInterruptedException();
+		((ChangesMetric)this.metrics.get(0)).setChangesValue(number);
 		protoCase.getModel().setNumber(number);
 	}
 }

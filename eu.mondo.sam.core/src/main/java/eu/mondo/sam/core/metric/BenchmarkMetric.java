@@ -1,6 +1,5 @@
 package eu.mondo.sam.core.metric;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class BenchmarkMetric{
 
