@@ -14,17 +14,21 @@ public class SequencePhase implements BenchmarkPhase{
 	
 	@Override
 	public BenchmarkPhase getPhase() {
-		System.out.println("Seq getphase " + this.index);
+		boolean increase = false;
+		boolean init = false;
 		if (this.index < this.phases.size()){
-			BenchmarkPhase phase = phases.get(this.index).getPhase();
 			if (this.phases.get(index).hasNext() == false){
 				if (this.index < (this.phases.size()-1) ){
-					System.out.println("Increase index");
-					this.index++;
+					increase = true;
 				}
 				else
-					{System.out.println("null index called");this.index = 0;}
+					init = true;
 			}
+			BenchmarkPhase phase = phases.get(this.index).getPhase();
+			if (increase)
+				this.index++;
+			else if (init)
+				this.index = 0;
 			return phase;
 		}
 		return null;
@@ -32,7 +36,6 @@ public class SequencePhase implements BenchmarkPhase{
 	
 	@Override
 	public boolean hasNext() {
-		System.out.println("Seq hasnext " + this.index);
 		if (index < this.phases.size()){
 			if (this.phases.get(index).hasNext()){
 				return true;

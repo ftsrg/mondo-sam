@@ -6,7 +6,6 @@ public abstract class ConditionalPhase implements BenchmarkPhase{
 	
 	@Override
 	public BenchmarkPhase getPhase() {
-//		System.out.println("Cond getphase");
 		if (condition() == true){
 			return (this.phase.getPhase());
 			}

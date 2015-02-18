@@ -47,7 +47,7 @@ public class ProtoCase extends BenchmarkCase{
 		IterationPhase iter2 = new IterationPhase(0, 3);
 		SequencePhase seq = new SequencePhase();
 		SequencePhase seq2 = new SequencePhase();
-		seq.addPhases(declaration, iter);
+		seq.addPhases(declaration, iter, declaration);
 		seq2.addPhases(multiple);
 		iter.setPhase(multiple);
 //		iter.setPhase(iter2);
@@ -56,7 +56,7 @@ public class ProtoCase extends BenchmarkCase{
 		
 		multiple.addMetrics(changes);
 		
-		this.setPhases(declaration, iter);
+		this.setPhases(seq, seq2);
 		declaration.setProtoCase(this);
 		multiple.setProtoCase(this);
 		return this;

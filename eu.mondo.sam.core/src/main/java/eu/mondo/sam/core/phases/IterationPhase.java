@@ -12,7 +12,6 @@ public class IterationPhase extends ConditionalPhase{
 	
 	@Override
 	public boolean condition() {
-//		System.out.println("Iter cond " + this.iteration + "-" + this.maxIteration);
 		if (this.iteration < this.maxIteration){
 			if (this.phase.hasNext() == false){
 				this.iteration ++;
@@ -24,8 +23,9 @@ public class IterationPhase extends ConditionalPhase{
 
 	@Override
 	public boolean hasNext() {
-//		System.out.println("Iter hasnext " + this.iteration + "-" + this.maxIteration);
-		if (this.iteration < this.maxIteration){
+		if (this.phase.hasNext()) 
+			return true;
+		else if (this.iteration < this.maxIteration){
 			return true;
 		}
 		return false;
