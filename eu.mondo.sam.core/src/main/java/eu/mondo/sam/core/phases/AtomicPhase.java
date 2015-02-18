@@ -41,13 +41,18 @@ public abstract class AtomicPhase implements BenchmarkPhase{
 	public abstract void execute();
 	
 	@Override
-	public BenchmarkPhase nextPhase() {
+	public BenchmarkPhase getPhase() {
 		return this;
 	}
 	
 	@Override
 	public boolean hasNext() {
 		return false;
+	}
+	
+	@Override
+	public void remove() {
+		return;
 	}
 	
 }

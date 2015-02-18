@@ -43,16 +43,20 @@ public class ProtoCase extends BenchmarkCase{
 //		BenchmarkMetric steps = new BenchmarkMetric("Steps");
 		model = new ProtoModel(2);
 		
-		IterationPhase iter = new IterationPhase(0, 3);
+		IterationPhase iter = new IterationPhase(0, 5);
+		IterationPhase iter2 = new IterationPhase(0, 3);
 		SequencePhase seq = new SequencePhase();
-		iter.setPhase(multiple);
+		SequencePhase seq2 = new SequencePhase();
 		seq.addPhases(declaration, iter);
+		seq2.addPhases(multiple);
+		iter.setPhase(multiple);
+//		iter.setPhase(iter2);
 		
 		
 		
 		multiple.addMetrics(changes);
 		
-		this.addPhases(seq);
+		this.setPhases(declaration, iter);
 		declaration.setProtoCase(this);
 		multiple.setProtoCase(this);
 		return this;
