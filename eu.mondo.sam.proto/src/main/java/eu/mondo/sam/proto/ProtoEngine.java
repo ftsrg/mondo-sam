@@ -1,15 +1,15 @@
 package eu.mondo.sam.proto;
 
-import eu.mondo.sam.core.cases.CaseBuilder;
+import eu.mondo.sam.core.scenarios.ScenarioBuilder;
 import eu.mondo.sam.core.BenchmarkEngine;
 
 public class ProtoEngine extends BenchmarkEngine{
 
 	private ProtoConfig protoConfig;
-	private ProtoCaseBuilder protoCaseBuilder;
+	private ProtoScenarioBuilder protoCaseBuilder;
 	
-	public ProtoEngine(ProtoCaseBuilder protoCaseBuilder) {
-		super((CaseBuilder)protoCaseBuilder);
+	public ProtoEngine(ProtoScenarioBuilder protoCaseBuilder) {
+		super((ScenarioBuilder)protoCaseBuilder);
 		this.protoCaseBuilder = protoCaseBuilder;
 	}
 	

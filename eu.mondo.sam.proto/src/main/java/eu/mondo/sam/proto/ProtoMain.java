@@ -9,7 +9,7 @@ public class ProtoMain {
 
 	public static void main(String[] args) throws ParseException{
 		ProtoConfig protoConfig = new ProtoConfig(args);
-		ProtoEngine protoEngine = new ProtoEngine(new ProtoCaseBuilder());
+		ProtoEngine protoEngine = new ProtoEngine(new ProtoScenarioBuilder());
 		protoEngine.setProtoConfig(protoConfig);
 		//BenchmarkEngine benchmarkEngine = new BenchmarkEngine(new ProtoCaseBuilder());
 		//benchmarkEngine.runBenchmark();

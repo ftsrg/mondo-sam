@@ -17,6 +17,7 @@ public class ProtoConfig{
 	private String scenario;
 	private int runIndex;
 	private String tool;
+	private String caseName;
 	
 	public ProtoConfig(String... args) throws ParseException{
 		initializeOptions(args);
@@ -78,5 +79,9 @@ public class ProtoConfig{
 	
 	public String getTool() {
 		return tool;
+	}
+	
+	public void setScenario(String scenario) {
+		this.scenario = scenario;
 	}
 }

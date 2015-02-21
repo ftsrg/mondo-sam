@@ -2,48 +2,17 @@ package eu.mondo.sam.core.phases;
 
 import java.util.LinkedList;
 
+import eu.mondo.sam.core.phases.iterators.PhaseIterator;
+import eu.mondo.sam.core.phases.iterators.SequencePhaseIterator;
+
 public class SequencePhase implements BenchmarkPhase{
 
 	protected LinkedList<BenchmarkPhase> phases;
-	private int index;
+	protected SequencePhaseIterator iterator;
 	
 	public SequencePhase(){
 		this.phases = new LinkedList<BenchmarkPhase>();
-		this.index = 0;
-	}
-	
-	@Override
-	public BenchmarkPhase getPhase() {
-		boolean increase = false;
-		boolean init = false;
-		if (this.index < this.phases.size()){
-			if (this.phases.get(index).hasNext() == false){
-				if (this.index < (this.phases.size()-1) ){
-					increase = true;
-				}
-				else
-					init = true;
-			}
-			BenchmarkPhase phase = phases.get(this.index).getPhase();
-			if (increase)
-				this.index++;
-			else if (init)
-				this.index = 0;
-			return phase;
-		}
-		return null;
-	}
-	
-	@Override
-	public boolean hasNext() {
-		if (index < this.phases.size()){
-			if (this.phases.get(index).hasNext()){
-				return true;
-			}
-			if (index != (this.phases.size() -1) ) 
-				return true;
-		}
-		return false;
+		this.iterator = new SequencePhaseIterator(this);
 	}
 	
 	public void addPhases(BenchmarkPhase... phases){
@@ -53,13 +22,15 @@ public class SequencePhase implements BenchmarkPhase{
 	}
 
 	@Override
-	public void remove() {
-		System.out.println("seq remove " + this.index);
-		this.phases.remove();
-		if (this.index > 0)
-			this.index--;
+	public PhaseIterator getIterator() {
+		return iterator;
 	}
-
-
-
+	
+	public LinkedList<BenchmarkPhase> getPhases() {
+		return phases;
+	}
+	
+	public int getSize(){
+		return phases.size();
+	}
 }

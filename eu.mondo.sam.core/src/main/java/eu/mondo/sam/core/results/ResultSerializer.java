@@ -27,30 +27,4 @@ public class ResultSerializer {
 		}
 		System.out.println("Create JSON file: " + filePath);
 	}
-	
-	/*
-	public static void serializeToCSV(BenchmarkResult bmr){
-		String filePath = "../results/results.csv";
-		List<String> headers = new ArrayList<String>();
-		List<BenchmarkPhase> phases = bmr.getBenchmarkConfig().getBenchmarkCase().getPhases();
-		for(BenchmarkPhase p:phases){
-			headers.add(p.toString());
-			for(BenchmarkMetric m:p.getMetrics()){
-				headers.add(m.toString());
-			}
-		}
-		System.out.println(headers.toString());
-		String[] row = (headers.toString()).split(",");
-		//System.out.println(row);
-		try(CSVWriter writer = new CSVWriter(new FileWriter(filePath), ';')){
-			bmr.getBenchmarkConfig().getBenchmarkCase().getPhases().toArray();
-			writer.writeNext(row);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	*/
-
 }

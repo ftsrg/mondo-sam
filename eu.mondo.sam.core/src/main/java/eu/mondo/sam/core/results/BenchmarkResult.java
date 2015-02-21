@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import eu.mondo.sam.core.cases.BenchmarkCase;
+import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 
 public class BenchmarkResult {
 
 	@JsonProperty("Case")
-	private BenchmarkCase benchmarkCase;
+	private BenchmarkScenario benchmarkScenario;
 	
 	@JsonProperty("PhaseResults")
 	private List<PhaseResult> phaseResults;
@@ -25,8 +25,12 @@ public class BenchmarkResult {
 		phaseResults = new ArrayList<PhaseResult>();
 	}
 	
-	public void setBenchmarkCase(BenchmarkCase benchmarkCase) {
-		this.benchmarkCase = benchmarkCase;
+	public List<PhaseResult> getPhaseResults() {
+		return phaseResults;
+	}
+	
+	public void setBenchmarkScenario(BenchmarkScenario benchmarkScenario) {
+		this.benchmarkScenario = benchmarkScenario;
 	}
 	
 	public void addResults(PhaseResult result){
@@ -34,11 +38,11 @@ public class BenchmarkResult {
 	}
 	
 	public void publishResults(){
-		String tool = benchmarkCase.getTool();
-		String scenario = benchmarkCase.getScenario();
-		String benchCase = benchmarkCase.getCaseName();
-		int size = benchmarkCase.getSize();
-		int runIndex = benchmarkCase.getRunIndex();
+		String tool = benchmarkScenario.getTool();
+		String scenario = benchmarkScenario.getScenarioName();
+		String benchCase = benchmarkScenario.getCaseName();
+		int size = benchmarkScenario.getSize();
+		int runIndex = benchmarkScenario.getRunIndex();
 		String fileName = tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index" + runIndex + ".json";
 		ResultSerializer.serializeToJson(this, resultPath, fileName);
 	}

@@ -6,13 +6,13 @@ import eu.mondo.sam.core.results.PhaseResult;
 
 public class MultiplePhase extends AtomicPhase{
 
-	private ProtoCase protoCase;
+	private ProtoScenario protoCase;
 	
 	public MultiplePhase(String name) {
 		super(name);
 	}
 
-	public void setProtoCase(ProtoCase protoCase) {
+	public void setProtoCase(ProtoScenario protoCase) {
 		this.protoCase = protoCase;
 	}
 

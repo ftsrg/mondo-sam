@@ -15,7 +15,7 @@ public abstract class BenchmarkMetric{
 	
 	@Override
 	public String toString() {
-		return this.metricName + " " + this.getValue();
+		return metricName + " " + getValue();
 	}
 	
 	public abstract String getValue();

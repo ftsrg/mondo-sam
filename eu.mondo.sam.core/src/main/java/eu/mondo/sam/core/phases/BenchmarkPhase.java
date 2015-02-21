@@ -1,8 +1,8 @@
 package eu.mondo.sam.core.phases;
 
+import eu.mondo.sam.core.phases.iterators.PhaseIterator;
+
 public interface BenchmarkPhase {
 
-	public BenchmarkPhase getPhase();
-	public boolean hasNext();
-	public void remove();
+	public PhaseIterator getIterator();
 }

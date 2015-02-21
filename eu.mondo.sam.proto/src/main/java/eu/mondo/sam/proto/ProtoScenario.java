@@ -1,17 +1,17 @@
 package eu.mondo.sam.proto;
 
-import eu.mondo.sam.core.cases.BenchmarkCase;
 import eu.mondo.sam.core.metric.BenchmarkMetric;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
+import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 
 
-public class ProtoCase extends BenchmarkCase{
+public class ProtoScenario extends BenchmarkScenario{
 
 	protected ProtoConfig protoConfig;
 	private ProtoModel model;
 	
-	public ProtoCase(String name) {
+	public ProtoScenario(String name) {
 		super(name);
 	}
 	
@@ -28,7 +28,7 @@ public class ProtoCase extends BenchmarkCase{
 	}
 
 	@Override
-	public BenchmarkCase buildCase() {
+	public BenchmarkScenario buildScenario() {
 		this.scenario = this.protoConfig.getScenario();
 		this.runIndex = this.protoConfig.getRunIndex();
 		this.size = this.protoConfig.getSize();
@@ -38,25 +38,31 @@ public class ProtoCase extends BenchmarkCase{
 		MultiplePhase multiple = new MultiplePhase("Multiple");
 		DeclarationPhase declaration = new DeclarationPhase("Declaration");
 		
-//		BenchmarkMetric decChanges = new BenchmarkMetric("Declaration Changes");
+		
 		BenchmarkMetric changes = new ChangesMetric("Changes");
-//		BenchmarkMetric steps = new BenchmarkMetric("Steps");
 		model = new ProtoModel(2);
 		
-		IterationPhase iter = new IterationPhase(0, 5);
-		IterationPhase iter2 = new IterationPhase(0, 3);
+		OptionalProtoPhase optional = new OptionalProtoPhase();
+		ProtoLoopPhase loopPhase = new ProtoLoopPhase();
 		SequencePhase seq = new SequencePhase();
 		SequencePhase seq2 = new SequencePhase();
-		seq.addPhases(declaration, iter, declaration);
-		seq2.addPhases(multiple);
-		iter.setPhase(multiple);
-//		iter.setPhase(iter2);
+		SequencePhase seq3 = new SequencePhase();
+		IterationPhase iter = new IterationPhase(0, 3);
+		IterationPhase iter2 = new IterationPhase(0, 5);
+		
+		optional.setPhase(multiple);
+		loopPhase.setPhase(multiple);
+		seq.addPhases(declaration, optional, multiple);
+		seq2.addPhases(multiple, multiple);
+		seq3.addPhases(multiple);
+		iter.setPhase(iter2);
+		iter2.setPhase(seq);
 		
 		
 		
 		multiple.addMetrics(changes);
 		
-		this.setPhases(seq, seq2);
+		this.setRootPhase(iter);
 		declaration.setProtoCase(this);
 		multiple.setProtoCase(this);
 		return this;

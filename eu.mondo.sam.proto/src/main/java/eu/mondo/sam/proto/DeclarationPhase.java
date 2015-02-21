@@ -5,14 +5,14 @@ import eu.mondo.sam.core.results.PhaseResult;
 
 public class DeclarationPhase extends AtomicPhase{
 
-	private ProtoCase protoCase;
+	private ProtoScenario protoCase;
 	//private ChangesMetric cm;
 	
 	public DeclarationPhase(String name) {
 		super(name);
 	}
 
-	public void setProtoCase(ProtoCase protoCase) {
+	public void setProtoCase(ProtoScenario protoCase) {
 		this.protoCase = protoCase;
 	}
 
@@ -20,8 +20,4 @@ public class DeclarationPhase extends AtomicPhase{
 	public void execute(){
 	}
 	
-	/*public void setCm(ChangesMetric cm) {
-		this.cm = cm;
-	}*/
-
 }

@@ -1,41 +1,43 @@
 package eu.mondo.sam.core.phases;
 
-public class IterationPhase extends ConditionalPhase{
+import eu.mondo.sam.core.phases.iterators.IterationPhaseIterator;
+import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
-	private int maxIteration;
-	private int iteration;
+public class IterationPhase implements BenchmarkPhase{
+
+	protected int iteration;
+	protected int maxIteration;
+	protected IterationPhaseIterator iterator;
+	protected BenchmarkPhase phase;
 	
 	public IterationPhase(int initValue, int maxValue){
 		this.iteration = initValue;
 		this.maxIteration = maxValue;
-	}
-	
-	@Override
-	public boolean condition() {
-		if (this.iteration < this.maxIteration){
-			if (this.phase.hasNext() == false){
-				this.iteration ++;
-			}
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean hasNext() {
-		if (this.phase.hasNext()) 
-			return true;
-		else if (this.iteration < this.maxIteration){
-			return true;
-		}
-		return false;
+		iterator = new IterationPhaseIterator(this);
 	}
 	
 	public void setMaxIteration(int maxIteration) {
 		this.maxIteration = maxIteration;
 	}
 
+	@Override
+	public PhaseIterator getIterator() {
+		return iterator;
+	}
 
-
+	public void setPhase(BenchmarkPhase phase) {
+		this.phase = phase;
+	}
 	
+	public int getIteration() {
+		return iteration;
+	}
+	
+	public int getMaxIteration() {
+		return maxIteration;
+	}
+	
+	public BenchmarkPhase getPhase() {
+		return phase;
+	}
 }
