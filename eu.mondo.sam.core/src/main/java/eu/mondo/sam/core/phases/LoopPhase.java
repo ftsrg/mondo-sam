@@ -5,15 +5,15 @@ import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
 public abstract class LoopPhase extends ConditionalPhase{
 
-	protected LoopPhaseIterator iterator;
+//	protected LoopPhaseIterator iterator;
 	
-	public LoopPhase(){
-		iterator = new LoopPhaseIterator(this);
-	}
+//	public LoopPhase(){
+//		iterator = new LoopPhaseIterator(this);
+//	}
 	
 	@Override
 	public PhaseIterator getIterator() {
-		return iterator;
+		return new LoopPhaseIterator(this);
 	}
 
 }

@@ -7,22 +7,18 @@ public class IterationPhase implements BenchmarkPhase{
 
 	protected int iteration;
 	protected int maxIteration;
-	protected IterationPhaseIterator iterator;
+//	protected IterationPhaseIterator iterator;
 	protected BenchmarkPhase phase;
 	
 	public IterationPhase(int initValue, int maxValue){
 		this.iteration = initValue;
 		this.maxIteration = maxValue;
-		iterator = new IterationPhaseIterator(this);
+//		iterator = new IterationPhaseIterator(this);
 	}
 	
-	public void setMaxIteration(int maxIteration) {
-		this.maxIteration = maxIteration;
-	}
-
 	@Override
 	public PhaseIterator getIterator() {
-		return iterator;
+		return new IterationPhaseIterator(this);
 	}
 
 	public void setPhase(BenchmarkPhase phase) {

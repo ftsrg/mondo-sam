@@ -5,14 +5,14 @@ import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
 public abstract class OptionalPhase extends ConditionalPhase{
 
-	protected OptionalPhaseIterator iterator;
+//	protected OptionalPhaseIterator iterator;
 	
-	public OptionalPhase() {
-		iterator = new OptionalPhaseIterator(this);
-	}
+//	public OptionalPhase() {
+//		iterator = new OptionalPhaseIterator(this);
+//	}
 	
 	@Override
 	public PhaseIterator getIterator() {
-		return iterator;
+		return new OptionalPhaseIterator(this);
 	}
 }

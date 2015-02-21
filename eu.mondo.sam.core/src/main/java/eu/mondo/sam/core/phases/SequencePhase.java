@@ -8,11 +8,11 @@ import eu.mondo.sam.core.phases.iterators.SequencePhaseIterator;
 public class SequencePhase implements BenchmarkPhase{
 
 	protected LinkedList<BenchmarkPhase> phases;
-	protected SequencePhaseIterator iterator;
+//	protected SequencePhaseIterator iterator;
 	
 	public SequencePhase(){
 		this.phases = new LinkedList<BenchmarkPhase>();
-		this.iterator = new SequencePhaseIterator(this);
+//		this.iterator = new SequencePhaseIterator(this);
 	}
 	
 	public void addPhases(BenchmarkPhase... phases){
@@ -23,7 +23,7 @@ public class SequencePhase implements BenchmarkPhase{
 
 	@Override
 	public PhaseIterator getIterator() {
-		return iterator;
+		return new SequencePhaseIterator(this);
 	}
 	
 	public LinkedList<BenchmarkPhase> getPhases() {

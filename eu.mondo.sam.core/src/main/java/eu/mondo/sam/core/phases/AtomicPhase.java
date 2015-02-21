@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public abstract class AtomicPhase implements BenchmarkPhase{
 	
 	protected String phaseName;
-	protected AtomicPhaseIterator iterator;
+//	protected AtomicPhaseIterator iterator;
 	protected List<BenchmarkMetric> metrics;
 	
 	public AtomicPhase(String name){
 		metrics = new ArrayList<BenchmarkMetric>();
 		this.phaseName = name;
-		iterator = new AtomicPhaseIterator(this);
+//		iterator = new AtomicPhaseIterator(this);
 	}
 	
 	public void addMetrics(BenchmarkMetric... metrics){
@@ -45,12 +45,7 @@ public abstract class AtomicPhase implements BenchmarkPhase{
 	
 	@Override
 	public PhaseIterator getIterator() {
-		return iterator;
+		return new AtomicPhaseIterator(this);
 	}
-	
-//	@Override
-//	public void remove() {
-//		return;
-//	}
 	
 }

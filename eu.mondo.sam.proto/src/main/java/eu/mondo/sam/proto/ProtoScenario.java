@@ -62,7 +62,7 @@ public class ProtoScenario extends BenchmarkScenario{
 		
 		multiple.addMetrics(changes);
 		
-		this.setRootPhase(iter);
+		this.setRootPhase(declaration);
 		declaration.setProtoCase(this);
 		multiple.setProtoCase(this);
 		return this;

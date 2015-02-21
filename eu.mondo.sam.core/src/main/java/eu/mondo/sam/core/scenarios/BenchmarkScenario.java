@@ -2,6 +2,7 @@ package eu.mondo.sam.core.scenarios;
 
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
+import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,7 @@ public abstract class BenchmarkScenario {
 	@JsonProperty("Size")
 	protected int size;
 	
+	private PhaseIterator iterator;
 	protected BenchmarkPhase rootPhase;
 	
 	public BenchmarkScenario(String scenario){
@@ -35,11 +37,17 @@ public abstract class BenchmarkScenario {
 	public abstract BenchmarkScenario buildScenario();
 	
 	public boolean hasNextPhase(){
-		return rootPhase.getIterator().hasNext();
+		if (iterator == null){
+			iterator = rootPhase.getIterator();
+		}
+		return iterator.hasNext();
 	}
 	
 	public AtomicPhase getNextPhase(){
-		AtomicPhase phase = rootPhase.getIterator().nextPhase();
+		if (iterator == null){
+			iterator = rootPhase.getIterator();
+		}
+		AtomicPhase phase = iterator.nextPhase();
 		return phase;
 	}
 	

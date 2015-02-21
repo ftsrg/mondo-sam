@@ -6,15 +6,17 @@ import eu.mondo.sam.core.phases.LoopPhase;
 public class LoopPhaseIterator implements PhaseIterator{
 
 	private LoopPhase loopPhase;
+	private PhaseIterator iterator;
 	
 	public LoopPhaseIterator(LoopPhase loopPhase) {
 		this.loopPhase = loopPhase;
+		iterator = loopPhase.getPhase().getIterator();
 	}
 	
 	@Override
 	public AtomicPhase nextPhase() {
 		if (loopPhase.condition()){
-			PhaseIterator iterator = loopPhase.getPhase().getIterator();
+//			PhaseIterator iterator = loopPhase.getPhase().getIterator();
 			return iterator.nextPhase();
 		}
 		return null;

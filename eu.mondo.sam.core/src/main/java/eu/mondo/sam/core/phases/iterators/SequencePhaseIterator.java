@@ -12,6 +12,7 @@ public class SequencePhaseIterator implements PhaseIterator{
 	
 	public SequencePhaseIterator(SequencePhase phase){
 		this.sequencePhase = phase;
+		this.iterator = sequencePhase.getPhases().getFirst().getIterator();
 	}
 	
 	@Override
@@ -20,13 +21,18 @@ public class SequencePhaseIterator implements PhaseIterator{
 		// if returned the last AtomicPhase before
 		if (index == size){
 			index = 0;
+			iterator = sequencePhase.getPhases().getFirst().getIterator();
 		}
 		
 		BenchmarkPhase phase = sequencePhase.getPhases().get(index);
-		PhaseIterator iterator = phase.getIterator();
+//		PhaseIterator iterator = phase.getIterator();
 		AtomicPhase atomic = iterator.nextPhase();
-		if (iterator.hasNext() == false)
+		if (iterator.hasNext() == false){
 			index++;
+			if (index < size){
+				iterator = sequencePhase.getPhases().get(index).getIterator();
+			}
+		}
 		return atomic;
 //		}
 	}
