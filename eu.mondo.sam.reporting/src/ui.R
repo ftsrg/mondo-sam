@@ -14,8 +14,9 @@ shinyUI(navbarPage("Reporting",
                                 uiOutput("phase"),
                                 uiOutput("mix"),
                                 uiOutput("metric"),
+                                checkboxInput("mix", label = "Mix", value = FALSE),
                                 uiOutput("iteration"),
-                                uiOutput("axis")
+                                actionButton("visualize", "Draw plot")
                               ),
                               mainPanel(
                                 plotOutput("plot")
@@ -30,7 +31,7 @@ shinyUI(navbarPage("Reporting",
                                  choices = c("Continuous", "Log10")),
                      selectInput("theme", label="Themes",
                                  choices=c("Default", "Black and White")),
-                     uiOutput("title"),
+                     textInput("title", "Title", value="SCENARIO CASENAME PHASENAME"),
                      uiOutput("titleTemplate"),
                      actionButton("titleInsert", "Insert"),
                      textInput("xlabel", label="X-axis label"),

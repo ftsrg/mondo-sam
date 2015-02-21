@@ -15,7 +15,6 @@ shinyServer(function(input, output, session) {
   
   values <- reactiveValues(iteration = c(0,0))
   values$settings <- PlotSettings(theme="Default")
-#   values$iteration <- c(0,0)   
   values$results <- results
   values$subtables <- subtables
   #values$settings <- setTheme(values$settings, "Default")
@@ -23,7 +22,7 @@ shinyServer(function(input, output, session) {
   
   refreshSettingsTitle <- observe({
     print("refreshSettingsTitle")
-    # create dependencies:case,phase,scenario,metric
+    # create dependencies:case,phase,scenario,metric, mix
     if (is.null(input$mix))
       return()
     if (is.null(input$case))
@@ -35,7 +34,7 @@ shinyServer(function(input, output, session) {
     if (is.null(input$metric))
       return()
     isolate({
-      title <- isolate(input$title)
+      title <- input$title
       title <- gsub("CASENAME", input$case, title)
       if (input$mix == TRUE){
         phases <- ""
@@ -149,7 +148,6 @@ shinyServer(function(input, output, session) {
             file <- gsub("PHASENAME", phases, file)
           }
           file <- gsub("PHASENAME", input$phase, file)
-#           newFile <- file
           newFile <- gsub("SCENARIO", scenario, file)
           plot <- createPlot(sub,values$settings)
           print(newFile)
@@ -161,6 +159,7 @@ shinyServer(function(input, output, session) {
     
   })
   
+  # returns a smaller part of the original dataframe of results
   createSubFrame <- function(scenario){
     print("createSubFrame")
     isolate({
@@ -170,6 +169,7 @@ shinyServer(function(input, output, session) {
                       select=c(Tool, MetricValue, Size))
         #if (!is.null(input$iteration))
           if (values$iteration[[1]] > 0){
+            # summarise the metricvalue according to the given iteration values
             first <- TRUE
             for(iter in values$iteration[[1]]:values$iteration[[2]]){
               sub <- subset(values$subtables[[scenario]][[input$phase]], Iteration==iter & MetricName==input$metric,
@@ -186,42 +186,53 @@ shinyServer(function(input, output, session) {
           }
       }
       else if(input$mix == TRUE){
+        #
         sub <- subset(values$results, Scenario == scenario & CaseName == input$case & 
                         MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName))
         first <- TRUE
         print(input$mixphase)
         if (length(input$mixphase) == 0)
           return()
+        
+        # creates selection operations on sub frame based on the various phases, then merge them back
         for(phase in input$mixphase){
           if (first == TRUE){
-            merged <- subset(sub, PhaseName == phase)
+            merged <- subset(sub, PhaseName == phase) # selection on phase
             first <- FALSE
           }
           else
-            merged <- rbind(merged, subset(sub, PhaseName == phase))
+            merged <- rbind(merged, subset(sub, PhaseName == phase)) # merge back
         }
         sub <- ddply(merged, c("Tool", "Size"), summarise,
                      MetricValue = sum(MetricValue))
       }
     })
+    return(sub)
   }
   
   
   output$plot <- renderPlot({
     print("output$plot")
-    if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
-      return()
-    # add dependencies
-    input$iteration
-    input$mixphase
-
-
-    sub <- createSubFrame(input$scenario)
-    if (is.null(sub))
-      return()
-    plot <- createPlot(sub, values$settings)
-    print(plot)
-    #ggsave(plot=plot,filename="../../diagrams/testplot.png", width=14, height=7, dpi=192)
+    input$visualize
+    isolate({
+      
+      if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
+        return()
+      # add dependencies
+      input$iteration
+      input$mixphase
+      
+      withProgress(message = 'Creating plot', value = 1.0, {
+        sub <- createSubFrame(input$scenario)
+        if (is.null(sub)){
+          print("createSubFrame returned NULL!")
+          return()
+        }
+        plot <- createPlot(sub, values$settings)
+        print(plot)
+      })
+      #ggsave(plot=plot,filename="../../diagrams/testplot.png", width=14, height=7, dpi=192)
+    })
   })
   
   output$scenario <- renderUI({
@@ -240,14 +251,7 @@ shinyServer(function(input, output, session) {
                 )
   })
   
-  output$mix <- renderUI({
-    if (is.null(input$scenario)){
-      return()
-    }
-    checkboxInput("mix", label = "Mix", value = FALSE)
-    
-  })
-  
+
   output$phase <- renderUI({
     if (is.null(input$scenario))
       return()
@@ -284,6 +288,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$metric <- renderUI({
+    print("metric called")
     if (is.null(input$mix)){
       return()
     }
@@ -361,18 +366,20 @@ shinyServer(function(input, output, session) {
     })
   })
   
-  output$title <- renderUI({
-    textInput("title", "Title",
-              value="SCENARIO CASENAME PHASENAME")
-  })
+#   output$title <- renderUI({
+#     textInput("title", "Title",
+#               value="SCENARIO CASENAME PHASENAME")
+#   })
   
   output$titleTemplate <- renderUI({
+    # TODO evaluate choices from results
     selectInput("titleTemplate", "Templates",
                 choices=c("CaseName", "Scenario", "PhaseName", "MetricName"))
   })
   
   output$publishTemplate <- renderUI({
     print("publishTemplate called")
+    # TODO evaluate choices from results
     selectInput("publishTemplate", "Templates",
                 choices=c("CaseName", "Scenario", "PhaseName", "MetricName"))
   })
