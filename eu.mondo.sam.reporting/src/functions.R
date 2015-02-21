@@ -1,14 +1,8 @@
 source("themes.R")
 
-load <- function(path){
-  results <- read.csv(path, head=TRUE, sep=",")
-  return(results)
-}
-
-
-preprocess <- function(results){
+preprocess <- function(results, case){
   
-  unique_scenarios <- unique(subset(results, CaseName == "ProtoCase")$Scenario)
+  unique_scenarios <- unique(subset(results, CaseName == case)$Scenario)
   
   subtables <- vector(mode="list", length=length(unique_scenarios))
   names(subtables) <- (unique_scenarios)
@@ -41,7 +35,7 @@ preprocess <- function(results){
   }
   
   for(scen in unique_scenarios){
-    unique_phases <- unique(subset(merged, CaseName == "ProtoCase" & Scenario == scen)$PhaseName)
+    unique_phases <- unique(subset(merged, CaseName == case & Scenario == scen)$PhaseName)
     subtables[[scen]] <- vector(mode="list", length=length(unique_phases))
     names(subtables[[scen]]) <- unique_phases
     for(phase in unique_phases){
@@ -64,7 +58,7 @@ preprocess <- function(results){
 
 createPlot <- function(results, settings){
   
-  if (settings@theme == "Default")
+  if (settings@theme == "Default"){
     plot <- ggplot(results, aes(x=Size, y=MetricValue)) + 
             scale_shape_manual(values=1:nlevels(results$Tool)) +
             theme_grey() + geom_line(aes(group=Tool, colour=Tool)) + 
@@ -72,30 +66,35 @@ createPlot <- function(results, settings){
             xlab(settings@xLabel) +
             ylab(settings@yLabel) +
             ggtitle(label = settings@title)
-  else if (settings@theme == "Black and White")
+  }
+  else if (settings@theme == "Black and White"){
     plot <- ggplot(results, aes(x=Size, y=MetricValue)) +
             scale_shape_manual(values=1:nlevels(results$Tool)) +
             bwTheme + geom_line(aes(group=Tool)) + geom_point(aes(shape=Tool), size=3) + 
             xlab(settings@xLabel) +
             ylab(settings@yLabel) +
             ggtitle(label = settings@title)
-  
+  }
   minSize <- min(results$Size)
   maxSize <- max(results$Size)
   sizes <- unique(results$Size)
   sizeCount <- length(sizes)
-  if (settings@xAxis == "Continuous")
+  if (settings@xAxis == "Continuous"){
     plot <- plot + scale_x_continuous(breaks = c(sizes), labels = c(sizes))
-  else if (settings@xAxis == "Log10")
+  }
+  else if (settings@xAxis == "Log10"){
     plot <- plot + scale_x_log10(breaks = c(sizes), labels = c(sizes))
+  }
   minValue <- min(results$MetricValue)
   maxValue <- max(results$MetricValue)
-  if (settings@yAxis == "Continuous")
+  if (settings@yAxis == "Continuous"){
     plot <- plot + scale_y_continuous(breaks = seq(minValue, maxValue, by=(maxValue-minValue)/7),
                                       labels = round(seq(minValue, maxValue, by=(maxValue-minValue)/7),2))
-  else if (settings@yAxis == "Log10")
+  }
+  else if (settings@yAxis == "Log10"){
     plot <- plot + scale_y_log10(breaks = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),7), 
                                 labels = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),2))
+  }
   
   return (plot)
 }

@@ -4,12 +4,7 @@ shinyUI(navbarPage("Reporting",
                    tabPanel("Results",
                             sidebarLayout(
                               sidebarPanel(
-                                selectInput("case", label="Case",
-                                            #choices = list("Time" = "Time", "Steps" = "Steps"),
-                                            #selected = "time"
-                                            choices = c("ProtoCase"),
-                                            selected="ProtoCase"
-                                ),
+                                uiOutput("case"),
                                 uiOutput("scenario"),
                                 uiOutput("phase"),
                                 uiOutput("mix"),
@@ -45,7 +40,7 @@ shinyUI(navbarPage("Reporting",
                      selectInput("format","File format",
                                  choices=c("PDF", "PNG")),
                      checkboxGroupInput("publishGroup",label="Publish Settings",
-                                        choices=list("All Scenarios"="scenarios", "All Phases"="phases")),
+                                        choices=list("All Scenarios"="scenarios", "All Cases"="cases")),
                      actionButton("publish",label="Save Diagrams")
                      )
 )

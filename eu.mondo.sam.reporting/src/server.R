@@ -5,8 +5,16 @@ library(shiny, quietly=T, verbose=F, warn.conflicts=FALSE)
 source("functions.R")
 source("plot.R")
 
-results <- load("../../results/results.csv")
-subtables <- preprocess(results)
+path <- "../../results/results.csv"
+results <- read.csv(path, head=TRUE, sep=",")
+unique_cases <- unique(results$CaseName)
+
+subtables <- vector(mode="list", length=length(unique_cases))
+names(subtables) <- unique_cases
+# evaluate forward the various data frames of results
+for(case in unique_cases){
+  subtables[[case]] <- preprocess(results, case)
+}
 
 #iteration <- c(0,0)
 
@@ -15,10 +23,11 @@ shinyServer(function(input, output, session) {
   
   values <- reactiveValues(iteration = c(0,0))
   values$settings <- PlotSettings(theme="Default")
+  # the original data frame
   values$results <- results
-  values$subtables <- subtables
-  #values$settings <- setTheme(values$settings, "Default")
   
+  # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
+  values$subtables <- subtables
   
   refreshSettingsTitle <- observe({
     print("refreshSettingsTitle")
@@ -165,14 +174,15 @@ shinyServer(function(input, output, session) {
     isolate({
       print(values$iteration[[1]])
       if (input$mix == FALSE){
-        sub <- subset(values$subtables[[scenario]][[input$phase]], MetricName==input$metric,
+        sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], MetricName==input$metric,
                       select=c(Tool, MetricValue, Size))
         #if (!is.null(input$iteration))
           if (values$iteration[[1]] > 0){
             # summarise the metricvalue according to the given iteration values
             first <- TRUE
             for(iter in values$iteration[[1]]:values$iteration[[2]]){
-              sub <- subset(values$subtables[[scenario]][[input$phase]], Iteration==iter & MetricName==input$metric,
+              sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], 
+                            Iteration==iter & MetricName==input$metric,
                             select=c(Tool, MetricValue, Size))
               if(first == TRUE){
                 merged <- sub
@@ -215,7 +225,6 @@ shinyServer(function(input, output, session) {
     print("output$plot")
     input$visualize
     isolate({
-      
       if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
         return()
       # add dependencies
@@ -231,14 +240,27 @@ shinyServer(function(input, output, session) {
         plot <- createPlot(sub, values$settings)
         print(plot)
       })
-      #ggsave(plot=plot,filename="../../diagrams/testplot.png", width=14, height=7, dpi=192)
     })
   })
   
+  output$case <- renderUI({
+    unique_cases <- names(subtables)
+    if(length(unique_cases) == 0)
+      return()
+    case_list <- list()
+    for(case in unique_cases){
+      case_list <- c(case, case, case_list)
+    }
+    selectInput("case", "Case",
+                choices = case_list,
+                selected = case_list[0]
+                )
+  })
+
   output$scenario <- renderUI({
     if (is.null(input$case))
       return()
-    unique_scenarios <- names(subtables)
+    unique_scenarios <- names(subtables[[input$case]])
     if(length(unique_scenarios) == 0)
       return()
     scenario_list <- list()
@@ -257,7 +279,7 @@ shinyServer(function(input, output, session) {
       return()
     if (is.null(input$mix) == FALSE){
       if(input$mix == FALSE){
-        unique_phases <- names(subtables[[input$scenario]])
+        unique_phases <- names(subtables[[input$case]][[input$scenario]])
         if(length(unique_phases) == 0){
           return()
         }
@@ -267,7 +289,9 @@ shinyServer(function(input, output, session) {
         )
       }
       else if(input$mix == TRUE){
-        unique_phases <- unique(subset(results, Scenario == input$scenario & MetricName == input$metric)$PhaseName)
+        unique_phases <- unique(subset(values$results, Scenario == input$scenario & 
+                                         CaseName == input$case &
+                                         MetricName == input$metric)$PhaseName)
         
         phase_list <- list()
         if (length(unique_phases) == 0){
@@ -295,7 +319,7 @@ shinyServer(function(input, output, session) {
     if (input$mix == FALSE & is.null(input$phase))
       return()
     if (input$mix == FALSE){
-      unique_metrics <- unique(subtables[[input$scenario]][[input$phase]]$MetricName)
+      unique_metrics <- unique(subtables[[input$case]][[input$scenario]][[input$phase]]$MetricName)
       metric_list <- list()
       if (length(unique_metrics) == 0){
         return()
@@ -310,7 +334,8 @@ shinyServer(function(input, output, session) {
       )
     }
     else if(input$mix == TRUE){
-      unique_metrics <- unique(subset(results, Scenario == input$scenario)$MetricName)
+      unique_metrics <- unique(subset(results, CaseName == input$case & 
+                                        Scenario == input$scenario)$MetricName)
       metric_list <- list()
       if (length(unique_metrics) == 0){
         return()
@@ -330,18 +355,14 @@ shinyServer(function(input, output, session) {
     input$phase
     if (is.null(input$metric))
       return()
-#      if (is.null(input$iteration) == FALSE)
-#        values$iteration <- input$iteration
     
     isolate({
       values$iteration <- c(1,1)
       print(values$iteration)
       if (input$mix == FALSE){
-        max_value <- max(subset(subtables[[input$scenario]][[input$phase]], MetricName == input$metric)$Iteration)
+        max_value <- max(subset(subtables[[input$case]][[input$scenario]][[input$phase]], 
+                                MetricName == input$metric)$Iteration)
         if(max_value > 1){
-          #         if(values$iteration[[1]] == 0)
-          #           values$iteration <- c(1,1)
-          
           if (values$iteration[[1]] == 0){
             minRange <- 1
             maxRange <- 1
@@ -365,12 +386,7 @@ shinyServer(function(input, output, session) {
       }
     })
   })
-  
-#   output$title <- renderUI({
-#     textInput("title", "Title",
-#               value="SCENARIO CASENAME PHASENAME")
-#   })
-  
+    
   output$titleTemplate <- renderUI({
     # TODO evaluate choices from results
     selectInput("titleTemplate", "Templates",
