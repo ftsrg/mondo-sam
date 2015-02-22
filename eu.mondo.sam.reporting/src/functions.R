@@ -59,13 +59,13 @@ preprocess <- function(results, case){
   return(subtables)
 }
 
-createPlot <- function(results, settings){
+createPlot <- function(results, settings, group){
   
   if (settings@theme == "Default"){
     plot <- ggplot(results, aes(x=Size, y=MetricValue)) + 
             scale_shape_manual(values=1:nlevels(results$Tool)) +
-            theme_grey() + geom_line(aes(group=Tool, colour=Tool)) + 
-            geom_point(aes(shape=Tool, colour=Tool)) +
+            theme_grey() + geom_line(aes_string(group=group, colour=group)) + 
+            geom_point(aes_string(shape=group, colour=group)) +
             xlab(settings@xLabel) +
             ylab(settings@yLabel) +
             ggtitle(label = settings@title)
@@ -73,7 +73,7 @@ createPlot <- function(results, settings){
   else if (settings@theme == "Black and White"){
     plot <- ggplot(results, aes(x=Size, y=MetricValue)) +
             scale_shape_manual(values=1:nlevels(results$Tool)) +
-            bwTheme + geom_line(aes(group=Tool)) + geom_point(aes(shape=Tool), size=3) + 
+            bwTheme + geom_line(aes_string(group=group)) + geom_point(aes_string(shape=group), size=3) + 
             xlab(settings@xLabel) +
             ylab(settings@yLabel) +
             ggtitle(label = settings@title)

@@ -15,12 +15,9 @@ names(subtables) <- unique_cases
 for(case in unique_cases){
   subtables[[case]] <- preprocess(results, case)
 }
-# print(subtables[["case1"]][["scenario2"]])
-#iteration <- c(0,0)
 
 shinyServer(function(input, output, session) {
     
-  
   values <- reactiveValues(iteration = c(0,0))
   values$settings <- PlotSettings(theme="Default")
   # the original data frame
@@ -59,26 +56,29 @@ shinyServer(function(input, output, session) {
   })
 
   changeSettings <- observe({
-    print("changeSettings")
-    # add dependencies
-    input$xlabel
-    input$ylabel
-    input$xaxis
-    input$yaxis
-    input$theme
-    input$title
-    if (is.null(input$mix))
+    # add dependency
+    if (is.null(input$visualize)){
       return()
-    if (is.null(isolate(input$case)))
-      return()
-    if (is.null(isolate(input$phase)))
-      return()
-    if (is.null(isolate(input$scenario)))
-      return()
-    if (is.null(isolate(input$metric)))
-      return()
+    }
     
     isolate({
+      if (is.null(isolate(input$case)))
+        return()
+      if (is.null(isolate(input$phase)))
+        return()
+      if (is.null(isolate(input$scenario)))
+        return()
+      if (is.null(isolate(input$metric)))
+        return()
+      if (is.null(input$mix))
+        return()
+      if (is.null(input$xaxis) | is.null(input$yaxis)){
+        values$settings <- setAxis(values$settings, "Continuous", "Continuous")
+      }
+      if (is.null(input$theme)){
+        values$settings <- setTheme(values$settings, "Default")
+      }
+
       values$settings <- setLabels(values$settings, input$xlabel, input$ylabel)
       
       title <- isolate(input$title)
@@ -96,7 +96,6 @@ shinyServer(function(input, output, session) {
       
       values$settings <- setAxis(values$settings, input$xaxis, input$yaxis)
       values$settings <- setTheme(values$settings, input$theme)
-      print("Settings done")
     })
   })
   
@@ -175,7 +174,7 @@ shinyServer(function(input, output, session) {
       print(values$iteration[[1]])
       if (input$mix == FALSE){
         sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], MetricName==input$metric,
-                      select=c(Tool, MetricValue, Size))
+                      select=c(Tool, MetricValue, Size, CaseName))
         #if (!is.null(input$iteration))
           if (values$iteration[[1]] > 0){
             # summarise the metricvalue according to the given iteration values
@@ -183,7 +182,7 @@ shinyServer(function(input, output, session) {
             for(iter in values$iteration[[1]]:values$iteration[[2]]){
               sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], 
                             Iteration==iter & MetricName==input$metric,
-                            select=c(Tool, MetricValue, Size))
+                            select=c(Tool, MetricValue, Size, CaseName))
               if(first == TRUE){
                 merged <- sub
                 first <- FALSE
@@ -191,14 +190,14 @@ shinyServer(function(input, output, session) {
               else
                 merged <- rbind(merged,sub)
             }
-            sub <- ddply(merged, c("Tool", "Size"),summarise,
+            sub <- ddply(merged, c("Tool", "Size", "CaseName"),summarise,
                          MetricValue=sum(MetricValue))
           }
       }
       else if(input$mix == TRUE){
         #
         sub <- subset(values$results, Scenario == scenario & CaseName == input$case & 
-                        MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName))
+                        MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName, CaseName))
         first <- TRUE
         print(input$mixphase)
         if (length(input$mixphase) == 0)
@@ -213,7 +212,7 @@ shinyServer(function(input, output, session) {
           else
             merged <- rbind(merged, subset(sub, PhaseName == phase)) # merge back
         }
-        sub <- ddply(merged, c("Tool", "Size"), summarise,
+        sub <- ddply(merged, c("Tool", "Size", "CaseName"), summarise,
                      MetricValue = sum(MetricValue))
       }
     })
@@ -237,13 +236,21 @@ shinyServer(function(input, output, session) {
           print("createSubFrame returned NULL!")
           return()
         }
-        plot <- createPlot(sub, values$settings)
+        if (input$group == "Tool"){
+          plot <- createPlot(sub, values$settings, "Tool")
+        }
+        else if (input$group == "Case"){
+          plot <- createPlot(sub, values$settings, "CaseName")
+        }
         print(plot)
       })
     })
   })
   
   output$case <- renderUI({
+    if (input$group == "Case"){
+      return()
+    }
     unique_cases <- names(subtables)
     if(length(unique_cases) == 0)
       return()
@@ -255,6 +262,27 @@ shinyServer(function(input, output, session) {
                 choices = case_list,
                 selected = case_list[0]
                 )
+  })
+
+  output$tool <- renderUI({
+    if (is.null(input$case) | is.null(input$group)){
+      return()
+    }
+    if (input$group == "Tool"){
+      return();
+    }
+    else{
+      unique_tools <- unique(values$results$Tool)
+      tools_list <- list()
+      for(tool in unique_tools){
+        tools_list <- c(tool, tool, tools_list)
+      }
+      selectInput("tool", "Tool",
+                  choices = tools_list,
+                  selected = tools_list[0])
+    }
+    
+    
   })
 
   output$scenario <- renderUI({

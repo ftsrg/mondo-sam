@@ -7,6 +7,7 @@ shinyUI(navbarPage("Reporting",
                                 uiOutput("case"),
                                 uiOutput("scenario"),
                                 uiOutput("phase"),
+                                uiOutput("tool"),
                                 uiOutput("mix"),
                                 uiOutput("metric"),
                                 checkboxInput("mix", label = "Mix", value = FALSE),
@@ -18,6 +19,14 @@ shinyUI(navbarPage("Reporting",
                               ),
                             )
                    ),
+                   tabPanel(
+                     "Dimensions",
+                     selectInput("xdimension", label="X Dimension",
+                                 choices = c("Size", "Iteration"), selected = "Size"),
+                     selectInput("group", label="Group",
+                                 choices = c("Tool", "Case"), selected = "Tool"),
+                     sliderInput("scale", "Y-Axis Scale", min = -9, max = 9, value = 0, step = 1)
+                     ),
                    tabPanel(
                      "Plot settings",
                      selectInput("xaxis", label="X-axis",
