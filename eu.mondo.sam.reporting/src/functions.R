@@ -2,7 +2,8 @@ source("themes.R")
 
 preprocess <- function(results, case){
   
-  unique_scenarios <- unique(subset(results, CaseName == case)$Scenario)
+  results <- subset(results, CaseName == case)
+  unique_scenarios <- unique(results$Scenario)
   
   subtables <- vector(mode="list", length=length(unique_scenarios))
   names(subtables) <- (unique_scenarios)
@@ -10,24 +11,26 @@ preprocess <- function(results, case){
   # insert iteration column
   first <- TRUE
   for(scen in unique_scenarios){
-    tools <- unique(subset(results, Scenario==scen)$Tool)
+    subFrameScenario <-subset(results, Scenario==scen)
+    tools <- unique(subFrameScenario$Tool)
     for(tool in tools){
-      sizes <- unique(subset(results,Scenario==scen & Tool==tool)$Size)
+      subFrameTool <- subset(subFrameScenario, Tool == tool)
+      sizes <- unique(subFrameTool$Size)
       for(size in sizes){
-        phases <- unique(subset(results,Scenario==scen & Tool==tool & Size==size)$PhaseName)
+        subFrameSize <- subset(subFrameTool, Size == size)
+        phases <- unique(subFrameSize$PhaseName)
         for(phase in phases){
-          metrics <- unique(subset(results, Scenario== scen & Tool==tool & 
-                                     Size==size & PhaseName==phase)$MetricName)
+          subFramePhase <- subset(subFrameSize, PhaseName == phase)
+          metrics <- unique(subFramePhase$MetricName)
           for(metric in metrics){
-            sub <- subset(results, Scenario==scen & Tool==tool & Size==size &
-                            PhaseName==phase & MetricName==metric)
-            sub$Iteration <-seq_len(nrow(sub))
+            subFrameMetric <- subset(subFramePhase, MetricName == metric)
+            subFrameMetric$Iteration <-seq_len(nrow(subFrameMetric))
             if(first == TRUE){
-              merged <- sub
+              merged <- subFrameMetric
               first <- FALSE
             }
             else
-              merged <- rbind(merged, sub)
+              merged <- rbind(merged, subFrameMetric)
           }
         }
       }

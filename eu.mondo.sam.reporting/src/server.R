@@ -15,7 +15,7 @@ names(subtables) <- unique_cases
 for(case in unique_cases){
   subtables[[case]] <- preprocess(results, case)
 }
-
+# print(subtables[["case1"]][["scenario2"]])
 #iteration <- c(0,0)
 
 shinyServer(function(input, output, session) {
