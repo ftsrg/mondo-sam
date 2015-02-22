@@ -45,6 +45,7 @@ public class ProtoConfig{
 		options.addOption("resultPath", true, "Path of the result folder");
 		options.addOption("runIndex", true, "Index");
 		options.addOption("tool", true, "Tool");
+		options.addOption("case", true, "Case");
 		
 		CommandLineParser parser = new PosixParser();
 		cmd = parser.parse(options, args);
@@ -52,13 +53,22 @@ public class ProtoConfig{
 	
 	public void processArguments(){
 		tool = cmd.getOptionValue("tool");
-		if (tool == null)
+		if (tool == null){
 			tool = "ProtoTool";
+		}
 		size = Integer.parseInt(cmd.getOptionValue("size"));
+		
 		String resultPath = cmd.getOptionValue("resultPath");
 		if (resultPath != null)
 			BenchmarkResult.changeResultPath(resultPath);
-		this.scenario = cmd.getOptionValue("scenario");
+		
+		caseName = cmd.getOptionValue("case");
+		if (caseName == null){
+			caseName = "ProtoCase";
+		}
+		
+		scenario = cmd.getOptionValue("scenario");
+		
 		String runIndexString = cmd.getOptionValue("runIndex");
 		if (runIndexString != null)
 			this.runIndex = Integer.parseInt(runIndexString);
@@ -79,6 +89,10 @@ public class ProtoConfig{
 	
 	public String getTool() {
 		return tool;
+	}
+	
+	public String getCaseName() {
+		return caseName;
 	}
 	
 	public void setScenario(String scenario) {

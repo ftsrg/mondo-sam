@@ -31,11 +31,11 @@ public class ProtoScenario extends BenchmarkScenario{
 
 	@Override
 	public BenchmarkScenario buildScenario() {
-		this.scenario = this.protoConfig.getScenario();
-		this.runIndex = this.protoConfig.getRunIndex();
-		this.size = this.protoConfig.getSize();
-		this.tool = this.protoConfig.getTool();
-		this.caseName = "ProtoCase";
+		scenario = protoConfig.getScenario();
+		runIndex = protoConfig.getRunIndex();
+		size = protoConfig.getSize();
+		tool = protoConfig.getTool();
+		caseName = protoConfig.getCaseName();
 		
 		MultiplePhase multiple = new MultiplePhase("Multiple");
 		DeclarationPhase declaration = new DeclarationPhase("Declaration");

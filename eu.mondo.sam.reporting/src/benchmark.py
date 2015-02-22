@@ -33,8 +33,10 @@ def set_working_directory(path = None):
 
 set_working_directory()
 scenarios = ["scenario1", "scenario2", "scenario3"]
-tools = ["Allegro", "Virtuoso", "Sesame", "Neo4j", "MySQL", "Java", "BigData", "Drools5"]
+tools = ["Allegro", "Virtuoso", "Sesame", "Neo4j", "MySQL", \
+         "Java", "BigData", "Drools5"]
 sizes = [1,2,4,5,6,8]
+cases = ["case1", "case2", "case3"]
 resultPath = "../../results/json/"
 
 folder = "../../eu.mondo.sam.proto/target/"
@@ -45,7 +47,9 @@ if (len(files) >0):
 
 for t in tools:
     for sc in scenarios:
-        for s in sizes:
-            subprocess.call(["java", "-jar", target, "-size", str(s), "-scenario", sc, \
-                        "-tool", t, "-resultPath", resultPath])
+        for case in cases:
+            for s in sizes:
+                subprocess.call(["java", "-jar", target, "-size", str(s), \
+                                 "-scenario", sc, "-tool", t, \
+                                 "-resultPath", resultPath, "-case", case])
     
