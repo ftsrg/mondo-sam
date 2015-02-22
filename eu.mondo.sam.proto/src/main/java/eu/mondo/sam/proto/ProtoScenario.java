@@ -1,6 +1,8 @@
 package eu.mondo.sam.proto;
 
 import eu.mondo.sam.core.metrics.BenchmarkMetric;
+import eu.mondo.sam.core.metrics.MemoryMetric;
+import eu.mondo.sam.core.metrics.TimerMetric;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
 import eu.mondo.sam.core.scenarios.BenchmarkScenario;
@@ -37,7 +39,10 @@ public class ProtoScenario extends BenchmarkScenario{
 		
 		MultiplePhase multiple = new MultiplePhase("Multiple");
 		DeclarationPhase declaration = new DeclarationPhase("Declaration");
-		
+		TimerMetric timer = new TimerMetric("Time");
+		MemoryMetric memory = new MemoryMetric("Memory");
+		multiple.addMetrics(timer, memory);
+		declaration.addMetrics(timer, memory);
 		
 		BenchmarkMetric changes = new ChangesMetric("Changes");
 		model = new ProtoModel(2);
@@ -62,7 +67,7 @@ public class ProtoScenario extends BenchmarkScenario{
 		
 		multiple.addMetrics(changes);
 		
-		this.setRootPhase(declaration);
+		this.setRootPhase(iter);
 		declaration.setProtoCase(this);
 		multiple.setProtoCase(this);
 		return this;

@@ -29,19 +29,13 @@ public class BenchmarkEngine {
 			if (phase == null){
 				continue;
 			}
-			System.out.println(phase);
 			PhaseResult result = new PhaseResult();
 			result.setPhaseName(phase.getPhaseName());
 
-			TimerMetric timer = new TimerMetric("Time");
-
-			timer.startMeasure();
 			phase.execute();
-			timer.stopMeasure();
-
+			
 			for (BenchmarkMetric m : phase.getMetrics())
 				result.addMetrics(m);
-			result.addMetrics(timer);
 			result.setSequence(iteration);
 			benchmarkResult.addResults(result);
 

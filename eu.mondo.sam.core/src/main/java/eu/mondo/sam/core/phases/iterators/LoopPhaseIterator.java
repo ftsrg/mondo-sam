@@ -16,7 +16,6 @@ public class LoopPhaseIterator implements PhaseIterator{
 	@Override
 	public AtomicPhase nextPhase() {
 		if (loopPhase.condition()){
-//			PhaseIterator iterator = loopPhase.getPhase().getIterator();
 			return iterator.nextPhase();
 		}
 		return null;

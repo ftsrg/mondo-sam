@@ -1,6 +1,8 @@
 package eu.mondo.sam.test;
 
 import eu.mondo.sam.core.BenchmarkEngine;
+import eu.mondo.sam.core.metrics.MemoryMetric;
+import eu.mondo.sam.core.metrics.TimerMetric;
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.phases.IterationPhase;
@@ -25,10 +27,22 @@ public class WorkflowTester {
 	private static DeclarationPhase declaration;
 	
 	private TestScenario scenario;
+	private IterationPhase iteration;
+	private IterationPhase iteration2;
+	private IterationPhase iteration3;
+	private SequencePhase sequence;
+	private SequencePhase sequence2;
+	private SequencePhase sequence3;
+	private OptionalProtoPhase skippedOptional;
+	private OptionalProtoPhase optional;
 	
 	@BeforeClass
 	public static void init(){
 		declaration = new DeclarationPhase("Declaration");
+		TimerMetric timer = new TimerMetric("Time");
+		MemoryMetric memory = new MemoryMetric("Memory");
+		declaration.addMetrics(timer, memory);
+		
 		builder = new TestScenarioBuilder();
 		engine = new BenchmarkEngine(builder);
 		BenchmarkResult.setPublish(false);
@@ -46,24 +60,32 @@ public class WorkflowTester {
 	@Before
 	public void instantiateScenario(){
 		scenario = new TestScenario("TestScenario");
+		iteration = new IterationPhase(10);
+		iteration2 = new IterationPhase(2);
+		iteration3 = new IterationPhase(20);
+		sequence = new SequencePhase();
+		sequence2 = new SequencePhase();
+		sequence3 = new SequencePhase();
+		skippedOptional = new OptionalProtoPhase();
+		skippedOptional.setCondition(false);
+		optional = new OptionalProtoPhase();
+		optional.setCondition(true);
 		builder.setScenario(scenario);
 	}
 	
 	@Test
 	public void iterationTest() {
-		IterationPhase iter = new IterationPhase(10);
-		iter.setPhase(declaration);
+		iteration.setPhase(declaration);
 		
-		runBenchmark(iter);
+		runBenchmark(iteration);
 		assertEquals(10, measuredPhases());
 	}
 
 	@Test
 	public void sequenceTest() {
-		SequencePhase seq = new SequencePhase();
-		seq.addPhases(declaration, declaration, declaration, declaration);
+		sequence.addPhases(declaration, declaration, declaration, declaration);
 		
-		runBenchmark(seq);
+		runBenchmark(sequence);
 		assertEquals(4, measuredPhases());
 	}
 	
@@ -75,8 +97,6 @@ public class WorkflowTester {
 	
 	@Test
 	public void optionalTest(){
-		OptionalProtoPhase optional = new OptionalProtoPhase();
-		optional.setCondition(true);
 		optional.setPhase(declaration);
 		
 		runBenchmark(optional);
@@ -85,79 +105,62 @@ public class WorkflowTester {
 	
 	@Test
 	public void skipOptionalTest(){
-		OptionalProtoPhase optional = new OptionalProtoPhase();
-		optional.setCondition(false);
-		optional.setPhase(declaration);
+		skippedOptional.setPhase(declaration);
 		
-		runBenchmark(optional);
+		runBenchmark(skippedOptional);
 		assertEquals(0, measuredPhases());
 	}
 	
 	@Test
 	public void complexIterationTest(){
-		IterationPhase iter = new IterationPhase(10);
-		IterationPhase iter2 = new IterationPhase(2);
-		iter2.setPhase(declaration);
-		iter.setPhase(iter2);
+		iteration2.setPhase(declaration);
+		iteration.setPhase(iteration2);
 		
-		runBenchmark(iter);
+		runBenchmark(iteration);
 		assertEquals(20, measuredPhases());
 	}
 	
 	@Test
 	public void complexSequenceTest(){
-		SequencePhase seq = new SequencePhase();
-		SequencePhase seq2 = new SequencePhase();
-		SequencePhase seq3 = new SequencePhase();
-		seq3.addPhases(declaration, declaration);
-		seq2.addPhases(declaration, declaration, declaration, seq3);
-		seq.addPhases(declaration, seq2, declaration);
+		sequence3.addPhases(declaration, declaration);
+		sequence2.addPhases(declaration, declaration, declaration, sequence3);
+		sequence.addPhases(declaration, sequence2, declaration);
 		
-		runBenchmark(seq);
+		runBenchmark(sequence);
 		assertEquals(7, measuredPhases());
 	}
 	
 	@Test
 	public void iterationContainsSequenceTest(){
-		IterationPhase iter = new IterationPhase(8);
-		SequencePhase seq = new SequencePhase();
-		seq.addPhases(declaration, declaration);
-		iter.setPhase(seq);
+		sequence.addPhases(declaration, declaration);
+		iteration.setPhase(sequence);
 		
-		runBenchmark(iter);
-		assertEquals(16, measuredPhases());
+		runBenchmark(iteration);
+		assertEquals(20, measuredPhases());
 	}
 	
 	@Test
 	public void sequenceContainsIterationTest(){
-		IterationPhase iter = new IterationPhase(8);
-		SequencePhase seq = new SequencePhase();
-		iter.setPhase(declaration);
-		seq.addPhases(declaration, iter);
+		iteration.setPhase(declaration);
+		sequence.addPhases(declaration, iteration);
 		
-		runBenchmark(seq);;
-		assertEquals(9, measuredPhases());
+		runBenchmark(sequence);
+		assertEquals(11, measuredPhases());
 	}
 	
 	@Test
 	public void optionalContainsIterationTest(){
-		IterationPhase iter = new IterationPhase(7);
-		OptionalProtoPhase optional = new OptionalProtoPhase();
-		optional.setCondition(true);
-		iter.setPhase(declaration);
-		optional.setPhase(iter);
+		iteration.setPhase(declaration);
+		optional.setPhase(iteration);
 		
 		runBenchmark(optional);
-		assertEquals(7, measuredPhases());
+		assertEquals(10, measuredPhases());
 	}
 	
 	@Test
 	public void optionalContainsSequenceTest(){
-		SequencePhase seq = new SequencePhase();
-		OptionalProtoPhase optional = new OptionalProtoPhase();
-		optional.setCondition(true);
-		seq.addPhases(declaration, declaration, declaration);
-		optional.setPhase(seq);
+		sequence.addPhases(declaration, declaration, declaration);
+		optional.setPhase(sequence);
 		
 		runBenchmark(optional);
 		assertEquals(3, measuredPhases());
@@ -165,25 +168,34 @@ public class WorkflowTester {
 	
 	@Test
 	public void sequenceContainsOptionalTest(){
-		SequencePhase seq = new SequencePhase();
-		OptionalProtoPhase optional = new OptionalProtoPhase();
-		optional.setCondition(true);
 		optional.setPhase(declaration);
-		seq.addPhases(declaration, optional, declaration);
+		sequence.addPhases(declaration, optional, declaration);
 		
-		runBenchmark(seq);;
+		runBenchmark(sequence);;
 		assertEquals(3, measuredPhases());
 	}
 	
 	@Test
 	public void iterationContainsOptionalTest(){
-		IterationPhase iter = new IterationPhase(7);
-		OptionalProtoPhase optional = new OptionalProtoPhase();
-		optional.setCondition(true);
 		optional.setPhase(declaration);
-		iter.setPhase(optional);
+		iteration.setPhase(optional);
 		
-		runBenchmark(iter);;
-		assertEquals(7, measuredPhases());
+		runBenchmark(iteration);
+		assertEquals(10, measuredPhases());
+	}
+	
+	@Test
+	public void complexTest(){
+		sequence.addPhases(iteration, declaration, optional, sequence3);
+		iteration.setPhase(sequence2);
+		sequence2.addPhases(declaration, declaration, iteration2);
+		iteration2.setPhase(skippedOptional);
+		skippedOptional.setPhase(declaration);
+		optional.setPhase(iteration3);
+		iteration3.setPhase(declaration);
+		sequence3.addPhases(declaration, declaration);
+		
+		runBenchmark(sequence);
+		assertEquals(43, measuredPhases());
 	}
 }

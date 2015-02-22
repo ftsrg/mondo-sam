@@ -20,10 +20,16 @@ public class TimerMetric extends BenchmarkMetric{
 		return Long.toString(elapsedTime);
 	}
 	
+	/**
+	 * Starts to measure time. Must be called before invoke getValue.
+	 */
 	public void startMeasure(){
 		stopwatch = Stopwatch.createStarted();
 	}
 	
+	/**
+	 * Stops the measurement. Optional but recommended to use.
+	 */
 	public void stopMeasure(){
 		stopwatch.stop();
 	}

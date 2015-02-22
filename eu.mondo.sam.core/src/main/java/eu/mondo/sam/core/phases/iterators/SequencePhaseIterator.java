@@ -1,7 +1,6 @@
 package eu.mondo.sam.core.phases.iterators;
 
 import eu.mondo.sam.core.phases.AtomicPhase;
-import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
 
 public class SequencePhaseIterator implements PhaseIterator{
@@ -24,8 +23,6 @@ public class SequencePhaseIterator implements PhaseIterator{
 			iterator = sequencePhase.getPhases().getFirst().getIterator();
 		}
 		
-		BenchmarkPhase phase = sequencePhase.getPhases().get(index);
-//		PhaseIterator iterator = phase.getIterator();
 		AtomicPhase atomic = iterator.nextPhase();
 		if (iterator.hasNext() == false){
 			index++;

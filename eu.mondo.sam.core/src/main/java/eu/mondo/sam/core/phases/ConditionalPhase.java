@@ -4,7 +4,6 @@ public abstract class ConditionalPhase implements BenchmarkPhase{
 
 	protected BenchmarkPhase phase;
 	
-	
 	public abstract boolean condition();
 	
 	public void setPhase(BenchmarkPhase phase) {
