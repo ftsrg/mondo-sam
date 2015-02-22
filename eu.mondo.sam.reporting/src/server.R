@@ -5,26 +5,52 @@ library(shiny, quietly=T, verbose=F, warn.conflicts=FALSE)
 source("functions.R")
 source("plot.R")
 
-path <- "../../results/results.csv"
-results <- read.csv(path, head=TRUE, sep=",")
-unique_cases <- unique(results$CaseName)
-
-subtables <- vector(mode="list", length=length(unique_cases))
-names(subtables) <- unique_cases
-# evaluate forward the various data frames of results
-for(case in unique_cases){
-  subtables[[case]] <- preprocess(results, case)
-}
+# path <- "../../results/results.csv"
+# results <- read.csv(path, head=TRUE, sep=",")
+# unique_cases <- unique(results$CaseName)
+# 
+# subtables <- vector(mode="list", length=length(unique_cases))
+# names(subtables) <- unique_cases
+# # evaluate forward the various data frames of results
+# for(case in unique_cases){
+#   subtables[[case]] <- preprocess(results, case)
+# }
 
 shinyServer(function(input, output, session) {
     
   values <- reactiveValues(iteration = c(0,0))
   values$settings <- PlotSettings(theme="Default")
   # the original data frame
-  values$results <- results
+#   values$results <- results
   
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
-  values$subtables <- subtables
+#   values$subtables <- subtables
+  
+  output$message <- renderUI({
+    inFile <- input$file
+    
+    if (is.null(inFile))
+      return(NULL)
+    isolate({
+      values$results <- read.csv(inFile$datapath, header=input$header, sep=input$sep, 
+                                 quote=input$quote)
+      print(values$results)
+      
+      withProgress(message = 'Processing', value = 1.0, {
+        unique_cases <- unique(values$results$CaseName)
+        
+        
+        values$subtables <- vector(mode="list", length=length(unique_cases))
+        names(values$subtables) <- unique_cases
+        # evaluate forward the various data frames of results
+        for(case in unique_cases){
+          print("asd")
+          values$subtables[[case]] <- preprocess(values$results, case)
+        }
+        
+      })
+    })
+  })
   
   refreshSettingsTitle <- observe({
     print("refreshSettingsTitle")
@@ -251,7 +277,7 @@ shinyServer(function(input, output, session) {
     if (input$group == "Case"){
       return()
     }
-    unique_cases <- names(subtables)
+    unique_cases <- names(values$subtables)
     if(length(unique_cases) == 0)
       return()
     case_list <- list()
@@ -288,7 +314,7 @@ shinyServer(function(input, output, session) {
   output$scenario <- renderUI({
     if (is.null(input$case))
       return()
-    unique_scenarios <- names(subtables[[input$case]])
+    unique_scenarios <- names(values$subtables[[input$case]])
     if(length(unique_scenarios) == 0)
       return()
     scenario_list <- list()
@@ -301,13 +327,12 @@ shinyServer(function(input, output, session) {
                 )
   })
   
-
   output$phase <- renderUI({
     if (is.null(input$scenario))
       return()
     if (is.null(input$mix) == FALSE){
       if(input$mix == FALSE){
-        unique_phases <- names(subtables[[input$case]][[input$scenario]])
+        unique_phases <- names(values$subtables[[input$case]][[input$scenario]])
         if(length(unique_phases) == 0){
           return()
         }
@@ -347,7 +372,7 @@ shinyServer(function(input, output, session) {
     if (input$mix == FALSE & is.null(input$phase))
       return()
     if (input$mix == FALSE){
-      unique_metrics <- unique(subtables[[input$case]][[input$scenario]][[input$phase]]$MetricName)
+      unique_metrics <- unique(values$subtables[[input$case]][[input$scenario]][[input$phase]]$MetricName)
       metric_list <- list()
       if (length(unique_metrics) == 0){
         return()
@@ -388,7 +413,7 @@ shinyServer(function(input, output, session) {
       values$iteration <- c(1,1)
       print(values$iteration)
       if (input$mix == FALSE){
-        max_value <- max(subset(subtables[[input$case]][[input$scenario]][[input$phase]], 
+        max_value <- max(subset(values$subtables[[input$case]][[input$scenario]][[input$phase]], 
                                 MetricName == input$metric)$Iteration)
         if(max_value > 1){
           if (values$iteration[[1]] == 0){
