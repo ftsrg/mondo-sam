@@ -1,5 +1,5 @@
 package eu.mondo.sam.core.results;
-import eu.mondo.sam.core.metric.BenchmarkMetric;
+import eu.mondo.sam.core.metrics.BenchmarkMetric;
 
 import java.util.ArrayList;
 import java.util.List;

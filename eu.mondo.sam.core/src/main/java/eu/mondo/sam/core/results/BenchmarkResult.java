@@ -16,9 +16,11 @@ public class BenchmarkResult {
 	private List<PhaseResult> phaseResults;
 
 	private static String resultPath;
+	private static boolean publish;
 	
 	static{
 		resultPath = "../results/json/";
+		publish = true;
 	}
 	
 	public BenchmarkResult(){
@@ -44,10 +46,16 @@ public class BenchmarkResult {
 		int size = benchmarkScenario.getSize();
 		int runIndex = benchmarkScenario.getRunIndex();
 		String fileName = tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index" + runIndex + ".json";
-		ResultSerializer.serializeToJson(this, resultPath, fileName);
+		if(publish){
+			ResultSerializer.serializeToJson(this, resultPath, fileName);
+		}
 	}
 	
 	public static void changeResultPath(String p){
 		resultPath = p;
+	}
+	
+	public static void setPublish(boolean publish) {
+		BenchmarkResult.publish = publish;
 	}
 }

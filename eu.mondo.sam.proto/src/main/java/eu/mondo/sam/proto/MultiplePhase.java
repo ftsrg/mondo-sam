@@ -1,8 +1,6 @@
 package eu.mondo.sam.proto;
 
-import eu.mondo.sam.core.metric.BenchmarkMetric;
 import eu.mondo.sam.core.phases.AtomicPhase;
-import eu.mondo.sam.core.results.PhaseResult;
 
 public class MultiplePhase extends AtomicPhase{
 

@@ -7,14 +7,12 @@ public class IterationPhaseIterator implements PhaseIterator{
 
 	private int maxIteration;
 	private int iteration;
-	private int initValue;
 	private IterationPhase iterationPhase;
 	private PhaseIterator iterator;
 	
 	public IterationPhaseIterator(IterationPhase phase){
 		this.iterationPhase = phase;
-		this.iteration = phase.getIteration();
-		this.initValue = iteration;
+		this.iteration = 0;
 		this.maxIteration = phase.getMaxIteration();
 		iterator = iterationPhase.getPhase().getIterator();
 	}
@@ -22,9 +20,8 @@ public class IterationPhaseIterator implements PhaseIterator{
 	@Override
 	public AtomicPhase nextPhase() {
 		if (iteration == maxIteration){
-			iteration = initValue;
+			iteration = 0;
 		}
-//		PhaseIterator iterator = iterationPhase.getPhase().getIterator();
 		AtomicPhase atomic = iterator.nextPhase();
 		if (iterator.hasNext() == false){
 			iteration++;

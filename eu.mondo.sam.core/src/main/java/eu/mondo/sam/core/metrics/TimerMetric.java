@@ -1,4 +1,4 @@
-package eu.mondo.sam.core.metric;
+package eu.mondo.sam.core.metrics;
 
 import java.util.concurrent.TimeUnit;
 

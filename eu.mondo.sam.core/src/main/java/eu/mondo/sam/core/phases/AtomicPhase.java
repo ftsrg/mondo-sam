@@ -1,6 +1,6 @@
 package eu.mondo.sam.core.phases;
 
-import eu.mondo.sam.core.metric.BenchmarkMetric;
+import eu.mondo.sam.core.metrics.BenchmarkMetric;
 import eu.mondo.sam.core.phases.iterators.AtomicPhaseIterator;
 import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 

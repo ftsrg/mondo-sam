@@ -1,4 +1,4 @@
-package eu.mondo.sam.core.metric;
+package eu.mondo.sam.core.metrics;
 
 
 public abstract class BenchmarkMetric{

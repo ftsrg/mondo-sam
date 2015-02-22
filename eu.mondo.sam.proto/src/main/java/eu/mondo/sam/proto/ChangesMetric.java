@@ -1,8 +1,6 @@
 package eu.mondo.sam.proto;
 
-import eu.mondo.sam.core.metric.BenchmarkMetric;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import eu.mondo.sam.core.metrics.BenchmarkMetric;
 
 public class ChangesMetric extends BenchmarkMetric{
 

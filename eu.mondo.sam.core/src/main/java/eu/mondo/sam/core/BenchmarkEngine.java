@@ -5,8 +5,8 @@ import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.core.results.PhaseResult;
 import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 import eu.mondo.sam.core.scenarios.ScenarioBuilder;
-import eu.mondo.sam.core.metric.TimerMetric;
-import eu.mondo.sam.core.metric.BenchmarkMetric;
+import eu.mondo.sam.core.metrics.BenchmarkMetric;
+import eu.mondo.sam.core.metrics.TimerMetric;
 
 
 public class BenchmarkEngine {

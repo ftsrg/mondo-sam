@@ -1,6 +1,6 @@
 package eu.mondo.sam.proto;
 
-import eu.mondo.sam.core.metric.BenchmarkMetric;
+import eu.mondo.sam.core.metrics.BenchmarkMetric;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
 import eu.mondo.sam.core.scenarios.BenchmarkScenario;
@@ -47,8 +47,8 @@ public class ProtoScenario extends BenchmarkScenario{
 		SequencePhase seq = new SequencePhase();
 		SequencePhase seq2 = new SequencePhase();
 		SequencePhase seq3 = new SequencePhase();
-		IterationPhase iter = new IterationPhase(0, 3);
-		IterationPhase iter2 = new IterationPhase(0, 5);
+		IterationPhase iter = new IterationPhase(3);
+		IterationPhase iter2 = new IterationPhase(5);
 		
 		optional.setPhase(multiple);
 		loopPhase.setPhase(multiple);

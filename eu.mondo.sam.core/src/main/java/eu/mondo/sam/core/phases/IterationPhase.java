@@ -5,15 +5,11 @@ import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
 public class IterationPhase implements BenchmarkPhase{
 
-	protected int iteration;
 	protected int maxIteration;
-//	protected IterationPhaseIterator iterator;
 	protected BenchmarkPhase phase;
 	
-	public IterationPhase(int initValue, int maxValue){
-		this.iteration = initValue;
-		this.maxIteration = maxValue;
-//		iterator = new IterationPhaseIterator(this);
+	public IterationPhase(int maxIteration){
+		this.maxIteration = maxIteration;
 	}
 	
 	@Override
@@ -24,11 +20,7 @@ public class IterationPhase implements BenchmarkPhase{
 	public void setPhase(BenchmarkPhase phase) {
 		this.phase = phase;
 	}
-	
-	public int getIteration() {
-		return iteration;
-	}
-	
+		
 	public int getMaxIteration() {
 		return maxIteration;
 	}

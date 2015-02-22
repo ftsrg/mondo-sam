@@ -1,13 +1,10 @@
 package eu.mondo.sam.proto;
 
 import eu.mondo.sam.core.phases.OptionalPhase;
-import eu.mondo.sam.core.phases.iterators.OptionalPhaseIterator;
-
-import java.util.Random;
 
 public class OptionalProtoPhase extends OptionalPhase{
 	
-	private int condition;
+	private boolean condition = false;
 	
 	@Override
 	public boolean condition() {
@@ -17,13 +14,10 @@ public class OptionalProtoPhase extends OptionalPhase{
 //		if (number == 1){
 //			return true;
 //		}
-		if (condition == 1){
-			return true;
-		}
-		return false;
+		return condition;
 	}
 	
-	public void setCondition(int condition) {
+	public void setCondition(boolean condition) {
 		this.condition = condition;
 	}
 
