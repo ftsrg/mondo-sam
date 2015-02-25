@@ -5,17 +5,6 @@ library(shiny, quietly=T, verbose=F, warn.conflicts=FALSE)
 source("functions.R")
 source("plot.R")
 
-# path <- "../../results/results.csv"
-# results <- read.csv(path, head=TRUE, sep=",")
-# unique_cases <- unique(results$CaseName)
-# 
-# subtables <- vector(mode="list", length=length(unique_cases))
-# names(subtables) <- unique_cases
-# # evaluate forward the various data frames of results
-# for(case in unique_cases){
-#   subtables[[case]] <- preprocess(results, case)
-# }
-
 shinyServer(function(input, output, session) {
     
   values <- reactiveValues(iteration = c(0,0))
@@ -26,15 +15,14 @@ shinyServer(function(input, output, session) {
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
 #   values$subtables <- subtables
   
-  output$message <- renderUI({
+  output$dummy <- renderUI({
     inFile <- input$file
     
     if (is.null(inFile))
       return(NULL)
     isolate({
-      values$results <- read.csv(inFile$datapath, header=input$header, sep=input$sep, 
+      values$results <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
                                  quote=input$quote)
-      print(values$results)
       
       withProgress(message = 'Processing', value = 1.0, {
         unique_cases <- unique(values$results$CaseName)
@@ -44,7 +32,6 @@ shinyServer(function(input, output, session) {
         names(values$subtables) <- unique_cases
         # evaluate forward the various data frames of results
         for(case in unique_cases){
-          print("asd")
           values$subtables[[case]] <- preprocess(values$results, case)
         }
         
@@ -52,35 +39,6 @@ shinyServer(function(input, output, session) {
     })
   })
   
-  refreshSettingsTitle <- observe({
-    print("refreshSettingsTitle")
-    # create dependencies:case,phase,scenario,metric, mix
-    if (is.null(input$mix))
-      return()
-    if (is.null(input$case))
-      return()
-    if (is.null(input$phase))
-      return()
-    if (is.null(input$scenario))
-      return()
-    if (is.null(input$metric))
-      return()
-    isolate({
-      title <- input$title
-      title <- gsub("CASENAME", input$case, title)
-      if (input$mix == TRUE){
-        phases <- ""
-        for(p in input$mixphase)
-          phases  <- paste(phases, p, sep=' ')
-        title <- gsub("PHASENAME", phases, title)
-      }
-      title <- gsub("PHASENAME", input$phase, title)
-      title <- gsub("METRICNAME", input$metric, title)
-      title <- gsub("SCENARIO", input$scenario, title)
-      values$settings <- setTitle(values$settings, title)
-    })
-  })
-
   changeSettings <- observe({
     # add dependency
     if (is.null(input$visualize)){
@@ -169,8 +127,6 @@ shinyServer(function(input, output, session) {
       file <- gsub("METRICNAME", input$metric, file)
       if ("scenarios" %in% input$publishGroup == TRUE){
         for(scenario in names(values$subtables)){
-          print(scenario)
-#           sub <- values$subtables[[scenario]][[input$phase]]
           sub <- createSubFrame(scenario)
           if (is.null(sub))
             return()
@@ -268,7 +224,6 @@ shinyServer(function(input, output, session) {
         else if (input$group == "Case"){
           plot <- createPlot(sub, values$settings, "CaseName")
         }
-        print(plot)
       })
     })
   })
@@ -387,7 +342,7 @@ shinyServer(function(input, output, session) {
       )
     }
     else if(input$mix == TRUE){
-      unique_metrics <- unique(subset(results, CaseName == input$case & 
+      unique_metrics <- unique(subset(values$results, CaseName == input$case & 
                                         Scenario == input$scenario)$MetricName)
       metric_list <- list()
       if (length(unique_metrics) == 0){
