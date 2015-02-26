@@ -60,10 +60,11 @@ preprocess <- function(results, case){
 }
 
 createPlot <- function(results, settings, group){
-  
+  tempResults <- results
+  tempResults$MetricValue <- tempResults$MetricValue * (10**settings@yScale)
   if (settings@theme == "Default"){
-    plot <- ggplot(results, aes(x=Size, y=MetricValue)) + 
-            scale_shape_manual(values=1:nlevels(results$Tool)) +
+    plot <- ggplot(tempResults, aes(x=Size, y=MetricValue)) + 
+            scale_shape_manual(values=1:nlevels(tempResults$Tool)) +
             theme_grey() + geom_line(aes_string(group=group, colour=group)) + 
             geom_point(aes_string(shape=group, colour=group)) +
             xlab(settings@xLabel) +
@@ -71,16 +72,16 @@ createPlot <- function(results, settings, group){
             ggtitle(label = settings@title)
   }
   else if (settings@theme == "Black and White"){
-    plot <- ggplot(results, aes(x=Size, y=MetricValue)) +
-            scale_shape_manual(values=1:nlevels(results$Tool)) +
+    plot <- ggplot(tempResults, aes(x=Size, y=MetricValue)) +
+            scale_shape_manual(values=1:nlevels(tempResults$Tool)) +
             bwTheme + geom_line(aes_string(group=group)) + geom_point(aes_string(shape=group), size=3) + 
             xlab(settings@xLabel) +
             ylab(settings@yLabel) +
             ggtitle(label = settings@title)
   }
-  minSize <- min(results$Size)
-  maxSize <- max(results$Size)
-  sizes <- unique(results$Size)
+  minSize <- min(tempResults$Size)
+  maxSize <- max(tempResults$Size)
+  sizes <- unique(tempResults$Size)
   sizeCount <- length(sizes)
   if (settings@xAxis == "Continuous"){
     plot <- plot + scale_x_continuous(breaks = c(sizes), labels = c(sizes))
@@ -88,8 +89,9 @@ createPlot <- function(results, settings, group){
   else if (settings@xAxis == "Log10"){
     plot <- plot + scale_x_log10(breaks = c(sizes), labels = c(sizes))
   }
-  minValue <- min(results$MetricValue)
-  maxValue <- max(results$MetricValue)
+#   tempResults$MetricValue <- tempResults$MetricValue * (10**settings@yScale)
+  minValue <- min(tempResults$MetricValue)
+  maxValue <- max(tempResults$MetricValue)
   if (settings@yAxis == "Continuous"){
     plot <- plot + scale_y_continuous(breaks = seq(minValue, maxValue, by=(maxValue-minValue)/7),
                                       labels = round(seq(minValue, maxValue, by=(maxValue-minValue)/7),2))

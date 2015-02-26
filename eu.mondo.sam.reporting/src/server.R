@@ -39,6 +39,7 @@ shinyServer(function(input, output, session) {
   })
   
   changeSettings <- observe({
+    print("Change settings")
     # add dependency
     if (is.null(input$visualize)){
       return()
@@ -79,6 +80,7 @@ shinyServer(function(input, output, session) {
       
       values$settings <- setAxis(values$settings, input$xaxis, input$yaxis)
       values$settings <- setTheme(values$settings, input$theme)
+      values$settings <- setYScale(values$settings, input$yscale)
     })
   })
   
@@ -222,6 +224,7 @@ shinyServer(function(input, output, session) {
         else if (input$group == "Case"){
           plot <- createPlot(sub, values$settings, "CaseName")
         }
+        # draw plot
         print(plot)
       })
     })
@@ -395,18 +398,5 @@ shinyServer(function(input, output, session) {
       }
     })
   })
-    
-  output$titleTemplate <- renderUI({
-    # TODO evaluate choices from results
-    selectInput("titleTemplate", "Templates",
-                choices=c("CaseName", "Scenario", "PhaseName", "MetricName"))
-  })
-  
-  output$publishTemplate <- renderUI({
-    print("publishTemplate called")
-    # TODO evaluate choices from results
-    selectInput("publishTemplate", "Templates",
-                choices=c("CaseName", "Scenario", "PhaseName", "MetricName"))
-  })
-  
+      
 })
