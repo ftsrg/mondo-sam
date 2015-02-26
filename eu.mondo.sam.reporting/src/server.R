@@ -1,4 +1,3 @@
-library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("ggplot2",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library(shiny, quietly=T, verbose=F, warn.conflicts=FALSE)
@@ -7,7 +6,7 @@ source("plot.R")
 
 shinyServer(function(input, output, session) {
     
-  values <- reactiveValues(iteration = c(0,0))
+  values <- reactiveValues(iteration = c(0,0), mix = FALSE)
   
   # style settings like title, labels etc
   values$settings <- PlotSettings(theme="Default")
@@ -18,7 +17,7 @@ shinyServer(function(input, output, session) {
     inFile <- input$file
     
     if (is.null(inFile))
-      return(NULL)
+      return()
     isolate({
       values$results <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
                                  quote=input$quote)
@@ -38,6 +37,7 @@ shinyServer(function(input, output, session) {
     })
   })
   
+  # observer for plot specific adjustments like title, labels, scales and the like
   changeSettings <- observe({
     print("Change settings")
     # add dependency
@@ -46,28 +46,39 @@ shinyServer(function(input, output, session) {
     }
     
     isolate({
-      if (is.null(isolate(input$case)))
+      if (is.null(input$case))
         return()
-      if (is.null(isolate(input$phase)))
+      if (is.null(input$phase))
         return()
-      if (is.null(isolate(input$scenario)))
+      if (is.null(input$scenario))
         return()
-      if (is.null(isolate(input$metric)))
+      if (is.null(input$metric))
         return()
-      if (is.null(input$mix))
-        return()
+#       if (is.null(input$mix))
+#         return()
       if (is.null(input$xaxis) | is.null(input$yaxis)){
         values$settings <- setAxis(values$settings, "Continuous", "Continuous")
       }
       if (is.null(input$theme)){
         values$settings <- setTheme(values$settings, "Default")
       }
-
-      values$settings <- setLabels(values$settings, input$xlabel, input$ylabel)
+      if (input$xlabel == ""){
+        xLabel <- input$xdimension
+      }
+      else{
+        xLabel <- input$xlabel
+      }
+      if (input$ylabel == ""){
+        yLabel <- input$metric
+      }
+      else{
+        yLabel <- input$ylabel
+      }
+      values$settings <- setLabels(values$settings, xLabel, yLabel)
       
       title <- isolate(input$title)
       title <- gsub("CASENAME", input$case, title)
-      if (input$mix == TRUE){
+      if (values$mix == TRUE){
         phases <- ""
         for(p in input$mixphase)
           phases  <- paste(phases, p, sep=' ')
@@ -93,6 +104,14 @@ shinyServer(function(input, output, session) {
     
   })
   
+  changeMix <- observe({
+    print("mix changed")
+    if (is.null(input$mix)){
+      return()
+    }
+    values$mix <- input$mix
+  })
+  
   # observer for title
   appendTitle <- observe({
     # create dependency to the titleInsert button
@@ -116,7 +135,7 @@ shinyServer(function(input, output, session) {
     updateTextInput(session, "filename", value = paste(oldFilename, publishTemplate, sep=''))
   })
   
-  # observer for publishing
+  # observer for publishing, saving the plots 
   publish <- observe({
     # create dependency to publish button
     if(input$publish == 0)
@@ -133,7 +152,7 @@ shinyServer(function(input, output, session) {
           if (is.null(sub))
             return()
           
-          if (input$mix == TRUE){
+          if (values$mix == TRUE){
             phases <- ""
             for(p in input$mixphase)
               phases  <- paste(phases, p, sep=' ')
@@ -156,32 +175,40 @@ shinyServer(function(input, output, session) {
     print("createSubFrame")
     isolate({
       print(values$iteration[[1]])
-      if (input$mix == FALSE){
+      if (values$mix == FALSE){
         sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], MetricName==input$metric,
-                      select=c(Tool, MetricValue, Size, CaseName))
-        #if (!is.null(input$iteration))
-          if (values$iteration[[1]] > 0){
-            # summarise the metricvalue according to the given iteration values
-            first <- TRUE
-            for(iter in values$iteration[[1]]:values$iteration[[2]]){
-              sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], 
-                            Iteration==iter & MetricName==input$metric,
-                            select=c(Tool, MetricValue, Size, CaseName))
-              if(first == TRUE){
-                merged <- sub
-                first <- FALSE
-              }
-              else
-                merged <- rbind(merged,sub)
+                      select=c(Tool, MetricValue, Size, CaseName, Iteration))
+        if (values$iteration[[1]] > 0){
+          # summarise the metricvalue according to the given iteration values
+          first <- TRUE
+          for(iter in values$iteration[[1]]:values$iteration[[2]]){
+            sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], 
+                          Iteration==iter & MetricName==input$metric,
+                          select=c(Tool, MetricValue, Size, CaseName, Iteration))
+            if(first == TRUE){
+              merged <- sub
+              first <- FALSE
             }
+            else
+              merged <- rbind(merged,sub)
+          }
+          if (input$xdimension != "Size"){
+            merged <- subset(merged, Size == input$size)
+            sub <- ddply(merged, c("Tool", "Size", "CaseName", "Iteration"),summarise,
+                         MetricValue=sum(MetricValue))
+          }
+          else{
             sub <- ddply(merged, c("Tool", "Size", "CaseName"),summarise,
                          MetricValue=sum(MetricValue))
           }
+          return(sub)
+        }
       }
-      else if(input$mix == TRUE){
+      else if(values$mix == TRUE){
         #
         sub <- subset(values$results, Scenario == scenario & CaseName == input$case & 
-                        MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName, CaseName))
+                        MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName, 
+                                                             CaseName))
         first <- TRUE
         print(input$mixphase)
         if (length(input$mixphase) == 0)
@@ -220,10 +247,10 @@ shinyServer(function(input, output, session) {
           return()
         }
         if (input$group == "Tool"){
-          plot <- createPlot(sub, values$settings, "Tool")
+          plot <- createPlot(sub, values$settings, "Tool", input$xdimension)
         }
         else if (input$group == "Case"){
-          plot <- createPlot(sub, values$settings, "CaseName")
+          plot <- createPlot(sub, values$settings, "CaseName", input$xdimension)
         }
         # draw plot
         print(plot)
@@ -288,8 +315,10 @@ shinyServer(function(input, output, session) {
   output$phase <- renderUI({
     if (is.null(input$scenario))
       return()
-    if (is.null(input$mix) == FALSE){
-      if(input$mix == FALSE){
+    # add dependency
+    values$mix
+    isolate({
+      if(values$mix == FALSE){
         unique_phases <- names(values$subtables[[input$case]][[input$scenario]])
         if(length(unique_phases) == 0){
           return()
@@ -299,7 +328,7 @@ shinyServer(function(input, output, session) {
                     selected = unique_phases[0]
         )
       }
-      else if(input$mix == TRUE){
+      else if(values$mix == TRUE){
         unique_phases <- unique(subset(values$results, Scenario == input$scenario & 
                                          CaseName == input$case &
                                          MetricName == input$metric)$PhaseName)
@@ -318,33 +347,56 @@ shinyServer(function(input, output, session) {
           multiple = TRUE
         )
       }
+    })
+  })
+  
+  output$size <- renderUI({
+    if (is.null(input$phase) | is.null(input$case) | is.null(input$scenario)){
+      return()
     }
+    input$xdimension
+    isolate({
+      if (input$xdimension == "Iteration"){
+        unique_sizes <- unique(values$subtables[[input$case]][[input$scenario]][[input$phase]]$Size)
+        sizeList <- c()
+        if (length(unique_sizes) == 0){
+          return()
+        }
+        for(size in unique_sizes){
+          sizeList <- c(size, size, sizeList)
+        }
+        sizeList <- sort(sizeList, decreasing=FALSE)
+        return(selectInput("size", "Size",
+                    choices = sizeList,
+                    selected = sizeList[0])
+               )
+      }
+      return()
+    })
+    
     
   })
   
   output$metric <- renderUI({
     print("metric called")
-    if (is.null(input$mix)){
+    if (is.null(input$phase))
       return()
-    }
-    if (input$mix == FALSE & is.null(input$phase))
-      return()
-    if (input$mix == FALSE){
+    if (values$mix == FALSE){
       unique_metrics <- unique(values$subtables[[input$case]][[input$scenario]][[input$phase]]$MetricName)
-      metric_list <- list()
+      metricList <- list()
       if (length(unique_metrics) == 0){
         return()
       }
       for(metric in unique_metrics){
-        metric_list <- c(metric, metric, metric_list)
+        metricList <- c(metric, metric, metricList)
       }
       
       selectInput("metric", "Metrics",
-                  choices = metric_list,
-                  selected = metric_list[0]
+                  choices = metricList,
+                  selected = metricList[0]
       )
     }
-    else if(input$mix == TRUE){
+    else if(values$mix == TRUE){
       unique_metrics <- unique(subset(values$results, CaseName == input$case & 
                                         Scenario == input$scenario)$MetricName)
       metric_list <- list()
@@ -365,14 +417,14 @@ shinyServer(function(input, output, session) {
     print("Iteration called")
     # add dependencies
     input$phase
-    input$mix
+    values$mix
     if (is.null(input$metric))
       return()
     
     isolate({
       values$iteration <- c(1,1)
       print(values$iteration)
-      if (input$mix == FALSE){
+      if (values$mix == FALSE){
         max_value <- max(subset(values$subtables[[input$case]][[input$scenario]][[input$phase]], 
                                 MetricName == input$metric)$Iteration)
         if(max_value > 1){
@@ -400,4 +452,24 @@ shinyServer(function(input, output, session) {
     })
   })
       
+  output$mix <- renderUI({
+    print("mix called")
+    if (is.null(input$xdimension)){
+      return()
+    }
+    isolate({
+      if (input$xdimension == "Size"){
+        return(checkboxInput("mix", label = "Mix Phases", value = FALSE))
+        if (is.null(input$mix) == FALSE){
+          values$mix <- input$mix
+        }  
+      }
+      else{
+        values$mix <- FALSE
+        # vanish widget
+        return()
+      }
+    })
+  })
+  
 })
