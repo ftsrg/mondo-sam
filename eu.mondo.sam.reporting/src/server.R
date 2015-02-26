@@ -8,13 +8,12 @@ source("plot.R")
 shinyServer(function(input, output, session) {
     
   values <- reactiveValues(iteration = c(0,0))
+  
+  # style settings like title, labels etc
   values$settings <- PlotSettings(theme="Default")
-  # the original data frame
-#   values$results <- results
   
+  # load results and make reactiv values
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
-#   values$subtables <- subtables
-  
   output$dummy <- renderUI({
     inFile <- input$file
     
@@ -201,7 +200,6 @@ shinyServer(function(input, output, session) {
     return(sub)
   }
   
-  
   output$plot <- renderPlot({
     print("output$plot")
     input$visualize
@@ -224,6 +222,7 @@ shinyServer(function(input, output, session) {
         else if (input$group == "Case"){
           plot <- createPlot(sub, values$settings, "CaseName")
         }
+        print(plot)
       })
     })
   })
@@ -360,7 +359,9 @@ shinyServer(function(input, output, session) {
   
   output$iteration <- renderUI({
     print("Iteration called")
+    # add dependencies
     input$phase
+    input$mix
     if (is.null(input$metric))
       return()
     
