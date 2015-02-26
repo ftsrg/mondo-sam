@@ -81,6 +81,7 @@ shinyServer(function(input, output, session) {
       values$settings <- setAxis(values$settings, input$xaxis, input$yaxis)
       values$settings <- setTheme(values$settings, input$theme)
       values$settings <- setYScale(values$settings, input$yscale)
+      values$settings <- showValues(values$settings, input$showvalues)
     })
   })
   

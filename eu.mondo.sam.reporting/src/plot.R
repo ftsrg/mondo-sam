@@ -8,7 +8,8 @@ PlotSettings <- setClass(
              xAxis = "character",
              yAxis = "character",
              yScale = "numeric",
-             theme = "character"
+             theme = "character",
+             showValues = "logical"
            ),
   
   prototype=list(
@@ -18,7 +19,8 @@ PlotSettings <- setClass(
                  xAxis = "",
                  yAxis = "",
                  yScale = 0,
-                 theme = ""
+                 theme = "",
+                 showValues = FALSE
                 )
   )
 
@@ -87,6 +89,20 @@ setMethod(f="setYScale",
           signature="PlotSettings",
           definition=function(theObject, yScale){
             theObject@yScale <- yScale
+            return(theObject)
+          }
+)
+
+setGeneric(name="showValues",
+           def=function(theObject, showValues){
+             standardGeneric("showValues")
+           }
+)
+
+setMethod(f="showValues",
+          signature="PlotSettings",
+          definition=function(theObject, showValues){
+            theObject@showValues <- showValues
             return(theObject)
           }
 )

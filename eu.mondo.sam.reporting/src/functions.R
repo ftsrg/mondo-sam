@@ -89,7 +89,9 @@ createPlot <- function(results, settings, group){
   else if (settings@xAxis == "Log10"){
     plot <- plot + scale_x_log10(breaks = c(sizes), labels = c(sizes))
   }
-#   tempResults$MetricValue <- tempResults$MetricValue * (10**settings@yScale)
+  if (settings@showValues == TRUE){
+    plot <- plot + geom_text(aes(label=round(MetricValue, 0)))
+  }
   minValue <- min(tempResults$MetricValue)
   maxValue <- max(tempResults$MetricValue)
   if (settings@yAxis == "Continuous"){

@@ -60,7 +60,8 @@ shinyUI(navbarPage("Reporting",
                                  choices=c("CaseName", "Scenario", "PhaseName", "MetricName")),
                      actionButton("titleInsert", "Insert Title"),
                      textInput("xlabel", label="X-axis label"),
-                     textInput("ylabel", label="Y-axis label")
+                     textInput("ylabel", label="Y-axis label"),
+                     checkboxInput("showvalues", label="Show values", value=FALSE)
                    ),
                    tabPanel(
                      "Publish",
