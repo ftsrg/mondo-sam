@@ -6,14 +6,20 @@ source("plot.R")
 
 shinyServer(function(input, output, session) {
     
-  values <- reactiveValues(iteration = c(0,0), mix = FALSE)
+  values <- reactiveValues(iteration = c(0,0), 
+                           mix = FALSE,
+                           templates = list(CaseName="CaseName", 
+                                            Scenario="Scenario", 
+                                            PhaseName="PhaseName", 
+                                            MetricName="MetricName")
+                          )
   
   # style settings like title, labels etc
   values$settings <- PlotSettings(theme="Default")
   
   # load results and make reactiv values
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
-  output$dummy <- renderUI({
+  output$load <- renderUI({
     inFile <- input$file
     
     if (is.null(inFile))
@@ -92,7 +98,7 @@ shinyServer(function(input, output, session) {
       values$settings <- setAxis(values$settings, input$xaxis, input$yaxis)
       values$settings <- setTheme(values$settings, input$theme)
       values$settings <- setYScale(values$settings, input$yscale)
-      values$settings <- showValues(values$settings, input$showvalues)
+      values$settings <- showValues(values$settings, input$showValues)
     })
   })
   
@@ -112,6 +118,29 @@ shinyServer(function(input, output, session) {
     values$mix <- input$mix
   })
   
+  changeTemplates <- observe({
+    dimension <- input$xdimension
+    isolate({
+      if (dimension != "Size"){
+        values$templates <- c(values$templates, Size="Size")
+        updateSelectInput(session, "titleTemplate", label="Template",
+                          choices=values$templates)
+        updateSelectInput(session, "publishTemplate", label="Template",
+                          choices=values$templates)
+      }
+      else {
+        if ("Size" %in% names(values$templates)){
+          values$templates <- values$templates[ - which(names(values$templates) == "Size")]
+          updateSelectInput(session, "titleTemplate", label="Template",
+                            choices=values$templates)
+          updateSelectInput(session, "publishTemplate", label="Template",
+                            choices=values$templates)
+        }
+      }
+    })
+    
+  })
+
   # observer for title
   appendTitle <- observe({
     # create dependency to the titleInsert button
@@ -230,6 +259,12 @@ shinyServer(function(input, output, session) {
     return(sub)
   }
   
+##################################
+####         WIDGETS          ####
+##################################
+
+
+#####      RESULTS PANEL     #####
   output$plot <- renderPlot({
     print("output$plot")
     input$visualize
@@ -451,7 +486,8 @@ shinyServer(function(input, output, session) {
       }
     })
   })
-      
+
+#####    DIMENSIONS PANEL    #####
   output$mix <- renderUI({
     print("mix called")
     if (is.null(input$xdimension)){
@@ -470,6 +506,21 @@ shinyServer(function(input, output, session) {
         return()
       }
     })
+  })
+
+#####   PLOT SETTINGS PANEL  #####
+  output$titleTemplate <- renderUI({
+    isolate({
+      selectInput("titleTemplate", "Templates",
+                  choices=values$templates)
+    })
+  })
+#####      PUBLISH PANEL     #####
+  output$publishTemplate <- renderUI({
+    isolate({
+      selectInput("publishTemplate", "Templates",
+                  choices=values$templates)
+  })
   })
   
 })
