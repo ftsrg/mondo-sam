@@ -18,5 +18,5 @@ public interface DataToken {
 	/**
 	 * Disposes the resources used by DataToken.
 	 */
-	public void destory();
+	public void destroy();
 }

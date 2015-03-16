@@ -43,7 +43,7 @@ public class BenchmarkEngine {
 		}
 		
 		benchmarkResult.publishResults();
-		token.destory();
+		token.destroy();
 	}
 
 	public BenchmarkResult getBenchmarkResult() {

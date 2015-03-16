@@ -12,7 +12,7 @@ public class TestDataToken implements DataToken{
 	}
 
 	@Override
-	public void destory() {
+	public void destroy() {
 	}
 
 	
