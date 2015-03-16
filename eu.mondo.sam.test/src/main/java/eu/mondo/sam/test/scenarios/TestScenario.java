@@ -12,7 +12,6 @@ public class TestScenario extends BenchmarkScenario{
 
 	@Override
 	public BenchmarkScenario buildScenario() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

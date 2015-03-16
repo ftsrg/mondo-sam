@@ -10,6 +10,8 @@ import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
 import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.core.scenarios.BenchmarkScenario;
+import eu.mondo.sam.test.phases.ClearancePhase;
+import eu.mondo.sam.test.phases.DeclarationPhase;
 import eu.mondo.sam.test.scenarios.TestScenario;
 //import eu.mondo.sam.proto.DeclarationPhase;
 //import eu.mondo.sam.proto.OptionalProtoPhase;
@@ -24,9 +26,8 @@ import org.junit.Test;
 
 public class TestWorkflow {
 	
-//	private static TestScenarioBuilder builder; 
 	private static BenchmarkEngine engine;
-//	private static DeclarationPhase declaration;
+	private static DeclarationPhase declaration;
 	
 	private TestScenario scenario;
 	private static TestDataToken token;
@@ -37,19 +38,15 @@ public class TestWorkflow {
 	private SequencePhase sequence;
 	private SequencePhase sequence2;
 	private SequencePhase sequence3;
-//	private OptionalProtoPhase skippedOptional;
-//	private OptionalProtoPhase optional;
+	private ClearancePhase skippedOptional;
+	private ClearancePhase optional;
 	
 	@BeforeClass
 	public static void init(){
-//		declaration = new DeclarationPhase("Declaration");
-		TimerMetric timer = new TimerMetric("Time");
-		MemoryMetric memory = new MemoryMetric("Memory");
-//		declaration.addMetrics(timer, memory);
+		declaration = new DeclarationPhase("Declaration");
 		
 		token = new TestDataToken();
 		
-//		builder = new TestScenarioBuilder();
 		engine = new BenchmarkEngine();
 		BenchmarkResult.setPublish(false);
 	}
@@ -72,16 +69,15 @@ public class TestWorkflow {
 		sequence = new SequencePhase();
 		sequence2 = new SequencePhase();
 		sequence3 = new SequencePhase();
-//		skippedOptional = new OptionalProtoPhase();
-//		skippedOptional.setCondition(false);
-//		optional = new OptionalProtoPhase();
-//		optional.setCondition(true);
-//		builder.setScenario(scenario);
+		skippedOptional = new ClearancePhase();
+		skippedOptional.setCondition(false);
+		optional = new ClearancePhase();
+		optional.setCondition(true);
 	}
 	
 	@Test
 	public void iterationTest() {
-//		iteration.setPhase(declaration);
+		iteration.setPhase(declaration);
 		
 		runBenchmark(iteration);
 		assertEquals(10, measuredPhases());
@@ -89,7 +85,7 @@ public class TestWorkflow {
 
 	@Test
 	public void sequenceTest() {
-//		sequence.addPhases(declaration, declaration, declaration, declaration);
+		sequence.addPhases(declaration, declaration, declaration, declaration);
 		
 		runBenchmark(sequence);
 		assertEquals(4, measuredPhases());
@@ -97,29 +93,29 @@ public class TestWorkflow {
 	
 	@Test
 	public void atomicTest(){
-//		runBenchmark(declaration);
+		runBenchmark(declaration);
 		assertEquals(1, measuredPhases());
 	}
 	
 	@Test
 	public void optionalTest(){
-//		optional.setPhase(declaration);
+		optional.setPhase(declaration);
 		
-//		runBenchmark(optional);
+		runBenchmark(optional);
 		assertEquals(1, measuredPhases());
 	}
 	
 	@Test
 	public void skipOptionalTest(){
-//		skippedOptional.setPhase(declaration);
+		skippedOptional.setPhase(declaration);
 		
-//		runBenchmark(skippedOptional);
+		runBenchmark(skippedOptional);
 		assertEquals(0, measuredPhases());
 	}
 	
 	@Test
 	public void complexIterationTest(){
-//		iteration2.setPhase(declaration);
+		iteration2.setPhase(declaration);
 		iteration.setPhase(iteration2);
 		
 		runBenchmark(iteration);
@@ -128,9 +124,9 @@ public class TestWorkflow {
 	
 	@Test
 	public void complexSequenceTest(){
-//		sequence3.addPhases(declaration, declaration);
-//		sequence2.addPhases(declaration, declaration, declaration, sequence3);
-//		sequence.addPhases(declaration, sequence2, declaration);
+		sequence3.addPhases(declaration, declaration);
+		sequence2.addPhases(declaration, declaration, declaration, sequence3);
+		sequence.addPhases(declaration, sequence2, declaration);
 		
 		runBenchmark(sequence);
 		assertEquals(7, measuredPhases());
@@ -138,7 +134,7 @@ public class TestWorkflow {
 	
 	@Test
 	public void iterationContainsSequenceTest(){
-//		sequence.addPhases(declaration, declaration);
+		sequence.addPhases(declaration, declaration);
 		iteration.setPhase(sequence);
 		
 		runBenchmark(iteration);
@@ -147,8 +143,8 @@ public class TestWorkflow {
 	
 	@Test
 	public void sequenceContainsIterationTest(){
-//		iteration.setPhase(declaration);
-//		sequence.addPhases(declaration, iteration);
+		iteration.setPhase(declaration);
+		sequence.addPhases(declaration, iteration);
 		
 		runBenchmark(sequence);
 		assertEquals(11, measuredPhases());
@@ -156,26 +152,26 @@ public class TestWorkflow {
 	
 	@Test
 	public void optionalContainsIterationTest(){
-//		iteration.setPhase(declaration);
-//		optional.setPhase(iteration);
+		iteration.setPhase(declaration);
+		optional.setPhase(iteration);
 		
-//		runBenchmark(optional);
+		runBenchmark(optional);
 		assertEquals(10, measuredPhases());
 	}
 	
 	@Test
 	public void optionalContainsSequenceTest(){
-//		sequence.addPhases(declaration, declaration, declaration);
-//		optional.setPhase(sequence);
+		sequence.addPhases(declaration, declaration, declaration);
+		optional.setPhase(sequence);
 		
-//		runBenchmark(optional);
+		runBenchmark(optional);
 		assertEquals(3, measuredPhases());
 	}
 	
 	@Test
 	public void sequenceContainsOptionalTest(){
-//		optional.setPhase(declaration);
-//		sequence.addPhases(declaration, optional, declaration);
+		optional.setPhase(declaration);
+		sequence.addPhases(declaration, optional, declaration);
 		
 		runBenchmark(sequence);;
 		assertEquals(3, measuredPhases());
@@ -183,8 +179,8 @@ public class TestWorkflow {
 	
 	@Test
 	public void iterationContainsOptionalTest(){
-//		optional.setPhase(declaration);
-//		iteration.setPhase(optional);
+		optional.setPhase(declaration);
+		iteration.setPhase(optional);
 		
 		runBenchmark(iteration);
 		assertEquals(10, measuredPhases());
@@ -192,14 +188,14 @@ public class TestWorkflow {
 	
 	@Test
 	public void complexTest(){
-//		sequence.addPhases(iteration, declaration, optional, sequence3);
-//		iteration.setPhase(sequence2);
-//		sequence2.addPhases(declaration, declaration, iteration2);
-//		iteration2.setPhase(skippedOptional);
-//		skippedOptional.setPhase(declaration);
-//		optional.setPhase(iteration3);
-//		iteration3.setPhase(declaration);
-//		sequence3.addPhases(declaration, declaration);
+		sequence.addPhases(iteration, declaration, optional, sequence3);
+		iteration.setPhase(sequence2);
+		sequence2.addPhases(declaration, declaration, iteration2);
+		iteration2.setPhase(skippedOptional);
+		skippedOptional.setPhase(declaration);
+		optional.setPhase(iteration3);
+		iteration3.setPhase(declaration);
+		sequence3.addPhases(declaration, declaration);
 		
 		runBenchmark(sequence);
 		assertEquals(43, measuredPhases());

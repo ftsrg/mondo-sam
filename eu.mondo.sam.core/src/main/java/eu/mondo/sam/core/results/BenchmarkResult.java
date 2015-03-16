@@ -9,8 +9,8 @@ import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 
 public class BenchmarkResult {
 
-	@JsonProperty("Case")
-	private BenchmarkScenario benchmarkScenario;
+//	@JsonProperty("Case")
+//	private BenchmarkScenario benchmarkScenario;
 	
 	@JsonProperty("PhaseResults")
 	private List<PhaseResult> phaseResults;
@@ -31,23 +31,23 @@ public class BenchmarkResult {
 		return phaseResults;
 	}
 	
-	public void setBenchmarkScenario(BenchmarkScenario benchmarkScenario) {
-		this.benchmarkScenario = benchmarkScenario;
-	}
+//	public void setBenchmarkScenario(BenchmarkScenario benchmarkScenario) {
+//		this.benchmarkScenario = benchmarkScenario;
+//	}
 	
 	public void addResults(PhaseResult result){
 		this.phaseResults.add(result);
 	}
 	
 	public void publishResults(){
-		String tool = benchmarkScenario.getTool();
-		String scenario = benchmarkScenario.getScenarioName();
-		String benchCase = benchmarkScenario.getCaseName();
-		int size = benchmarkScenario.getSize();
-		int runIndex = benchmarkScenario.getRunIndex();
-		String fileName = tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index" + runIndex + ".json";
+//		String tool = benchmarkScenario.getTool();
+//		String scenario = benchmarkScenario.getScenarioName();
+//		String benchCase = benchmarkScenario.getCaseName();
+//		int size = benchmarkScenario.getSize();
+//		int runIndex = benchmarkScenario.getRunIndex();
+//		String fileName = tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index" + runIndex + ".json";
 		if(publish){
-			ResultSerializer.serializeToJson(this, resultPath, fileName);
+//			ResultSerializer.serializeToJson(this, resultPath, fileName);
 		}
 	}
 	
