@@ -1,11 +1,11 @@
 package eu.mondo.sam.core.phases;
 
+import java.util.Iterator;
+
 import eu.mondo.sam.core.DataToken;
 import eu.mondo.sam.core.metrics.BenchmarkMetric;
 import eu.mondo.sam.core.phases.iterators.AtomicPhaseIterator;
-import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 import eu.mondo.sam.core.results.PhaseResult;
-
 
 public abstract class AtomicPhase implements BenchmarkPhase{
 	
@@ -45,7 +45,7 @@ public abstract class AtomicPhase implements BenchmarkPhase{
 	public abstract void execute(DataToken token, PhaseResult result);
 	
 	@Override
-	public PhaseIterator getIterator() {
+	public Iterator<BenchmarkPhase> iterator() {
 		return new AtomicPhaseIterator(this);
 	}
 	

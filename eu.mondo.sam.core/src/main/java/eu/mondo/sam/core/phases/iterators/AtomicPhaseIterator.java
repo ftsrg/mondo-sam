@@ -1,8 +1,11 @@
 package eu.mondo.sam.core.phases.iterators;
 
-import eu.mondo.sam.core.phases.AtomicPhase;
+import java.util.Iterator;
 
-public class AtomicPhaseIterator implements PhaseIterator{
+import eu.mondo.sam.core.phases.AtomicPhase;
+import eu.mondo.sam.core.phases.BenchmarkPhase;
+
+public class AtomicPhaseIterator implements Iterator<BenchmarkPhase>{
 
 	private AtomicPhase atomic;
 	private volatile boolean hasNext;
@@ -13,7 +16,7 @@ public class AtomicPhaseIterator implements PhaseIterator{
 	}
 	
 	@Override
-	public AtomicPhase nextPhase() {
+	public AtomicPhase next() {
 		this.hasNext = false;
 		return atomic;
 	}
@@ -21,6 +24,12 @@ public class AtomicPhaseIterator implements PhaseIterator{
 	@Override
 	public boolean hasNext() {
 		return hasNext;
+	}
+
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

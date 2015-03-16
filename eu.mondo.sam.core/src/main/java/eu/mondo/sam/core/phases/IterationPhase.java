@@ -1,7 +1,8 @@
 package eu.mondo.sam.core.phases;
 
+import java.util.Iterator;
+
 import eu.mondo.sam.core.phases.iterators.IterationPhaseIterator;
-import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
 public class IterationPhase implements BenchmarkPhase{
 
@@ -13,7 +14,7 @@ public class IterationPhase implements BenchmarkPhase{
 	}
 	
 	@Override
-	public PhaseIterator getIterator() {
+	public Iterator<BenchmarkPhase> iterator() {
 		return new IterationPhaseIterator(this);
 	}
 

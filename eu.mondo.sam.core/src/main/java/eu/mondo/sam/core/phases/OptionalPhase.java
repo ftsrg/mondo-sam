@@ -1,7 +1,8 @@
 package eu.mondo.sam.core.phases;
 
+import java.util.Iterator;
+
 import eu.mondo.sam.core.phases.iterators.OptionalPhaseIterator;
-import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 
 public abstract class OptionalPhase extends ConditionalPhase{
 
@@ -12,7 +13,7 @@ public abstract class OptionalPhase extends ConditionalPhase{
 //	}
 	
 	@Override
-	public PhaseIterator getIterator() {
+	public Iterator<BenchmarkPhase> iterator() {
 		return new OptionalPhaseIterator(this);
 	}
 }

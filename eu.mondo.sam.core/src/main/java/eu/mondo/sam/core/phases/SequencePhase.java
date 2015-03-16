@@ -1,8 +1,8 @@
 package eu.mondo.sam.core.phases;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
-import eu.mondo.sam.core.phases.iterators.PhaseIterator;
 import eu.mondo.sam.core.phases.iterators.SequencePhaseIterator;
 
 public class SequencePhase implements BenchmarkPhase{
@@ -22,7 +22,7 @@ public class SequencePhase implements BenchmarkPhase{
 	}
 
 	@Override
-	public PhaseIterator getIterator() {
+	public Iterator<BenchmarkPhase> iterator() {
 		return new SequencePhaseIterator(this);
 	}
 	
@@ -33,4 +33,5 @@ public class SequencePhase implements BenchmarkPhase{
 	public int getSize(){
 		return phases.size();
 	}
+
 }
