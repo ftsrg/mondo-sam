@@ -42,7 +42,7 @@ public abstract class AtomicPhase implements BenchmarkPhase{
 	 * @param token Represents a communication unit between this and other phases.
 	 * @param result PhaseResult object. In the case of publishing metrics attach BenchmarkMetric objects to it.  
 	 */
-	public abstract void execute(DataToken token, PhaseResult result);
+	public abstract void execute(DataToken token, PhaseResult phaseResult);
 	
 	@Override
 	public Iterator<BenchmarkPhase> iterator() {

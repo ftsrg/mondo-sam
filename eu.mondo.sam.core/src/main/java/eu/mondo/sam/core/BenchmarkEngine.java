@@ -31,15 +31,17 @@ public class BenchmarkEngine {
 			if (phase == null){
 				continue;
 			}
-			PhaseResult result = new PhaseResult();
-			result.setPhaseName(phase.getPhaseName());
+			PhaseResult phaseResult = new PhaseResult();
+			phaseResult.setPhaseName(phase.getPhaseName());
 
-			phase.execute(token, result);
+			phase.execute(token, phaseResult);
 			
-			result.setSequence(sequence);
-			benchmarkResult.addResults(result);
-
-			sequence++;
+			phaseResult.setSequence(sequence);
+			
+			if (phaseResult.numberOfMetrics() > 0){
+				benchmarkResult.addResults(phaseResult);
+				sequence++;
+			}
 		}
 		
 		benchmarkResult.publishResults();

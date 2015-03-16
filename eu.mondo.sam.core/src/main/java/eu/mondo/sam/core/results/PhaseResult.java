@@ -38,6 +38,10 @@ public class PhaseResult {
 		}
 	}
 	
+	public int numberOfMetrics(){
+		return metrics.size();
+	}
+	
 	public void setPhaseName(String phaseName) {
 		this.phaseName = phaseName;
 	}

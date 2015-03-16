@@ -10,7 +10,7 @@ import eu.mondo.sam.core.results.CaseDescriptor;
 public abstract class BenchmarkScenario {
 
 	/**
-	 * An iterator of the root BenchmarkPhase.
+	 * An iterator of the rootPhase .
 	 */
 	private Iterator<BenchmarkPhase> iterator;
 	
@@ -18,6 +18,14 @@ public abstract class BenchmarkScenario {
 	 * Represents the root of an arbitrary phase hierarchy where the leafs defines the AtomicPhase instances.
 	 */
 	protected BenchmarkPhase rootPhase;
+	
+	protected int size;
+	
+	protected String tool;
+	
+	protected String caseName;
+	
+	protected int runIndex;
 	
 	/**
 	 * Builds an arbitrary phase hierarchy where the leafs represent the AtomicPhase objects. 
@@ -47,4 +55,38 @@ public abstract class BenchmarkScenario {
 		AtomicPhase phase = (AtomicPhase) iterator.next();
 		return phase;
 	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public String getTool() {
+		return tool;
+	}
+
+	public void setTool(String tool) {
+		this.tool = tool;
+	}
+
+	public String getCaseName() {
+		return caseName;
+	}
+
+	public void setCaseName(String caseName) {
+		this.caseName = caseName;
+	}
+
+	public int getRunIndex() {
+		return runIndex;
+	}
+
+	public void setRunIndex(int runIndex) {
+		this.runIndex = runIndex;
+	}
+	
+	
 }
