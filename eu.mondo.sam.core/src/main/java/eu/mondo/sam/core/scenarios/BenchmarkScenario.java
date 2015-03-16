@@ -4,39 +4,34 @@ import java.util.Iterator;
 
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
-
-import org.codehaus.jackson.annotate.JsonProperty;
+import eu.mondo.sam.core.results.CaseDescriptor;
 
 
 public abstract class BenchmarkScenario {
 
-	@JsonProperty("CaseName")
-	protected String caseName;
-	
-	@JsonProperty("RunIndex")
-	protected int runIndex;
-	
-	@JsonProperty("Scenario")
-	protected String scenario;
-	
-	@JsonProperty("Tool")
-	protected String tool;
-	
-	@JsonProperty("Size")
-	protected int size;
-	
+	/**
+	 * An iterator of the root BenchmarkPhase.
+	 */
 	private Iterator<BenchmarkPhase> iterator;
+	
+	/**
+	 * Represents the root of an arbitrary phase hierarchy where the leafs defines the AtomicPhase instances.
+	 */
 	protected BenchmarkPhase rootPhase;
 	
-	public BenchmarkScenario(String scenario){
-		this.scenario = scenario;
-	}
-		
-	protected void setRootPhase(BenchmarkPhase phase){
-		this.rootPhase = phase;
-	}
+	/**
+	 * Builds an arbitrary phase hierarchy where the leafs represent the AtomicPhase objects. 
+	 */
+	public abstract void build();
 	
-	public abstract BenchmarkScenario buildScenario();
+	/**
+	 * Instantiate a CaseDescriptor object.
+	 * 
+	 * @see CaseDescriptor
+	 * 
+	 * @return CaseDescriptor with every one of its field being initialized.
+	 */
+	public abstract CaseDescriptor getCaseDescriptor();
 	
 	public boolean hasNextPhase(){
 		if (iterator == null){
@@ -51,30 +46,5 @@ public abstract class BenchmarkScenario {
 		}
 		AtomicPhase phase = (AtomicPhase) iterator.next();
 		return phase;
-	}
-	
-	@Override
-	public String toString() {
-		return caseName;
-	}
-	
-	public String getCaseName() {
-		return caseName;
-	}
-	
-	public int getRunIndex() {
-		return runIndex;
-	}
-	
-	public String getScenarioName() {
-		return scenario;
-	}
-	
-	public int getSize() {
-		return size;
-	}
-	
-	public String getTool() {
-		return tool;
 	}
 }

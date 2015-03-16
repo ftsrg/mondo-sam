@@ -2,27 +2,19 @@ package eu.mondo.sam.test;
 
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.DataToken;
-import eu.mondo.sam.core.metrics.MemoryMetric;
-import eu.mondo.sam.core.metrics.TimerMetric;
-import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
 import eu.mondo.sam.core.results.BenchmarkResult;
-import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 import eu.mondo.sam.test.phases.ClearancePhase;
 import eu.mondo.sam.test.phases.DeclarationPhase;
 import eu.mondo.sam.test.scenarios.TestScenario;
-//import eu.mondo.sam.proto.DeclarationPhase;
-//import eu.mondo.sam.proto.OptionalProtoPhase;
-//import eu.mondo.sam.proto.ProtoConfig;
-//import eu.mondo.sam.proto.ProtoScenario;
-//import eu.mondo.sam.proto.ProtoScenarioBuilder;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 
 public class TestWorkflow {
 	
@@ -62,7 +54,7 @@ public class TestWorkflow {
 	
 	@Before
 	public void instantiateScenario(){
-		scenario = new TestScenario("TestScenario");
+		scenario = new TestScenario();
 		iteration = new IterationPhase(10);
 		iteration2 = new IterationPhase(2);
 		iteration3 = new IterationPhase(20);

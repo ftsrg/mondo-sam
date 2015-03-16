@@ -15,9 +15,15 @@ public class BenchmarkEngine {
 
 	private BenchmarkResult benchmarkResult;
 	
-	public void runBenchmark(BenchmarkScenario scenario, DataToken token){
+	public BenchmarkEngine() {
 		benchmarkResult = new BenchmarkResult();
+	}
+	
+	public void runBenchmark(BenchmarkScenario scenario, DataToken token){
 		token.init();
+		scenario.build();
+		benchmarkResult.clear();
+		benchmarkResult.setCaseDescriptor(scenario.getCaseDescriptor());
 		
 		int sequence = 1;
 		while(scenario.hasNextPhase()){
