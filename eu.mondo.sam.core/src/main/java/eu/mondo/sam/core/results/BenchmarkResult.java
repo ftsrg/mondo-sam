@@ -3,7 +3,7 @@ package eu.mondo.sam.core.results;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 

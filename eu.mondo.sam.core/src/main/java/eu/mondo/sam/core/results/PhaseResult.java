@@ -4,7 +4,7 @@ import eu.mondo.sam.core.metrics.BenchmarkMetric;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class PhaseResult {
 

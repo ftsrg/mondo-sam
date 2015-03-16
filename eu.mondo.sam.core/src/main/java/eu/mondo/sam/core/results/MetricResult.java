@@ -1,6 +1,6 @@
 package eu.mondo.sam.core.results;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class MetricResult {
 
