@@ -13,7 +13,8 @@ import glob
 import argparse
 import csv
 
-def set_working_directory(path = None):
+
+def set_working_directory(path=None):
     """
     Set the working directory to this script's folder or to the path
     optional parameter, if that is given.
@@ -21,15 +22,15 @@ def set_working_directory(path = None):
     Parameters:
     @param path: optional parameter, a directory, default value is None
     """
-    if (path == None):
+    if path is None:
         full_path = os.path.realpath(__file__)
         path = os.path.split(full_path)
         os.chdir(path[0])
     else:
-        if (os.path.exists(path) == True):
+        if os.path.exists(path):
             os.chdir(path)
         else:
-            print("The given parameter is not a valid directory:"+ path)
+            print("The given parameter is not a valid directory:" + path)
 
 
 def load_results(path):
@@ -55,54 +56,52 @@ def convert_results_to_csv(json_objects, csvpath):
     @param json_objects: a list of json objects 
     @param csvpath: location of the CSV file
     """
-    #if (os.path.exists(csvpath) == True):
-     #   with open(csvpath, mode='r') as csvfile:
-     #        reader = csv.reader(csvfile, delimiter=',')
-    #else:
     with open(csvpath, mode='w') as csvfile:
         headers = set()
         for result in json_objects:
             keys = set(result["Case"].keys())
-            if ("PhaseResults" in keys):
+            if "PhaseResults" in keys:
                 keys.remove("PhaseResults")
-            #if (result["PhaseResults"].hasKey() == True):
-            #    keys.update(set(result["PhaseResults"].keys()))
-            #if ("Phases" in keys):
-            #    keys.remove("Phases")
             for phase in result["PhaseResults"]:
                 keys.update(set(phase.keys()))
                 for metric in phase["Metrics"]:
                     keys.update(set(metric.keys()))
-            if ("Metrics" in keys):
+            if "Metrics" in keys:
                 keys.remove("Metrics")
             headers.update(keys)
+            headers.add("Iteration")
         
         writer = csv.DictWriter(csvfile, headers)
         writer.writeheader()
-        
+
         for result in json_objects:
+            phases_dict = dict()
             row = dict()
             for h in headers:
-                row.update({h:"NaN"})
+                row.update({h: "NaN"})
             for k in result["Case"].keys():
-                if (k in headers):
-                    row.update({k:result["Case"][k]})
-            #for k in result["PhaseResults"].keys():
-            #    if (k in headers):
-            #        row.update({k:result["PhaseResults"][k]})
+                if k in headers:
+                    row.update({k: result["Case"][k]})
             for phase in result["PhaseResults"]:
                 for k in phase.keys():
-                    if (k in headers):
-                        row.update({k:phase[k]})
+                    if k in headers:
+                        row.update({k: phase[k]})
+                if phase["PhaseName"] in phases_dict.keys():
+                    phases_dict[phase["PhaseName"]] += 1
+                    row.update({"Iteration": phases_dict[phase["PhaseName"]]})
+                else:
+                    phases_dict.update({phase["PhaseName"]: 1})
+                    row.update({"Iteration": 1})
+
                 for metric in phase["Metrics"]:
                     for k in metric.keys():
-                        if (k in headers):
+                        if k in headers:
                             row.update({k: metric[k]})
                     writer.writerow(row)
             
 
 def write_json_objects(json_objects, filename):
-    """Write the json objects containing list to a file.
+    """Write the json objects contained list to a file.
     
     Parameters:
     @param json_objects: a list of json objects
@@ -113,20 +112,19 @@ def write_json_objects(json_objects, filename):
         json.dump(json_objects, file, sort_keys=True, indent=2)
 
     
-if (__name__ == "__main__"):
-    parser = argparse.ArgumentParser( \
-                      formatter_class=argparse.ArgumentDefaultsHelpFormatter \
-                      )
-    parser.add_argument("-j","--jsonfile",
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-j", "--jsonfile",
                         default="../../results/results.json",
-                        help="Path of the JSON file where "+\
+                        help="Path of the JSON file where " +
                              "results will be merged.")
-    parser.add_argument("-c","--csvfile",
+    parser.add_argument("-c", "--csvfile",
                         default="../../results/results.csv",
-                        help="Path of the CSV file where the "+\
+                        help="Path of the CSV file where the " +
                              "results will be merged"
                         )
-    parser.add_argument("-s","--source",
+    parser.add_argument("-s", "--source",
                         default="../../results/json",
                         help="Path of the results json files location."
                         )
@@ -137,5 +135,3 @@ if (__name__ == "__main__"):
     write_json_objects(json_objects, args.jsonfile)
     convert_results_to_csv(json_objects, args.csvfile)
     print("The results has been written successfully.")
-
-    

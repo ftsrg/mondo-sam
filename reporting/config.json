@@ -1,0 +1,24 @@
+{
+  "Dimensions": {
+    "X_Dimensions": {
+      "Size": true,
+      "Iteration": false
+    },
+    "Groups": {
+      "Case": true,
+      "Tool": false
+    }
+  },
+  "Summarize_Functions": [
+    {
+      "Phases": [
+        "ReCheck",
+        "RHS"
+      ],
+      "Metric": "Time",
+      "Y_Label": "Time (ms)",
+      "Y_Axis_Scale": -6
+    }
+  ],
+  "Extension": ["png", "pdf"]
+}
