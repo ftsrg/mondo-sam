@@ -107,7 +107,6 @@ def write_json_objects(json_objects, filename):
     @param json_objects: a list of json objects
     @param filename: the location and name of the written file 
     """
-    # TODO Check correctness of filename's location
     with open(filename, mode="w", encoding="utf-8") as file:
         json.dump(json_objects, file, sort_keys=True, indent=2)
 
