@@ -42,6 +42,9 @@ if __name__ == "__main__":
                         default="../../diagrams/",
                         help="Location of the folder where the plots will be "
                              "generated.")
+    parser.add_argument("-c", "--config",
+                        default="config.json",
+                        help="Location of the config json file")
     args = parser.parse_args()
     subprocess.call(["Rscript", "generate_diagrams.R", args.source,
-                    args.output])
+                    args.output, args.config])

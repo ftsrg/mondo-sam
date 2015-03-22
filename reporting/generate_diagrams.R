@@ -12,6 +12,10 @@ if(!is.na(args[1])){
 if(!is.na(args[2])){
   diagramsPath <- args[2]
 }
+if(!is.na(args[3])){
+  configPath <- args[3]
+}
+# else: use the default paths
 results <-read.csv(resultsPath, header=TRUE, sep=',')
 
 config <- fromJSON(configPath)
