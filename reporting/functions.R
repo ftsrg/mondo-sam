@@ -43,6 +43,9 @@ savePlot <-function(results, settings, phases, fileName){
   else{
     xLabels <- c(artifacts)
   }
+  
+  #data[settings@xDimension] <- as.factor(data[settings@xDimension])
+  
   plot <- ggplot(data,aes_string(x = settings@xDimension, y = settings@yDimension)) +
     geom_line(aes_string(group = settings@group, colour=settings@group), size=lineSize) + 
     geom_point(aes_string(shape = settings@group, colour=settings@group), size=pointSize) +
@@ -65,7 +68,7 @@ savePlot <-function(results, settings, phases, fileName){
   }
   else if (settings@yAxis == "Log10"){
     plot <- plot + scale_y_log10(breaks = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),7), 
-                                labels = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),2))
+                                 labels = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),2))
   }
   ggsave(plot,filename = fileName, width=14, height=7, dpi=192)
   print(fileName)
@@ -73,9 +76,9 @@ savePlot <-function(results, settings, phases, fileName){
 
 }
 
+
 validPhase <- function(results, functions){
   uniquePhases <- unique(results$PhaseName)
-  print(uniquePhases)
   for(func in functions){
     for(phase in func){
       if(phase %in% uniquePhases == FALSE){
@@ -123,7 +126,11 @@ concatPhases <- function(phases){
 getXLabels <- function(artifacts){
   ticks <- c()
   for(size in artifacts){
-    ticks <- c(ticks, labels[[as.character(size)]])
+    value <- labels[[as.character(size)]]
+    if(is.null(value)){
+      value = size
+    }
+    ticks <- c(ticks, value)
   }
   return(ticks)
 }

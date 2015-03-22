@@ -6,11 +6,9 @@ source("plot.R")
 source("constants.R")
 
 args <- commandArgs(trailingOnly = TRUE)
-print(args[1])
 if(!is.na(args[1])){
   resultsPath <- args[1]
 }
-# resultsPath <- args[1]
 if(!is.na(args[2])){
   diagramsPath <- args[2]
 }
@@ -34,7 +32,7 @@ for(row in 1:nrow(config$Summarize_Functions)){
 index <- 0
 settings <- PlotSettings()
 uniqueScenarios <- unique(results$Scenario)
-createFolders(rootPath, uniqueScenarios)
+createFolders(diagramsPath, uniqueScenarios)
 
 for(row in 1:nrow(config$Summarize_Functions)){
   phases <- config$Summarize_Functions[row,]$Phases
@@ -43,7 +41,7 @@ for(row in 1:nrow(config$Summarize_Functions)){
     metric <- config$Summarize_Functions[row,]$Metric
     subData1 <- subset(results, Scenario==scenario & MetricName == metric)
     subData1$MetricValue <- subData1$MetricValue * (10** config$Summarize_Functions[row,]$Y_Axis_Scale)
-    path <- paste(rootPath, scenario, "/", sep='')
+    path <- paste(diagramsPath, scenario, "/", sep='')
     
     if (config$Dimensions$Groups$Case){
       uniqueTools <- unique(subData1$Tool)
