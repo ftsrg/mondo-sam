@@ -1,7 +1,7 @@
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("ggplot2",quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr", quietly=T, verbose=F, warn.conflicts=FALSE)
-source("functions.R")
+source("plot_functions.R")
 source("plot.R")
 source("constants.R")
 source("validation.R")
@@ -37,6 +37,17 @@ for(row in 1:nrow(config$Plot)){
   # scale down or up
   subData$MetricValue <- subData$MetricValue * (10** config$Plot[row, ]$Metric_Scale)
   
+  # filter by iteration
+  iterations <- unique(subData$Iteration)
+  if (config$Plot[row, ]$Max_Iteration < 0){
+    maxIter <- max(iterations)
+  }
+  else{
+    maxIter <- config$Plot[row, ]$Max_Iteration
+  }
+  minIter <- config$Plot[row, ]$Min_Iteration
+  
+  subData <- subset(subData, Iteration >= minIter & Iteration <= maxIter)
   selections <- selections[selections != legend & selections != x_dimension]
   
   filename <- paste(diagramsPath, "Plot", sep="")

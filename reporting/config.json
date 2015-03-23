@@ -2,19 +2,20 @@
   "Plot": [
     {
       "X_Dimension": "Size",
-      "Legend": "CaseName",
+      "Legend": "PhaseName",
       "Summarize_Function": [
         "Transformation"
       ],
-      "Title": "$SCENARIO scenario - ",
+      "Title": "SCENARIO CASENAME TOOL",
       "Metrics": [
-        "Time",
-        "Memory"
+        "Time"
       ],
       "Metric_Scale": -6,
+      "Min_Iteration": 1,
+      "Max_Iteration": -1,
       "Y_Label": "Time (ms)",
-      "Y_Axis_Scale": "log2",
       "X_Axis_Scale": "factor",
+      "Y_Axis_Scale": "log2",
       "Extensions": [
         "png"
       ]

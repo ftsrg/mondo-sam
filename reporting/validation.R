@@ -7,6 +7,16 @@ validate <- function(results, config){
       quit()
     }
     
+    if (is.numeric(config$Plot[row, ]$Min_Iteration) == FALSE){
+      cat("Incorrect parameter was given: Min_Iteration parameter is not numeric.\n")
+      quit()
+    }
+    
+    if (is.numeric(config$Plot[row, ]$Max_Iteration) == FALSE){
+      cat("Incorrect parameter was given: Max_Iteration parameter is not numeric.\n")
+      quit()
+    }
+    
     legend <- config$Plot[row, ]$Legend
     if (legend %in% header == FALSE){
       cat("Invalid legend name was given: <", legend,">.\nThe possible choices are the following:")
