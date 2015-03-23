@@ -2,7 +2,7 @@
   "Plot": [
     {
       "X_Dimension": "Size",
-      "Legend": "Case",
+      "Legend": "CaseName",
       "Summarize_Function": [
         "Transformation"
       ],

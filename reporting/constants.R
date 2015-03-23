@@ -1,18 +1,22 @@
+# default
 resultsPath <- "../results/results.csv"
+# default
 configPath <- "./config.json"
 
-# y-axis scaling
+# defult y-axis scaling
 scaleDivisor <- 10**6
 
-# output folder
+# default output folder
 diagramsPath <- c("../../diagrams/")
+
+# selection list
+defaultSelections <- c("Scenario", "Tool", "Size", "CaseName")
 
 # plot settings
 pointSize = 3
 lineSize = 1
-yLabel <- "Time (ms)"
-yAxis <- "Log10"
 
+# mapping
 labels <- list("1" = "1\n ", 
                "2" = "2\n ", 
                "4" = "4\n ", 

@@ -4,7 +4,7 @@ PlotSettings <- setClass(
   slots = c(
              xDimension = "character",
              yDimension = "character",
-             group = "character",
+             legend = "character",
              xLabel = "character",
              yLabel = "character",
              title = "character",
@@ -15,7 +15,7 @@ PlotSettings <- setClass(
   prototype=list(
                  xDimension = "",
                  yDimension = "",
-                 group = "",
+                 legend = "",
                  xLabel = "",
                  yLabel = "",
                  title = "",
@@ -38,16 +38,16 @@ setMethod(f="setDimensions",
             return(theObject)
           })
 
-setGeneric(name="setGroup",
-           def=function(theObject, group){
-             standardGeneric("setGroup")
+setGeneric(name="setLegend",
+           def=function(theObject, legend){
+             standardGeneric("setLegend")
            }
 )
 
-setMethod(f="setGroup",
+setMethod(f="setLegend",
           signature="PlotSettings",
-          definition=function(theObject, group){
-            theObject@group <- group
+          definition=function(theObject, legend){
+            theObject@legend <- legend
             return(theObject)
           })
 
