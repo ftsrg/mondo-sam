@@ -27,7 +27,7 @@ validate(results, config)
 index <- 0
 settings <- PlotSettings()
 uniqueScenarios <- unique(results$Scenario)
-createFolders(diagramsPath, uniqueScenarios)
+#createFolders(diagramsPath, uniqueScenarios)
 
 
 for(row in 1:nrow(config$Plot)){

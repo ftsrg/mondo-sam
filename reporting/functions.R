@@ -33,31 +33,23 @@ savePlot <-function(results, settings, phases, filename, extensions){
     return()
   }
   
-  if("Iteration" %in% c(settings@xDimension, settings@legend)){
-    data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "Iteration", "RunIndex"),
-                  summarize, MetricValue=sum(MetricValue))
-    data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "Iteration"),
-                  summarize, MetricValue=median(MetricValue))
+  header <- names(data)
+  cases <- c(settings@xDimension, settings@legend)
+  header <- header[header != "Sequence"]
+  header <- header[header != "MetricValue"]
+  if ("Iteration" %in% cases == FALSE){
+    header <- header[header != "Iteration"]
   }
-  else {
-    data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "RunIndex"),
-                  summarize, MetricValue=sum(MetricValue))
-    data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size" ),
-                  summarize, MetricValue=median(MetricValue))
+  if ("MetricName" %in% cases == FALSE){
+    header <- header[header != "MetricName"]
   }
-  # TODO remove duplicate rows
-#   if("MetricName" %in% c(settings@xDimension, settings@legend)){
-#     data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "MetricName", "Iteration", "RunIndex"),
-#                   summarize, MetricValue=sum(MetricValue))
-#     data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "MetricName", "Iteration"),
-#                   summarize, MetricValue=median(MetricValue))
-#   }
-#   else {
-#     data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "MetricName", "RunIndex"),
-#                   summarize, MetricValue=sum(MetricValue))
-#     data <- ddply(data, c("CaseName", "Tool", "Scenario", "Size", "MetricName"),
-#                   summarize, MetricValue=median(MetricValue))
-#   }
+  if ("PhaseName" %in% cases == FALSE){
+    header <- header[header != "PhaseName"]
+  }
+  
+  data <- ddply(data, header, summarize, MetricValue=sum(MetricValue))
+  header <- header[header != "RunIndex"]
+  data <- ddply(data, header, summarize, MetricValue=median(MetricValue))
   
   artifacts <- unique(data[[settings@xDimension]])
   
