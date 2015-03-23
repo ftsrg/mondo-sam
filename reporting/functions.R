@@ -5,7 +5,8 @@ report <- function(results,selections, config, row, filename){
     settings <- PlotSettings()
     
     settings <- setLegend(settings, config$Plot[row, ]$Legend)
-    settings <- setTitle(settings, config$Plot[row, ]$Title)
+    title <- injectValues(results, config$Plot[row, ]$Title)
+    settings <- setTitle(settings, title)
     settings <- setDimensions(settings, config$Plot[row, ]$X_Dimension, "MetricValue")
     settings <- setLabels(settings, config$Plot[row, ]$X_Dimension, config$Plot[row, ]$Y_Label)
     settings <- setAxis(settings, config$Plot[row, ]$X_Axis_Scale, config$Plot[row, ]$Y_Axis_Scale)
@@ -16,6 +17,7 @@ report <- function(results,selections, config, row, filename){
     savePlot(results, settings, phases, filename, extensions)
     return()
   }
+  
   #get first select condition
   selected <- selections[1]
   uniqueValues <- unique(results[[selected]])
@@ -140,4 +142,28 @@ getXLabels <- function(artifacts){
     ticks <- c(ticks, value)
   }
   return(ticks)
+}
+
+injectValues <- function(results, text){
+  scenario <- unique(results$Scenario)
+  tool <- unique(results$Tool)
+  caseName <- unique(results$CaseName)
+  phase <- unique(results$PhaseName)
+  size <- unique(results$Size)
+  text <- inject(results, text, "SCENARIO", scenario)
+  text <- inject(results, text, "TOOL", tool)
+  text <- inject(results, text, "CASENAME", caseName)
+  text <- inject(results, text, "PHASENAME", phase)
+  text <- inject(results, text, "SIZE", size)
+  return(text)
+}
+
+inject <- function(results, text, sample, value){
+  if (length(value) > 1){
+    text <- gsub(sample, value[1], text)
+  }
+  else{
+    text <- gsub(sample, value, text)
+  }
+  return(text)
 }
