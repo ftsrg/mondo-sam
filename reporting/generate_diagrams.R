@@ -4,6 +4,7 @@ library("plyr", quietly=T, verbose=F, warn.conflicts=FALSE)
 source("functions.R")
 source("plot.R")
 source("constants.R")
+source("validation.R")
 
 args <- commandArgs(trailingOnly = TRUE)
 if(!is.na(args[1])){
@@ -21,32 +22,7 @@ results <-read.csv(resultsPath, header=TRUE, sep=',')
 config <- fromJSON(configPath)
 
 # validation
-header = names(results)
-for(row in 1:nrow(config$Plot)){
-  if (config$Plot[row, ]$Legend %in% header == FALSE){
-    cat("Invalid legend name was given: <",config$Plot[row, ]$Legend,">.\nThe possible choices are the following:")
-    cat(header, "\n")
-    quit()
-  }
-  
-  if (config$Plot[row, ]$X_Dimension %in% header == FALSE){
-    cat("Invalid x-dimension was given: <",config$Plot[row, ]$X_Dimension, ">. \nThe possible choices are the following:")
-    cat(header, "\n")
-    quit()
-  }
-  
-  if (validPhase(results, config$Plot[row, ]$Summarize_Function) == FALSE){
-    cat("Non existing phasename was given! \nThe available phasenames are the following: ")
-    print(levels(results$PhaseName))
-    quit()  
-  }
-  if (validMetric(results, config$Plot[row, ]$Metrics) == FALSE){
-    cat("Non existing metricname was given! \nThe available metrics are the following: ")
-    print(levels(results$MetricName))
-    quit()
-  }
-  
-}
+validate(results, config)
   
 index <- 0
 settings <- PlotSettings()
