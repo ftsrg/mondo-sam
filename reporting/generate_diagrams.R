@@ -24,11 +24,7 @@ config <- fromJSON(configPath)
 # validation
 validate(results, config)
   
-index <- 0
-settings <- PlotSettings()
-uniqueScenarios <- unique(results$Scenario)
 #createFolders(diagramsPath, uniqueScenarios)
-
 
 for(row in 1:nrow(config$Plot)){
   selections <- defaultSelections
