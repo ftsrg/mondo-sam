@@ -1,24 +1,23 @@
 {
-  "Dimensions": {
-    "X_Dimensions": {
-      "Size": true,
-      "Iteration": false
-    },
-    "Groups": {
-      "Case": true,
-      "Tool": false
-    }
-  },
-  "Summarize_Functions": [
+  "Plot": [
     {
-      "Phases": [
-        "ReCheck",
-        "RHS"
+      "X_Dimension": "Size",
+      "Legend": "Case",
+      "Summarize_Function": [
+        "Transformation"
       ],
-      "Metric": "Time",
+      "Title": "$SCENARIO scenario - ",
+      "Metrics": [
+        "Time",
+        "Memory"
+      ],
+      "Metric_Scale": -6,
       "Y_Label": "Time (ms)",
-      "Y_Axis_Scale": -6
+      "Y_Axis_Scale": "log2",
+      "X_Axis_Scale": "factor",
+      "Extensions": [
+        "png"
+      ]
     }
-  ],
-  "Extension": ["png", "pdf"]
+  ]
 }

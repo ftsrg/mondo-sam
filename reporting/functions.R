@@ -75,25 +75,23 @@ savePlot <-function(results, settings, phases, fileName){
 
 
 }
-
-
-validPhase <- function(results, functions){
-  uniquePhases <- unique(results$PhaseName)
-  for(func in functions){
-    for(phase in func){
-      if(phase %in% uniquePhases == FALSE){
-        return(FALSE)
-      }
+validMetric <- function(results, metrics){
+  for(m in unlist(metrics)){
+    if (m %in% unique(results$MetricName) == FALSE){
+      return(FALSE)
     }
   }
   return(TRUE)
 }
 
-validMetric <- function(results, metric){
-  if (metric %in% levels(results$MetricName)){
-    return(TRUE)
+validPhase <- function(results, phases){
+  uniquePhases <- unique(results$PhaseName)
+  for(phase in unlist(phases)){
+    if(phase %in% uniquePhases == FALSE){
+      return(FALSE)
+    }
   }
-  return(FALSE)
+  return(TRUE)
 }
 
 createFolders <- function(rootPath, subFolders){
