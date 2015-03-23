@@ -55,6 +55,7 @@ savePlot <-function(results, settings, phases, filename, extensions){
   data <- ddply(data, header, summarize, MetricValue=median(MetricValue))
   
   artifacts <- unique(data[[settings@xDimension]])
+  xLabels <- getXLabels(settings@xDimension, artifacts)
   
   minValue <- min(data$MetricValue)
   maxValue <- max(data$MetricValue)
@@ -62,7 +63,6 @@ savePlot <-function(results, settings, phases, filename, extensions){
     print("The minimum metricvalue equals with 0. The plot cannot be generated.")
     return()
   }
-  xLabels <- c(artifacts)
   
   if (settings@xAxis == "factor"){
     data[settings@xDimension] <- as.factor(data[[settings@xDimension]])
@@ -88,6 +88,9 @@ savePlot <-function(results, settings, phases, filename, extensions){
       plot <- plot + scale_x_log10(breaks = c(artifacts), labels = xLabels)
     }
   }
+  else{
+    plot <- plot + scale_x_discrete(labels = xLabels)
+  }
   if (settings@yAxis != "factor"){
     if (settings@yAxis == "con"){
       plot <- plot + scale_y_continuous(breaks = seq(minValue, maxValue, by=round(maxValue/5,0)),
@@ -98,9 +101,10 @@ savePlot <-function(results, settings, phases, filename, extensions){
                                    labels = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),2))
     }
   }
+  
   for (ext in unlist(extensions)){
     newFile <- paste(filename, ext, sep=".")
-    ggsave(plot,filename = newFile, width=14, height=7, dpi=192)
+    ggsave(plot,filename = newFile, width=diagramWidth, height=diagramHeight, dpi=diagram_dpi)
     print(newFile)
   }
   

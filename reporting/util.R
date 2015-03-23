@@ -25,14 +25,16 @@ concatPhases <- function(phases){
   return(merged)
 }
 
-getXLabels <- function(artifacts){
+getXLabels <- function(dimension, artifacts){
   ticks <- c()
-  for(size in artifacts){
-    value <- labels[[as.character(size)]]
-    if(is.null(value)){
-      value = size
+  mapping <- fromJSON(mappingPath)
+  for(item in artifacts){
+    if (as.character(item) %in% names(mapping[[dimension]])){
+      ticks <- c(ticks, mapping[[dimension]][[as.character(item)]])
     }
-    ticks <- c(ticks, value)
+    else{
+      ticks <- c(ticks, item)
+    }
   }
   return(ticks)
 }
