@@ -11,11 +11,18 @@ shinyServer(function(input, output, session) {
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
                                             PhaseName="PhaseName", 
-                                            MetricName="MetricName")
+                                            MetricName="MetricName"),
+                           selections = c("Scenario", "Tool", "Size", "CaseName"),
+                           legends = c("CaseName", "Tool", "MetricName", "Scenario"),
+                           unique_cases = c(),
+                           unique_tools = c(),
+                           unique_metrics = c(),
+                           unique_scenarios = c(),
+                           settings = PlotSettings(theme="Default")
                           )
   
   # style settings like title, labels etc
-  values$settings <- PlotSettings(theme="Default")
+#   values$settings <- PlotSettings(theme="Default")
   
   # load results and make reactiv values
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
@@ -29,18 +36,47 @@ shinyServer(function(input, output, session) {
                                  quote=input$quote)
       
       withProgress(message = 'Processing', value = 1.0, {
-        unique_cases <- unique(values$results$CaseName)
+        values$unique_cases <- unique(values$results$CaseName)
+        values$unique_tools <- unique(values$results$Tool)
+        values$unique_sizes <- unique(values$results$Size)
+        values$unique_scenarios <- unique(values$results$Scenario)
         
-        
-        values$subtables <- vector(mode="list", length=length(unique_cases))
-        names(values$subtables) <- unique_cases
-        # evaluate forward the various data frames of results
-        for(case in unique_cases){
-          values$subtables[[case]] <- preprocess(values$results, case)
+        values$unique_cases <- as.character( values$unique_cases)
+        values$unique_tools <- as.character( values$unique_tools)
+        values$unique_sizes <- as.character( values$unique_sizes)
+        values$unique_scenarios <- as.character( values$unique_scenarios)
+
+        subtablesSize <- length(values$unique_cases)+length(values$unique_tools) + 
+                         length(values$unique_sizes) +
+                         length(values$unique_scenarios)
+          
+        values$subtables <- vector(mode="list", length=subtablesSize)
+        names(values$subtables) <- c(values$unique_cases, values$unique_tools, 
+                                     values$unique_sizes, values$unique_scenarios)
+
+        for(case in values$unique_cases){
+          subFrame <- values$results[values$results[["CaseName"]] == case, ]
+          values$subtables[[case]] <- getSubFrames(subFrame, 
+                                                   c("Tool", "Scenario", "Size"))
         }
-        
+        for(tool in values$unique_tools){
+          subFrame <- values$results[values$results[["Tool"]] == tool, ]
+          values$subtables[[tool]] <- getSubFrames(subFrame, 
+                                                   c("CaseName", "Scenario", "Size"))
+        }
+        for(scenario in values$unique_scenarios){
+          subFrame <- values$results[values$results[["Scenario"]] == scenario, ]
+          values$subtables[[scenario]] <- getSubFrames(subFrame, 
+                                                   c("CaseName", "Tool", "Size"))
+        }
+        for(size in values$unique_sizes){
+          subFrame <- values$results[values$results[["Size"]] == size, ]
+          values$subtables[[size]] <- getSubFrames(subFrame, 
+                                                       c("CaseName", "Tool", "Scenario"))
+        }
       })
     })
+#     print(values$subtables)
   })
   
   # observer for plot specific adjustments like title, labels, scales and the like
@@ -294,23 +330,36 @@ shinyServer(function(input, output, session) {
   })
   
   output$case <- renderUI({
-    if (input$group == "Case"){
+    if("CaseName" %in% values$selections == FALSE){
+      # display nothing
       return()
     }
-    unique_cases <- names(values$subtables)
-    if(length(unique_cases) == 0)
-      return()
+    
     case_list <- list()
-    for(case in unique_cases){
+    for(case in values$unique_cases){
       case_list <- c(case, case, case_list)
     }
     selectInput("case", "Case",
                 choices = case_list,
                 selected = case_list[0]
-                )
+    )
   })
 
   output$tool <- renderUI({
+    if("Tool" %in% values$selections == FALSE){
+      # display nothing
+      return()
+    }
+    
+    isolate({
+      if("CaseName" %in% values$selections){
+        tool <- names(values$subtable[[input$case]])
+      }
+      
+    })
+    
+    
+    
     if (is.null(input$case) | is.null(input$group)){
       return()
     }

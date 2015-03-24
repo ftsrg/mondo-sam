@@ -1,63 +1,61 @@
 source("themes.R")
 
-preprocess <- function(results, case){
+getSubFrames <- function(results, selections){
+  subTablesLength <- 0
+  names <- NULL  
+  for(select in selections){
+    uniqueValues <- unique(results[[select]])
+    uniqueValues <- as.character(uniqueValues)
+    names <- c(names, uniqueValues)
+    subTablesLength <- subTablesLength + length(uniqueValues)
+  }
+
+  subTables <- vector(mode="list", length=subTablesLength)
   
-  results <- subset(results, CaseName == case)
-  unique_scenarios <- unique(results$Scenario)
+  names(subTables) <- names
   
-  subtables <- vector(mode="list", length=length(unique_scenarios))
-  names(subtables) <- (unique_scenarios)
-  
-  # insert iteration column
-#   first <- TRUE
-#   for(scen in unique_scenarios){
-#     subFrameScenario <-subset(results, Scenario==scen)
-#     tools <- unique(subFrameScenario$Tool)
-#     for(tool in tools){
-#       subFrameTool <- subset(subFrameScenario, Tool == tool)
-#       sizes <- unique(subFrameTool$Size)
-#       for(size in sizes){
-#         subFrameSize <- subset(subFrameTool, Size == size)
-#         phases <- unique(subFrameSize$PhaseName)
-#         for(phase in phases){
-#           subFramePhase <- subset(subFrameSize, PhaseName == phase)
-#           metrics <- unique(subFramePhase$MetricName)
-#           for(metric in metrics){
-#             subFrameMetric <- subset(subFramePhase, MetricName == metric)
-#             subFrameMetric$Iteration <-seq_len(nrow(subFrameMetric))
-#             if(first == TRUE){
-#               merged <- subFrameMetric
-#               first <- FALSE
-#             }
-#             else
-#               merged <- rbind(merged, subFrameMetric)
-#           }
-#         }
-#       }
-#     }
-#   }
-  
-  for(scen in unique_scenarios){
-#     unique_phases <- unique(subset(merged, CaseName == case & Scenario == scen)$PhaseName)
-    unique_phases <- unique(subset(results, CaseName == case & Scenario == scen)$PhaseName)
-    subtables[[scen]] <- vector(mode="list", length=length(unique_phases))
-    names(subtables[[scen]]) <- unique_phases
-    for(phase in unique_phases){
-      subtables[[scen]][[phase]] <- subset(merged, Scenario==scen & PhaseName==phase)
-      tools <- unique(subtables[[scen]][[phase]]$Tool)
-      for(t in tools){
-        for(s in unique(subset(subtables[[scen]][[phase]], Tool==t)$Size)){
-          unique_metrics <- unique(subset(subtables[[scen]][[phase]], Tool==t && Size==s)$MetricName)
-          for(m in unique_metrics){
-            subtables[[scen]][[phase]]$Iteration <- seq_len(nrow(subset(subtables[[scen]][[phase]], 
-                                                                        Tool==t & Size==s & MetricName==m)))
-          }
-        }
+  for(selected in selections){
+    uniqueValues <- unique(results[[selected]])
+    for(value in uniqueValues){
+      subFrame <- results[results[[selected]] == value, ]
+      value <- as.character(value)
+      
+      uniquePhases <- unique(subFrame$PhaseName)
+#       uniquePhases <- as.character(uniquePhases)
+      uniqueMetrics <- unique(subFrame$MetricName)
+#       uniqueMetrics <- as.character(uniqueMetrics)
+      names <- c(as.character(uniquePhases), as.character(uniqueMetrics))
+      listLength <- length(uniquePhases) +  length(uniqueMetrics)
+      subTables[[value]] <- vector(mode="list", length=listLength)
+      names(subTables[[value]]) <- names
+      for(phase in unlist(uniquePhases)){
+        subTables[[value]][[phase]] <- subset(subFrame, PhaseName == phase)
       }
+      for(metric in unlist(uniqueMetrics)){
+        subTables[[value]][[metric]] <- subset(subFrame, MetricName == metric)
+      }
+#       subTables[[value]] <- subFrame
     }
   }
+  return(subTables)
   
-  return(subtables)
+#   
+#   subFrame <- subset(results, selection == value)
+#   unique_scenarios <- unique(subFrame$Scenario)
+#   
+#   subtables <- vector(mode="list", length=length(unique_scenarios))
+#   names(subtables) <- (unique_scenarios)
+#   
+#   for(scen in unique_scenarios){
+#     unique_phases <- unique(subset(subFrame, Scenario == scen)$PhaseName)
+#     subtables[[scen]] <- vector(mode="list", length=length(unique_phases))
+#     names(subtables[[scen]]) <- unique_phases
+#     for(phase in unique_phases){
+#       subtables[[scen]][[phase]] <- subset(subFrame, Scenario==scen & PhaseName==phase)
+#     }
+#   }
+#   
+#   return(subtables)
 }
 
 createPlot <- function(results, settings, group, xDimension){
