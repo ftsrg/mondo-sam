@@ -1,6 +1,6 @@
 library("ggplot2",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr",  quietly=T, verbose=F, warn.conflicts=FALSE)
-library(shiny, quietly=T, verbose=F, warn.conflicts=FALSE)
+library("shiny", quietly=T, verbose=F, warn.conflicts=FALSE)
 source("functions.R")
 source("plot.R")
 
@@ -8,11 +8,13 @@ shinyServer(function(input, output, session) {
     
   values <- reactiveValues(iteration = c(0,0), 
                            mix = FALSE,
+                           selections = c("Scenario", "Tool", "Size", "CaseName"),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
                                             PhaseName="PhaseName", 
                                             MetricName="MetricName"),
-                           selections = c("Scenario", "Tool", "Size", "CaseName"),
+#                            defaultSelections =  list(Scenario="Scenario", Tool="Tool", Size="Size", CaseName="CaseName"),
+                           defaultSelections = c("Scenario", "Tool", "Size", "CaseName"),
                            legends = c("CaseName", "Tool", "MetricName", "Scenario"),
                            unique_cases = c(),
                            unique_tools = c(),
@@ -23,8 +25,9 @@ shinyServer(function(input, output, session) {
   
   # style settings like title, labels etc
 #   values$settings <- PlotSettings(theme="Default")
-  
-  # load results and make reactiv values
+#   values$selections = list(Scenario="Scenario", Tool="Tool", Size="Size", CaseName="CaseName")
+ 
+# load results and make reactiv values
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
   output$load <- renderUI({
     inFile <- input$file
@@ -36,52 +39,21 @@ shinyServer(function(input, output, session) {
                                  quote=input$quote)
       
       withProgress(message = 'Processing', value = 1.0, {
-        values$unique_cases <- unique(values$results$CaseName)
-        values$unique_tools <- unique(values$results$Tool)
-        values$unique_sizes <- unique(values$results$Size)
-        values$unique_scenarios <- unique(values$results$Scenario)
+        values$unique_cases <- as.character(unique(values$results$CaseName))
+        values$unique_tools <- as.character(unique(values$results$Tool))
+        values$unique_sizes <- as.character(unique(values$results$Size))
+        values$unique_scenarios <- as.character(unique(values$results$Scenario))
         
-        values$unique_cases <- as.character( values$unique_cases)
-        values$unique_tools <- as.character( values$unique_tools)
-        values$unique_sizes <- as.character( values$unique_sizes)
-        values$unique_scenarios <- as.character( values$unique_scenarios)
-
-        subtablesSize <- length(values$unique_cases)+length(values$unique_tools) + 
-                         length(values$unique_sizes) +
-                         length(values$unique_scenarios)
-          
-        values$subtables <- vector(mode="list", length=subtablesSize)
-        names(values$subtables) <- c(values$unique_cases, values$unique_tools, 
-                                     values$unique_sizes, values$unique_scenarios)
-
-        for(case in values$unique_cases){
-          subFrame <- values$results[values$results[["CaseName"]] == case, ]
-          values$subtables[[case]] <- getSubFrames(subFrame, 
-                                                   c("Tool", "Scenario", "Size"))
-        }
-        for(tool in values$unique_tools){
-          subFrame <- values$results[values$results[["Tool"]] == tool, ]
-          values$subtables[[tool]] <- getSubFrames(subFrame, 
-                                                   c("CaseName", "Scenario", "Size"))
-        }
-        for(scenario in values$unique_scenarios){
-          subFrame <- values$results[values$results[["Scenario"]] == scenario, ]
-          values$subtables[[scenario]] <- getSubFrames(subFrame, 
-                                                   c("CaseName", "Tool", "Size"))
-        }
-        for(size in values$unique_sizes){
-          subFrame <- values$results[values$results[["Size"]] == size, ]
-          values$subtables[[size]] <- getSubFrames(subFrame, 
-                                                       c("CaseName", "Tool", "Scenario"))
-        }
+        createSubFrames(values$results, c("Scenario", "Tool", "CaseName", "Size"))
+        createSubFrames(values$results, c("Scenario", "CaseName", "Size"))
+        createSubFrames(values$results, c("Tool", "CaseName", "Size"))
+        createSubFrames(values$results, c("CaseName", "Size"))
       })
     })
-#     print(values$subtables)
   })
   
   # observer for plot specific adjustments like title, labels, scales and the like
   changeSettings <- observe({
-    print("Change settings")
     # add dependency
     if (is.null(input$visualize)){
       return()
@@ -139,7 +111,6 @@ shinyServer(function(input, output, session) {
   })
   
   changeIteration <- observe({
-    print("Iteration obs called")
     if (is.null(input$iteration))
       return()
     values$iteration <- input$iteration
@@ -147,7 +118,6 @@ shinyServer(function(input, output, session) {
   })
   
   changeMix <- observe({
-    print("mix changed")
     if (is.null(input$mix)){
       return()
     }
@@ -235,66 +205,39 @@ shinyServer(function(input, output, session) {
     
   })
   
-  # returns a smaller part of the original dataframe of results
-  createSubFrame <- function(scenario){
-    print("createSubFrame")
+  changeSelections <- observe({
+    # add dependencies
+    print("selections called")
+    input$xdimension
+    input$legend
+    
     isolate({
-      print(values$iteration[[1]])
-      if (values$mix == FALSE){
-        sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], MetricName==input$metric,
-                      select=c(Tool, MetricValue, Size, CaseName, Iteration))
-        if (values$iteration[[1]] > 0){
-          # summarise the metricvalue according to the given iteration values
-          first <- TRUE
-          for(iter in values$iteration[[1]]:values$iteration[[2]]){
-            sub <- subset(values$subtables[[input$case]][[scenario]][[input$phase]], 
-                          Iteration==iter & MetricName==input$metric,
-                          select=c(Tool, MetricValue, Size, CaseName, Iteration))
-            if(first == TRUE){
-              merged <- sub
-              first <- FALSE
-            }
-            else
-              merged <- rbind(merged,sub)
-          }
-          if (input$xdimension != "Size"){
-            merged <- subset(merged, Size == input$size)
-            sub <- ddply(merged, c("Tool", "Size", "CaseName", "Iteration"),summarise,
-                         MetricValue=sum(MetricValue))
-          }
-          else{
-            sub <- ddply(merged, c("Tool", "Size", "CaseName"),summarise,
-                         MetricValue=sum(MetricValue))
-          }
-          return(sub)
-        }
-      }
-      else if(values$mix == TRUE){
-        #
-        sub <- subset(values$results, Scenario == scenario & CaseName == input$case & 
-                        MetricName == input$metric, select=c(Tool, MetricValue, Size, PhaseName, 
-                                                             CaseName))
-        first <- TRUE
-        print(input$mixphase)
-        if (length(input$mixphase) == 0)
-          return()
-        
-        # creates selection operations on sub frame based on the various phases, then merge them back
-        for(phase in input$mixphase){
-          if (first == TRUE){
-            merged <- subset(sub, PhaseName == phase) # selection on phase
-            first <- FALSE
-          }
-          else
-            merged <- rbind(merged, subset(sub, PhaseName == phase)) # merge back
-        }
-        sub <- ddply(merged, c("Tool", "Size", "CaseName"), summarise,
-                     MetricValue = sum(MetricValue))
-      }
+      values$selections <- values$defaultSelections
+      values$selections <- values$selections[values$selections != input$legend & 
+                                             values$selections != input$xdimension]
     })
-    return(sub)
-  }
-  
+  })
+
+  createSubFrames <- function(results, selections, id, index=0){
+    if(length(selections) ==0){
+      values$subFrames[[id]] <- results
+    }
+    else {
+      selected <- selections[1]
+      uniqueValues <- unique(results[[selected]])
+      for(value in uniqueValues){
+        if (index == 0){
+          id <- "ID"
+        }
+        newId <- paste(id, value, sep=".")
+        newResults <- results[results[[selected]] == value, ]
+        value <- as.character(value)
+        newSelections <- selections[selections != selected]
+        index <- index + 1
+        createSubFrames(newResults, newSelections, newId, index)
+      }
+    }
+}
 ##################################
 ####         WIDGETS          ####
 ##################################
@@ -329,7 +272,62 @@ shinyServer(function(input, output, session) {
     })
   })
   
+  output$scenario <- renderUI({
+    if("Scenario" %in% values$selections == FALSE){
+      # display nothing
+      return()
+    }
+    isolate({
+      scenario_list <- list()
+      for(scen in values$unique_scenarios){
+        scenario_list <- c(scen, scen, scenario_list)
+      }
+      selectInput("scenario", "Scenarios",
+                  choices = scenario_list,
+                  selected = scenario_list[0]
+                  )
+    })
+  })
+
+  output$tool <- renderUI({
+    print("tool called")
+    if(is.null(input$scenario)){
+      print("null case")
+      return()
+    }
+    if("Tool" %in% values$selections == FALSE){
+      # display nothing
+      return()
+    }
+    
+    isolate({
+      
+      
+      
+      if ("CaseName" %in% values$selections){
+        tools_list <- list()
+        for(option in names(values$subtables[[input$case]])){
+          if (option %in% values$unique_tools){
+            tools_list <- c(option, tools_list)
+          }
+        }
+      }
+      else{
+        tools_list <- list()
+        for(option in names(values$subtables)){
+          if (option %in% values$unique_tools){
+            tools_list <- c(option, tools_list)
+          }
+        }
+      }
+      selectInput("tool", "Tool",
+                  choices = tools_list,
+                  selected = tools_list[1])
+    })
+  })
+  
   output$case <- renderUI({
+    print("case called")
     if("CaseName" %in% values$selections == FALSE){
       # display nothing
       return()
@@ -337,7 +335,7 @@ shinyServer(function(input, output, session) {
     
     case_list <- list()
     for(case in values$unique_cases){
-      case_list <- c(case, case, case_list)
+      case_list <- c(case, case_list)
     }
     selectInput("case", "Case",
                 choices = case_list,
@@ -345,57 +343,6 @@ shinyServer(function(input, output, session) {
     )
   })
 
-  output$tool <- renderUI({
-    if("Tool" %in% values$selections == FALSE){
-      # display nothing
-      return()
-    }
-    
-    isolate({
-      if("CaseName" %in% values$selections){
-        tool <- names(values$subtable[[input$case]])
-      }
-      
-    })
-    
-    
-    
-    if (is.null(input$case) | is.null(input$group)){
-      return()
-    }
-    if (input$group == "Tool"){
-      return();
-    }
-    else{
-      unique_tools <- unique(values$results$Tool)
-      tools_list <- list()
-      for(tool in unique_tools){
-        tools_list <- c(tool, tool, tools_list)
-      }
-      selectInput("tool", "Tool",
-                  choices = tools_list,
-                  selected = tools_list[0])
-    }
-    
-    
-  })
-
-  output$scenario <- renderUI({
-    if (is.null(input$case))
-      return()
-    unique_scenarios <- names(values$subtables[[input$case]])
-    if(length(unique_scenarios) == 0)
-      return()
-    scenario_list <- list()
-    for(scen in unique_scenarios){
-      scenario_list <- c(scen, scen, scenario_list)
-    }
-    selectInput("scenario", "Scenarios",
-                choices = scenario_list,
-                selected = scenario_list[0]
-                )
-  })
-  
   output$phase <- renderUI({
     if (is.null(input$scenario))
       return()
@@ -462,7 +409,6 @@ shinyServer(function(input, output, session) {
   })
   
   output$metric <- renderUI({
-    print("metric called")
     if (is.null(input$phase))
       return()
     if (values$mix == FALSE){
@@ -498,7 +444,6 @@ shinyServer(function(input, output, session) {
   })
   
   output$iteration <- renderUI({
-    print("Iteration called")
     # add dependencies
     input$phase
     values$mix
@@ -507,7 +452,6 @@ shinyServer(function(input, output, session) {
     
     isolate({
       values$iteration <- c(1,1)
-      print(values$iteration)
       if (values$mix == FALSE){
         max_value <- max(subset(values$subtables[[input$case]][[input$scenario]][[input$phase]], 
                                 MetricName == input$metric)$Iteration)
@@ -528,7 +472,6 @@ shinyServer(function(input, output, session) {
           )
         }
         else if (is.null(input$iteration) == FALSE){
-          print("delete iteration")
           values$iteration <- c(0,0) # set to default
           return() # to remove slider
         }
@@ -538,7 +481,6 @@ shinyServer(function(input, output, session) {
 
 #####    DIMENSIONS PANEL    #####
   output$mix <- renderUI({
-    print("mix called")
     if (is.null(input$xdimension)){
       return()
     }
@@ -556,6 +498,16 @@ shinyServer(function(input, output, session) {
       }
     })
   })
+
+#   output$xdimension <- renderUI({
+#     selectInput("xdimension", label="X Dimension",
+#                 choices = c(values$selections), selected = "Size")
+#   })
+# 
+#   output$legend <- renderUI({
+#     selectInput("legend", label="Legend",
+#                 choices = c(values$selections), selected = "Tool")
+#   })
 
 #####   PLOT SETTINGS PANEL  #####
   output$titleTemplate <- renderUI({

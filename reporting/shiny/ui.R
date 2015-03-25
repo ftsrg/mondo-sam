@@ -22,11 +22,11 @@ shinyUI(navbarPage("Reporting",
                    tabPanel("Results",
                             sidebarLayout(
                               sidebarPanel(
-                                uiOutput("case"),
                                 uiOutput("scenario"),
-                                uiOutput("phase"),
-                                uiOutput("size"),
                                 uiOutput("tool"),
+                                uiOutput("case"),
+                                uiOutput("size"),
+                                uiOutput("phase"),
                                 uiOutput("metric"),
                                 uiOutput("iteration"),
                                 actionButton("visualize", "Draw plot")
@@ -39,10 +39,13 @@ shinyUI(navbarPage("Reporting",
                    tabPanel(
                      "Dimensions",
                      selectInput("xdimension", label="X Dimension",
-                                 choices = c("Size", "Iteration"), selected = "Size"),
+                                 choices = c("Scenario", "CaseName", "Tool", "Size", "Iteration"), selected = "Size"),
                      uiOutput("mix"),
-                     selectInput("group", label="Group",
-                                 choices = c("Tool", "Case"), selected = "Tool")
+                     selectInput("legend", label="Legend",
+                                 choices = c("Scenario", "CaseName", "Tool", "Size", "MetricName"), selected = "MetricName")
+#                      uiOutput("xdimension"),
+#                      uiOutput("mix"),
+#                      uiOutput("legend")
                      ),
                    tabPanel(
                      "Plot settings",
