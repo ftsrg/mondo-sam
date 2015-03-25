@@ -8,13 +8,13 @@ shinyServer(function(input, output, session) {
     
   values <- reactiveValues(iteration = c(0,0), 
                            mix = FALSE,
-                           selections = c("Scenario", "Tool", "Size", "CaseName"),
+                           selections = c("Scenario", "Tool", "CaseName", "Size"),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
                                             PhaseName="PhaseName", 
                                             MetricName="MetricName"),
 #                            defaultSelections =  list(Scenario="Scenario", Tool="Tool", Size="Size", CaseName="CaseName"),
-                           defaultSelections = c("Scenario", "Tool", "Size", "CaseName"),
+                           defaultSelections = c("Scenario", "Tool", "CaseName", "Size"),
                            legends = c("CaseName", "Tool", "MetricName", "Scenario"),
                            unique_cases = c(),
                            unique_tools = c(),
@@ -43,11 +43,33 @@ shinyServer(function(input, output, session) {
         values$unique_tools <- as.character(unique(values$results$Tool))
         values$unique_sizes <- as.character(unique(values$results$Size))
         values$unique_scenarios <- as.character(unique(values$results$Scenario))
-        
-        createSubFrames(values$results, c("Scenario", "Tool", "CaseName", "Size"))
-        createSubFrames(values$results, c("Scenario", "CaseName", "Size"))
-        createSubFrames(values$results, c("Tool", "CaseName", "Size"))
-        createSubFrames(values$results, c("CaseName", "Size"))
+        s <- proc.time()
+        values$subFrames <- NULL
+        createSubFrames(values$results, c("Scenario"))
+        createSubFrames(values$results, c("Tool"))
+        createSubFrames(values$results, c("CaseName"))
+        createSubFrames(values$results, c("Scenario", "Tool"))
+        createSubFrames(values$results, c("Scenario", "CaseName"))
+        createSubFrames(values$results, c("Tool", "CaseName"))
+        createSubFrames(values$results, c("Scenario", "Tool", "CaseName"))
+        t <- proc.time()
+        elapsed <- t-s
+        print(elapsed)
+#         createSubFrames(values$results, c("Scenario"))
+#         createSubFrames(values$results, c("Scenario", "Tool"))
+#         createSubFrames(values$results, c("Scenario", "Tool", "CaseName"))
+#         createSubFrames(values$results, c("Scenario", "Tool", "CaseName", "Size"))
+#         createSubFrames(values$results, c("Scenario", "Tool", "Size"))
+#         createSubFrames(values$results, c("Scenario", "CaseName"))
+#         createSubFrames(values$results, c("Scenario", "CaseName", "Size"))
+#         createSubFrames(values$results, c("Scenario", "Size"))
+#         createSubFrames(values$results, c("Tool", "CaseName", "Size"))
+#         createSubFrames(values$results, c("Tool", "CaseName"))
+#         createSubFrames(values$results, c("Tool", "Size"))
+#         createSubFrames(values$results, c("CaseName", "Size"))
+#         createSubFrames(values$results, c("CaseName"))
+
+      updateTabsetPanel(session, "reporting", selected = "Results")
       })
     })
   })
@@ -238,6 +260,37 @@ shinyServer(function(input, output, session) {
       }
     }
 }
+
+  getFrameID <- function(limit){
+    isolate({
+      id <- "ID"
+      for(select in values$defaultSelections){
+        if(select == limit){
+          return(id)
+        }
+        if (select %in% values$selections){
+          id <- paste(id, getValue(select), sep=".")
+        }
+      }
+    })
+  }
+  
+  getValue <- function(selected){
+    isolate({
+      if(selected == "Scenario"){
+        return(input$scenario)
+      }
+      if(selected == "CaseName"){
+        return(input$case)
+      }
+      if(selected == "Tool"){
+        return(input$tool)
+      }
+      if(selected == "Size"){
+        return(input$size)
+      }
+    })
+  }
 ##################################
 ####         WIDGETS          ####
 ##################################
@@ -292,7 +345,7 @@ shinyServer(function(input, output, session) {
   output$tool <- renderUI({
     print("tool called")
     if(is.null(input$scenario)){
-      print("null case")
+      print("null tool")
       return()
     }
     if("Tool" %in% values$selections == FALSE){
@@ -301,28 +354,20 @@ shinyServer(function(input, output, session) {
     }
     
     isolate({
-      
-      
-      
-      if ("CaseName" %in% values$selections){
-        tools_list <- list()
-        for(option in names(values$subtables[[input$case]])){
-          if (option %in% values$unique_tools){
-            tools_list <- c(option, tools_list)
-          }
-        }
+      id <- getFrameID("Tool")
+      if(id == "ID"){
+        uniqueTools <- values$unique_tools
       }
       else{
-        tools_list <- list()
-        for(option in names(values$subtables)){
-          if (option %in% values$unique_tools){
-            tools_list <- c(option, tools_list)
-          }
-        }
+        uniqueTools <- unique(values$subFrames[[id]]$Tool)
+      }
+      tool_list <- list()
+      for(tool in uniqueTools){
+        tool_list <- c(tool, tool_list)
       }
       selectInput("tool", "Tool",
-                  choices = tools_list,
-                  selected = tools_list[1])
+                  choices = tool_list,
+                  selected = tool_list[1])
     })
   })
   
@@ -332,16 +377,57 @@ shinyServer(function(input, output, session) {
       # display nothing
       return()
     }
-    
-    case_list <- list()
-    for(case in values$unique_cases){
-      case_list <- c(case, case_list)
+    if(is.null(input$tool)){
+      print("null case")
+      return()
     }
-    selectInput("case", "Case",
-                choices = case_list,
-                selected = case_list[0]
+    isolate({
+      id <- getFrameID("CaseName")
+      print(id)
+      if(id == "ID"){
+        uniqueCases <- values$unique_cases
+      }
+      else{
+        uniqueCases <- unique(values$subFrames[[id]]$CaseName)
+      }
+      case_list <- list()
+      for(case in uniqueCases){
+        case_list <- c(case, case_list)
+      }
+      selectInput("case", "Case",
+                  choices = case_list,
+                  selected = case_list[0]
+                  )
+    })
+  })
+
+output$size <- renderUI({
+  if("Size" %in% values$selections == FALSE){
+    # display nothing
+    return()
+  }
+  if(is.null(input$case)){
+    return()
+  }
+  isolate({
+    id <- getFrameID("Size")
+    if(id == "ID"){
+      uniqueSizes <- values$unique_sizes
+    }
+    else{
+      uniqueSizes <- unique(values$subFrames[[id]]$Size)
+    }
+    size_list <- list()
+    for(size in uniqueSizes){
+      size_list <- c(size, size_list)
+    }
+    size_list <- sort(as.numeric(size_list))
+    selectInput("size", "Size",
+                choices = size_list,
+                selected = size_list[0]
     )
   })
+})
 
   output$phase <- renderUI({
     if (is.null(input$scenario))
@@ -379,33 +465,6 @@ shinyServer(function(input, output, session) {
         )
       }
     })
-  })
-  
-  output$size <- renderUI({
-    if (is.null(input$phase) | is.null(input$case) | is.null(input$scenario)){
-      return()
-    }
-    input$xdimension
-    isolate({
-      if (input$xdimension == "Iteration"){
-        unique_sizes <- unique(values$subtables[[input$case]][[input$scenario]][[input$phase]]$Size)
-        sizeList <- c()
-        if (length(unique_sizes) == 0){
-          return()
-        }
-        for(size in unique_sizes){
-          sizeList <- c(size, size, sizeList)
-        }
-        sizeList <- sort(sizeList, decreasing=FALSE)
-        return(selectInput("size", "Size",
-                    choices = sizeList,
-                    selected = sizeList[0])
-               )
-      }
-      return()
-    })
-    
-    
   })
   
   output$metric <- renderUI({

@@ -1,6 +1,6 @@
 library("shiny")
 
-shinyUI(navbarPage("Reporting",
+shinyUI(navbarPage("Reporting", id="reporting",
                    tabPanel("Source",
                             fileInput('file', 'Choose CSV File',
                                       accept=c('text/csv', 
@@ -19,7 +19,7 @@ shinyUI(navbarPage("Reporting",
                                            'Single Quote'="'"),
                                          '')
                             ),
-                   tabPanel("Results",
+                   tabPanel("Results", id="results",
                             sidebarLayout(
                               sidebarPanel(
                                 uiOutput("scenario"),
