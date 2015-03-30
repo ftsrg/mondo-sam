@@ -1,17 +1,18 @@
 # MONDO-SAM
-MONDO-SAM: A Framework to Systematically Assess MDE Scalability
+MONDO-SAM: A Framework to Systematically Assess MDE Scalability  
+
 [![Build Status](https://travis-ci.org/FTSRG/mondo-sam.svg)](https://travis-ci.org/FTSRG/mondo-sam)
 
 MONDO-SAM provides a common framework for benchmark developers.
 
 ## Prerequisites
 
- * Java 1.7
- * Python 3 (tested with 3.4)
- * R (>3.02)
+ * **Java 1.7**
+ * **Python 3** (tested with 3.4)
+ * **R** (>3.02)
  
 Optionally:
- * Maven 3
+ * *Maven 3*
 
 Basically, the framework is an Eclipse plugin project, but supports Maven nature too.
 
