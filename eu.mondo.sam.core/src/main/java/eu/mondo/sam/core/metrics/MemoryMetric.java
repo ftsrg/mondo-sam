@@ -1,20 +1,21 @@
 package eu.mondo.sam.core.metrics;
 
-public class MemoryMetric extends BenchmarkMetric{
+public class MemoryMetric extends BenchmarkMetric {
 
-	private long memory;
-	
-	public MemoryMetric(String name) {
-		super(name);
-	}
+    private long memory;
 
-	@Override
-	public String getValue() {
-		return Long.toString(memory);
-	}
+    public MemoryMetric(String name) {
+	super(name);
+    }
 
-	public void measure(){
-		memory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-	}
-	
+    @Override
+    public String getValue() {
+	return Long.toString(memory);
+    }
+
+    public void measure() {
+	memory = Runtime.getRuntime().totalMemory()
+		- Runtime.getRuntime().freeMemory();
+    }
+
 }

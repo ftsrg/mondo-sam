@@ -4,60 +4,59 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 public class CaseDescriptor {
 
-	@JsonProperty("CaseName")
-	protected String caseName;
-	
-	@JsonProperty("RunIndex")
-	protected int runIndex;
-	
-	@JsonProperty("Scenario")
-	protected String scenario;
-	
-	@JsonProperty("Tool")
-	protected String tool;
-	
-	@JsonProperty("Size")
-	protected int size;
+    @JsonProperty("CaseName")
+    protected String caseName;
 
-	public String getCaseName() {
-		return caseName;
-	}
+    @JsonProperty("RunIndex")
+    protected int runIndex;
 
-	public void setCaseName(String caseName) {
-		this.caseName = caseName;
-	}
+    @JsonProperty("Scenario")
+    protected String scenario;
 
-	public int getRunIndex() {
-		return runIndex;
-	}
+    @JsonProperty("Tool")
+    protected String tool;
 
-	public void setRunIndex(int runIndex) {
-		this.runIndex = runIndex;
-	}
+    @JsonProperty("Size")
+    protected int size;
 
-	public String getScenario() {
-		return scenario;
-	}
+    public String getCaseName() {
+	return caseName;
+    }
 
-	public void setScenario(String scenario) {
-		this.scenario = scenario;
-	}
+    public void setCaseName(String caseName) {
+	this.caseName = caseName;
+    }
 
-	public String getTool() {
-		return tool;
-	}
+    public int getRunIndex() {
+	return runIndex;
+    }
 
-	public void setTool(String tool) {
-		this.tool = tool;
-	}
+    public void setRunIndex(int runIndex) {
+	this.runIndex = runIndex;
+    }
 
-	public int getSize() {
-		return size;
-	}
+    public String getScenario() {
+	return scenario;
+    }
 
-	public void setSize(int size) {
-		this.size = size;
-	}
-	
-	
+    public void setScenario(String scenario) {
+	this.scenario = scenario;
+    }
+
+    public String getTool() {
+	return tool;
+    }
+
+    public void setTool(String tool) {
+	this.tool = tool;
+    }
+
+    public int getSize() {
+	return size;
+    }
+
+    public void setSize(int size) {
+	this.size = size;
+    }
+
 }

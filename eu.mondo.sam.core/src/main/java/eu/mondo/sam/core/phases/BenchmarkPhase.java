@@ -1,6 +1,11 @@
 package eu.mondo.sam.core.phases;
 
-
-public interface BenchmarkPhase extends Iterable<BenchmarkPhase>{
+/**
+ * Represents a wrapper interface for the various phase implementations.
+ * 
+ * @author Zsolt Kovari
+ *
+ */
+public interface BenchmarkPhase extends Iterable<BenchmarkPhase> {
 
 }
