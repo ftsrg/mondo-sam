@@ -1,5 +1,7 @@
 package eu.mondo.sam.core;
 
+import java.io.IOException;
+
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.core.results.PhaseResult;
@@ -46,8 +48,10 @@ public class BenchmarkEngine {
      * @param token
      *            DataToken implementation which acts like a communication unit
      *            between phases.
+     * @throws IOException
      */
-    public void runBenchmark(BenchmarkScenario scenario, DataToken token) {
+    public void runBenchmark(BenchmarkScenario scenario, DataToken token)
+	    throws IOException {
 	token.init();
 	scenario.build();
 	benchmarkResult.clear();

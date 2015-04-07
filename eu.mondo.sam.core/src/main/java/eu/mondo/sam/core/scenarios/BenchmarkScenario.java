@@ -35,26 +35,26 @@ public abstract class BenchmarkScenario {
 
     /**
      * Specifies the size of the used model during benchmarking. It is
-     * recommended to attach the same of value to the CaseDescriptor.
+     * recommended to attach the same value to the CaseDescriptor.
      */
     protected int size;
 
     /**
      * Specifies the measured tool during benchmarking. It is recommended to
-     * attach the same of value to the CaseDescriptor.
+     * attach the same value to the CaseDescriptor.
      */
     protected String tool;
 
     /**
      * Specifies the name of the current case during benchmarking. It is
-     * recommended to attach the same of value to the CaseDescriptor.
+     * recommended to attach the same value to the CaseDescriptor.
      */
     protected String caseName;
 
     /**
      * Specifies an index for the benchmark. The measurements with the same
      * configurations have to differ by the runIndex value. The default value is
-     * 1. It is recommended to attach the same of value to the CaseDescriptor.
+     * 1. It is recommended to attach the same value to the CaseDescriptor.
      */
     protected int runIndex = 1;
 
