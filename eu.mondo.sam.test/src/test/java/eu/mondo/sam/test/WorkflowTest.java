@@ -18,7 +18,7 @@ import eu.mondo.sam.test.phases.ClearancePhase;
 import eu.mondo.sam.test.phases.DeclarationPhase;
 import eu.mondo.sam.test.scenarios.TestScenario;
 
-public class TestWorkflow {
+public class WorkflowTest {
 
     private static BenchmarkEngine engine;
     private static DeclarationPhase declaration;

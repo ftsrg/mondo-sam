@@ -12,7 +12,7 @@ import com.google.common.base.Stopwatch;
  * @author Zsolt Kovari
  *
  */
-public class TimerMetric extends BenchmarkMetric {
+public class TimeMetric extends BenchmarkMetric {
 
     /**
      * Responsible for measuring time. The operation of this class is based on
@@ -31,7 +31,7 @@ public class TimerMetric extends BenchmarkMetric {
      * @param name
      *            Name of the current BenchmarkMetric implementation.
      */
-    public TimerMetric(String name) {
+    public TimeMetric(String name) {
 	super(name);
     }
 
@@ -54,7 +54,7 @@ public class TimerMetric extends BenchmarkMetric {
      * @see TimeUnit
      */
     public static void setTimeUnit(TimeUnit timeUnit) {
-	TimerMetric.timeUnit = timeUnit;
+	TimeMetric.timeUnit = timeUnit;
     }
 
     /**

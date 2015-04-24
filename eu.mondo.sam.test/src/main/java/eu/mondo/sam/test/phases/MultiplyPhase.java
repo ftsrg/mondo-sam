@@ -1,7 +1,7 @@
 package eu.mondo.sam.test.phases;
 
 import eu.mondo.sam.core.DataToken;
-import eu.mondo.sam.core.metrics.TimerMetric;
+import eu.mondo.sam.core.metrics.TimeMetric;
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.results.PhaseResult;
 import eu.mondo.sam.test.TestDataToken;
@@ -14,7 +14,7 @@ public class MultiplyPhase extends AtomicPhase{
 
 	@Override
 	public void execute(DataToken token, PhaseResult result) {
-		TimerMetric timer = new TimerMetric("Time");
+		TimeMetric timer = new TimeMetric("Time");
 		TestDataToken testToken = (TestDataToken) token;
 		
 		int number = testToken.getNumber();

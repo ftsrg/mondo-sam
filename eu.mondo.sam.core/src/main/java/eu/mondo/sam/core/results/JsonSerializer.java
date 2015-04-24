@@ -14,7 +14,37 @@ import org.codehaus.jackson.map.SerializationConfig;
  * @author Zsolt Kovari
  *
  */
-public class ResultSerializer {
+public class JsonSerializer implements ResultSerializer {
+
+    /**
+     * Represents the location of the output folder where the results will be
+     * saved. The default value is: the ../results/json/ directory.
+     */
+    private static String resultPath;
+
+    static {
+	resultPath = "../results/json/";
+    }
+
+    /**
+     * Returns the location where the output files will be saved.
+     * 
+     * @return resultPath
+     */
+    public static String getResultPath() {
+	return resultPath;
+    }
+
+    /**
+     * Adjusts a new location of resultPath which determines the exact folder to
+     * where the results will be saved.
+     * 
+     * @param resultPath
+     *            a valid and existing path
+     */
+    public static void setResultPath(String resultPath) {
+	JsonSerializer.resultPath = resultPath;
+    }
 
     /**
      * Saves the benchmark results to a new JSON file based on the folder and
@@ -31,28 +61,31 @@ public class ResultSerializer {
      * @param folderPath
      *            the location of the output directory
      * @param fileName
-     *            the name of the file with the extension too
+     *            the name of the file without the extension
      * 
      * @throws IOException
      *             if some error occur during the JSON serialization
      */
-    public static void serializeToJson(BenchmarkResult benchmarkResult,
-	    String folderPath, String fileName) throws IOException {
+    public void serialize(BenchmarkResult benchmarkResult, String fileName)
+	    throws IOException {
 	ObjectMapper mapper = new ObjectMapper();
 	// to enable standard indentation ("pretty-printing"):
 	mapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
 	mapper.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
-	// turn of autodetection
+	// turn off autodetection
 	mapper.configure(SerializationConfig.Feature.AUTO_DETECT_FIELDS, false);
 	mapper.configure(SerializationConfig.Feature.AUTO_DETECT_GETTERS, false);
-	String filePath = folderPath + fileName;
+	String filePath = resultPath + fileName + ".json";
+
 	try {
-	    File dir = new File(folderPath);
+	    File dir = new File(resultPath);
 	    dir.mkdir();
 	    mapper.writeValue(new File(filePath), benchmarkResult);
-	} catch (JsonGenerationException | JsonMappingException e) {
+	} catch (JsonGenerationException e) {
+	    throw new IOException(e);
+	} catch (JsonMappingException e) {
 	    throw new IOException(e);
 	}
-	System.out.println("Create JSON file: " + filePath);
     }
+
 }

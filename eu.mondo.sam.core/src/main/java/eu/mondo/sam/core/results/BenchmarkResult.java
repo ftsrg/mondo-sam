@@ -8,8 +8,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Contains the results of the entire benchmark process, as consists of
- * PhaseResult objects in a list. Also responsible for using the appropriate
- * result serializer in the case of publishing.
+ * PhaseResult objects as a list. Also responsible for using the appropriate
+ * result serializer in order to publish.
  * 
  * @author Zsolt Kovari
  *
@@ -32,23 +32,21 @@ public class BenchmarkResult {
     private List<PhaseResult> phaseResults;
 
     /**
-     * Represents the location of the output folder where the results will be
-     * saved. The default value is: the ../results/json/ directory.
+     * Includes of ResultSerializer instances. The elements in the list are
+     * responsible for the process of publishing benchmark results. By default,
+     * this list contains a JsonSerializer object.
      */
-    private static String resultPath;
-
-    private static boolean publish;
-
-    static {
-	resultPath = "../results/json/";
-	publish = true;
-    }
+    private List<ResultSerializer> serializers;
 
     /**
-     * Instantiates the paseResults list.
+     * Instantiates the paseResults list and the serializers as well.
      */
     public BenchmarkResult() {
 	phaseResults = new ArrayList<PhaseResult>();
+	serializers = new ArrayList<ResultSerializer>();
+
+	JsonSerializer json = new JsonSerializer();
+	serializers.add(json);
     }
 
     /**
@@ -59,6 +57,25 @@ public class BenchmarkResult {
      */
     public void addResults(PhaseResult result) {
 	this.phaseResults.add(result);
+    }
+
+    /**
+     * Extends the serializers list with a new component.
+     * 
+     * @param serializer
+     *            A ResultSerializer instance.
+     */
+    public void addSerializer(ResultSerializer serializer) {
+	this.serializers.add(serializer);
+    }
+
+    /**
+     * Returns the list of ResultSerializer objects.
+     * 
+     * @return serializers
+     */
+    public List<ResultSerializer> getSerializers() {
+	return serializers;
     }
 
     /**
@@ -74,9 +91,10 @@ public class BenchmarkResult {
 	int size = caseDescriptor.getSize();
 	int runIndex = caseDescriptor.getRunIndex();
 	String fileName = tool + "-" + benchCase + "-" + scenario + "-Size"
-		+ size + "-Index" + runIndex + ".json";
-	if (publish) {
-	    ResultSerializer.serializeToJson(this, resultPath, fileName);
+		+ size + "-Index" + runIndex;
+
+	for (ResultSerializer serializer : serializers) {
+	    serializer.serialize(this, fileName);
 	}
     }
 
@@ -85,14 +103,6 @@ public class BenchmarkResult {
      */
     public void clear() {
 	phaseResults.clear();
-    }
-
-    public static boolean isPublish() {
-	return publish;
-    }
-
-    public static void setPublish(boolean publish) {
-	BenchmarkResult.publish = publish;
     }
 
     /**
@@ -121,26 +131,6 @@ public class BenchmarkResult {
      */
     public void setCaseDescriptor(CaseDescriptor caseDescriptor) {
 	this.caseDescriptor = caseDescriptor;
-    }
-
-    /**
-     * Returns the location where the output files will be saved.
-     * 
-     * @return resultPath
-     */
-    public static String getResultPath() {
-	return resultPath;
-    }
-
-    /**
-     * Adjusts a new location of resultPath which determines the exact folder
-     * where the results will be serialized.
-     * 
-     * @param resultPath
-     *            a valid and existing path
-     */
-    public static void setResultPath(String resultPath) {
-	BenchmarkResult.resultPath = resultPath;
     }
 
 }
