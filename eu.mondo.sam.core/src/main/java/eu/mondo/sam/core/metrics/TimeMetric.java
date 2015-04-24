@@ -21,6 +21,11 @@ public class TimerMetric extends BenchmarkMetric {
     private Stopwatch stopwatch;
 
     /**
+     * Indicates the dimension of the measured metric. Default is nanosecond.
+     */
+    private static TimeUnit timeUnit = TimeUnit.NANOSECONDS;
+
+    /**
      * Initializes the metricName variable after the given parameter.
      * 
      * @param name
@@ -37,8 +42,19 @@ public class TimerMetric extends BenchmarkMetric {
      */
     @Override
     public String getValue() {
-	long elapsedTime = stopwatch.elapsed(TimeUnit.NANOSECONDS);
+	long elapsedTime = stopwatch.elapsed(timeUnit);
 	return Long.toString(elapsedTime);
+    }
+
+    /**
+     * Adjusts the dimension of the measured time based on the given parameter.
+     * 
+     * @param timeUnit
+     *            represents the dimension, e.g. TimeUnit.MILLISECONDS.
+     * @see TimeUnit
+     */
+    public static void setTimeUnit(TimeUnit timeUnit) {
+	TimerMetric.timeUnit = timeUnit;
     }
 
     /**
