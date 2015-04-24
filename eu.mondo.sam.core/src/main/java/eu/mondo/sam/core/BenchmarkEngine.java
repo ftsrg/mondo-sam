@@ -54,7 +54,7 @@ public class BenchmarkEngine {
 	    throws IOException {
 	token.init();
 	scenario.build();
-	benchmarkResult.clear();
+	benchmarkResult.removeResults();
 	benchmarkResult.setCaseDescriptor(scenario.getCaseDescriptor());
 
 	int sequence = 1;

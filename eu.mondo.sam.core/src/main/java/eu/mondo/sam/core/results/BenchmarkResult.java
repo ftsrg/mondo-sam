@@ -36,7 +36,7 @@ public class BenchmarkResult {
      * responsible for the process of publishing benchmark results. By default,
      * this list contains a JsonSerializer object.
      */
-    private List<ResultSerializer> serializers;
+    private static List<ResultSerializer> serializers;
 
     /**
      * Instantiates the paseResults list and the serializers as well.
@@ -65,8 +65,8 @@ public class BenchmarkResult {
      * @param serializer
      *            A ResultSerializer instance.
      */
-    public void addSerializer(ResultSerializer serializer) {
-	this.serializers.add(serializer);
+    public static void addSerializer(ResultSerializer serializer) {
+	serializers.add(serializer);
     }
 
     /**
@@ -74,7 +74,7 @@ public class BenchmarkResult {
      * 
      * @return serializers
      */
-    public List<ResultSerializer> getSerializers() {
+    public static List<ResultSerializer> getSerializers() {
 	return serializers;
     }
 
@@ -101,8 +101,27 @@ public class BenchmarkResult {
     /**
      * Removes every element from the phaseResult list.
      */
-    public void clear() {
+    public void removeResults() {
 	phaseResults.clear();
+    }
+
+    /**
+     * Removes every ResultSerializer instance from the serializers list.
+     */
+    public static void removeAllSerializers() {
+	serializers.clear();
+    }
+
+    /**
+     * Removes a ResutSerializer instance from the serializers list.
+     * 
+     * @param serializer
+     *            represents a ResultSerializer object that will be removed
+     */
+    public static void removeSerializer(ResultSerializer serializer) {
+	if (serializers.contains(serializer)) {
+	    serializers.remove(serializer);
+	}
     }
 
     /**

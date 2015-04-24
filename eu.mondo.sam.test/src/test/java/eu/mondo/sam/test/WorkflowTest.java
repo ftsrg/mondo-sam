@@ -42,7 +42,7 @@ public class WorkflowTest {
 	token = new TestDataToken();
 
 	engine = new BenchmarkEngine();
-	BenchmarkResult.setPublish(false);
+	BenchmarkResult.removeAllSerializers();
     }
 
     public int measuredPhases() {
