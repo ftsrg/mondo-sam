@@ -7,14 +7,14 @@ MONDO-SAM provides a common framework for benchmark developers.
 
 ## Prerequisites
 
- * **Java 1.7**
+ * **Java SE 1.6**
  * **Python 3** (tested with 3.4)
  * **R** (>3.02)
  
 Optionally:
  * *Maven 3*
 
-Basically, the framework is an Eclipse plugin project, but supports Maven nature too.
+Basically, the framework is an Eclipse plugin project, but supports Maven nature as well.
 
 To resolve the Plugin-dependencies, install the following plugins from the [Orbit update site](http://download.eclipse.org/tools/orbit/downloads/):
  * **Data mapper for Jackson JSON processor**
@@ -27,7 +27,7 @@ The first step is to define the own scenario and phase implementations. For furt
 
 ### Results
 
-Every benchmark result is saved to a JSON file. In the case of converting the results to a CSV file, run the following:
+Every benchmark result is saved to a JSON file. In order to convert the results to a CSV file, run the following:
  * `./reporting/convert_results.py`
 
 The operation above is also necessary for reporting.
@@ -55,6 +55,6 @@ After converting the results to the right CSV format (see above), adjust the rep
 Finally, it is already possible to generate the diagrams. The easiest way for this to use the Python wrapper module:
  * `./reporting/report.py --source source_csv_path -- output output_folder_path --config config_json_path`
 
-Insert valid parameters instead the paths. The wrapper module actually just invokes the `generate_diagrams.R` script, but still worth to use it for two reasons. The Python script:
+Insert valid parameters instead the paths. The wrapper module actually just invokes the `generate_diagrams.R` script, but it is still recommended to use for two reasons. The Python script:
  1. can solve the working directory problem easily and
  2. provides a more useable argument parser.
