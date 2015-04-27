@@ -13,13 +13,19 @@ shinyServer(function(input, output, session) {
                                             Scenario="Scenario", 
                                             PhaseName="PhaseName", 
                                             MetricName="MetricName"),
-#                            defaultSelections =  list(Scenario="Scenario", Tool="Tool", Size="Size", CaseName="CaseName"),
                            defaultSelections = c("Scenario", "Tool", "CaseName", "Size"),
                            legends = c("CaseName", "Tool", "MetricName", "Scenario"),
                            unique_cases = c(),
                            unique_tools = c(),
                            unique_metrics = c(),
                            unique_scenarios = c(),
+                           update="",
+                           scenarioObserver=0, 
+                           toolObserver=0, 
+                           caseObserver=0, 
+                           sizeObserver=0, 
+                           phaseObserver=0, 
+                           metricObserver=0,
                            settings = PlotSettings(theme="Default")
                           )
   
@@ -55,21 +61,10 @@ shinyServer(function(input, output, session) {
         t <- proc.time()
         elapsed <- t-s
         print(elapsed)
-#         createSubFrames(values$results, c("Scenario"))
-#         createSubFrames(values$results, c("Scenario", "Tool"))
-#         createSubFrames(values$results, c("Scenario", "Tool", "CaseName"))
-#         createSubFrames(values$results, c("Scenario", "Tool", "CaseName", "Size"))
-#         createSubFrames(values$results, c("Scenario", "Tool", "Size"))
-#         createSubFrames(values$results, c("Scenario", "CaseName"))
-#         createSubFrames(values$results, c("Scenario", "CaseName", "Size"))
-#         createSubFrames(values$results, c("Scenario", "Size"))
-#         createSubFrames(values$results, c("Tool", "CaseName", "Size"))
-#         createSubFrames(values$results, c("Tool", "CaseName"))
-#         createSubFrames(values$results, c("Tool", "Size"))
-#         createSubFrames(values$results, c("CaseName", "Size"))
-#         createSubFrames(values$results, c("CaseName"))
-
-      updateTabsetPanel(session, "reporting", selected = "Results")
+        updateTabsetPanel(session, "reporting", selected = "Results")
+        print(values$subFrames[["ID.Batch.EMFIncQuery.PosLength"]])
+        print(names(values$subFrames))
+      
       })
     })
   })
@@ -229,7 +224,6 @@ shinyServer(function(input, output, session) {
   
   changeSelections <- observe({
     # add dependencies
-    print("selections called")
     input$xdimension
     input$legend
     
@@ -261,7 +255,7 @@ shinyServer(function(input, output, session) {
     }
 }
 
-  getFrameID <- function(limit){
+  getFrameID <- function(limit="Size"){
     isolate({
       id <- "ID"
       for(select in values$defaultSelections){
@@ -298,7 +292,6 @@ shinyServer(function(input, output, session) {
 
 #####      RESULTS PANEL     #####
   output$plot <- renderPlot({
-    print("output$plot")
     input$visualize
     isolate({
       if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
@@ -326,15 +319,22 @@ shinyServer(function(input, output, session) {
   })
   
   output$scenario <- renderUI({
+    print("scenario")
+    isolate({
+      values$toolObserver <- values$toolObserver + 1
+    })
     if("Scenario" %in% values$selections == FALSE){
       # display nothing
       return()
     }
     isolate({
+      
       scenario_list <- list()
       for(scen in values$unique_scenarios){
-        scenario_list <- c(scen, scen, scenario_list)
+        scenario_list <- c(scen, scenario_list)
       }
+      print(scenario_list)
+      print("before scen init")
       selectInput("scenario", "Scenarios",
                   choices = scenario_list,
                   selected = scenario_list[0]
@@ -343,17 +343,24 @@ shinyServer(function(input, output, session) {
   })
 
   output$tool <- renderUI({
-    print("tool called")
-    if(is.null(input$scenario)){
-      print("null tool")
-      return()
-    }
+    print("tool")
+    
+    values$toolObserver
+    isolate({
+      values$caseObserver <- values$caseObserver + 1
+    })
     if("Tool" %in% values$selections == FALSE){
       # display nothing
       return()
     }
+    if(is.null(input$scenario)){
+      print(input$scenario)
+      print("null scen")
+      return()
+    }
     
     isolate({
+      
       id <- getFrameID("Tool")
       if(id == "ID"){
         uniqueTools <- values$unique_tools
@@ -372,18 +379,23 @@ shinyServer(function(input, output, session) {
   })
   
   output$case <- renderUI({
-    print("case called")
+    print("case")
+    values$caseObserver
+    isolate({
+      values$sizeObserver <- values$sizeObserver + 1
+    })
     if("CaseName" %in% values$selections == FALSE){
       # display nothing
       return()
     }
     if(is.null(input$tool)){
-      print("null case")
+      print("null tool in case")
       return()
     }
+#     input$scenario
+    
     isolate({
       id <- getFrameID("CaseName")
-      print(id)
       if(id == "ID"){
         uniqueCases <- values$unique_cases
       }
@@ -394,148 +406,163 @@ shinyServer(function(input, output, session) {
       for(case in uniqueCases){
         case_list <- c(case, case_list)
       }
-      selectInput("case", "Case",
+      return(selectInput("case", "Case",
                   choices = case_list,
                   selected = case_list[0]
-                  )
+                  ))
     })
   })
 
-output$size <- renderUI({
-  if("Size" %in% values$selections == FALSE){
-    # display nothing
-    return()
-  }
-  if(is.null(input$case)){
-    return()
-  }
-  isolate({
-    id <- getFrameID("Size")
-    if(id == "ID"){
-      uniqueSizes <- values$unique_sizes
+  output$size <- renderUI({
+    print("size")
+    values$sizeObserver
+    isolate({
+      values$phaseObserver <- values$phaseObserver + 1
+    })
+    if("Size" %in% values$selections == FALSE){
+      # display nothing
+      return()
     }
-    else{
-      uniqueSizes <- unique(values$subFrames[[id]]$Size)
+    # add dependency to case as well
+    if(is.null(input$case)){
+      print("null cse in size")
+      return()
     }
-    size_list <- list()
-    for(size in uniqueSizes){
-      size_list <- c(size, size_list)
-    }
-    size_list <- sort(as.numeric(size_list))
-    selectInput("size", "Size",
-                choices = size_list,
-                selected = size_list[0]
-    )
+#     input$scenario
+#     input$tool
+    
+    isolate({
+      
+      id <- getFrameID("Size")
+      if(id == "ID"){
+        uniqueSizes <- values$unique_sizes
+      }
+      else{
+        uniqueSizes <- unique(values$subFrames[[id]]$Size)
+      }
+      size_list <- list()
+      for(size in uniqueSizes){
+        size_list <- c(size, size_list)
+      }
+      size_list <- sort(as.numeric(size_list))
+      selectInput("size", "Size",
+                  choices = size_list,
+                  selected = size_list[0]
+      )
+    })
   })
-})
 
   output$phase <- renderUI({
-    if (is.null(input$scenario))
-      return()
-    # add dependency
-    values$mix
+    print("phase")
+    # add dependency to phaseObserver
+    values$phaseObserver
     isolate({
-      if(values$mix == FALSE){
-        unique_phases <- names(values$subtables[[input$case]][[input$scenario]])
-        if(length(unique_phases) == 0){
-          return()
-        }
-        selectInput("phase", "Phases",
-                    choices = unique_phases,
-                    selected = unique_phases[0]
-        )
+      values$metricObserver <- values$metricObserver + 1
+    })
+    # add dependency to case as well
+    if(is.null(input$case)){
+      return()
+    }
+    
+#     input$scenario
+#     input$tool
+#     input$size
+    
+    isolate({
+      
+      id <- getFrameID()
+      print(id)
+      if ("Size" %in% values$selections){
+        uniquePhases <- unique(subset(values$subFrames[[id]], Size == input$size)$PhaseName)
       }
-      else if(values$mix == TRUE){
-        unique_phases <- unique(subset(values$results, Scenario == input$scenario & 
-                                         CaseName == input$case &
-                                         MetricName == input$metric)$PhaseName)
-        
-        phase_list <- list()
-        if (length(unique_phases) == 0){
-          return()
-        }
-        for(phase in unique_phases){
-          phase_list <- c(phase, phase, phase_list)
-        }
-        selectizeInput(
-          "mixphase", "Phases",
-          choices = phase_list,
-          selected = NULL,
-          multiple = TRUE
-        )
+      else{
+        uniquePhases <- unique(values$subFrames[[id]]$PhaseName)
       }
+      
+      phaseList <- list()
+      for(phase in uniquePhases){
+        phaseList <- c(phase, phase, phaseList)
+      }
+      
+      selectInput("phase", "Phase",
+                  choices = phaseList,
+                  selected = phaseList[0]
+      )
     })
   })
   
   output$metric <- renderUI({
-    if (is.null(input$phase))
+    print("metric")
+    values$metricObserver
+#     if(is.null(input$case)){
+#       return()
+#     }
+#     input$scenario
+#     input$tool
+#     input$size
+    if(is.null(input$phase)){
       return()
-    if (values$mix == FALSE){
-      unique_metrics <- unique(values$subtables[[input$case]][[input$scenario]][[input$phase]]$MetricName)
-      metricList <- list()
-      if (length(unique_metrics) == 0){
-        return()
+    }
+
+    isolate({
+      
+      id <- getFrameID()
+      
+      if ("Size" %in% values$selections){
+        uniqueMetrics <- unique(subset(values$subFrames[[id]], Size == input$size & 
+                                         PhaseName == input$phase)$MetricName)
       }
-      for(metric in unique_metrics){
+      else{
+        print(input$phase)
+        uniqueMetrics <- unique(subset(values$subFrames[[id]], PhaseName == input$phase)$MetricName)
+      }
+      
+      metricList <- list()
+      for(metric in uniqueMetrics){
         metricList <- c(metric, metric, metricList)
       }
       
-      selectInput("metric", "Metrics",
+      selectInput("metric", "Metric",
                   choices = metricList,
                   selected = metricList[0]
       )
-    }
-    else if(values$mix == TRUE){
-      unique_metrics <- unique(subset(values$results, CaseName == input$case & 
-                                        Scenario == input$scenario)$MetricName)
-      metric_list <- list()
-      if (length(unique_metrics) == 0){
-        return()
-      }
-      for(metric in unique_metrics){
-        metric_list <- c(metric, metric, metric_list)
-      }
-      selectInput("metric", "Metrics",
-                  choices = metric_list,
-                  selected = metric_list[0]
-      )
-    }
+    })
   })
   
   output$iteration <- renderUI({
-    # add dependencies
-    input$phase
-    values$mix
-    if (is.null(input$metric))
-      return()
-    
-    isolate({
-      values$iteration <- c(1,1)
-      if (values$mix == FALSE){
-        max_value <- max(subset(values$subtables[[input$case]][[input$scenario]][[input$phase]], 
-                                MetricName == input$metric)$Iteration)
-        if(max_value > 1){
-          if (values$iteration[[1]] == 0){
-            minRange <- 1
-            maxRange <- 1
-          }
-          else {
-            minRange <- values$iteration[[1]]
-            maxRange <- values$iteration[[2]]
-          }
-          sliderInput("iteration", "Iterations",
-                      min=1,
-                      max=max_value,
-                      value=c(minRange, maxRange),
-                      step=1
-          )
-        }
-        else if (is.null(input$iteration) == FALSE){
-          values$iteration <- c(0,0) # set to default
-          return() # to remove slider
-        }
-      }
-    })
+#     # add dependencies
+#     input$phase
+#     values$mix
+#     if (is.null(input$metric))
+#       return()
+#     
+#     isolate({
+#       values$iteration <- c(1,1)
+#       if (values$mix == FALSE){
+#         max_value <- max(subset(values$subtables[[input$case]][[input$scenario]][[input$phase]], 
+#                                 MetricName == input$metric)$Iteration)
+#         if(max_value > 1){
+#           if (values$iteration[[1]] == 0){
+#             minRange <- 1
+#             maxRange <- 1
+#           }
+#           else {
+#             minRange <- values$iteration[[1]]
+#             maxRange <- values$iteration[[2]]
+#           }
+#           sliderInput("iteration", "Iterations",
+#                       min=1,
+#                       max=max_value,
+#                       value=c(minRange, maxRange),
+#                       step=1
+#           )
+#         }
+#         else if (is.null(input$iteration) == FALSE){
+#           values$iteration <- c(0,0) # set to default
+#           return() # to remove slider
+#         }
+#       }
+#     })
   })
 
 #####    DIMENSIONS PANEL    #####
