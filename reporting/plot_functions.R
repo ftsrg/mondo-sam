@@ -1,6 +1,3 @@
-source("theme.R")
-source("util.R")
-
 report <- function(results,selections, config, row, filename){
   if (length(selections) == 0){
     settings <- PlotSettings()
@@ -15,7 +12,12 @@ report <- function(results,selections, config, row, filename){
     phases <- config$Plot[row, ]$Summarize_Function
     extensions <- config$Plot[row, ]$Extensions
     filename <- paste(filename, "Function", row, sep="-")
-    savePlot(results, settings, phases, filename, extensions)
+    plot <- generatePlot(results, settings, phases)
+    for (ext in unlist(extensions)){
+      newFile <- paste(filename, ext, sep=".")
+      ggsave(plot,filename = newFile, width=diagramWidth, height=diagramHeight, dpi=diagram_dpi)
+      print(newFile)
+    }
     return()
   }
   
@@ -30,7 +32,7 @@ report <- function(results,selections, config, row, filename){
   }
 }
 
-savePlot <-function(results, settings, phases, filename, extensions){
+generatePlot <-function(results, settings, phases){
   data <- subset(results, PhaseName %in% unlist(phases))
   if (nrow(data) == 0) {
     return()
@@ -71,6 +73,11 @@ savePlot <-function(results, settings, phases, filename, extensions){
     data[settings@yDimension] <- as.factor(data[[settings@yDimension]])
   }
   
+  if (is.numeric(data[settings@xDimension]) == FALSE){
+    data[settings@xDimension] <- as.factor(data[[settings@xDimension]])
+    settings@xAxis = "factor"
+  }
+  
   plot <- ggplot(data,aes_string(x = settings@xDimension, y = settings@yDimension)) +
     geom_line(aes_string(group = settings@legend, colour=settings@legend), size=lineSize) + 
     geom_point(aes_string(shape = settings@legend, colour=settings@legend), size=pointSize) +
@@ -102,10 +109,11 @@ savePlot <-function(results, settings, phases, filename, extensions){
     }
   }
   
-  for (ext in unlist(extensions)){
-    newFile <- paste(filename, ext, sep=".")
-    ggsave(plot,filename = newFile, width=diagramWidth, height=diagramHeight, dpi=diagram_dpi)
-    print(newFile)
-  }
+  return(plot)
+#   for (ext in unlist(extensions)){
+#     newFile <- paste(filename, ext, sep=".")
+#     ggsave(plot,filename = newFile, width=diagramWidth, height=diagramHeight, dpi=diagram_dpi)
+#     print(newFile)
+#   }
   
 }

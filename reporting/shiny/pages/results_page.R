@@ -1,26 +1,51 @@
 output$plot <- renderPlot({
+  # add dependency to "Draw Plot" button
   input$visualize
   isolate({
     if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
       return()
-    # add dependencies
-    input$iteration
-    input$mixphase
     
     withProgress(message = 'Creating plot', value = 1.0, {
-      sub <- createSubFrame(input$scenario)
-      if (is.null(sub)){
-        print("createSubFrame returned NULL!")
-        return()
-      }
-      if (input$group == "Tool"){
-        plot <- createPlot(sub, values$settings, "Tool", input$xdimension)
-      }
-      else if (input$group == "Case"){
-        plot <- createPlot(sub, values$settings, "CaseName", input$xdimension)
-      }
-      # draw plot
+      frameID = getFrameID()
+      frame <- values$subFrames[[frameID]]
+      frame <- subset(frame, MetricName == input$metric)
+      
+      
+      settings <- PlotSettings()
+      
+      settings <- setLegend(settings, input$legend)
+      title <- injectValues(frame, input$title)
+      settings <- setTitle(settings, title)
+      settings <- setDimensions(settings, input$xdimension, "MetricValue")
+      settings <- setLabels(settings, input$xlabel, input$ylabel)
+      settings <- setAxis(settings, input$xaxis, input$yaxis)
+      
+#       phases <- config$Plot[row, ]$Summarize_Function
+      phases <- list(input$phase)
+#       extensions <- config$Plot[row, ]$Extensions
+      extensions <- list("png")
+#       filename <- paste(filename, "Function", row, sep="-")
+
+      mappingPath <<- "../mapping.json"
+      plot <- generatePlot(frame, settings, phases)
       print(plot)
+      
+      
+      
+#       
+#       sub <- createSubFrame(input$scenario)
+#       if (is.null(sub)){
+#         print("createSubFrame returned NULL!")
+#         return()
+#       }
+#       if (input$group == "Tool"){
+#         plot <- createPlot(sub, values$settings, "Tool", input$xdimension)
+#       }
+#       else if (input$group == "Case"){
+#         plot <- createPlot(sub, values$settings, "CaseName", input$xdimension)
+#       }
+#       # draw plot
+#       print(plot)
     })
   })
 })
@@ -88,6 +113,7 @@ output$tool <- renderUI({
 output$case <- renderUI({
   print("case")
   values$caseObserver
+  input$tool
   isolate({
     values$sizeObserver <- values$sizeObserver + 1
   })
@@ -141,6 +167,8 @@ output$size <- renderUI({
   isolate({
     
     id <- getFrameID("Size")
+    print(id)
+    print(values$subFrames[[id]])
     if(id == "ID"){
       uniqueSizes <- values$unique_sizes
     }
@@ -173,7 +201,7 @@ output$phase <- renderUI({
   
   #     input$scenario
   #     input$tool
-  #     input$size
+  input$size
   
   isolate({
     

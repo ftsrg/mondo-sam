@@ -1,7 +1,5 @@
 source("themes.R")
 
-
-
 createPlot <- function(results, settings, group, xDimension){
   tempResults <- results
   tempResults$MetricValue <- tempResults$MetricValue * (10**settings@yScale)

@@ -3,6 +3,8 @@ library("ggplot2",quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr", quietly=T, verbose=F, warn.conflicts=FALSE)
 source("plot_functions.R")
 source("plot.R")
+source("theme.R")
+source("util.R")
 source("constants.R")
 source("validation.R")
 
