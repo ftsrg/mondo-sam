@@ -9,7 +9,8 @@ PlotSettings <- setClass(
              yLabel = "character",
              title = "character",
              xAxis = "character",
-             yAxis = "character"
+             yAxis = "character",
+             theme = "character"
            ),
   
   prototype=list(
@@ -20,7 +21,8 @@ PlotSettings <- setClass(
                  yLabel = "",
                  title = "",
                  xAxis = "",
-                 yAxis = ""
+                 yAxis = "",
+                 theme = ""
                 )
   )
 
@@ -89,5 +91,18 @@ setMethod(f="setAxis",
           definition=function(theObject, xAxis, yAxis){
             theObject@xAxis <- xAxis
             theObject@yAxis <- yAxis
+            return(theObject)
+          })
+
+setGeneric(name="setTheme",
+           def=function(theObject, theme){
+             standardGeneric("setTheme")
+           }
+)
+
+setMethod(f="setTheme",
+          signature="PlotSettings",
+          definition=function(theObject, theme){
+            theObject@theme <- theme
             return(theObject)
           })
