@@ -45,15 +45,16 @@ injectValues <- function(results, text){
   caseName <- unique(results$CaseName)
   phase <- unique(results$PhaseName)
   size <- unique(results$Size)
-  text <- inject(results, text, "SCENARIO", scenario)
-  text <- inject(results, text, "TOOL", tool)
-  text <- inject(results, text, "CASENAME", caseName)
-  text <- inject(results, text, "PHASENAME", phase)
-  text <- inject(results, text, "SIZE", size)
+  text <- inject(text, "SCENARIO", scenario)
+  text <- inject(text, "TOOL", tool)
+  text <- inject(text, "CASENAME", caseName)
+  text <- inject(text, "PHASENAME", phase)
+  text <- inject(text, "SIZE", size)
   return(text)
 }
 
-inject <- function(results, text, sample, value){
+#' Replace the sample in text with the value parameter.
+inject <- function(text, sample, value){
   if (length(value) > 1){
     text <- gsub(sample, value[1], text)
   }

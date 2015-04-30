@@ -2,7 +2,6 @@ library("ggplot2",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("shiny", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
-source("functions.R")
 source("../plot.R")
 source("../plot_functions.R")
 source("../theme.R")
@@ -11,9 +10,10 @@ source("../constants.R")
 
 shinyServer(function(input, output, session) {
     
-  values <- reactiveValues(iteration = c(0,0), 
+  values <- reactiveValues(
+                           iterations = c(0,0), 
                            mix = FALSE,
-                           selections = c("Scenario", "Tool", "CaseName", "Size"),
+                           selections = c("Scenario", "Tool", "CaseName"),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
                                             PhaseName="PhaseName", 
@@ -31,6 +31,7 @@ shinyServer(function(input, output, session) {
                            sizeObserver=0, 
                            phaseObserver=0, 
                            metricObserver=0,
+                           iterationObserver=0,
                            settings = PlotSettings(theme="Default")
                           )
   
@@ -135,7 +136,7 @@ shinyServer(function(input, output, session) {
   changeIteration <- observe({
     if (is.null(input$iteration))
       return()
-    values$iteration <- input$iteration
+    values$iterations <- input$iteration
     
   })
   

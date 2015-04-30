@@ -1,6 +1,7 @@
 library("shiny")
 
 shinyUI(navbarPage("Reporting", id="reporting",
+                   # Source panel
                    tabPanel("Source",
                             fileInput('file', 'Choose CSV File',
                                       accept=c('text/csv', 
@@ -19,6 +20,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                            'Single Quote'="'"),
                                          '')
                             ),
+                   # Results panel
                    tabPanel("Results", id="results",
                             sidebarLayout(
                               sidebarPanel(
@@ -36,17 +38,20 @@ shinyUI(navbarPage("Reporting", id="reporting",
                               ),
                             )
                    ),
+                   # Dimensions panel
                    tabPanel(
                      "Dimensions",
                      selectInput("xdimension", label="X Dimension",
                                  choices = c("Scenario", "CaseName", "Tool", "Size", "Iteration"), selected = "Size"),
                      uiOutput("mix"),
+                     # change selections list too if the selected element is changed
                      selectInput("legend", label="Legend",
                                  choices = c("Scenario", "CaseName", "Tool", "Size", "MetricName"), selected = "MetricName")
 #                      uiOutput("xdimension"),
 #                      uiOutput("mix"),
 #                      uiOutput("legend")
                      ),
+                   # Plot settings panel
                    tabPanel(
                      "Plot settings",
                      selectInput("xaxis", label="X-axis",
@@ -65,6 +70,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                      textInput("ylabel", label="Y-axis label"),
                      checkboxInput("showValues", label="Show values", value=FALSE)
                    ),
+                   # Publish panel
                    tabPanel(
                      "Publish",
                      textInput("filename", label="Filename", value="CASENAME-SCENARIO"),
