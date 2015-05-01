@@ -34,7 +34,9 @@ report <- function(results,selections, config, row, filename){
 }
 
 generatePlot <-function(results, settings, phases){
+  options(warn=-1)
   data <- subset(results, PhaseName %in% unlist(phases))
+  options(warn=0)
   if (nrow(data) == 0) {
     return()
   }

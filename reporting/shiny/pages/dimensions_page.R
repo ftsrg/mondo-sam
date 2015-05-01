@@ -9,7 +9,7 @@ output$mix <- renderUI({
         values$mix <- input$mix
       }  
     }
-    else{
+    else {
       values$mix <- FALSE
       # vanish widget
       return()

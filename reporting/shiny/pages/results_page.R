@@ -7,7 +7,6 @@ output$plot <- renderPlot({
       return(NULL)
     
     withProgress(message = 'Creating plot', value = 1.0, {
-      # id identifies the certanly used data frame
       frameID = getFrameID()
       frame <- values$subFrames[[frameID]]
       if (is.null(frame)){
@@ -27,7 +26,7 @@ output$plot <- renderPlot({
       if (input$phase == ""){
         return()
       }
-      frame <- subset(frame, MetricName == input$metric & PhaseName == input$phase)
+      frame <- subset(frame, MetricName %in% input$metric & PhaseName %in% input$phase)
       if (values$iterations[1] > 0){
         frame <- subset(frame, Iteration >= values$iterations[1] & Iteration <= values$iterations[2])
       }
@@ -47,13 +46,13 @@ output$plot <- renderPlot({
       frame$MetricValue <- frame$MetricValue * (10 ** input$yscale)
       
 #       phases <- config$Plot[row, ]$Summarize_Function
-      phases <- list(input$phase)
+#       phases <- list(input$phase)
 #       extensions <- config$Plot[row, ]$Extensions
       extensions <- list("png")
 #       filename <- paste(filename, "Function", row, sep="-")
 
       mappingPath <<- "../mapping.json"
-      plot <- generatePlot(frame, settings, phases)
+      plot <- generatePlot(frame, settings, input$phase)
       print(plot)
     })
   })
@@ -223,10 +222,10 @@ output$phase <- renderUI({
       phaseList <- c(phase, phase, phaseList)
     }
     
-    selectInput("phase", "Phase",
-                choices = phaseList,
-                selected = phaseList[0]
-    )
+    selectizeInput("phase", "Phases",
+                   choices = phaseList,
+                   multiple = TRUE,
+                   selected = NULL)
   })
 })
 
@@ -245,7 +244,7 @@ output$metric <- renderUI({
       if (is.null(frame)){
         return()
       }
-      uniqueMetrics <- unique(subset(frame, Size == input$size & PhaseName == input$phase)$MetricName)
+      uniqueMetrics <- unique(subset(frame, Size == input$size & PhaseName %in% input$phase)$MetricName)
     }
     else{
       print(input$phase)
@@ -258,18 +257,26 @@ output$metric <- renderUI({
       if (is.null(frame)){
         return()
       }
-      uniqueMetrics <- unique(subset(frame, PhaseName == input$phase)$MetricName)
+      uniqueMetrics <- unique(subset(frame, PhaseName %in% input$phase)$MetricName)
     }
     
     metricList <- list()
     for(metric in uniqueMetrics){
-      metricList <- c(metric, metric, metricList)
+      metricList <- c(metric, metricList)
+    }
+    if (length(metricList) == 1){
+      selectizeInput("metric", "Metrics",
+                     choices = metricList,
+                     multiple = TRUE,
+                     selected = metricList[1])
+    }
+    else{
+      selectizeInput("metric", "Metrics",
+                     choices = metricList,
+                     multiple = TRUE,
+                     selected = NULL)
     }
     
-    selectInput("metric", "Metric",
-                choices = metricList,
-                selected = metricList[0]
-    )
   })
 })
 
@@ -295,22 +302,21 @@ output$iteration <- renderUI({
       if (is.null(size)  || size == ""){
         return()
       }
-      # id identifies the certanly used data frame
+      # id identifies the certainly used data frame
       id <- getFrameID()
       frame <- values$subFrames[[id]]
       if (is.null(frame)){
         return()
       }
-      subFrame <- (subset(frame, Size == size & PhaseName == phase & MetricName == metric))
+      subFrame <- (subset(frame, Size == size & PhaseName %in% phase & MetricName %in% metric))
     }
     else{
-      # id identifies the certanly used data frame
       id <- getFrameID()
       frame <- values$subFrames[[id]]
       if (is.null(frame)){
         return()
       }
-      subFrame <- (subset(frame, PhaseName == phase & MetricName == metric))
+      subFrame <- (subset(frame, PhaseName %in% input$phase & MetricName %in% metric))
     }
     maxIteration <- max(subFrame$Iteration)
     
