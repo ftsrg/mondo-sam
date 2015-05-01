@@ -68,7 +68,8 @@ shinyUI(navbarPage("Reporting", id="reporting",
                      actionButton("titleInsert", "Insert Title"),
                      textInput("xlabel", label="X-axis label"),
                      textInput("ylabel", label="Y-axis label"),
-                     checkboxInput("showValues", label="Show values", value=FALSE)
+                     checkboxInput("showValues", label="Show Values", value=FALSE),
+                     checkboxInput("drawLines", label="Draw Lines", value=TRUE)
                    ),
                    # Publish panel
                    tabPanel(

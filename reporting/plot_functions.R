@@ -8,6 +8,7 @@ report <- function(results,selections, config, row, filename){
     settings <- setDimensions(settings, config$Plot[row, ]$X_Dimension, "MetricValue")
     settings <- setLabels(settings, config$Plot[row, ]$X_Dimension, config$Plot[row, ]$Y_Label)
     settings <- setAxis(settings, config$Plot[row, ]$X_Axis_Scale, config$Plot[row, ]$Y_Axis_Scale)
+    settings <- showTexts(settings, FALSE)
     
     phases <- config$Plot[row, ]$Summarize_Function
     extensions <- config$Plot[row, ]$Extensions
@@ -79,13 +80,17 @@ generatePlot <-function(results, settings, phases){
   }
   
   plot <- ggplot(data,aes_string(x = settings@xDimension, y = settings@yDimension)) +
-    geom_line(aes_string(group = settings@legend, colour=settings@legend), size=lineSize) + 
+#     geom_line(aes_string(group = settings@legend, colour=settings@legend), size=lineSize) + 
     geom_point(aes_string(shape = settings@legend, colour=settings@legend), size=pointSize) +
     scale_shape_manual(values=1:nlevels(data[[settings@legend]])) +
     ylab(settings@yLabel) +
     xlab(settings@xLabel) +
     ggtitle(label = settings@title) +
     bwTheme
+  
+  if (settings@lines){
+    plot <- plot + geom_line(aes_string(group = settings@legend, colour=settings@legend), size=lineSize)
+  }
   
   if(settings@xAxis != "factor"){
     if (settings@xAxis == "con"){
@@ -107,6 +112,10 @@ generatePlot <-function(results, settings, phases){
       plot <- plot + scale_y_log10(breaks = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),7), 
                                    labels = round(10^seq(log10(minValue), log10(maxValue), by=((log10(maxValue)-log10(minValue))/7)),2))
     }
+  }
+  
+  if (settings@texts){
+    plot <- plot + geom_text(aes(label=round(MetricValue, 2)))
   }
   
   return(plot)

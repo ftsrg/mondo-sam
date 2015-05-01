@@ -10,8 +10,11 @@ PlotSettings <- setClass(
              title = "character",
              xAxis = "character",
              yAxis = "character",
-             yScale = "character",
-             theme = "character"
+             yScale = "numeric",
+             theme = "character",
+             texts = "logical",
+             lines = "logical"
+             
            ),
   
   prototype=list(
@@ -23,8 +26,10 @@ PlotSettings <- setClass(
                  title = "",
                  xAxis = "",
                  yAxis = "",
-                 yScale = "",
-                 theme = ""
+                 yScale = 0,
+                 theme = "",
+                 texts = FALSE,
+                 lines = TRUE
                 )
   )
 
@@ -119,5 +124,31 @@ setMethod(f="setTheme",
           signature="PlotSettings",
           definition=function(theObject, theme){
             theObject@theme <- theme
+            return(theObject)
+          })
+
+setGeneric(name="showTexts",
+           def=function(theObject, enable){
+             standardGeneric("showTexts")
+           }
+)
+
+setMethod(f="showTexts",
+          signature="PlotSettings",
+          definition=function(theObject, enable){
+            theObject@texts <- enable
+            return(theObject)
+          })
+
+setGeneric(name="drawLines",
+           def=function(theObject, enable){
+             standardGeneric("drawLines")
+           }
+)
+
+setMethod(f="drawLines",
+          signature="PlotSettings",
+          definition=function(theObject, enable){
+            theObject@lines <- enable
             return(theObject)
           })
