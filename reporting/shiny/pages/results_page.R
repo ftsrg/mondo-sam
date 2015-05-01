@@ -40,6 +40,7 @@ output$plot <- renderPlot({
       settings <- setDimensions(settings, input$xdimension, "MetricValue")
       settings <- setLabels(settings, input$xlabel, input$ylabel)
       settings <- setAxis(settings, input$xaxis, input$yaxis)
+      frame$MetricValue <- frame$MetricValue * (10 ** input$yscale)
       
 #       phases <- config$Plot[row, ]$Summarize_Function
       phases <- list(input$phase)

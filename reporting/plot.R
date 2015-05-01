@@ -10,6 +10,7 @@ PlotSettings <- setClass(
              title = "character",
              xAxis = "character",
              yAxis = "character",
+             yScale = "character",
              theme = "character"
            ),
   
@@ -22,6 +23,7 @@ PlotSettings <- setClass(
                  title = "",
                  xAxis = "",
                  yAxis = "",
+                 yScale = "",
                  theme = ""
                 )
   )
@@ -91,6 +93,19 @@ setMethod(f="setAxis",
           definition=function(theObject, xAxis, yAxis){
             theObject@xAxis <- xAxis
             theObject@yAxis <- yAxis
+            return(theObject)
+          })
+
+setGeneric(name="setYScale",
+           def=function(theObject, yScale){
+             standardGeneric("setYScale")
+           }
+)
+
+setMethod(f="setYScale",
+          signature="PlotSettings",
+          definition=function(theObject, yScale){
+            theObject@yScale <- yScale
             return(theObject)
           })
 
