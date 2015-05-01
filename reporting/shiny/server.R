@@ -24,7 +24,10 @@ shinyServer(function(input, output, session) {
                            unique_tools = c(),
                            unique_metrics = c(),
                            unique_scenarios = c(),
-                           update="",
+                           # increase after clicking Plot Visualize button
+                           expectedPlotCounter = 0,
+                           # increase after drawing a plot
+                           currentPlotCounter = 0,
                            scenarioObserver=0, 
                            toolObserver=0, 
                            caseObserver=0, 
@@ -291,6 +294,7 @@ shinyServer(function(input, output, session) {
       }
     })
   }
+
 
 source('pages/results_page.R', local=TRUE)
 

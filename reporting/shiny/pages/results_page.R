@@ -7,8 +7,13 @@ output$plot <- renderPlot({
       return(NULL)
     
     withProgress(message = 'Creating plot', value = 1.0, {
+      # id identifies the certanly used data frame
       frameID = getFrameID()
       frame <- values$subFrames[[frameID]]
+      if (is.null(frame)){
+        return()
+      }
+      
       if ("Size" %in% values$selections){
         size <- input$size
         if (size == ""){
@@ -192,23 +197,20 @@ output$phase <- renderUI({
   isolate({
     values$metricObserver <- values$metricObserver + 1
   })
-  # add dependency to case as well
-#   input$case
-  
-  #     input$scenario
-  #     input$tool
-  
-  
+
   isolate({
     
+    # id identifies the certanly used data frame
     id <- getFrameID()
-    print("print id in phase:")
-    print(id)
+    frame <- values$subFrames[[id]]
+    if (is.null(frame)){
+      return()
+    }
     if ("Size" %in% values$selections){
-      uniquePhases <- unique(subset(values$subFrames[[id]], Size == input$size)$PhaseName)
+      uniquePhases <- unique(subset(frame, Size == input$size)$PhaseName)
     }
     else{
-      uniquePhases <- unique(values$subFrames[[id]]$PhaseName)
+      uniquePhases <- unique(frame$PhaseName)
     }
     
     phaseList <- list()
@@ -230,18 +232,28 @@ output$metric <- renderUI({
 
   isolate({
     values$iterationObserver <- values$iterationObserver + 1
-    id <- getFrameID()
     
     if ("Size" %in% values$selections){
-      uniqueMetrics <- unique(subset(values$subFrames[[id]], Size == input$size & 
-                                       PhaseName == input$phase)$MetricName)
+      # id identifies the certanly used data frame
+      id <- getFrameID()
+      frame <- values$subFrames[[id]]
+      if (is.null(frame)){
+        return()
+      }
+      uniqueMetrics <- unique(subset(frame, Size == input$size & PhaseName == input$phase)$MetricName)
     }
     else{
       print(input$phase)
       if (is.null(input$phase) || input$phase == ""){
         return()
       }
-      uniqueMetrics <- unique(subset(values$subFrames[[id]], PhaseName == input$phase)$MetricName)
+      # id identifies the certanly used data frame
+      id <- getFrameID()
+      frame <- values$subFrames[[id]]
+      if (is.null(frame)){
+        return()
+      }
+      uniqueMetrics <- unique(subset(frame, PhaseName == input$phase)$MetricName)
     }
     
     metricList <- list()
@@ -263,8 +275,7 @@ output$iteration <- renderUI({
   
   isolate({
     values$iterations <- c(1,1)
-    id <- getFrameID()
-    frame <- values$subFrames[[id]]
+    
     if (is.null(input$phase) || is.null(input$metric)){
       return()
     }
@@ -279,9 +290,21 @@ output$iteration <- renderUI({
       if (is.null(size)  || size == ""){
         return()
       }
+      # id identifies the certanly used data frame
+      id <- getFrameID()
+      frame <- values$subFrames[[id]]
+      if (is.null(frame)){
+        return()
+      }
       subFrame <- (subset(frame, Size == size & PhaseName == phase & MetricName == metric))
     }
     else{
+      # id identifies the certanly used data frame
+      id <- getFrameID()
+      frame <- values$subFrames[[id]]
+      if (is.null(frame)){
+        return()
+      }
       subFrame <- (subset(frame, PhaseName == phase & MetricName == metric))
     }
     maxIteration <- max(subFrame$Iteration)
