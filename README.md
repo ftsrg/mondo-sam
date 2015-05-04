@@ -3,7 +3,7 @@ MONDO-SAM: A Framework to Systematically Assess MDE Scalability
 
 [![Build Status](https://travis-ci.org/FTSRG/mondo-sam.svg)](https://travis-ci.org/FTSRG/mondo-sam)
 
-MONDO-SAM provides a common framework for benchmark developers.
+MONDO-SAM provides a common framework for benchmark developers written in Java, Python and R.
 
 ## Prerequisites
 
@@ -30,11 +30,11 @@ The first step is to define the own scenario and phase implementations. For furt
 Every benchmark result is saved to a JSON file. In order to convert the results to a CSV file, run the following:
  * `./reporting/convert_results.py`
 
-The operation above is also necessary for reporting.
+The operation above is also necessary for the reporting mechanism.
 
 ### Reporting
 
-Firstly, install R and the required packages:
+At first, install R and the required packages:
 
 1. **Ubuntu**  
    ```
@@ -50,11 +50,11 @@ Firstly, install R and the required packages:
  * In an admin command prompt, run: `
    * `R -f install.R`
 
-After converting the results to the right CSV format (see above), adjust the reporting configuration settings in the `reporting/config.json` file. These parameters will determine exactly what kind of plots will be generated.
+After converting the results to the right CSV format (see above), adjust the reporting configuration settings in the `reporting/config.json` file. These parameters determine exactly what kind of plots will be generated. For further information, read the reporting [section](https://github.com/FTSRG/mondo-sam/wiki/Reporting) on wiki.
 
 Finally, it is already possible to generate the diagrams. The easiest way for this to use the Python wrapper module:
  * `./reporting/report.py --source source_csv_path -- output output_folder_path --config config_json_path`
 
-Insert valid parameters instead the paths. The wrapper module actually just invokes the `generate_diagrams.R` script, but it is still recommended to use for two reasons. The Python script:
- 1. can solve the working directory problem easily and
+Insert valid parameters instead the paths. The wrapper module actually invokes the `generate_diagrams.R` script, however it is still recommended to use for two reasons. The Python script:
+ 1. solves the working directory problem and
  2. provides a more useable argument parser.
