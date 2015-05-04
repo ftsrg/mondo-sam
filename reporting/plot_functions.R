@@ -75,14 +75,15 @@ generatePlot <-function(results, settings, phases){
   if (settings@yAxis == "factor"){
     data[settings@yDimension] <- as.factor(data[[settings@yDimension]])
   }
-  
-  if (is.numeric(data[settings@xDimension]) == FALSE){
+  if (is.numeric(data[[settings@xDimension]]) == FALSE){
     data[settings@xDimension] <- as.factor(data[[settings@xDimension]])
     settings@xAxis = "factor"
   }
+  if (is.numeric(data[[settings@legend]]) || is.integer(data[[settings@legend]])){
+    data[settings@legend] <- as.character(data[[settings@legend]])
+  }
   
   plot <- ggplot(data,aes_string(x = settings@xDimension, y = settings@yDimension)) +
-#     geom_line(aes_string(group = settings@legend, colour=settings@legend), size=lineSize) + 
     geom_point(aes_string(shape = settings@legend, colour=settings@legend), size=pointSize) +
     scale_shape_manual(values=1:nlevels(data[[settings@legend]])) +
     ylab(settings@yLabel) +
@@ -121,10 +122,4 @@ generatePlot <-function(results, settings, phases){
   }
   
   return(plot)
-#   for (ext in unlist(extensions)){
-#     newFile <- paste(filename, ext, sep=".")
-#     ggsave(plot,filename = newFile, width=diagramWidth, height=diagramHeight, dpi=diagram_dpi)
-#     print(newFile)
-#   }
-  
 }
