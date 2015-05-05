@@ -27,13 +27,15 @@ output$plot <- renderPlot({
         return()
       }
       frame <- subset(frame, MetricName %in% input$metric & PhaseName %in% input$phase)
+      legend <- input$legend
+      frame <- frame[which(frame[[legend]] %in% input$legendFilters), ]
       if (values$iterations[1] > 0){
         frame <- subset(frame, Iteration >= values$iterations[1] & Iteration <= values$iterations[2])
       }
       print(nrow(frame))
       settings <- PlotSettings()
       
-      settings <- setLegend(settings, input$legend)
+      settings <- setLegend(settings, legend)
       title <- injectValues(frame, input$title)
       settings <- setTitle(settings, title)
       settings <- setDimensions(settings, input$xdimension, "MetricValue")

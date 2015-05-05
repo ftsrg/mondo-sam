@@ -42,14 +42,13 @@ shinyUI(navbarPage("Reporting", id="reporting",
                    tabPanel(
                      "Dimensions",
                      selectInput("xdimension", label="X Dimension",
-                                 choices = c("Scenario", "CaseName", "Tool", "Size", "Iteration"), selected = "Size"),
-                     uiOutput("mix"),
-                     # change selections list too if the selected element is changed
+                                 choices = c("Scenario", "CaseName", "Tool", "Size", "Iteration"), 
+                                 selected = "Size"),
+                     # change selections list too if the selected element is modified
                      selectInput("legend", label="Legend",
-                                 choices = c("Scenario", "CaseName", "Tool", "Size", "MetricName"), selected = "MetricName")
-#                      uiOutput("xdimension"),
-#                      uiOutput("mix"),
-#                      uiOutput("legend")
+                                 choices = c("Scenario", "CaseName", "Tool", "Size", "MetricName"), 
+                                 selected = "MetricName"),
+                     uiOutput("legendFilters")
                      ),
                    # Plot settings panel
                    tabPanel(

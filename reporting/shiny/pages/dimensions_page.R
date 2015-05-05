@@ -1,28 +1,28 @@
-output$mix <- renderUI({
-  if (is.null(input$xdimension)){
+output$legendFilters <- renderUI({
+#   if (is.null(input$legend)){
+#     return()
+#   }
+  if (is.null(input$metric) || is.null(input$phase)){
     return()
   }
+  if (input$metric == "" || input$phase == ""){
+    return()
+  }
+  
   isolate({
-    if (input$xdimension == "Size"){
-      return(checkboxInput("mix", label = "Mix Phases", value = FALSE))
-      if (is.null(input$mix) == FALSE){
-        values$mix <- input$mix
-      }  
+    id <- getFrameID()
+    frame <- values$subFrames[[id]]
+    frame <- subset(frame, PhaseName %in% input$phase & MetricName %in% input$metric)
+    uniqueLegends <- unique(frame[[input$legend]])
+    print(uniqueLegends)
+    legendsList <- list()
+    for(leg in uniqueLegends){
+      legendsList <- c(leg, legendsList)
     }
-    else {
-      values$mix <- FALSE
-      # vanish widget
-      return()
-    }
+    print(legendsList)
+    checkboxGroupInput("legendFilters",label="Filters",
+                      choices=legendsList, selected=legendsList)
+    
+    
   })
 })
-
-#   output$xdimension <- renderUI({
-#     selectInput("xdimension", label="X Dimension",
-#                 choices = c(values$selections), selected = "Size")
-#   })
-# 
-#   output$legend <- renderUI({
-#     selectInput("legend", label="Legend",
-#                 choices = c(values$selections), selected = "Tool")
-#   })
