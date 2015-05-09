@@ -10,9 +10,7 @@ source("../constants.R")
 
 shinyServer(function(input, output, session) {
     
-  values <- reactiveValues(
-                           iterations = c(0,0), 
-                           mix = FALSE,
+  values <- reactiveValues( 
                            selections = c("Scenario", "Tool", "CaseName"),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
@@ -24,10 +22,6 @@ shinyServer(function(input, output, session) {
                            unique_tools = c(),
                            unique_metrics = c(),
                            unique_scenarios = c(),
-                           # increase after clicking Plot Visualize button
-                           expectedPlotCounter = 0,
-                           # increase after drawing a plot
-                           currentPlotCounter = 0,
                            scenarioObserver=0, 
                            toolObserver=0, 
                            caseObserver=0, 
@@ -35,12 +29,19 @@ shinyServer(function(input, output, session) {
                            phaseObserver=0, 
                            metricObserver=0,
                            iterationObserver=0,
+                           scenario = "",
+                           case = "",
+                           tool = "",
+                           size = "",
+                           phases = "",
+                           metrics = "",
+                           legendFilters = c(),
+                           iterations = c(0,0),
+                           xDimension = "Size",
+                           selectedLegend = "MetricName",
                            settings = PlotSettings(theme="Default")
                           )
   
-  # style settings like title, labels etc
-#   values$settings <- PlotSettings(theme="Default")
-#   values$selections = list(Scenario="Scenario", Tool="Tool", Size="Size", CaseName="CaseName")
  
 # load results and make reactiv values
   # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
@@ -135,21 +136,7 @@ shinyServer(function(input, output, session) {
 #       values$settings <- showValues(values$settings, input$showValues)
 #     })
   })
-  
-  changeIteration <- observe({
-    if (is.null(input$iteration))
-      return()
-    values$iterations <- input$iteration
     
-  })
-  
-  changeMix <- observe({
-    if (is.null(input$mix)){
-      return()
-    }
-    values$mix <- input$mix
-  })
-  
   changeTemplates <- observe({
     dimension <- input$xdimension
     isolate({
@@ -206,7 +193,7 @@ shinyServer(function(input, output, session) {
       format <- input$format
       file <- paste("../../diagrams/", filename, ".", tolower(format), sep='')
       file <- gsub("CASENAME", input$case, file)
-      file <- gsub("METRICNAME", input$metric, file)
+      file <- gsub("METRICNAME", input$metrics, file)
       if ("scenarios" %in% input$publishGroup == TRUE){
         for(scenario in names(values$subtables)){
           sub <- createSubFrame(scenario)
@@ -231,17 +218,7 @@ shinyServer(function(input, output, session) {
     
   })
   
-  changeSelections <- observe({
-    # add dependencies
-    input$xdimension
-    input$legend
-    
-    isolate({
-      values$selections <- values$defaultSelections
-      values$selections <- values$selections[values$selections != input$legend & 
-                                             values$selections != input$xdimension]
-    })
-  })
+  source('observers.R', local=TRUE)
 
   createSubFrames <- function(results, selections, id, index=0){
     if(length(selections) ==0){

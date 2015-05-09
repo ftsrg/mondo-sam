@@ -28,8 +28,8 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                 uiOutput("tool"),
                                 uiOutput("case"),
                                 uiOutput("size"),
-                                uiOutput("phase"),
-                                uiOutput("metric"),
+                                uiOutput("phases"),
+                                uiOutput("metrics"),
                                 uiOutput("iteration"),
                                 actionButton("visualize", "Draw plot")
                               ),
@@ -45,9 +45,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                  choices = c("Scenario", "CaseName", "Tool", "Size", "Iteration"), 
                                  selected = "Size"),
                      # change selections list too if the selected element is modified
-                     selectInput("legend", label="Legend",
-                                 choices = c("Scenario", "CaseName", "Tool", "Size", "MetricName"), 
-                                 selected = "MetricName"),
+                     uiOutput("legend"),
                      uiOutput("legendFilters")
                      ),
                    # Plot settings panel
