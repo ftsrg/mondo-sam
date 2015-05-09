@@ -10,7 +10,6 @@ import eu.mondo.sam.domain.benchmark.MetricTypeReference;
 import eu.mondo.sam.domain.benchmark.NewMetric;
 import eu.mondo.sam.domain.benchmark.NewPhase;
 import eu.mondo.sam.domain.benchmark.OptionalPhase;
-import eu.mondo.sam.domain.benchmark.PackageDeclaration;
 import eu.mondo.sam.domain.benchmark.PhaseReference;
 import eu.mondo.sam.domain.benchmark.Scenario;
 import eu.mondo.sam.domain.benchmark.SequencePhase;
@@ -86,13 +85,6 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 					return; 
 				}
 				else break;
-			case BenchmarkPackage.PACKAGE_DECLARATION:
-				if(context == grammarAccess.getElementRule() ||
-				   context == grammarAccess.getPackageDeclarationRule()) {
-					sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
-					return; 
-				}
-				else break;
 			case BenchmarkPackage.PHASE_REFERENCE:
 				if(context == grammarAccess.getAttachedPhaseRule() ||
 				   context == grammarAccess.getPhaseReferenceRule()) {
@@ -121,7 +113,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=ID? atomicname=QualifiedName metrics+=AttachedMetric*)
+	 *     (name=ID? classname=QualifiedName metrics+=AttachedMetric*)
 	 */
 	protected void sequence_AtomicPhase(EObject context, AtomicPhase semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -130,7 +122,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     elements+=Element*
+	 *     (packageName=QualifiedName elements+=Element*)
 	 */
 	protected void sequence_Benchmark(EObject context, Benchmark semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -198,22 +190,6 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     name=QualifiedName
-	 */
-	protected void sequence_PackageDeclaration(EObject context, PackageDeclaration semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.PACKAGE_DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.PACKAGE_DECLARATION__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPackageDeclarationAccess().getNameQualifiedNameParserRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     phase=[Phase|ID]
 	 */
 	protected void sequence_PhaseReference(EObject context, PhaseReference semanticObject) {
@@ -230,18 +206,18 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (scenarioname=QualifiedName rootPhase=Phase)
+	 *     (classname=STRING rootPhase=Phase)
 	 */
 	protected void sequence_Scenario(EObject context, Scenario semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.SCENARIO__SCENARIONAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.SCENARIO__SCENARIONAME));
+			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.SCENARIO__CLASSNAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.SCENARIO__CLASSNAME));
 			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.SCENARIO__ROOT_PHASE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.SCENARIO__ROOT_PHASE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getScenarioAccess().getScenarionameQualifiedNameParserRuleCall_1_0(), semanticObject.getScenarioname());
+		feeder.accept(grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0(), semanticObject.getClassname());
 		feeder.accept(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0(), semanticObject.getRootPhase());
 		feeder.finish();
 	}

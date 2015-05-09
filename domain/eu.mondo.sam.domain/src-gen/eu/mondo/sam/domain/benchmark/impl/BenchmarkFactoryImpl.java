@@ -67,7 +67,6 @@ public class BenchmarkFactoryImpl extends EFactoryImpl implements BenchmarkFacto
     {
       case BenchmarkPackage.BENCHMARK: return createBenchmark();
       case BenchmarkPackage.ELEMENT: return createElement();
-      case BenchmarkPackage.PACKAGE_DECLARATION: return createPackageDeclaration();
       case BenchmarkPackage.SCENARIO: return createScenario();
       case BenchmarkPackage.PHASE: return createPhase();
       case BenchmarkPackage.SEQUENCE_PHASE: return createSequencePhase();
@@ -139,17 +138,6 @@ public class BenchmarkFactoryImpl extends EFactoryImpl implements BenchmarkFacto
   {
     ElementImpl element = new ElementImpl();
     return element;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PackageDeclaration createPackageDeclaration()
-  {
-    PackageDeclarationImpl packageDeclaration = new PackageDeclarationImpl();
-    return packageDeclaration;
   }
 
   /**

@@ -11,7 +11,7 @@ package eu.mondo.sam.domain.benchmark;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link eu.mondo.sam.domain.benchmark.Scenario#getScenarioname <em>Scenarioname</em>}</li>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.Scenario#getClassname <em>Classname</em>}</li>
  *   <li>{@link eu.mondo.sam.domain.benchmark.Scenario#getRootPhase <em>Root Phase</em>}</li>
  * </ul>
  * </p>
@@ -23,30 +23,30 @@ package eu.mondo.sam.domain.benchmark;
 public interface Scenario extends Element
 {
   /**
-   * Returns the value of the '<em><b>Scenarioname</b></em>' attribute.
+   * Returns the value of the '<em><b>Classname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Scenarioname</em>' attribute isn't clear,
+   * If the meaning of the '<em>Classname</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Scenarioname</em>' attribute.
-   * @see #setScenarioname(String)
-   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getScenario_Scenarioname()
+   * @return the value of the '<em>Classname</em>' attribute.
+   * @see #setClassname(String)
+   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getScenario_Classname()
    * @model
    * @generated
    */
-  String getScenarioname();
+  String getClassname();
 
   /**
-   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.Scenario#getScenarioname <em>Scenarioname</em>}' attribute.
+   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.Scenario#getClassname <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Scenarioname</em>' attribute.
-   * @see #getScenarioname()
+   * @param value the new value of the '<em>Classname</em>' attribute.
+   * @see #getClassname()
    * @generated
    */
-  void setScenarioname(String value);
+  void setClassname(String value);
 
   /**
    * Returns the value of the '<em><b>Root Phase</b></em>' containment reference.

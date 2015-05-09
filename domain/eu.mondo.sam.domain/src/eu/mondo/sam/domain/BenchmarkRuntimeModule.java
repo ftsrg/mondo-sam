@@ -3,9 +3,22 @@
  */
 package eu.mondo.sam.domain;
 
-/**
- * Use this class to register components to be used at runtime / without the Equinox extension registry.
- */
-public class BenchmarkRuntimeModule extends eu.mondo.sam.domain.AbstractBenchmarkRuntimeModule {
+import org.eclipse.xtext.generator.IOutputConfigurationProvider;
 
+import com.google.inject.Binder;
+import com.google.inject.Singleton;
+
+/**
+ * Use this class to register components to be used at runtime / without the
+ * Equinox extension registry.
+ */
+public class BenchmarkRuntimeModule extends
+	eu.mondo.sam.domain.AbstractBenchmarkRuntimeModule {
+
+    @Override
+    public void configure(Binder binder) {
+	super.configure(binder);
+	binder.bind(IOutputConfigurationProvider.class)
+		.to(OutputConfigurationProvider.class).in(Singleton.class);
+    }
 }

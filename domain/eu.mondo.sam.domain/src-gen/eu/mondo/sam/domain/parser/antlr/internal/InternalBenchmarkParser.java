@@ -22,9 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'Scenario'", "'{'", "'}'", "'Sequence'", "'('", "')'", "'Iteration'", "'*'", "'Optional'", "'Atomic'", "'ClassName'", "'Metrics('", "'new Metric'", "'ID'", "'.'", "'Time'", "'Memory'", "'Scalar'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'Scenario'", "'{'", "'}'", "'Sequence'", "'('", "')'", "'Iteration'", "'*'", "'Optional'", "'Atomic'", "'ClassName'", "'Metrics('", "'new Metric'", "'ID'", "'.'", "'Time'", "'Memory'", "'Scalar'"
     };
-    public static final int RULE_ID=4;
+    public static final int RULE_ID=5;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -40,7 +40,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__19=19;
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=4;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
@@ -49,7 +49,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_INT=5;
+    public static final int RULE_INT=6;
     public static final int RULE_WS=9;
 
     // delegates
@@ -127,42 +127,83 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBenchmark"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:77:1: ruleBenchmark returns [EObject current=null] : ( (lv_elements_0_0= ruleElement ) )* ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:77:1: ruleBenchmark returns [EObject current=null] : (otherlv_0= 'package' ( (lv_packageName_1_0= ruleQualifiedName ) ) ( (lv_elements_2_0= ruleElement ) )* ) ;
     public final EObject ruleBenchmark() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_elements_0_0 = null;
+        Token otherlv_0=null;
+        AntlrDatatypeRuleToken lv_packageName_1_0 = null;
+
+        EObject lv_elements_2_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:80:28: ( ( (lv_elements_0_0= ruleElement ) )* )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:81:1: ( (lv_elements_0_0= ruleElement ) )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:80:28: ( (otherlv_0= 'package' ( (lv_packageName_1_0= ruleQualifiedName ) ) ( (lv_elements_2_0= ruleElement ) )* ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:81:1: (otherlv_0= 'package' ( (lv_packageName_1_0= ruleQualifiedName ) ) ( (lv_elements_2_0= ruleElement ) )* )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:81:1: ( (lv_elements_0_0= ruleElement ) )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:81:1: (otherlv_0= 'package' ( (lv_packageName_1_0= ruleQualifiedName ) ) ( (lv_elements_2_0= ruleElement ) )* )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:81:3: otherlv_0= 'package' ( (lv_packageName_1_0= ruleQualifiedName ) ) ( (lv_elements_2_0= ruleElement ) )*
+            {
+            otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleBenchmark122); 
+
+                	newLeafNode(otherlv_0, grammarAccess.getBenchmarkAccess().getPackageKeyword_0());
+                
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:85:1: ( (lv_packageName_1_0= ruleQualifiedName ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:86:1: (lv_packageName_1_0= ruleQualifiedName )
+            {
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:86:1: (lv_packageName_1_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:87:3: lv_packageName_1_0= ruleQualifiedName
+            {
+             
+            	        newCompositeNode(grammarAccess.getBenchmarkAccess().getPackageNameQualifiedNameParserRuleCall_1_0()); 
+            	    
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleBenchmark143);
+            lv_packageName_1_0=ruleQualifiedName();
+
+            state._fsp--;
+
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getBenchmarkRule());
+            	        }
+                   		set(
+                   			current, 
+                   			"packageName",
+                    		lv_packageName_1_0, 
+                    		"QualifiedName");
+            	        afterParserOrEnumRuleCall();
+            	    
+
+            }
+
+
+            }
+
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:103:2: ( (lv_elements_2_0= ruleElement ) )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( ((LA1_0>=11 && LA1_0<=12)||LA1_0==15||LA1_0==18||(LA1_0>=20 && LA1_0<=21)) ) {
+                if ( (LA1_0==12||LA1_0==15||LA1_0==18||(LA1_0>=20 && LA1_0<=21)) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:82:1: (lv_elements_0_0= ruleElement )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:104:1: (lv_elements_2_0= ruleElement )
             	    {
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:82:1: (lv_elements_0_0= ruleElement )
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:83:3: lv_elements_0_0= ruleElement
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:104:1: (lv_elements_2_0= ruleElement )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:105:3: lv_elements_2_0= ruleElement
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getBenchmarkAccess().getElementsElementParserRuleCall_0()); 
+            	    	        newCompositeNode(grammarAccess.getBenchmarkAccess().getElementsElementParserRuleCall_2_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleElement_in_ruleBenchmark130);
-            	    lv_elements_0_0=ruleElement();
+            	    pushFollow(FOLLOW_ruleElement_in_ruleBenchmark164);
+            	    lv_elements_2_0=ruleElement();
 
             	    state._fsp--;
 
@@ -173,7 +214,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             	           		add(
             	           			current, 
             	           			"elements",
-            	            		lv_elements_0_0, 
+            	            		lv_elements_2_0, 
             	            		"Element");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -188,6 +229,9 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             	    break loop1;
                 }
             } while (true);
+
+
+            }
 
 
             }
@@ -207,7 +251,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleElement"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:107:1: entryRuleElement returns [EObject current=null] : iv_ruleElement= ruleElement EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:129:1: entryRuleElement returns [EObject current=null] : iv_ruleElement= ruleElement EOF ;
     public final EObject entryRuleElement() throws RecognitionException {
         EObject current = null;
 
@@ -215,17 +259,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:108:2: (iv_ruleElement= ruleElement EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:109:2: iv_ruleElement= ruleElement EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:130:2: (iv_ruleElement= ruleElement EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:131:2: iv_ruleElement= ruleElement EOF
             {
              newCompositeNode(grammarAccess.getElementRule()); 
-            pushFollow(FOLLOW_ruleElement_in_entryRuleElement166);
+            pushFollow(FOLLOW_ruleElement_in_entryRuleElement201);
             iv_ruleElement=ruleElement();
 
             state._fsp--;
 
              current =iv_ruleElement; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleElement176); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleElement211); 
 
             }
 
@@ -243,7 +287,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleElement"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:116:1: ruleElement returns [EObject current=null] : (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase | this_PackageDeclaration_2= rulePackageDeclaration ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:138:1: ruleElement returns [EObject current=null] : (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase ) ;
     public final EObject ruleElement() throws RecognitionException {
         EObject current = null;
 
@@ -251,51 +295,37 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
         EObject this_Phase_1 = null;
 
-        EObject this_PackageDeclaration_2 = null;
-
 
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:119:28: ( (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase | this_PackageDeclaration_2= rulePackageDeclaration ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:120:1: (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase | this_PackageDeclaration_2= rulePackageDeclaration )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:141:28: ( (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:142:1: (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:120:1: (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase | this_PackageDeclaration_2= rulePackageDeclaration )
-            int alt2=3;
-            switch ( input.LA(1) ) {
-            case 12:
-                {
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:142:1: (this_Scenario_0= ruleScenario | this_Phase_1= rulePhase )
+            int alt2=2;
+            int LA2_0 = input.LA(1);
+
+            if ( (LA2_0==12) ) {
                 alt2=1;
-                }
-                break;
-            case 15:
-            case 18:
-            case 20:
-            case 21:
-                {
+            }
+            else if ( (LA2_0==15||LA2_0==18||(LA2_0>=20 && LA2_0<=21)) ) {
                 alt2=2;
-                }
-                break;
-            case 11:
-                {
-                alt2=3;
-                }
-                break;
-            default:
+            }
+            else {
                 NoViableAltException nvae =
                     new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
-
             switch (alt2) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:121:5: this_Scenario_0= ruleScenario
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:143:5: this_Scenario_0= ruleScenario
                     {
                      
                             newCompositeNode(grammarAccess.getElementAccess().getScenarioParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleScenario_in_ruleElement223);
+                    pushFollow(FOLLOW_ruleScenario_in_ruleElement258);
                     this_Scenario_0=ruleScenario();
 
                     state._fsp--;
@@ -308,36 +338,18 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:131:5: this_Phase_1= rulePhase
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:153:5: this_Phase_1= rulePhase
                     {
                      
                             newCompositeNode(grammarAccess.getElementAccess().getPhaseParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_rulePhase_in_ruleElement250);
+                    pushFollow(FOLLOW_rulePhase_in_ruleElement285);
                     this_Phase_1=rulePhase();
 
                     state._fsp--;
 
                      
                             current = this_Phase_1; 
-                            afterParserOrEnumRuleCall();
-                        
-
-                    }
-                    break;
-                case 3 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:141:5: this_PackageDeclaration_2= rulePackageDeclaration
-                    {
-                     
-                            newCompositeNode(grammarAccess.getElementAccess().getPackageDeclarationParserRuleCall_2()); 
-                        
-                    pushFollow(FOLLOW_rulePackageDeclaration_in_ruleElement277);
-                    this_PackageDeclaration_2=rulePackageDeclaration();
-
-                    state._fsp--;
-
-                     
-                            current = this_PackageDeclaration_2; 
                             afterParserOrEnumRuleCall();
                         
 
@@ -363,117 +375,8 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleElement"
 
 
-    // $ANTLR start "entryRulePackageDeclaration"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:157:1: entryRulePackageDeclaration returns [EObject current=null] : iv_rulePackageDeclaration= rulePackageDeclaration EOF ;
-    public final EObject entryRulePackageDeclaration() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_rulePackageDeclaration = null;
-
-
-        try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:158:2: (iv_rulePackageDeclaration= rulePackageDeclaration EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:159:2: iv_rulePackageDeclaration= rulePackageDeclaration EOF
-            {
-             newCompositeNode(grammarAccess.getPackageDeclarationRule()); 
-            pushFollow(FOLLOW_rulePackageDeclaration_in_entryRulePackageDeclaration312);
-            iv_rulePackageDeclaration=rulePackageDeclaration();
-
-            state._fsp--;
-
-             current =iv_rulePackageDeclaration; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePackageDeclaration322); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRulePackageDeclaration"
-
-
-    // $ANTLR start "rulePackageDeclaration"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:166:1: rulePackageDeclaration returns [EObject current=null] : (otherlv_0= 'package' ( (lv_name_1_0= ruleQualifiedName ) ) ) ;
-    public final EObject rulePackageDeclaration() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_0=null;
-        AntlrDatatypeRuleToken lv_name_1_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:169:28: ( (otherlv_0= 'package' ( (lv_name_1_0= ruleQualifiedName ) ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:170:1: (otherlv_0= 'package' ( (lv_name_1_0= ruleQualifiedName ) ) )
-            {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:170:1: (otherlv_0= 'package' ( (lv_name_1_0= ruleQualifiedName ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:170:3: otherlv_0= 'package' ( (lv_name_1_0= ruleQualifiedName ) )
-            {
-            otherlv_0=(Token)match(input,11,FOLLOW_11_in_rulePackageDeclaration359); 
-
-                	newLeafNode(otherlv_0, grammarAccess.getPackageDeclarationAccess().getPackageKeyword_0());
-                
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:174:1: ( (lv_name_1_0= ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:175:1: (lv_name_1_0= ruleQualifiedName )
-            {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:175:1: (lv_name_1_0= ruleQualifiedName )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:176:3: lv_name_1_0= ruleQualifiedName
-            {
-             
-            	        newCompositeNode(grammarAccess.getPackageDeclarationAccess().getNameQualifiedNameParserRuleCall_1_0()); 
-            	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_rulePackageDeclaration380);
-            lv_name_1_0=ruleQualifiedName();
-
-            state._fsp--;
-
-
-            	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
-            	        }
-                   		set(
-                   			current, 
-                   			"name",
-                    		lv_name_1_0, 
-                    		"QualifiedName");
-            	        afterParserOrEnumRuleCall();
-            	    
-
-            }
-
-
-            }
-
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "rulePackageDeclaration"
-
-
     // $ANTLR start "entryRuleScenario"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:200:1: entryRuleScenario returns [EObject current=null] : iv_ruleScenario= ruleScenario EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:169:1: entryRuleScenario returns [EObject current=null] : iv_ruleScenario= ruleScenario EOF ;
     public final EObject entryRuleScenario() throws RecognitionException {
         EObject current = null;
 
@@ -481,17 +384,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:201:2: (iv_ruleScenario= ruleScenario EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:202:2: iv_ruleScenario= ruleScenario EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:170:2: (iv_ruleScenario= ruleScenario EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:171:2: iv_ruleScenario= ruleScenario EOF
             {
              newCompositeNode(grammarAccess.getScenarioRule()); 
-            pushFollow(FOLLOW_ruleScenario_in_entryRuleScenario416);
+            pushFollow(FOLLOW_ruleScenario_in_entryRuleScenario320);
             iv_ruleScenario=ruleScenario();
 
             state._fsp--;
 
              current =iv_ruleScenario; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleScenario426); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleScenario330); 
 
             }
 
@@ -509,55 +412,49 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleScenario"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: ruleScenario returns [EObject current=null] : (otherlv_0= 'Scenario' ( (lv_scenarioname_1_0= ruleQualifiedName ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:178:1: ruleScenario returns [EObject current=null] : (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' ) ;
     public final EObject ruleScenario() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
+        Token lv_classname_1_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        AntlrDatatypeRuleToken lv_scenarioname_1_0 = null;
-
         EObject lv_rootPhase_3_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:212:28: ( (otherlv_0= 'Scenario' ( (lv_scenarioname_1_0= ruleQualifiedName ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:213:1: (otherlv_0= 'Scenario' ( (lv_scenarioname_1_0= ruleQualifiedName ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:181:28: ( (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:213:1: (otherlv_0= 'Scenario' ( (lv_scenarioname_1_0= ruleQualifiedName ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:213:3: otherlv_0= 'Scenario' ( (lv_scenarioname_1_0= ruleQualifiedName ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:3: otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleScenario463); 
+            otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleScenario367); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getScenarioAccess().getScenarioKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:217:1: ( (lv_scenarioname_1_0= ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:218:1: (lv_scenarioname_1_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:186:1: ( (lv_classname_1_0= RULE_STRING ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:187:1: (lv_classname_1_0= RULE_STRING )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:218:1: (lv_scenarioname_1_0= ruleQualifiedName )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:219:3: lv_scenarioname_1_0= ruleQualifiedName
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:187:1: (lv_classname_1_0= RULE_STRING )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:188:3: lv_classname_1_0= RULE_STRING
             {
-             
-            	        newCompositeNode(grammarAccess.getScenarioAccess().getScenarionameQualifiedNameParserRuleCall_1_0()); 
-            	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleScenario484);
-            lv_scenarioname_1_0=ruleQualifiedName();
+            lv_classname_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleScenario384); 
 
-            state._fsp--;
-
+            			newLeafNode(lv_classname_1_0, grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0()); 
+            		
 
             	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getScenarioRule());
+            	            current = createModelElement(grammarAccess.getScenarioRule());
             	        }
-                   		set(
+                   		setWithLastConsumed(
                    			current, 
-                   			"scenarioname",
-                    		lv_scenarioname_1_0, 
-                    		"QualifiedName");
-            	        afterParserOrEnumRuleCall();
+                   			"classname",
+                    		lv_classname_1_0, 
+                    		"STRING");
             	    
 
             }
@@ -565,20 +462,20 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,13,FOLLOW_13_in_ruleScenario496); 
+            otherlv_2=(Token)match(input,13,FOLLOW_13_in_ruleScenario401); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:239:1: ( (lv_rootPhase_3_0= rulePhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:240:1: (lv_rootPhase_3_0= rulePhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:208:1: ( (lv_rootPhase_3_0= rulePhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: (lv_rootPhase_3_0= rulePhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:240:1: (lv_rootPhase_3_0= rulePhase )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:241:3: lv_rootPhase_3_0= rulePhase
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: (lv_rootPhase_3_0= rulePhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:210:3: lv_rootPhase_3_0= rulePhase
             {
              
             	        newCompositeNode(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_rulePhase_in_ruleScenario517);
+            pushFollow(FOLLOW_rulePhase_in_ruleScenario422);
             lv_rootPhase_3_0=rulePhase();
 
             state._fsp--;
@@ -600,7 +497,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,14,FOLLOW_14_in_ruleScenario529); 
+            otherlv_4=(Token)match(input,14,FOLLOW_14_in_ruleScenario434); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getScenarioAccess().getRightCurlyBracketKeyword_4());
                 
@@ -625,7 +522,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:269:1: entryRulePhase returns [EObject current=null] : iv_rulePhase= rulePhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:238:1: entryRulePhase returns [EObject current=null] : iv_rulePhase= rulePhase EOF ;
     public final EObject entryRulePhase() throws RecognitionException {
         EObject current = null;
 
@@ -633,17 +530,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:270:2: (iv_rulePhase= rulePhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:271:2: iv_rulePhase= rulePhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:239:2: (iv_rulePhase= rulePhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:240:2: iv_rulePhase= rulePhase EOF
             {
              newCompositeNode(grammarAccess.getPhaseRule()); 
-            pushFollow(FOLLOW_rulePhase_in_entryRulePhase565);
+            pushFollow(FOLLOW_rulePhase_in_entryRulePhase470);
             iv_rulePhase=rulePhase();
 
             state._fsp--;
 
              current =iv_rulePhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePhase575); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePhase480); 
 
             }
 
@@ -661,7 +558,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:278:1: rulePhase returns [EObject current=null] : (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:247:1: rulePhase returns [EObject current=null] : (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase ) ;
     public final EObject rulePhase() throws RecognitionException {
         EObject current = null;
 
@@ -677,10 +574,10 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:281:28: ( (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:282:1: (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:250:28: ( (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:251:1: (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:282:1: (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:251:1: (this_SequencePhase_0= ruleSequencePhase | this_IterationPhase_1= ruleIterationPhase | this_OptionalPhase_2= ruleOptionalPhase | this_AtomicPhase_3= ruleAtomicPhase )
             int alt3=4;
             switch ( input.LA(1) ) {
             case 15:
@@ -712,12 +609,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             switch (alt3) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:283:5: this_SequencePhase_0= ruleSequencePhase
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:252:5: this_SequencePhase_0= ruleSequencePhase
                     {
                      
                             newCompositeNode(grammarAccess.getPhaseAccess().getSequencePhaseParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleSequencePhase_in_rulePhase622);
+                    pushFollow(FOLLOW_ruleSequencePhase_in_rulePhase527);
                     this_SequencePhase_0=ruleSequencePhase();
 
                     state._fsp--;
@@ -730,12 +627,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:293:5: this_IterationPhase_1= ruleIterationPhase
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:262:5: this_IterationPhase_1= ruleIterationPhase
                     {
                      
                             newCompositeNode(grammarAccess.getPhaseAccess().getIterationPhaseParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleIterationPhase_in_rulePhase649);
+                    pushFollow(FOLLOW_ruleIterationPhase_in_rulePhase554);
                     this_IterationPhase_1=ruleIterationPhase();
 
                     state._fsp--;
@@ -748,12 +645,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:303:5: this_OptionalPhase_2= ruleOptionalPhase
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:272:5: this_OptionalPhase_2= ruleOptionalPhase
                     {
                      
                             newCompositeNode(grammarAccess.getPhaseAccess().getOptionalPhaseParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleOptionalPhase_in_rulePhase676);
+                    pushFollow(FOLLOW_ruleOptionalPhase_in_rulePhase581);
                     this_OptionalPhase_2=ruleOptionalPhase();
 
                     state._fsp--;
@@ -766,12 +663,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:313:5: this_AtomicPhase_3= ruleAtomicPhase
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:282:5: this_AtomicPhase_3= ruleAtomicPhase
                     {
                      
                             newCompositeNode(grammarAccess.getPhaseAccess().getAtomicPhaseParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleAtomicPhase_in_rulePhase703);
+                    pushFollow(FOLLOW_ruleAtomicPhase_in_rulePhase608);
                     this_AtomicPhase_3=ruleAtomicPhase();
 
                     state._fsp--;
@@ -804,7 +701,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSequencePhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:329:1: entryRuleSequencePhase returns [EObject current=null] : iv_ruleSequencePhase= ruleSequencePhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:298:1: entryRuleSequencePhase returns [EObject current=null] : iv_ruleSequencePhase= ruleSequencePhase EOF ;
     public final EObject entryRuleSequencePhase() throws RecognitionException {
         EObject current = null;
 
@@ -812,17 +709,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:330:2: (iv_ruleSequencePhase= ruleSequencePhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:331:2: iv_ruleSequencePhase= ruleSequencePhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:299:2: (iv_ruleSequencePhase= ruleSequencePhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:300:2: iv_ruleSequencePhase= ruleSequencePhase EOF
             {
              newCompositeNode(grammarAccess.getSequencePhaseRule()); 
-            pushFollow(FOLLOW_ruleSequencePhase_in_entryRuleSequencePhase738);
+            pushFollow(FOLLOW_ruleSequencePhase_in_entryRuleSequencePhase643);
             iv_ruleSequencePhase=ruleSequencePhase();
 
             state._fsp--;
 
              current =iv_ruleSequencePhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSequencePhase748); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSequencePhase653); 
 
             }
 
@@ -840,7 +737,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSequencePhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:338:1: ruleSequencePhase returns [EObject current=null] : (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:307:1: ruleSequencePhase returns [EObject current=null] : (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' ) ;
     public final EObject ruleSequencePhase() throws RecognitionException {
         EObject current = null;
 
@@ -854,17 +751,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:341:28: ( (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:342:1: (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:310:28: ( (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:311:1: (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:342:1: (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:342:3: otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:311:1: (otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:311:3: otherlv_0= 'Sequence' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phases_3_0= ruleAttachedPhase ) )+ otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleSequencePhase785); 
+            otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleSequencePhase690); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getSequencePhaseAccess().getSequenceKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:346:1: ( (lv_name_1_0= RULE_ID ) )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:315:1: ( (lv_name_1_0= RULE_ID ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -873,12 +770,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:347:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:316:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:347:1: (lv_name_1_0= RULE_ID )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:348:3: lv_name_1_0= RULE_ID
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:316:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:317:3: lv_name_1_0= RULE_ID
                     {
-                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSequencePhase802); 
+                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSequencePhase707); 
 
                     			newLeafNode(lv_name_1_0, grammarAccess.getSequencePhaseAccess().getNameIDTerminalRuleCall_1_0()); 
                     		
@@ -901,11 +798,11 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleSequencePhase820); 
+            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleSequencePhase725); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getSequencePhaseAccess().getLeftParenthesisKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:368:1: ( (lv_phases_3_0= ruleAttachedPhase ) )+
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:337:1: ( (lv_phases_3_0= ruleAttachedPhase ) )+
             int cnt5=0;
             loop5:
             do {
@@ -919,15 +816,15 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:369:1: (lv_phases_3_0= ruleAttachedPhase )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:338:1: (lv_phases_3_0= ruleAttachedPhase )
             	    {
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:369:1: (lv_phases_3_0= ruleAttachedPhase )
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:370:3: lv_phases_3_0= ruleAttachedPhase
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:338:1: (lv_phases_3_0= ruleAttachedPhase )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:339:3: lv_phases_3_0= ruleAttachedPhase
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getSequencePhaseAccess().getPhasesAttachedPhaseParserRuleCall_3_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleAttachedPhase_in_ruleSequencePhase841);
+            	    pushFollow(FOLLOW_ruleAttachedPhase_in_ruleSequencePhase746);
             	    lv_phases_3_0=ruleAttachedPhase();
 
             	    state._fsp--;
@@ -959,7 +856,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                 cnt5++;
             } while (true);
 
-            otherlv_4=(Token)match(input,17,FOLLOW_17_in_ruleSequencePhase854); 
+            otherlv_4=(Token)match(input,17,FOLLOW_17_in_ruleSequencePhase759); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getSequencePhaseAccess().getRightParenthesisKeyword_4());
                 
@@ -984,7 +881,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIterationPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:398:1: entryRuleIterationPhase returns [EObject current=null] : iv_ruleIterationPhase= ruleIterationPhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:367:1: entryRuleIterationPhase returns [EObject current=null] : iv_ruleIterationPhase= ruleIterationPhase EOF ;
     public final EObject entryRuleIterationPhase() throws RecognitionException {
         EObject current = null;
 
@@ -992,17 +889,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:399:2: (iv_ruleIterationPhase= ruleIterationPhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:400:2: iv_ruleIterationPhase= ruleIterationPhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:368:2: (iv_ruleIterationPhase= ruleIterationPhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:369:2: iv_ruleIterationPhase= ruleIterationPhase EOF
             {
              newCompositeNode(grammarAccess.getIterationPhaseRule()); 
-            pushFollow(FOLLOW_ruleIterationPhase_in_entryRuleIterationPhase890);
+            pushFollow(FOLLOW_ruleIterationPhase_in_entryRuleIterationPhase795);
             iv_ruleIterationPhase=ruleIterationPhase();
 
             state._fsp--;
 
              current =iv_ruleIterationPhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIterationPhase900); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIterationPhase805); 
 
             }
 
@@ -1020,7 +917,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIterationPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:407:1: ruleIterationPhase returns [EObject current=null] : (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:376:1: ruleIterationPhase returns [EObject current=null] : (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' ) ;
     public final EObject ruleIterationPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1036,17 +933,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:410:28: ( (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:411:1: (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:379:28: ( (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:380:1: (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:411:1: (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:411:3: otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:380:1: (otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:380:3: otherlv_0= 'Iteration' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_iteration_3_0= RULE_INT ) ) otherlv_4= '*' ( (lv_phase_5_0= ruleAttachedPhase ) ) otherlv_6= ')'
             {
-            otherlv_0=(Token)match(input,18,FOLLOW_18_in_ruleIterationPhase937); 
+            otherlv_0=(Token)match(input,18,FOLLOW_18_in_ruleIterationPhase842); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getIterationPhaseAccess().getIterationKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:415:1: ( (lv_name_1_0= RULE_ID ) )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:384:1: ( (lv_name_1_0= RULE_ID ) )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1055,12 +952,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:416:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:385:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:416:1: (lv_name_1_0= RULE_ID )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:417:3: lv_name_1_0= RULE_ID
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:385:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:386:3: lv_name_1_0= RULE_ID
                     {
-                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleIterationPhase954); 
+                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleIterationPhase859); 
 
                     			newLeafNode(lv_name_1_0, grammarAccess.getIterationPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
                     		
@@ -1083,17 +980,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleIterationPhase972); 
+            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleIterationPhase877); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getIterationPhaseAccess().getLeftParenthesisKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:437:1: ( (lv_iteration_3_0= RULE_INT ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:438:1: (lv_iteration_3_0= RULE_INT )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:406:1: ( (lv_iteration_3_0= RULE_INT ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:407:1: (lv_iteration_3_0= RULE_INT )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:438:1: (lv_iteration_3_0= RULE_INT )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:439:3: lv_iteration_3_0= RULE_INT
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:407:1: (lv_iteration_3_0= RULE_INT )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:408:3: lv_iteration_3_0= RULE_INT
             {
-            lv_iteration_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIterationPhase989); 
+            lv_iteration_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIterationPhase894); 
 
             			newLeafNode(lv_iteration_3_0, grammarAccess.getIterationPhaseAccess().getIterationINTTerminalRuleCall_3_0()); 
             		
@@ -1113,20 +1010,20 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleIterationPhase1006); 
+            otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleIterationPhase911); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getIterationPhaseAccess().getAsteriskKeyword_4());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:459:1: ( (lv_phase_5_0= ruleAttachedPhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:460:1: (lv_phase_5_0= ruleAttachedPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:428:1: ( (lv_phase_5_0= ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:429:1: (lv_phase_5_0= ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:460:1: (lv_phase_5_0= ruleAttachedPhase )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:461:3: lv_phase_5_0= ruleAttachedPhase
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:429:1: (lv_phase_5_0= ruleAttachedPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:430:3: lv_phase_5_0= ruleAttachedPhase
             {
              
             	        newCompositeNode(grammarAccess.getIterationPhaseAccess().getPhaseAttachedPhaseParserRuleCall_5_0()); 
             	    
-            pushFollow(FOLLOW_ruleAttachedPhase_in_ruleIterationPhase1027);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_ruleIterationPhase932);
             lv_phase_5_0=ruleAttachedPhase();
 
             state._fsp--;
@@ -1148,7 +1045,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleIterationPhase1039); 
+            otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleIterationPhase944); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getIterationPhaseAccess().getRightParenthesisKeyword_6());
                 
@@ -1173,7 +1070,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOptionalPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:489:1: entryRuleOptionalPhase returns [EObject current=null] : iv_ruleOptionalPhase= ruleOptionalPhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:458:1: entryRuleOptionalPhase returns [EObject current=null] : iv_ruleOptionalPhase= ruleOptionalPhase EOF ;
     public final EObject entryRuleOptionalPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1181,17 +1078,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:490:2: (iv_ruleOptionalPhase= ruleOptionalPhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:491:2: iv_ruleOptionalPhase= ruleOptionalPhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:459:2: (iv_ruleOptionalPhase= ruleOptionalPhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:460:2: iv_ruleOptionalPhase= ruleOptionalPhase EOF
             {
              newCompositeNode(grammarAccess.getOptionalPhaseRule()); 
-            pushFollow(FOLLOW_ruleOptionalPhase_in_entryRuleOptionalPhase1075);
+            pushFollow(FOLLOW_ruleOptionalPhase_in_entryRuleOptionalPhase980);
             iv_ruleOptionalPhase=ruleOptionalPhase();
 
             state._fsp--;
 
              current =iv_ruleOptionalPhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOptionalPhase1085); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOptionalPhase990); 
 
             }
 
@@ -1209,7 +1106,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOptionalPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:498:1: ruleOptionalPhase returns [EObject current=null] : (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:467:1: ruleOptionalPhase returns [EObject current=null] : (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' ) ;
     public final EObject ruleOptionalPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1223,17 +1120,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:501:28: ( (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:502:1: (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:470:28: ( (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:471:1: (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:502:1: (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:502:3: otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:471:1: (otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:471:3: otherlv_0= 'Optional' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= '(' ( (lv_phase_3_0= ruleAttachedPhase ) ) otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleOptionalPhase1122); 
+            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleOptionalPhase1027); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getOptionalPhaseAccess().getOptionalKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:506:1: ( (lv_name_1_0= RULE_ID ) )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:475:1: ( (lv_name_1_0= RULE_ID ) )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1242,12 +1139,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:507:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:476:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:507:1: (lv_name_1_0= RULE_ID )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:508:3: lv_name_1_0= RULE_ID
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:476:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:477:3: lv_name_1_0= RULE_ID
                     {
-                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOptionalPhase1139); 
+                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOptionalPhase1044); 
 
                     			newLeafNode(lv_name_1_0, grammarAccess.getOptionalPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
                     		
@@ -1270,20 +1167,20 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleOptionalPhase1157); 
+            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleOptionalPhase1062); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:528:1: ( (lv_phase_3_0= ruleAttachedPhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:529:1: (lv_phase_3_0= ruleAttachedPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:497:1: ( (lv_phase_3_0= ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:498:1: (lv_phase_3_0= ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:529:1: (lv_phase_3_0= ruleAttachedPhase )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:530:3: lv_phase_3_0= ruleAttachedPhase
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:498:1: (lv_phase_3_0= ruleAttachedPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:499:3: lv_phase_3_0= ruleAttachedPhase
             {
              
             	        newCompositeNode(grammarAccess.getOptionalPhaseAccess().getPhaseAttachedPhaseParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleAttachedPhase_in_ruleOptionalPhase1178);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_ruleOptionalPhase1083);
             lv_phase_3_0=ruleAttachedPhase();
 
             state._fsp--;
@@ -1305,7 +1202,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,17,FOLLOW_17_in_ruleOptionalPhase1190); 
+            otherlv_4=(Token)match(input,17,FOLLOW_17_in_ruleOptionalPhase1095); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_4());
                 
@@ -1330,7 +1227,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAttachedPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:558:1: entryRuleAttachedPhase returns [EObject current=null] : iv_ruleAttachedPhase= ruleAttachedPhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:527:1: entryRuleAttachedPhase returns [EObject current=null] : iv_ruleAttachedPhase= ruleAttachedPhase EOF ;
     public final EObject entryRuleAttachedPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1338,17 +1235,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:559:2: (iv_ruleAttachedPhase= ruleAttachedPhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:560:2: iv_ruleAttachedPhase= ruleAttachedPhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:528:2: (iv_ruleAttachedPhase= ruleAttachedPhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:529:2: iv_ruleAttachedPhase= ruleAttachedPhase EOF
             {
              newCompositeNode(grammarAccess.getAttachedPhaseRule()); 
-            pushFollow(FOLLOW_ruleAttachedPhase_in_entryRuleAttachedPhase1226);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_entryRuleAttachedPhase1131);
             iv_ruleAttachedPhase=ruleAttachedPhase();
 
             state._fsp--;
 
              current =iv_ruleAttachedPhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAttachedPhase1236); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAttachedPhase1141); 
 
             }
 
@@ -1366,7 +1263,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAttachedPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:567:1: ruleAttachedPhase returns [EObject current=null] : (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:536:1: ruleAttachedPhase returns [EObject current=null] : (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase ) ;
     public final EObject ruleAttachedPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1378,10 +1275,10 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:570:28: ( (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:571:1: (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:539:28: ( (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:540:1: (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:571:1: (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:540:1: (this_PhaseReference_0= rulePhaseReference | this_NewPhase_1= ruleNewPhase )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1399,12 +1296,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:572:5: this_PhaseReference_0= rulePhaseReference
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:541:5: this_PhaseReference_0= rulePhaseReference
                     {
                      
                             newCompositeNode(grammarAccess.getAttachedPhaseAccess().getPhaseReferenceParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulePhaseReference_in_ruleAttachedPhase1283);
+                    pushFollow(FOLLOW_rulePhaseReference_in_ruleAttachedPhase1188);
                     this_PhaseReference_0=rulePhaseReference();
 
                     state._fsp--;
@@ -1417,12 +1314,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:582:5: this_NewPhase_1= ruleNewPhase
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:551:5: this_NewPhase_1= ruleNewPhase
                     {
                      
                             newCompositeNode(grammarAccess.getAttachedPhaseAccess().getNewPhaseParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleNewPhase_in_ruleAttachedPhase1310);
+                    pushFollow(FOLLOW_ruleNewPhase_in_ruleAttachedPhase1215);
                     this_NewPhase_1=ruleNewPhase();
 
                     state._fsp--;
@@ -1455,7 +1352,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePhaseReference"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:598:1: entryRulePhaseReference returns [EObject current=null] : iv_rulePhaseReference= rulePhaseReference EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:567:1: entryRulePhaseReference returns [EObject current=null] : iv_rulePhaseReference= rulePhaseReference EOF ;
     public final EObject entryRulePhaseReference() throws RecognitionException {
         EObject current = null;
 
@@ -1463,17 +1360,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:599:2: (iv_rulePhaseReference= rulePhaseReference EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:600:2: iv_rulePhaseReference= rulePhaseReference EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:568:2: (iv_rulePhaseReference= rulePhaseReference EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:569:2: iv_rulePhaseReference= rulePhaseReference EOF
             {
              newCompositeNode(grammarAccess.getPhaseReferenceRule()); 
-            pushFollow(FOLLOW_rulePhaseReference_in_entryRulePhaseReference1345);
+            pushFollow(FOLLOW_rulePhaseReference_in_entryRulePhaseReference1250);
             iv_rulePhaseReference=rulePhaseReference();
 
             state._fsp--;
 
              current =iv_rulePhaseReference; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePhaseReference1355); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePhaseReference1260); 
 
             }
 
@@ -1491,7 +1388,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePhaseReference"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:607:1: rulePhaseReference returns [EObject current=null] : ( (otherlv_0= RULE_ID ) ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:576:1: rulePhaseReference returns [EObject current=null] : ( (otherlv_0= RULE_ID ) ) ;
     public final EObject rulePhaseReference() throws RecognitionException {
         EObject current = null;
 
@@ -1500,21 +1397,21 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:610:28: ( ( (otherlv_0= RULE_ID ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:611:1: ( (otherlv_0= RULE_ID ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:579:28: ( ( (otherlv_0= RULE_ID ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:580:1: ( (otherlv_0= RULE_ID ) )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:611:1: ( (otherlv_0= RULE_ID ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:612:1: (otherlv_0= RULE_ID )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:580:1: ( (otherlv_0= RULE_ID ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:581:1: (otherlv_0= RULE_ID )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:612:1: (otherlv_0= RULE_ID )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:613:3: otherlv_0= RULE_ID
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:581:1: (otherlv_0= RULE_ID )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:582:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getPhaseReferenceRule());
             	        }
                     
-            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePhaseReference1399); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePhaseReference1304); 
 
             		newLeafNode(otherlv_0, grammarAccess.getPhaseReferenceAccess().getPhasePhaseCrossReference_0()); 
             	
@@ -1542,7 +1439,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNewPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:632:1: entryRuleNewPhase returns [EObject current=null] : iv_ruleNewPhase= ruleNewPhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:601:1: entryRuleNewPhase returns [EObject current=null] : iv_ruleNewPhase= ruleNewPhase EOF ;
     public final EObject entryRuleNewPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1550,17 +1447,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:633:2: (iv_ruleNewPhase= ruleNewPhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:634:2: iv_ruleNewPhase= ruleNewPhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:602:2: (iv_ruleNewPhase= ruleNewPhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:603:2: iv_ruleNewPhase= ruleNewPhase EOF
             {
              newCompositeNode(grammarAccess.getNewPhaseRule()); 
-            pushFollow(FOLLOW_ruleNewPhase_in_entryRuleNewPhase1434);
+            pushFollow(FOLLOW_ruleNewPhase_in_entryRuleNewPhase1339);
             iv_ruleNewPhase=ruleNewPhase();
 
             state._fsp--;
 
              current =iv_ruleNewPhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNewPhase1444); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNewPhase1349); 
 
             }
 
@@ -1578,7 +1475,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNewPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:641:1: ruleNewPhase returns [EObject current=null] : ( (lv_phase_0_0= rulePhase ) ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:610:1: ruleNewPhase returns [EObject current=null] : ( (lv_phase_0_0= rulePhase ) ) ;
     public final EObject ruleNewPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1588,19 +1485,19 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:644:28: ( ( (lv_phase_0_0= rulePhase ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:645:1: ( (lv_phase_0_0= rulePhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:613:28: ( ( (lv_phase_0_0= rulePhase ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:614:1: ( (lv_phase_0_0= rulePhase ) )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:645:1: ( (lv_phase_0_0= rulePhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:646:1: (lv_phase_0_0= rulePhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:614:1: ( (lv_phase_0_0= rulePhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:615:1: (lv_phase_0_0= rulePhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:646:1: (lv_phase_0_0= rulePhase )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:647:3: lv_phase_0_0= rulePhase
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:615:1: (lv_phase_0_0= rulePhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:616:3: lv_phase_0_0= rulePhase
             {
              
             	        newCompositeNode(grammarAccess.getNewPhaseAccess().getPhasePhaseParserRuleCall_0()); 
             	    
-            pushFollow(FOLLOW_rulePhase_in_ruleNewPhase1489);
+            pushFollow(FOLLOW_rulePhase_in_ruleNewPhase1394);
             lv_phase_0_0=rulePhase();
 
             state._fsp--;
@@ -1640,7 +1537,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAtomicPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:671:1: entryRuleAtomicPhase returns [EObject current=null] : iv_ruleAtomicPhase= ruleAtomicPhase EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:640:1: entryRuleAtomicPhase returns [EObject current=null] : iv_ruleAtomicPhase= ruleAtomicPhase EOF ;
     public final EObject entryRuleAtomicPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1648,17 +1545,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:672:2: (iv_ruleAtomicPhase= ruleAtomicPhase EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:673:2: iv_ruleAtomicPhase= ruleAtomicPhase EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:641:2: (iv_ruleAtomicPhase= ruleAtomicPhase EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:642:2: iv_ruleAtomicPhase= ruleAtomicPhase EOF
             {
              newCompositeNode(grammarAccess.getAtomicPhaseRule()); 
-            pushFollow(FOLLOW_ruleAtomicPhase_in_entryRuleAtomicPhase1524);
+            pushFollow(FOLLOW_ruleAtomicPhase_in_entryRuleAtomicPhase1429);
             iv_ruleAtomicPhase=ruleAtomicPhase();
 
             state._fsp--;
 
              current =iv_ruleAtomicPhase; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAtomicPhase1534); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAtomicPhase1439); 
 
             }
 
@@ -1676,7 +1573,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAtomicPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: ruleAtomicPhase returns [EObject current=null] : (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_atomicname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:649:1: ruleAtomicPhase returns [EObject current=null] : (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) ;
     public final EObject ruleAtomicPhase() throws RecognitionException {
         EObject current = null;
 
@@ -1685,7 +1582,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
         Token otherlv_2=null;
         Token otherlv_4=null;
         Token otherlv_6=null;
-        AntlrDatatypeRuleToken lv_atomicname_3_0 = null;
+        AntlrDatatypeRuleToken lv_classname_3_0 = null;
 
         EObject lv_metrics_5_0 = null;
 
@@ -1693,17 +1590,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:683:28: ( (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_atomicname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:684:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_atomicname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:652:28: ( (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:684:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_atomicname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:684:3: otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_atomicname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:3: otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')'
             {
-            otherlv_0=(Token)match(input,21,FOLLOW_21_in_ruleAtomicPhase1571); 
+            otherlv_0=(Token)match(input,21,FOLLOW_21_in_ruleAtomicPhase1476); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getAtomicPhaseAccess().getAtomicKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:688:1: ( (lv_name_1_0= RULE_ID ) )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:657:1: ( (lv_name_1_0= RULE_ID ) )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1712,12 +1609,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:689:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:658:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:689:1: (lv_name_1_0= RULE_ID )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:690:3: lv_name_1_0= RULE_ID
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:658:1: (lv_name_1_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:659:3: lv_name_1_0= RULE_ID
                     {
-                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAtomicPhase1588); 
+                    lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAtomicPhase1493); 
 
                     			newLeafNode(lv_name_1_0, grammarAccess.getAtomicPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
                     		
@@ -1740,21 +1637,21 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,22,FOLLOW_22_in_ruleAtomicPhase1606); 
+            otherlv_2=(Token)match(input,22,FOLLOW_22_in_ruleAtomicPhase1511); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getAtomicPhaseAccess().getClassNameKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:710:1: ( (lv_atomicname_3_0= ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:711:1: (lv_atomicname_3_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:679:1: ( (lv_classname_3_0= ruleQualifiedName ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: (lv_classname_3_0= ruleQualifiedName )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:711:1: (lv_atomicname_3_0= ruleQualifiedName )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:712:3: lv_atomicname_3_0= ruleQualifiedName
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: (lv_classname_3_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:681:3: lv_classname_3_0= ruleQualifiedName
             {
              
-            	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getAtomicnameQualifiedNameParserRuleCall_3_0()); 
+            	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleAtomicPhase1627);
-            lv_atomicname_3_0=ruleQualifiedName();
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleAtomicPhase1532);
+            lv_classname_3_0=ruleQualifiedName();
 
             state._fsp--;
 
@@ -1764,8 +1661,8 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             	        }
                    		set(
                    			current, 
-                   			"atomicname",
-                    		lv_atomicname_3_0, 
+                   			"classname",
+                    		lv_classname_3_0, 
                     		"QualifiedName");
             	        afterParserOrEnumRuleCall();
             	    
@@ -1775,11 +1672,11 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,23,FOLLOW_23_in_ruleAtomicPhase1639); 
+            otherlv_4=(Token)match(input,23,FOLLOW_23_in_ruleAtomicPhase1544); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:732:1: ( (lv_metrics_5_0= ruleAttachedMetric ) )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:701:1: ( (lv_metrics_5_0= ruleAttachedMetric ) )*
             loop10:
             do {
                 int alt10=2;
@@ -1792,15 +1689,15 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:733:1: (lv_metrics_5_0= ruleAttachedMetric )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:702:1: (lv_metrics_5_0= ruleAttachedMetric )
             	    {
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:733:1: (lv_metrics_5_0= ruleAttachedMetric )
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:734:3: lv_metrics_5_0= ruleAttachedMetric
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:702:1: (lv_metrics_5_0= ruleAttachedMetric )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:703:3: lv_metrics_5_0= ruleAttachedMetric
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getMetricsAttachedMetricParserRuleCall_5_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1660);
+            	    pushFollow(FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1565);
             	    lv_metrics_5_0=ruleAttachedMetric();
 
             	    state._fsp--;
@@ -1828,7 +1725,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleAtomicPhase1673); 
+            otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleAtomicPhase1578); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6());
                 
@@ -1853,7 +1750,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAttachedMetric"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:762:1: entryRuleAttachedMetric returns [EObject current=null] : iv_ruleAttachedMetric= ruleAttachedMetric EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:731:1: entryRuleAttachedMetric returns [EObject current=null] : iv_ruleAttachedMetric= ruleAttachedMetric EOF ;
     public final EObject entryRuleAttachedMetric() throws RecognitionException {
         EObject current = null;
 
@@ -1861,17 +1758,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:763:2: (iv_ruleAttachedMetric= ruleAttachedMetric EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:764:2: iv_ruleAttachedMetric= ruleAttachedMetric EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:732:2: (iv_ruleAttachedMetric= ruleAttachedMetric EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:733:2: iv_ruleAttachedMetric= ruleAttachedMetric EOF
             {
              newCompositeNode(grammarAccess.getAttachedMetricRule()); 
-            pushFollow(FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1709);
+            pushFollow(FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1614);
             iv_ruleAttachedMetric=ruleAttachedMetric();
 
             state._fsp--;
 
              current =iv_ruleAttachedMetric; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAttachedMetric1719); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAttachedMetric1624); 
 
             }
 
@@ -1889,7 +1786,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAttachedMetric"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:771:1: ruleAttachedMetric returns [EObject current=null] : (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:740:1: ruleAttachedMetric returns [EObject current=null] : (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric ) ;
     public final EObject ruleAttachedMetric() throws RecognitionException {
         EObject current = null;
 
@@ -1901,10 +1798,10 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:774:28: ( (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:775:1: (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:743:28: ( (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:744:1: (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:775:1: (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:744:1: (this_MetricTypeReference_0= ruleMetricTypeReference | this_NewMetric_1= ruleNewMetric )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1922,12 +1819,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:776:5: this_MetricTypeReference_0= ruleMetricTypeReference
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:745:5: this_MetricTypeReference_0= ruleMetricTypeReference
                     {
                      
                             newCompositeNode(grammarAccess.getAttachedMetricAccess().getMetricTypeReferenceParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1766);
+                    pushFollow(FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1671);
                     this_MetricTypeReference_0=ruleMetricTypeReference();
 
                     state._fsp--;
@@ -1940,12 +1837,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:786:5: this_NewMetric_1= ruleNewMetric
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:755:5: this_NewMetric_1= ruleNewMetric
                     {
                      
                             newCompositeNode(grammarAccess.getAttachedMetricAccess().getNewMetricParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleNewMetric_in_ruleAttachedMetric1793);
+                    pushFollow(FOLLOW_ruleNewMetric_in_ruleAttachedMetric1698);
                     this_NewMetric_1=ruleNewMetric();
 
                     state._fsp--;
@@ -1978,7 +1875,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMetricTypeReference"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:802:1: entryRuleMetricTypeReference returns [EObject current=null] : iv_ruleMetricTypeReference= ruleMetricTypeReference EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:771:1: entryRuleMetricTypeReference returns [EObject current=null] : iv_ruleMetricTypeReference= ruleMetricTypeReference EOF ;
     public final EObject entryRuleMetricTypeReference() throws RecognitionException {
         EObject current = null;
 
@@ -1986,17 +1883,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:803:2: (iv_ruleMetricTypeReference= ruleMetricTypeReference EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:804:2: iv_ruleMetricTypeReference= ruleMetricTypeReference EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:772:2: (iv_ruleMetricTypeReference= ruleMetricTypeReference EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:773:2: iv_ruleMetricTypeReference= ruleMetricTypeReference EOF
             {
              newCompositeNode(grammarAccess.getMetricTypeReferenceRule()); 
-            pushFollow(FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1828);
+            pushFollow(FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1733);
             iv_ruleMetricTypeReference=ruleMetricTypeReference();
 
             state._fsp--;
 
              current =iv_ruleMetricTypeReference; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMetricTypeReference1838); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMetricTypeReference1743); 
 
             }
 
@@ -2014,7 +1911,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMetricTypeReference"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:811:1: ruleMetricTypeReference returns [EObject current=null] : ( (lv_metric_0_0= ruleMetricType ) ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:780:1: ruleMetricTypeReference returns [EObject current=null] : ( (lv_metric_0_0= ruleMetricType ) ) ;
     public final EObject ruleMetricTypeReference() throws RecognitionException {
         EObject current = null;
 
@@ -2024,19 +1921,19 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:814:28: ( ( (lv_metric_0_0= ruleMetricType ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:815:1: ( (lv_metric_0_0= ruleMetricType ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:783:28: ( ( (lv_metric_0_0= ruleMetricType ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:784:1: ( (lv_metric_0_0= ruleMetricType ) )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:815:1: ( (lv_metric_0_0= ruleMetricType ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:816:1: (lv_metric_0_0= ruleMetricType )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:784:1: ( (lv_metric_0_0= ruleMetricType ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:785:1: (lv_metric_0_0= ruleMetricType )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:816:1: (lv_metric_0_0= ruleMetricType )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:817:3: lv_metric_0_0= ruleMetricType
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:785:1: (lv_metric_0_0= ruleMetricType )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:786:3: lv_metric_0_0= ruleMetricType
             {
              
             	        newCompositeNode(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0()); 
             	    
-            pushFollow(FOLLOW_ruleMetricType_in_ruleMetricTypeReference1883);
+            pushFollow(FOLLOW_ruleMetricType_in_ruleMetricTypeReference1788);
             lv_metric_0_0=ruleMetricType();
 
             state._fsp--;
@@ -2076,7 +1973,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNewMetric"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:841:1: entryRuleNewMetric returns [EObject current=null] : iv_ruleNewMetric= ruleNewMetric EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:810:1: entryRuleNewMetric returns [EObject current=null] : iv_ruleNewMetric= ruleNewMetric EOF ;
     public final EObject entryRuleNewMetric() throws RecognitionException {
         EObject current = null;
 
@@ -2084,17 +1981,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:842:2: (iv_ruleNewMetric= ruleNewMetric EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:843:2: iv_ruleNewMetric= ruleNewMetric EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:811:2: (iv_ruleNewMetric= ruleNewMetric EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:812:2: iv_ruleNewMetric= ruleNewMetric EOF
             {
              newCompositeNode(grammarAccess.getNewMetricRule()); 
-            pushFollow(FOLLOW_ruleNewMetric_in_entryRuleNewMetric1918);
+            pushFollow(FOLLOW_ruleNewMetric_in_entryRuleNewMetric1823);
             iv_ruleNewMetric=ruleNewMetric();
 
             state._fsp--;
 
              current =iv_ruleNewMetric; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNewMetric1928); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNewMetric1833); 
 
             }
 
@@ -2112,7 +2009,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNewMetric"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:850:1: ruleNewMetric returns [EObject current=null] : (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:819:1: ruleNewMetric returns [EObject current=null] : (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) ) ;
     public final EObject ruleNewMetric() throws RecognitionException {
         EObject current = null;
 
@@ -2125,17 +2022,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:853:28: ( (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:854:1: (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:822:28: ( (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:823:1: (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:854:1: (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:854:3: otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:823:1: (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:823:3: otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) )
             {
-            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleNewMetric1965); 
+            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleNewMetric1870); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getNewMetricAccess().getNewMetricKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:858:1: (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:827:1: (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2144,19 +2041,19 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:858:3: otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:827:3: otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) )
                     {
-                    otherlv_1=(Token)match(input,25,FOLLOW_25_in_ruleNewMetric1978); 
+                    otherlv_1=(Token)match(input,25,FOLLOW_25_in_ruleNewMetric1883); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getNewMetricAccess().getIDKeyword_1_0());
                         
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:862:1: ( (lv_name_2_0= RULE_ID ) )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:863:1: (lv_name_2_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:831:1: ( (lv_name_2_0= RULE_ID ) )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:832:1: (lv_name_2_0= RULE_ID )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:863:1: (lv_name_2_0= RULE_ID )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:864:3: lv_name_2_0= RULE_ID
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:832:1: (lv_name_2_0= RULE_ID )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:833:3: lv_name_2_0= RULE_ID
                     {
-                    lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNewMetric1995); 
+                    lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNewMetric1900); 
 
                     			newLeafNode(lv_name_2_0, grammarAccess.getNewMetricAccess().getNameIDTerminalRuleCall_1_1_0()); 
                     		
@@ -2182,16 +2079,16 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:880:4: ( (lv_metricname_3_0= ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:881:1: (lv_metricname_3_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:849:4: ( (lv_metricname_3_0= ruleQualifiedName ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:850:1: (lv_metricname_3_0= ruleQualifiedName )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:881:1: (lv_metricname_3_0= ruleQualifiedName )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:882:3: lv_metricname_3_0= ruleQualifiedName
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:850:1: (lv_metricname_3_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:851:3: lv_metricname_3_0= ruleQualifiedName
             {
              
             	        newCompositeNode(grammarAccess.getNewMetricAccess().getMetricnameQualifiedNameParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleNewMetric2023);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleNewMetric1928);
             lv_metricname_3_0=ruleQualifiedName();
 
             state._fsp--;
@@ -2234,7 +2131,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:906:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:875:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -2242,17 +2139,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:907:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:908:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:876:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:877:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2060);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1965);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
 
              current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName2071); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName1976); 
 
             }
 
@@ -2270,7 +2167,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:915:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:884:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2281,20 +2178,20 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:918:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:887:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:888:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:888:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:888:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2111); 
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2016); 
 
             		current.merge(this_ID_0);
                 
              
                 newLeafNode(this_ID_0, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:926:1: (kw= '.' this_ID_2= RULE_ID )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:895:1: (kw= '.' this_ID_2= RULE_ID )*
             loop13:
             do {
                 int alt13=2;
@@ -2307,14 +2204,14 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:927:2: kw= '.' this_ID_2= RULE_ID
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:896:2: kw= '.' this_ID_2= RULE_ID
             	    {
-            	    kw=(Token)match(input,26,FOLLOW_26_in_ruleQualifiedName2130); 
+            	    kw=(Token)match(input,26,FOLLOW_26_in_ruleQualifiedName2035); 
 
             	            current.merge(kw);
             	            newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             	        
-            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2145); 
+            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2050); 
 
             	    		current.merge(this_ID_2);
             	        
@@ -2351,7 +2248,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMetricType"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:947:1: ruleMetricType returns [Enumerator current=null] : ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:916:1: ruleMetricType returns [Enumerator current=null] : ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) ) ;
     public final Enumerator ruleMetricType() throws RecognitionException {
         Enumerator current = null;
 
@@ -2361,10 +2258,10 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:949:28: ( ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:950:1: ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:918:28: ( ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:1: ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:950:1: ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:1: ( (enumLiteral_0= 'Time' ) | (enumLiteral_1= 'Memory' ) | (enumLiteral_2= 'Scalar' ) )
             int alt14=3;
             switch ( input.LA(1) ) {
             case 27:
@@ -2391,12 +2288,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             switch (alt14) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:950:2: (enumLiteral_0= 'Time' )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:2: (enumLiteral_0= 'Time' )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:950:2: (enumLiteral_0= 'Time' )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:950:4: enumLiteral_0= 'Time'
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:2: (enumLiteral_0= 'Time' )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:4: enumLiteral_0= 'Time'
                     {
-                    enumLiteral_0=(Token)match(input,27,FOLLOW_27_in_ruleMetricType2206); 
+                    enumLiteral_0=(Token)match(input,27,FOLLOW_27_in_ruleMetricType2111); 
 
                             current = grammarAccess.getMetricTypeAccess().getTimeEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getMetricTypeAccess().getTimeEnumLiteralDeclaration_0()); 
@@ -2408,12 +2305,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:956:6: (enumLiteral_1= 'Memory' )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:925:6: (enumLiteral_1= 'Memory' )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:956:6: (enumLiteral_1= 'Memory' )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:956:8: enumLiteral_1= 'Memory'
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:925:6: (enumLiteral_1= 'Memory' )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:925:8: enumLiteral_1= 'Memory'
                     {
-                    enumLiteral_1=(Token)match(input,28,FOLLOW_28_in_ruleMetricType2223); 
+                    enumLiteral_1=(Token)match(input,28,FOLLOW_28_in_ruleMetricType2128); 
 
                             current = grammarAccess.getMetricTypeAccess().getMemoryEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getMetricTypeAccess().getMemoryEnumLiteralDeclaration_1()); 
@@ -2425,12 +2322,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:962:6: (enumLiteral_2= 'Scalar' )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:931:6: (enumLiteral_2= 'Scalar' )
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:962:6: (enumLiteral_2= 'Scalar' )
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:962:8: enumLiteral_2= 'Scalar'
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:931:6: (enumLiteral_2= 'Scalar' )
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:931:8: enumLiteral_2= 'Scalar'
                     {
-                    enumLiteral_2=(Token)match(input,29,FOLLOW_29_in_ruleMetricType2240); 
+                    enumLiteral_2=(Token)match(input,29,FOLLOW_29_in_ruleMetricType2145); 
 
                             current = grammarAccess.getMetricTypeAccess().getScalarEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getMetricTypeAccess().getScalarEnumLiteralDeclaration_2()); 
@@ -2467,91 +2364,88 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleBenchmark_in_entryRuleBenchmark75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBenchmark85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleElement_in_ruleBenchmark130 = new BitSet(new long[]{0x0000000000349802L});
-    public static final BitSet FOLLOW_ruleElement_in_entryRuleElement166 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleElement176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleScenario_in_ruleElement223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhase_in_ruleElement250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePackageDeclaration_in_ruleElement277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePackageDeclaration_in_entryRulePackageDeclaration312 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePackageDeclaration322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rulePackageDeclaration359 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rulePackageDeclaration380 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleScenario_in_entryRuleScenario416 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleScenario426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleScenario463 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleScenario484 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleScenario496 = new BitSet(new long[]{0x0000000000348000L});
-    public static final BitSet FOLLOW_rulePhase_in_ruleScenario517 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleScenario529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhase_in_entryRulePhase565 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePhase575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSequencePhase_in_rulePhase622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationPhase_in_rulePhase649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOptionalPhase_in_rulePhase676 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAtomicPhase_in_rulePhase703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSequencePhase_in_entryRuleSequencePhase738 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSequencePhase748 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleSequencePhase785 = new BitSet(new long[]{0x0000000000010010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleSequencePhase802 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleSequencePhase820 = new BitSet(new long[]{0x0000000000348010L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleSequencePhase841 = new BitSet(new long[]{0x0000000000368010L});
-    public static final BitSet FOLLOW_17_in_ruleSequencePhase854 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationPhase_in_entryRuleIterationPhase890 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIterationPhase900 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleIterationPhase937 = new BitSet(new long[]{0x0000000000010010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleIterationPhase954 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleIterationPhase972 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIterationPhase989 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleIterationPhase1006 = new BitSet(new long[]{0x0000000000348010L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleIterationPhase1027 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleIterationPhase1039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOptionalPhase_in_entryRuleOptionalPhase1075 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOptionalPhase1085 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleOptionalPhase1122 = new BitSet(new long[]{0x0000000000010010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleOptionalPhase1139 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleOptionalPhase1157 = new BitSet(new long[]{0x0000000000348010L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleOptionalPhase1178 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleOptionalPhase1190 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_entryRuleAttachedPhase1226 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAttachedPhase1236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhaseReference_in_ruleAttachedPhase1283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNewPhase_in_ruleAttachedPhase1310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhaseReference_in_entryRulePhaseReference1345 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePhaseReference1355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePhaseReference1399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNewPhase_in_entryRuleNewPhase1434 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNewPhase1444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhase_in_ruleNewPhase1489 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAtomicPhase_in_entryRuleAtomicPhase1524 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAtomicPhase1534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleAtomicPhase1571 = new BitSet(new long[]{0x0000000000400010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleAtomicPhase1588 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ruleAtomicPhase1606 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleAtomicPhase1627 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleAtomicPhase1639 = new BitSet(new long[]{0x0000000039020000L});
-    public static final BitSet FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1660 = new BitSet(new long[]{0x0000000039020000L});
-    public static final BitSet FOLLOW_17_in_ruleAtomicPhase1673 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1709 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAttachedMetric1719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNewMetric_in_ruleAttachedMetric1793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1828 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMetricTypeReference1838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricType_in_ruleMetricTypeReference1883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNewMetric_in_entryRuleNewMetric1918 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNewMetric1928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleNewMetric1965 = new BitSet(new long[]{0x0000000002000010L});
-    public static final BitSet FOLLOW_25_in_ruleNewMetric1978 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleNewMetric1995 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNewMetric2023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2060 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName2071 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2111 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_ruleQualifiedName2130 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2145 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_27_in_ruleMetricType2206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleMetricType2223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleMetricType2240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_ruleBenchmark122 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleBenchmark143 = new BitSet(new long[]{0x0000000000349002L});
+    public static final BitSet FOLLOW_ruleElement_in_ruleBenchmark164 = new BitSet(new long[]{0x0000000000349002L});
+    public static final BitSet FOLLOW_ruleElement_in_entryRuleElement201 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleElement211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleScenario_in_ruleElement258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhase_in_ruleElement285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleScenario_in_entryRuleScenario320 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleScenario330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleScenario367 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleScenario384 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleScenario401 = new BitSet(new long[]{0x0000000000349000L});
+    public static final BitSet FOLLOW_rulePhase_in_ruleScenario422 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleScenario434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhase_in_entryRulePhase470 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePhase480 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequencePhase_in_rulePhase527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationPhase_in_rulePhase554 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOptionalPhase_in_rulePhase581 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAtomicPhase_in_rulePhase608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequencePhase_in_entryRuleSequencePhase643 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSequencePhase653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_ruleSequencePhase690 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSequencePhase707 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleSequencePhase725 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleSequencePhase746 = new BitSet(new long[]{0x0000000000369020L});
+    public static final BitSet FOLLOW_17_in_ruleSequencePhase759 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationPhase_in_entryRuleIterationPhase795 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIterationPhase805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleIterationPhase842 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleIterationPhase859 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleIterationPhase877 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleIterationPhase894 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleIterationPhase911 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleIterationPhase932 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleIterationPhase944 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOptionalPhase_in_entryRuleOptionalPhase980 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOptionalPhase990 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleOptionalPhase1027 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleOptionalPhase1044 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleOptionalPhase1062 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleOptionalPhase1083 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleOptionalPhase1095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_entryRuleAttachedPhase1131 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAttachedPhase1141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhaseReference_in_ruleAttachedPhase1188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNewPhase_in_ruleAttachedPhase1215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhaseReference_in_entryRulePhaseReference1250 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePhaseReference1260 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePhaseReference1304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNewPhase_in_entryRuleNewPhase1339 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNewPhase1349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhase_in_ruleNewPhase1394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAtomicPhase_in_entryRuleAtomicPhase1429 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAtomicPhase1439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleAtomicPhase1476 = new BitSet(new long[]{0x0000000000400020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleAtomicPhase1493 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleAtomicPhase1511 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleAtomicPhase1532 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleAtomicPhase1544 = new BitSet(new long[]{0x0000000039020000L});
+    public static final BitSet FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1565 = new BitSet(new long[]{0x0000000039020000L});
+    public static final BitSet FOLLOW_17_in_ruleAtomicPhase1578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1614 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAttachedMetric1624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNewMetric_in_ruleAttachedMetric1698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1733 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMetricTypeReference1743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricType_in_ruleMetricTypeReference1788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNewMetric_in_entryRuleNewMetric1823 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNewMetric1833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleNewMetric1870 = new BitSet(new long[]{0x0000000002000020L});
+    public static final BitSet FOLLOW_25_in_ruleNewMetric1883 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleNewMetric1900 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNewMetric1928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1965 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName1976 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2016 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_26_in_ruleQualifiedName2035 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2050 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_27_in_ruleMetricType2111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleMetricType2128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleMetricType2145 = new BitSet(new long[]{0x0000000000000002L});
 
 }

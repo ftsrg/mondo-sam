@@ -15,7 +15,6 @@ import eu.mondo.sam.domain.benchmark.MetricTypeReference;
 import eu.mondo.sam.domain.benchmark.NewMetric;
 import eu.mondo.sam.domain.benchmark.NewPhase;
 import eu.mondo.sam.domain.benchmark.OptionalPhase;
-import eu.mondo.sam.domain.benchmark.PackageDeclaration;
 import eu.mondo.sam.domain.benchmark.Phase;
 import eu.mondo.sam.domain.benchmark.PhaseReference;
 import eu.mondo.sam.domain.benchmark.Scenario;
@@ -50,13 +49,6 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * @generated
    */
   private EClass elementEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass packageDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -227,9 +219,19 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getBenchmark_PackageName()
+  {
+    return (EAttribute)benchmarkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getBenchmark_Elements()
   {
-    return (EReference)benchmarkEClass.getEStructuralFeatures().get(0);
+    return (EReference)benchmarkEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -247,26 +249,6 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPackageDeclaration()
-  {
-    return packageDeclarationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPackageDeclaration_Name()
-  {
-    return (EAttribute)packageDeclarationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getScenario()
   {
     return scenarioEClass;
@@ -277,7 +259,7 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getScenario_Scenarioname()
+  public EAttribute getScenario_Classname()
   {
     return (EAttribute)scenarioEClass.getEStructuralFeatures().get(0);
   }
@@ -447,7 +429,7 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAtomicPhase_Atomicname()
+  public EAttribute getAtomicPhase_Classname()
   {
     return (EAttribute)atomicPhaseEClass.getEStructuralFeatures().get(0);
   }
@@ -563,15 +545,13 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
 
     // Create classes and their features
     benchmarkEClass = createEClass(BENCHMARK);
+    createEAttribute(benchmarkEClass, BENCHMARK__PACKAGE_NAME);
     createEReference(benchmarkEClass, BENCHMARK__ELEMENTS);
 
     elementEClass = createEClass(ELEMENT);
 
-    packageDeclarationEClass = createEClass(PACKAGE_DECLARATION);
-    createEAttribute(packageDeclarationEClass, PACKAGE_DECLARATION__NAME);
-
     scenarioEClass = createEClass(SCENARIO);
-    createEAttribute(scenarioEClass, SCENARIO__SCENARIONAME);
+    createEAttribute(scenarioEClass, SCENARIO__CLASSNAME);
     createEReference(scenarioEClass, SCENARIO__ROOT_PHASE);
 
     phaseEClass = createEClass(PHASE);
@@ -596,7 +576,7 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     createEReference(newPhaseEClass, NEW_PHASE__PHASE);
 
     atomicPhaseEClass = createEClass(ATOMIC_PHASE);
-    createEAttribute(atomicPhaseEClass, ATOMIC_PHASE__ATOMICNAME);
+    createEAttribute(atomicPhaseEClass, ATOMIC_PHASE__CLASSNAME);
     createEReference(atomicPhaseEClass, ATOMIC_PHASE__METRICS);
 
     attachedMetricEClass = createEClass(ATTACHED_METRIC);
@@ -641,7 +621,6 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    packageDeclarationEClass.getESuperTypes().add(this.getElement());
     scenarioEClass.getESuperTypes().add(this.getElement());
     phaseEClass.getESuperTypes().add(this.getElement());
     sequencePhaseEClass.getESuperTypes().add(this.getPhase());
@@ -655,15 +634,13 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
 
     // Initialize classes and features; add operations and parameters
     initEClass(benchmarkEClass, Benchmark.class, "Benchmark", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBenchmark_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, Benchmark.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBenchmark_Elements(), this.getElement(), null, "elements", null, 0, -1, Benchmark.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPackageDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, PackageDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getScenario_Scenarioname(), ecorePackage.getEString(), "scenarioname", null, 0, 1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getScenario_Classname(), ecorePackage.getEString(), "classname", null, 0, 1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenario_RootPhase(), this.getPhase(), null, "rootPhase", null, 0, 1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(phaseEClass, Phase.class, "Phase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -688,7 +665,7 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     initEReference(getNewPhase_Phase(), this.getPhase(), null, "phase", null, 0, 1, NewPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(atomicPhaseEClass, AtomicPhase.class, "AtomicPhase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAtomicPhase_Atomicname(), ecorePackage.getEString(), "atomicname", null, 0, 1, AtomicPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAtomicPhase_Classname(), ecorePackage.getEString(), "classname", null, 0, 1, AtomicPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAtomicPhase_Metrics(), this.getAttachedMetric(), null, "metrics", null, 0, -1, AtomicPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attachedMetricEClass, AttachedMetric.class, "AttachedMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

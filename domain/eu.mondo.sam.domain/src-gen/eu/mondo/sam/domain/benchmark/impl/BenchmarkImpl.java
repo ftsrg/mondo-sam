@@ -8,6 +8,7 @@ import eu.mondo.sam.domain.benchmark.Element;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -27,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.impl.BenchmarkImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link eu.mondo.sam.domain.benchmark.impl.BenchmarkImpl#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
@@ -35,6 +38,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class BenchmarkImpl extends MinimalEObjectImpl.Container implements Benchmark
 {
+  /**
+   * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPackageName()
+   * @generated
+   * @ordered
+   */
+  protected static final String PACKAGE_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPackageName()
+   * @generated
+   * @ordered
+   */
+  protected String packageName = PACKAGE_NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -64,6 +87,29 @@ public class BenchmarkImpl extends MinimalEObjectImpl.Container implements Bench
   protected EClass eStaticClass()
   {
     return BenchmarkPackage.Literals.BENCHMARK;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getPackageName()
+  {
+    return packageName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPackageName(String newPackageName)
+  {
+    String oldPackageName = packageName;
+    packageName = newPackageName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.BENCHMARK__PACKAGE_NAME, oldPackageName, packageName));
   }
 
   /**
@@ -106,6 +152,8 @@ public class BenchmarkImpl extends MinimalEObjectImpl.Container implements Bench
   {
     switch (featureID)
     {
+      case BenchmarkPackage.BENCHMARK__PACKAGE_NAME:
+        return getPackageName();
       case BenchmarkPackage.BENCHMARK__ELEMENTS:
         return getElements();
     }
@@ -123,6 +171,9 @@ public class BenchmarkImpl extends MinimalEObjectImpl.Container implements Bench
   {
     switch (featureID)
     {
+      case BenchmarkPackage.BENCHMARK__PACKAGE_NAME:
+        setPackageName((String)newValue);
+        return;
       case BenchmarkPackage.BENCHMARK__ELEMENTS:
         getElements().clear();
         getElements().addAll((Collection<? extends Element>)newValue);
@@ -141,6 +192,9 @@ public class BenchmarkImpl extends MinimalEObjectImpl.Container implements Bench
   {
     switch (featureID)
     {
+      case BenchmarkPackage.BENCHMARK__PACKAGE_NAME:
+        setPackageName(PACKAGE_NAME_EDEFAULT);
+        return;
       case BenchmarkPackage.BENCHMARK__ELEMENTS:
         getElements().clear();
         return;
@@ -158,10 +212,29 @@ public class BenchmarkImpl extends MinimalEObjectImpl.Container implements Bench
   {
     switch (featureID)
     {
+      case BenchmarkPackage.BENCHMARK__PACKAGE_NAME:
+        return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
       case BenchmarkPackage.BENCHMARK__ELEMENTS:
         return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (packageName: ");
+    result.append(packageName);
+    result.append(')');
+    return result.toString();
   }
 
 } //BenchmarkImpl

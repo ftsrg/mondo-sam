@@ -6,6 +6,15 @@ package eu.mondo.sam.domain.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import eu.mondo.sam.domain.benchmark.Scenario
+import java.util.List
+import eu.mondo.sam.domain.benchmark.Element
+import eu.mondo.sam.domain.benchmark.AtomicPhase
+import eu.mondo.sam.domain.benchmark.OptionalPhase
+import eu.mondo.sam.domain.benchmark.Benchmark
+import org.eclipse.xtext.generator.OutputConfiguration
+import eu.mondo.sam.domain.OutputConfigurationProvider
+
 //import org.eclipse.xtext.generator.IFileSystemAccessExtension2
 //import org.eclipse.xtext.xbase.file.JavaIOFileSystemSupport
 
@@ -17,10 +26,59 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 class BenchmarkGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+//		val OutputConfiguration defaultOutput = new OutputConfiguration(IFileSystemAccess.DEFAULT_OUTPUT);
+//    	defaultOutput.setDescription("Output Folder");
+//	    defaultOutput.setOutputDirectory("./src");
+//	    defaultOutput.setOverrideExistingResources(true);
+//	    defaultOutput.setCreateOutputDirectory(true);
+//	    defaultOutput.setCleanUpDerivedResources(true);
+//	    defaultOutput.setSetDerivedProperty(true);
+		
+		val Benchmark benchmark = resource.contents.head as Benchmark
+		for (Element element : benchmark.elements){
+			element.generate(fsa, benchmark)
+		}
+	}
+	
+	def dispatch generate(Scenario scenario, IFileSystemAccess fsa, Benchmark bench){
+		
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/scenarios/«scenario.classname».java''', IFileSystemAccess.DEFAULT_OUTPUT,
+		'''
+		package «bench.packageName».scenarios;
+		
+		import eu.mondo.sam.core.scenarios.BenchmarkScenario;
+		import eu.mondo.sam.core.results.CaseDescriptor;
+		
+		
+		public class «scenario.classname» extends BenchmarkScenario {
+
+			/**
+			* Builds an arbitrary phase hierarchy where the leafs represent the
+			* AtomicPhase objects.
+			*/
+			@Override
+			public void build() {
+				
+			}
+
+		    /**
+			* Instantiates a CaseDescriptor object.
+			* @see CaseDescriptor
+			* 
+			* @return CaseDescriptor with every one of its field being initialized.
+			*/
+			@Override
+			public CaseDescriptor getCaseDescriptor() {
+				// TODO Instantiates a CaseDescriptor object
+				return null;
+			}
+			
+			
+		}
+		''')
+	}
+	
+	def dispatch generate(Element element, IFileSystemAccess fsa, Benchmark bench){
+		
 	}
 }

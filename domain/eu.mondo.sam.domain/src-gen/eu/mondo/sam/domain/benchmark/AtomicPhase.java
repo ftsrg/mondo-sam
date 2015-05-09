@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getAtomicname <em>Atomicname</em>}</li>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getClassname <em>Classname</em>}</li>
  *   <li>{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getMetrics <em>Metrics</em>}</li>
  * </ul>
  * </p>
@@ -24,30 +24,30 @@ import org.eclipse.emf.common.util.EList;
 public interface AtomicPhase extends Phase
 {
   /**
-   * Returns the value of the '<em><b>Atomicname</b></em>' attribute.
+   * Returns the value of the '<em><b>Classname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Atomicname</em>' attribute isn't clear,
+   * If the meaning of the '<em>Classname</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Atomicname</em>' attribute.
-   * @see #setAtomicname(String)
-   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getAtomicPhase_Atomicname()
+   * @return the value of the '<em>Classname</em>' attribute.
+   * @see #setClassname(String)
+   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getAtomicPhase_Classname()
    * @model
    * @generated
    */
-  String getAtomicname();
+  String getClassname();
 
   /**
-   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getAtomicname <em>Atomicname</em>}' attribute.
+   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getClassname <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Atomicname</em>' attribute.
-   * @see #getAtomicname()
+   * @param value the new value of the '<em>Classname</em>' attribute.
+   * @see #getClassname()
    * @generated
    */
-  void setAtomicname(String value);
+  void setClassname(String value);
 
   /**
    * Returns the value of the '<em><b>Metrics</b></em>' containment reference list.

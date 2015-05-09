@@ -42,7 +42,7 @@ public class BenchmarkParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAttachedPhaseAccess().getAlternatives(), "rule__AttachedPhase__Alternatives");
 					put(grammarAccess.getAttachedMetricAccess().getAlternatives(), "rule__AttachedMetric__Alternatives");
 					put(grammarAccess.getMetricTypeAccess().getAlternatives(), "rule__MetricType__Alternatives");
-					put(grammarAccess.getPackageDeclarationAccess().getGroup(), "rule__PackageDeclaration__Group__0");
+					put(grammarAccess.getBenchmarkAccess().getGroup(), "rule__Benchmark__Group__0");
 					put(grammarAccess.getScenarioAccess().getGroup(), "rule__Scenario__Group__0");
 					put(grammarAccess.getSequencePhaseAccess().getGroup(), "rule__SequencePhase__Group__0");
 					put(grammarAccess.getIterationPhaseAccess().getGroup(), "rule__IterationPhase__Group__0");
@@ -52,9 +52,9 @@ public class BenchmarkParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNewMetricAccess().getGroup_1(), "rule__NewMetric__Group_1__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getBenchmarkAccess().getElementsAssignment(), "rule__Benchmark__ElementsAssignment");
-					put(grammarAccess.getPackageDeclarationAccess().getNameAssignment_1(), "rule__PackageDeclaration__NameAssignment_1");
-					put(grammarAccess.getScenarioAccess().getScenarionameAssignment_1(), "rule__Scenario__ScenarionameAssignment_1");
+					put(grammarAccess.getBenchmarkAccess().getPackageNameAssignment_1(), "rule__Benchmark__PackageNameAssignment_1");
+					put(grammarAccess.getBenchmarkAccess().getElementsAssignment_2(), "rule__Benchmark__ElementsAssignment_2");
+					put(grammarAccess.getScenarioAccess().getClassnameAssignment_1(), "rule__Scenario__ClassnameAssignment_1");
 					put(grammarAccess.getScenarioAccess().getRootPhaseAssignment_3(), "rule__Scenario__RootPhaseAssignment_3");
 					put(grammarAccess.getSequencePhaseAccess().getNameAssignment_1(), "rule__SequencePhase__NameAssignment_1");
 					put(grammarAccess.getSequencePhaseAccess().getPhasesAssignment_3(), "rule__SequencePhase__PhasesAssignment_3");
@@ -66,7 +66,7 @@ public class BenchmarkParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPhaseReferenceAccess().getPhaseAssignment(), "rule__PhaseReference__PhaseAssignment");
 					put(grammarAccess.getNewPhaseAccess().getPhaseAssignment(), "rule__NewPhase__PhaseAssignment");
 					put(grammarAccess.getAtomicPhaseAccess().getNameAssignment_1(), "rule__AtomicPhase__NameAssignment_1");
-					put(grammarAccess.getAtomicPhaseAccess().getAtomicnameAssignment_3(), "rule__AtomicPhase__AtomicnameAssignment_3");
+					put(grammarAccess.getAtomicPhaseAccess().getClassnameAssignment_3(), "rule__AtomicPhase__ClassnameAssignment_3");
 					put(grammarAccess.getAtomicPhaseAccess().getMetricsAssignment_5(), "rule__AtomicPhase__MetricsAssignment_5");
 					put(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment(), "rule__MetricTypeReference__MetricAssignment");
 					put(grammarAccess.getNewMetricAccess().getNameAssignment_1_1(), "rule__NewMetric__NameAssignment_1_1");

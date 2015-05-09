@@ -13,14 +13,12 @@
       <genEnumLiterals ecoreEnumLiteral="Benchmark.ecore#//MetricType/Scalar"/>
     </genEnums>
     <genClasses ecoreClass="Benchmark.ecore#//Benchmark">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//Benchmark/packageName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//Benchmark/elements"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//Element"/>
-    <genClasses ecoreClass="Benchmark.ecore#//PackageDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//PackageDeclaration/name"/>
-    </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//Scenario">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//Scenario/scenarioname"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//Scenario/classname"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//Scenario/rootPhase"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//Phase">
@@ -44,7 +42,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//NewPhase/phase"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//AtomicPhase">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//AtomicPhase/atomicname"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//AtomicPhase/classname"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//AtomicPhase/metrics"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//AttachedMetric"/>

@@ -20,18 +20,34 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class BenchmarkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Benchmark");
-		private final Assignment cElementsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cElementsElementParserRuleCall_0 = (RuleCall)cElementsAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPackageNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPackageNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cPackageNameAssignment_1.eContents().get(0);
+		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementsElementParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
 		
 		//Benchmark:
-		//	elements+=Element*;
+		//	"package" packageName=QualifiedName elements+=Element*;
 		public ParserRule getRule() { return rule; }
 
+		//"package" packageName=QualifiedName elements+=Element*
+		public Group getGroup() { return cGroup; }
+
+		//"package"
+		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+
+		//packageName=QualifiedName
+		public Assignment getPackageNameAssignment_1() { return cPackageNameAssignment_1; }
+
+		//QualifiedName
+		public RuleCall getPackageNameQualifiedNameParserRuleCall_1_0() { return cPackageNameQualifiedNameParserRuleCall_1_0; }
+
 		//elements+=Element*
-		public Assignment getElementsAssignment() { return cElementsAssignment; }
+		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
 
 		//Element
-		public RuleCall getElementsElementParserRuleCall_0() { return cElementsElementParserRuleCall_0; }
+		public RuleCall getElementsElementParserRuleCall_2_0() { return cElementsElementParserRuleCall_2_0; }
 	}
 
 	public class ElementElements extends AbstractParserRuleElementFinder {
@@ -39,13 +55,12 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cScenarioParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPhaseParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPackageDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Element:
-		//	Scenario | Phase | PackageDeclaration;
+		//	Scenario | Phase;
 		public ParserRule getRule() { return rule; }
 
-		//Scenario | Phase | PackageDeclaration
+		//Scenario | Phase
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Scenario
@@ -53,61 +68,34 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Phase
 		public RuleCall getPhaseParserRuleCall_1() { return cPhaseParserRuleCall_1; }
-
-		//PackageDeclaration
-		public RuleCall getPackageDeclarationParserRuleCall_2() { return cPackageDeclarationParserRuleCall_2; }
-	}
-
-	public class PackageDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		
-		//PackageDeclaration:
-		//	"package" name=QualifiedName;
-		public ParserRule getRule() { return rule; }
-
-		//"package" name=QualifiedName
-		public Group getGroup() { return cGroup; }
-
-		//"package"
-		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
-
-		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
 	}
 
 	public class ScenarioElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Scenario");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cScenarioKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cScenarionameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cScenarionameQualifiedNameParserRuleCall_1_0 = (RuleCall)cScenarionameAssignment_1.eContents().get(0);
+		private final Assignment cClassnameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cClassnameSTRINGTerminalRuleCall_1_0 = (RuleCall)cClassnameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cRootPhaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootPhasePhaseParserRuleCall_3_0 = (RuleCall)cRootPhaseAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Scenario:
-		//	"Scenario" scenarioname=QualifiedName "{" rootPhase=Phase "}";
+		//	"Scenario" classname=STRING "{" rootPhase=Phase "}";
 		public ParserRule getRule() { return rule; }
 
-		//"Scenario" scenarioname=QualifiedName "{" rootPhase=Phase "}"
+		//"Scenario" classname=STRING "{" rootPhase=Phase "}"
 		public Group getGroup() { return cGroup; }
 
 		//"Scenario"
 		public Keyword getScenarioKeyword_0() { return cScenarioKeyword_0; }
 
-		//scenarioname=QualifiedName
-		public Assignment getScenarionameAssignment_1() { return cScenarionameAssignment_1; }
+		//classname=STRING
+		public Assignment getClassnameAssignment_1() { return cClassnameAssignment_1; }
 
-		//QualifiedName
-		public RuleCall getScenarionameQualifiedNameParserRuleCall_1_0() { return cScenarionameQualifiedNameParserRuleCall_1_0; }
+		//STRING
+		public RuleCall getClassnameSTRINGTerminalRuleCall_1_0() { return cClassnameSTRINGTerminalRuleCall_1_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -345,18 +333,18 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cClassNameKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cAtomicnameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cAtomicnameQualifiedNameParserRuleCall_3_0 = (RuleCall)cAtomicnameAssignment_3.eContents().get(0);
+		private final Assignment cClassnameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cClassnameQualifiedNameParserRuleCall_3_0 = (RuleCall)cClassnameAssignment_3.eContents().get(0);
 		private final Keyword cMetricsKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cMetricsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cMetricsAttachedMetricParserRuleCall_5_0 = (RuleCall)cMetricsAssignment_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//AtomicPhase:
-		//	"Atomic" name=ID? "ClassName" atomicname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")";
+		//	"Atomic" name=ID? "ClassName" classname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")";
 		public ParserRule getRule() { return rule; }
 
-		//"Atomic" name=ID? "ClassName" atomicname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")"
+		//"Atomic" name=ID? "ClassName" classname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")"
 		public Group getGroup() { return cGroup; }
 
 		//"Atomic"
@@ -371,11 +359,11 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//"ClassName"
 		public Keyword getClassNameKeyword_2() { return cClassNameKeyword_2; }
 
-		//atomicname=QualifiedName
-		public Assignment getAtomicnameAssignment_3() { return cAtomicnameAssignment_3; }
+		//classname=QualifiedName
+		public Assignment getClassnameAssignment_3() { return cClassnameAssignment_3; }
 
 		//QualifiedName
-		public RuleCall getAtomicnameQualifiedNameParserRuleCall_3_0() { return cAtomicnameQualifiedNameParserRuleCall_3_0; }
+		public RuleCall getClassnameQualifiedNameParserRuleCall_3_0() { return cClassnameQualifiedNameParserRuleCall_3_0; }
 
 		//"Metrics("
 		public Keyword getMetricsKeyword_4() { return cMetricsKeyword_4; }
@@ -533,7 +521,6 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final BenchmarkElements pBenchmark;
 	private final ElementElements pElement;
-	private final PackageDeclarationElements pPackageDeclaration;
 	private final ScenarioElements pScenario;
 	private final PhaseElements pPhase;
 	private final SequencePhaseElements pSequencePhase;
@@ -560,7 +547,6 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pBenchmark = new BenchmarkElements();
 		this.pElement = new ElementElements();
-		this.pPackageDeclaration = new PackageDeclarationElements();
 		this.pScenario = new ScenarioElements();
 		this.pPhase = new PhaseElements();
 		this.pSequencePhase = new SequencePhaseElements();
@@ -605,7 +591,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Benchmark:
-	//	elements+=Element*;
+	//	"package" packageName=QualifiedName elements+=Element*;
 	public BenchmarkElements getBenchmarkAccess() {
 		return pBenchmark;
 	}
@@ -615,7 +601,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Element:
-	//	Scenario | Phase | PackageDeclaration;
+	//	Scenario | Phase;
 	public ElementElements getElementAccess() {
 		return pElement;
 	}
@@ -624,18 +610,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		return getElementAccess().getRule();
 	}
 
-	//PackageDeclaration:
-	//	"package" name=QualifiedName;
-	public PackageDeclarationElements getPackageDeclarationAccess() {
-		return pPackageDeclaration;
-	}
-	
-	public ParserRule getPackageDeclarationRule() {
-		return getPackageDeclarationAccess().getRule();
-	}
-
 	//Scenario:
-	//	"Scenario" scenarioname=QualifiedName "{" rootPhase=Phase "}";
+	//	"Scenario" classname=STRING "{" rootPhase=Phase "}";
 	public ScenarioElements getScenarioAccess() {
 		return pScenario;
 	}
@@ -715,7 +691,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AtomicPhase:
-	//	"Atomic" name=ID? "ClassName" atomicname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")";
+	//	"Atomic" name=ID? "ClassName" classname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")";
 	public AtomicPhaseElements getAtomicPhaseAccess() {
 		return pAtomicPhase;
 	}

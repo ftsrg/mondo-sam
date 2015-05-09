@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link eu.mondo.sam.domain.benchmark.impl.AtomicPhaseImpl#getAtomicname <em>Atomicname</em>}</li>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.impl.AtomicPhaseImpl#getClassname <em>Classname</em>}</li>
  *   <li>{@link eu.mondo.sam.domain.benchmark.impl.AtomicPhaseImpl#getMetrics <em>Metrics</em>}</li>
  * </ul>
  * </p>
@@ -38,24 +38,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
 {
   /**
-   * The default value of the '{@link #getAtomicname() <em>Atomicname</em>}' attribute.
+   * The default value of the '{@link #getClassname() <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAtomicname()
+   * @see #getClassname()
    * @generated
    * @ordered
    */
-  protected static final String ATOMICNAME_EDEFAULT = null;
+  protected static final String CLASSNAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getAtomicname() <em>Atomicname</em>}' attribute.
+   * The cached value of the '{@link #getClassname() <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAtomicname()
+   * @see #getClassname()
    * @generated
    * @ordered
    */
-  protected String atomicname = ATOMICNAME_EDEFAULT;
+  protected String classname = CLASSNAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getMetrics() <em>Metrics</em>}' containment reference list.
@@ -93,9 +93,9 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getAtomicname()
+  public String getClassname()
   {
-    return atomicname;
+    return classname;
   }
 
   /**
@@ -103,12 +103,12 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAtomicname(String newAtomicname)
+  public void setClassname(String newClassname)
   {
-    String oldAtomicname = atomicname;
-    atomicname = newAtomicname;
+    String oldClassname = classname;
+    classname = newClassname;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.ATOMIC_PHASE__ATOMICNAME, oldAtomicname, atomicname));
+      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.ATOMIC_PHASE__CLASSNAME, oldClassname, classname));
   }
 
   /**
@@ -151,8 +151,8 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
   {
     switch (featureID)
     {
-      case BenchmarkPackage.ATOMIC_PHASE__ATOMICNAME:
-        return getAtomicname();
+      case BenchmarkPackage.ATOMIC_PHASE__CLASSNAME:
+        return getClassname();
       case BenchmarkPackage.ATOMIC_PHASE__METRICS:
         return getMetrics();
     }
@@ -170,8 +170,8 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
   {
     switch (featureID)
     {
-      case BenchmarkPackage.ATOMIC_PHASE__ATOMICNAME:
-        setAtomicname((String)newValue);
+      case BenchmarkPackage.ATOMIC_PHASE__CLASSNAME:
+        setClassname((String)newValue);
         return;
       case BenchmarkPackage.ATOMIC_PHASE__METRICS:
         getMetrics().clear();
@@ -191,8 +191,8 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
   {
     switch (featureID)
     {
-      case BenchmarkPackage.ATOMIC_PHASE__ATOMICNAME:
-        setAtomicname(ATOMICNAME_EDEFAULT);
+      case BenchmarkPackage.ATOMIC_PHASE__CLASSNAME:
+        setClassname(CLASSNAME_EDEFAULT);
         return;
       case BenchmarkPackage.ATOMIC_PHASE__METRICS:
         getMetrics().clear();
@@ -211,8 +211,8 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
   {
     switch (featureID)
     {
-      case BenchmarkPackage.ATOMIC_PHASE__ATOMICNAME:
-        return ATOMICNAME_EDEFAULT == null ? atomicname != null : !ATOMICNAME_EDEFAULT.equals(atomicname);
+      case BenchmarkPackage.ATOMIC_PHASE__CLASSNAME:
+        return CLASSNAME_EDEFAULT == null ? classname != null : !CLASSNAME_EDEFAULT.equals(classname);
       case BenchmarkPackage.ATOMIC_PHASE__METRICS:
         return metrics != null && !metrics.isEmpty();
     }
@@ -230,8 +230,8 @@ public class AtomicPhaseImpl extends PhaseImpl implements AtomicPhase
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (atomicname: ");
-    result.append(atomicname);
+    result.append(" (classname: ");
+    result.append(classname);
     result.append(')');
     return result.toString();
   }

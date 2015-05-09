@@ -68,13 +68,22 @@ public interface BenchmarkPackage extends EPackage
   int BENCHMARK = 0;
 
   /**
+   * The feature id for the '<em><b>Package Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BENCHMARK__PACKAGE_NAME = 0;
+
+  /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BENCHMARK__ELEMENTS = 0;
+  int BENCHMARK__ELEMENTS = 1;
 
   /**
    * The number of structural features of the '<em>Benchmark</em>' class.
@@ -83,7 +92,7 @@ public interface BenchmarkPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BENCHMARK_FEATURE_COUNT = 1;
+  int BENCHMARK_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link eu.mondo.sam.domain.benchmark.impl.ElementImpl <em>Element</em>}' class.
@@ -105,34 +114,6 @@ public interface BenchmarkPackage extends EPackage
   int ELEMENT_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link eu.mondo.sam.domain.benchmark.impl.PackageDeclarationImpl <em>Package Declaration</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see eu.mondo.sam.domain.benchmark.impl.PackageDeclarationImpl
-   * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getPackageDeclaration()
-   * @generated
-   */
-  int PACKAGE_DECLARATION = 2;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PACKAGE_DECLARATION__NAME = ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Package Declaration</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PACKAGE_DECLARATION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link eu.mondo.sam.domain.benchmark.impl.ScenarioImpl <em>Scenario</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -140,16 +121,16 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getScenario()
    * @generated
    */
-  int SCENARIO = 3;
+  int SCENARIO = 2;
 
   /**
-   * The feature id for the '<em><b>Scenarioname</b></em>' attribute.
+   * The feature id for the '<em><b>Classname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCENARIO__SCENARIONAME = ELEMENT_FEATURE_COUNT + 0;
+  int SCENARIO__CLASSNAME = ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Root Phase</b></em>' containment reference.
@@ -177,7 +158,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getPhase()
    * @generated
    */
-  int PHASE = 4;
+  int PHASE = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -205,7 +186,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getSequencePhase()
    * @generated
    */
-  int SEQUENCE_PHASE = 5;
+  int SEQUENCE_PHASE = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -242,7 +223,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getIterationPhase()
    * @generated
    */
-  int ITERATION_PHASE = 6;
+  int ITERATION_PHASE = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,7 +269,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getOptionalPhase()
    * @generated
    */
-  int OPTIONAL_PHASE = 7;
+  int OPTIONAL_PHASE = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -325,7 +306,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getAttachedPhase()
    * @generated
    */
-  int ATTACHED_PHASE = 8;
+  int ATTACHED_PHASE = 7;
 
   /**
    * The number of structural features of the '<em>Attached Phase</em>' class.
@@ -344,7 +325,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getPhaseReference()
    * @generated
    */
-  int PHASE_REFERENCE = 9;
+  int PHASE_REFERENCE = 8;
 
   /**
    * The feature id for the '<em><b>Phase</b></em>' reference.
@@ -372,7 +353,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getNewPhase()
    * @generated
    */
-  int NEW_PHASE = 10;
+  int NEW_PHASE = 9;
 
   /**
    * The feature id for the '<em><b>Phase</b></em>' containment reference.
@@ -400,7 +381,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getAtomicPhase()
    * @generated
    */
-  int ATOMIC_PHASE = 11;
+  int ATOMIC_PHASE = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -412,13 +393,13 @@ public interface BenchmarkPackage extends EPackage
   int ATOMIC_PHASE__NAME = PHASE__NAME;
 
   /**
-   * The feature id for the '<em><b>Atomicname</b></em>' attribute.
+   * The feature id for the '<em><b>Classname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATOMIC_PHASE__ATOMICNAME = PHASE_FEATURE_COUNT + 0;
+  int ATOMIC_PHASE__CLASSNAME = PHASE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Metrics</b></em>' containment reference list.
@@ -446,7 +427,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getAttachedMetric()
    * @generated
    */
-  int ATTACHED_METRIC = 12;
+  int ATTACHED_METRIC = 11;
 
   /**
    * The number of structural features of the '<em>Attached Metric</em>' class.
@@ -465,7 +446,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getMetricTypeReference()
    * @generated
    */
-  int METRIC_TYPE_REFERENCE = 13;
+  int METRIC_TYPE_REFERENCE = 12;
 
   /**
    * The feature id for the '<em><b>Metric</b></em>' attribute.
@@ -493,7 +474,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getNewMetric()
    * @generated
    */
-  int NEW_METRIC = 14;
+  int NEW_METRIC = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -530,7 +511,7 @@ public interface BenchmarkPackage extends EPackage
    * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getMetricType()
    * @generated
    */
-  int METRIC_TYPE = 15;
+  int METRIC_TYPE = 14;
 
 
   /**
@@ -542,6 +523,17 @@ public interface BenchmarkPackage extends EPackage
    * @generated
    */
   EClass getBenchmark();
+
+  /**
+   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.Benchmark#getPackageName <em>Package Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Package Name</em>'.
+   * @see eu.mondo.sam.domain.benchmark.Benchmark#getPackageName()
+   * @see #getBenchmark()
+   * @generated
+   */
+  EAttribute getBenchmark_PackageName();
 
   /**
    * Returns the meta object for the containment reference list '{@link eu.mondo.sam.domain.benchmark.Benchmark#getElements <em>Elements</em>}'.
@@ -565,27 +557,6 @@ public interface BenchmarkPackage extends EPackage
   EClass getElement();
 
   /**
-   * Returns the meta object for class '{@link eu.mondo.sam.domain.benchmark.PackageDeclaration <em>Package Declaration</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Package Declaration</em>'.
-   * @see eu.mondo.sam.domain.benchmark.PackageDeclaration
-   * @generated
-   */
-  EClass getPackageDeclaration();
-
-  /**
-   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.PackageDeclaration#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see eu.mondo.sam.domain.benchmark.PackageDeclaration#getName()
-   * @see #getPackageDeclaration()
-   * @generated
-   */
-  EAttribute getPackageDeclaration_Name();
-
-  /**
    * Returns the meta object for class '{@link eu.mondo.sam.domain.benchmark.Scenario <em>Scenario</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -596,15 +567,15 @@ public interface BenchmarkPackage extends EPackage
   EClass getScenario();
 
   /**
-   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.Scenario#getScenarioname <em>Scenarioname</em>}'.
+   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.Scenario#getClassname <em>Classname</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Scenarioname</em>'.
-   * @see eu.mondo.sam.domain.benchmark.Scenario#getScenarioname()
+   * @return the meta object for the attribute '<em>Classname</em>'.
+   * @see eu.mondo.sam.domain.benchmark.Scenario#getClassname()
    * @see #getScenario()
    * @generated
    */
-  EAttribute getScenario_Scenarioname();
+  EAttribute getScenario_Classname();
 
   /**
    * Returns the meta object for the containment reference '{@link eu.mondo.sam.domain.benchmark.Scenario#getRootPhase <em>Root Phase</em>}'.
@@ -775,15 +746,15 @@ public interface BenchmarkPackage extends EPackage
   EClass getAtomicPhase();
 
   /**
-   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getAtomicname <em>Atomicname</em>}'.
+   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getClassname <em>Classname</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Atomicname</em>'.
-   * @see eu.mondo.sam.domain.benchmark.AtomicPhase#getAtomicname()
+   * @return the meta object for the attribute '<em>Classname</em>'.
+   * @see eu.mondo.sam.domain.benchmark.AtomicPhase#getClassname()
    * @see #getAtomicPhase()
    * @generated
    */
-  EAttribute getAtomicPhase_Atomicname();
+  EAttribute getAtomicPhase_Classname();
 
   /**
    * Returns the meta object for the containment reference list '{@link eu.mondo.sam.domain.benchmark.AtomicPhase#getMetrics <em>Metrics</em>}'.
@@ -903,6 +874,14 @@ public interface BenchmarkPackage extends EPackage
     EClass BENCHMARK = eINSTANCE.getBenchmark();
 
     /**
+     * The meta object literal for the '<em><b>Package Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BENCHMARK__PACKAGE_NAME = eINSTANCE.getBenchmark_PackageName();
+
+    /**
      * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -921,24 +900,6 @@ public interface BenchmarkPackage extends EPackage
     EClass ELEMENT = eINSTANCE.getElement();
 
     /**
-     * The meta object literal for the '{@link eu.mondo.sam.domain.benchmark.impl.PackageDeclarationImpl <em>Package Declaration</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see eu.mondo.sam.domain.benchmark.impl.PackageDeclarationImpl
-     * @see eu.mondo.sam.domain.benchmark.impl.BenchmarkPackageImpl#getPackageDeclaration()
-     * @generated
-     */
-    EClass PACKAGE_DECLARATION = eINSTANCE.getPackageDeclaration();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PACKAGE_DECLARATION__NAME = eINSTANCE.getPackageDeclaration_Name();
-
-    /**
      * The meta object literal for the '{@link eu.mondo.sam.domain.benchmark.impl.ScenarioImpl <em>Scenario</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -949,12 +910,12 @@ public interface BenchmarkPackage extends EPackage
     EClass SCENARIO = eINSTANCE.getScenario();
 
     /**
-     * The meta object literal for the '<em><b>Scenarioname</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Classname</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SCENARIO__SCENARIONAME = eINSTANCE.getScenario_Scenarioname();
+    EAttribute SCENARIO__CLASSNAME = eINSTANCE.getScenario_Classname();
 
     /**
      * The meta object literal for the '<em><b>Root Phase</b></em>' containment reference feature.
@@ -1101,12 +1062,12 @@ public interface BenchmarkPackage extends EPackage
     EClass ATOMIC_PHASE = eINSTANCE.getAtomicPhase();
 
     /**
-     * The meta object literal for the '<em><b>Atomicname</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Classname</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ATOMIC_PHASE__ATOMICNAME = eINSTANCE.getAtomicPhase_Atomicname();
+    EAttribute ATOMIC_PHASE__CLASSNAME = eINSTANCE.getAtomicPhase_Classname();
 
     /**
      * The meta object literal for the '<em><b>Metrics</b></em>' containment reference list feature.

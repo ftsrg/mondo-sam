@@ -24,15 +24,15 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 
 	@Check
 	def checkAtomicPhaseStartsWithCapital(AtomicPhase atomic) {
-		if (atomic.atomicname == null){
+		if (atomic.classname == null){
 			return
 		}
-		if (atomic.atomicname.length == 0){
+		if (atomic.classname.length == 0){
 			return
 		}
-		if (!Character.isUpperCase(atomic.atomicname.charAt(0))) {
+		if (!Character.isUpperCase(atomic.classname.charAt(0))) {
 			warning('The name of the phase should start with capital since it represents a class name.', 
-				BenchmarkPackage.Literals.ATOMIC_PHASE__ATOMICNAME, "invalid_atomicphase")
+				BenchmarkPackage.Literals.ATOMIC_PHASE__CLASSNAME, "invalid_atomicphase")
 		}
 	}
 	
@@ -47,9 +47,9 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 	
 	@Check
 	def checkScenarioStartsWithCapital(Scenario scenario) {
-		if (!Character.isUpperCase(scenario.scenarioname.charAt(0))) {
+		if (!Character.isUpperCase(scenario.classname.charAt(0))) {
 			warning('The name of the scenario should start with capital since it represents a new class name.', 
-				BenchmarkPackage.Literals.SCENARIO__SCENARIONAME, "invalid_scenario" 
+				BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "invalid_scenario" 
 			)
 		}
 	}

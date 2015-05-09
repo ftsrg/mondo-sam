@@ -78,25 +78,47 @@ ruleBenchmark returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(	otherlv_0='package' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getBenchmarkAccess().getPackageKeyword_0());
+    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getBenchmarkAccess().getElementsElementParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getBenchmarkAccess().getPackageNameQualifiedNameParserRuleCall_1_0()); 
 	    }
-		lv_elements_0_0=ruleElement		{
+		lv_packageName_1_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBenchmarkRule());
+	        }
+       		set(
+       			$current, 
+       			"packageName",
+        		lv_packageName_1_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBenchmarkAccess().getElementsElementParserRuleCall_2_0()); 
+	    }
+		lv_elements_2_0=ruleElement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getBenchmarkRule());
 	        }
        		add(
        			$current, 
        			"elements",
-        		lv_elements_0_0, 
+        		lv_elements_2_0, 
         		"Element");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*
+)*)
 ;
 
 
@@ -136,60 +158,7 @@ ruleElement returns [EObject current=null]
         $current = $this_Phase_1.current; 
         afterParserOrEnumRuleCall();
     }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getElementAccess().getPackageDeclarationParserRuleCall_2()); 
-    }
-    this_PackageDeclaration_2=rulePackageDeclaration
-    { 
-        $current = $this_PackageDeclaration_2.current; 
-        afterParserOrEnumRuleCall();
-    }
 )
-;
-
-
-
-
-
-// Entry rule entryRulePackageDeclaration
-entryRulePackageDeclaration returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPackageDeclarationRule()); }
-	 iv_rulePackageDeclaration=rulePackageDeclaration 
-	 { $current=$iv_rulePackageDeclaration.current; } 
-	 EOF 
-;
-
-// Rule PackageDeclaration
-rulePackageDeclaration returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='package' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getPackageDeclarationAccess().getPackageKeyword_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPackageDeclarationAccess().getNameQualifiedNameParserRuleCall_1_0()); 
-	    }
-		lv_name_1_0=ruleQualifiedName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_1_0, 
-        		"QualifiedName");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 
@@ -216,19 +185,19 @@ ruleScenario returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getScenarioAccess().getScenarionameQualifiedNameParserRuleCall_1_0()); 
-	    }
-		lv_scenarioname_1_0=ruleQualifiedName		{
+		lv_classname_1_0=RULE_STRING
+		{
+			newLeafNode(lv_classname_1_0, grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getScenarioRule());
+	            $current = createModelElement(grammarAccess.getScenarioRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
-       			"scenarioname",
-        		lv_scenarioname_1_0, 
-        		"QualifiedName");
-	        afterParserOrEnumRuleCall();
+       			"classname",
+        		lv_classname_1_0, 
+        		"STRING");
 	    }
 
 )
@@ -710,16 +679,16 @@ ruleAtomicPhase returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getAtomicnameQualifiedNameParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); 
 	    }
-		lv_atomicname_3_0=ruleQualifiedName		{
+		lv_classname_3_0=ruleQualifiedName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAtomicPhaseRule());
 	        }
        		set(
        			$current, 
-       			"atomicname",
-        		lv_atomicname_3_0, 
+       			"classname",
+        		lv_classname_3_0, 
         		"QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }

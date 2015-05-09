@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link eu.mondo.sam.domain.benchmark.impl.ScenarioImpl#getScenarioname <em>Scenarioname</em>}</li>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.impl.ScenarioImpl#getClassname <em>Classname</em>}</li>
  *   <li>{@link eu.mondo.sam.domain.benchmark.impl.ScenarioImpl#getRootPhase <em>Root Phase</em>}</li>
  * </ul>
  * </p>
@@ -31,24 +31,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class ScenarioImpl extends ElementImpl implements Scenario
 {
   /**
-   * The default value of the '{@link #getScenarioname() <em>Scenarioname</em>}' attribute.
+   * The default value of the '{@link #getClassname() <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getScenarioname()
+   * @see #getClassname()
    * @generated
    * @ordered
    */
-  protected static final String SCENARIONAME_EDEFAULT = null;
+  protected static final String CLASSNAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getScenarioname() <em>Scenarioname</em>}' attribute.
+   * The cached value of the '{@link #getClassname() <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getScenarioname()
+   * @see #getClassname()
    * @generated
    * @ordered
    */
-  protected String scenarioname = SCENARIONAME_EDEFAULT;
+  protected String classname = CLASSNAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRootPhase() <em>Root Phase</em>}' containment reference.
@@ -86,9 +86,9 @@ public class ScenarioImpl extends ElementImpl implements Scenario
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getScenarioname()
+  public String getClassname()
   {
-    return scenarioname;
+    return classname;
   }
 
   /**
@@ -96,12 +96,12 @@ public class ScenarioImpl extends ElementImpl implements Scenario
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setScenarioname(String newScenarioname)
+  public void setClassname(String newClassname)
   {
-    String oldScenarioname = scenarioname;
-    scenarioname = newScenarioname;
+    String oldClassname = classname;
+    classname = newClassname;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.SCENARIO__SCENARIONAME, oldScenarioname, scenarioname));
+      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.SCENARIO__CLASSNAME, oldClassname, classname));
   }
 
   /**
@@ -178,8 +178,8 @@ public class ScenarioImpl extends ElementImpl implements Scenario
   {
     switch (featureID)
     {
-      case BenchmarkPackage.SCENARIO__SCENARIONAME:
-        return getScenarioname();
+      case BenchmarkPackage.SCENARIO__CLASSNAME:
+        return getClassname();
       case BenchmarkPackage.SCENARIO__ROOT_PHASE:
         return getRootPhase();
     }
@@ -196,8 +196,8 @@ public class ScenarioImpl extends ElementImpl implements Scenario
   {
     switch (featureID)
     {
-      case BenchmarkPackage.SCENARIO__SCENARIONAME:
-        setScenarioname((String)newValue);
+      case BenchmarkPackage.SCENARIO__CLASSNAME:
+        setClassname((String)newValue);
         return;
       case BenchmarkPackage.SCENARIO__ROOT_PHASE:
         setRootPhase((Phase)newValue);
@@ -216,8 +216,8 @@ public class ScenarioImpl extends ElementImpl implements Scenario
   {
     switch (featureID)
     {
-      case BenchmarkPackage.SCENARIO__SCENARIONAME:
-        setScenarioname(SCENARIONAME_EDEFAULT);
+      case BenchmarkPackage.SCENARIO__CLASSNAME:
+        setClassname(CLASSNAME_EDEFAULT);
         return;
       case BenchmarkPackage.SCENARIO__ROOT_PHASE:
         setRootPhase((Phase)null);
@@ -236,8 +236,8 @@ public class ScenarioImpl extends ElementImpl implements Scenario
   {
     switch (featureID)
     {
-      case BenchmarkPackage.SCENARIO__SCENARIONAME:
-        return SCENARIONAME_EDEFAULT == null ? scenarioname != null : !SCENARIONAME_EDEFAULT.equals(scenarioname);
+      case BenchmarkPackage.SCENARIO__CLASSNAME:
+        return CLASSNAME_EDEFAULT == null ? classname != null : !CLASSNAME_EDEFAULT.equals(classname);
       case BenchmarkPackage.SCENARIO__ROOT_PHASE:
         return rootPhase != null;
     }
@@ -255,8 +255,8 @@ public class ScenarioImpl extends ElementImpl implements Scenario
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (scenarioname: ");
-    result.append(scenarioname);
+    result.append(" (classname: ");
+    result.append(classname);
     result.append(')');
     return result.toString();
   }

@@ -4,19 +4,18 @@ generate benchmark "http://www.mondo.eu/sam/domain/Benchmark"
 
 
 Benchmark:
-	(elements += Element)*
+	'package' packageName = QualifiedName (
+		(elements += Element)*
+	)
 ;
 	
 Element:
-	Scenario | Phase | PackageDeclaration
+	Scenario | Phase
 ;
 
-PackageDeclaration:
-  'package' name = QualifiedName
-;
 
 Scenario:
-	'Scenario' scenarioname=QualifiedName '{'
+	'Scenario' classname = STRING '{'
 		rootPhase = Phase
 	'}'
 ;
@@ -56,7 +55,7 @@ NewPhase:
 ;
 
 AtomicPhase:
-	'Atomic' (name=ID)? 'ClassName' atomicname = QualifiedName 'Metrics('
+	'Atomic' (name=ID)? 'ClassName' classname = QualifiedName 'Metrics('
 		(metrics += AttachedMetric)*
 	')'
 ;

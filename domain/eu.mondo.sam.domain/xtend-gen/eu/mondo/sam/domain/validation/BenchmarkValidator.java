@@ -21,24 +21,24 @@ import org.eclipse.xtext.validation.Check;
 public class BenchmarkValidator extends AbstractBenchmarkValidator {
   @Check
   public void checkAtomicPhaseStartsWithCapital(final AtomicPhase atomic) {
-    String _atomicname = atomic.getAtomicname();
-    boolean _equals = Objects.equal(_atomicname, null);
+    String _classname = atomic.getClassname();
+    boolean _equals = Objects.equal(_classname, null);
     if (_equals) {
       return;
     }
-    String _atomicname_1 = atomic.getAtomicname();
-    int _length = _atomicname_1.length();
+    String _classname_1 = atomic.getClassname();
+    int _length = _classname_1.length();
     boolean _equals_1 = (_length == 0);
     if (_equals_1) {
       return;
     }
-    String _atomicname_2 = atomic.getAtomicname();
-    char _charAt = _atomicname_2.charAt(0);
+    String _classname_2 = atomic.getClassname();
+    char _charAt = _classname_2.charAt(0);
     boolean _isUpperCase = Character.isUpperCase(_charAt);
     boolean _not = (!_isUpperCase);
     if (_not) {
       this.warning("The name of the phase should start with capital since it represents a class name.", 
-        BenchmarkPackage.Literals.ATOMIC_PHASE__ATOMICNAME, "invalid_atomicphase");
+        BenchmarkPackage.Literals.ATOMIC_PHASE__CLASSNAME, "invalid_atomicphase");
     }
   }
   
@@ -56,13 +56,13 @@ public class BenchmarkValidator extends AbstractBenchmarkValidator {
   
   @Check
   public void checkScenarioStartsWithCapital(final Scenario scenario) {
-    String _scenarioname = scenario.getScenarioname();
-    char _charAt = _scenarioname.charAt(0);
+    String _classname = scenario.getClassname();
+    char _charAt = _classname.charAt(0);
     boolean _isUpperCase = Character.isUpperCase(_charAt);
     boolean _not = (!_isUpperCase);
     if (_not) {
       this.warning("The name of the scenario should start with capital since it represents a new class name.", 
-        BenchmarkPackage.Literals.SCENARIO__SCENARIONAME, "invalid_scenario");
+        BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "invalid_scenario");
     }
   }
   
