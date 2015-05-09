@@ -3,10 +3,15 @@
  */
 package eu.mondo.sam.domain.generator;
 
+import eu.mondo.sam.domain.benchmark.AtomicPhase;
 import eu.mondo.sam.domain.benchmark.Benchmark;
 import eu.mondo.sam.domain.benchmark.Element;
+import eu.mondo.sam.domain.benchmark.Phase;
 import eu.mondo.sam.domain.benchmark.Scenario;
+import eu.mondo.sam.domain.generator.PhaseImportResolver;
+import eu.mondo.sam.domain.generator.PhaseStructureResolver;
 import java.util.Arrays;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -52,6 +57,16 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.newLine();
     _builder_1.append("import eu.mondo.sam.core.results.CaseDescriptor;");
     _builder_1.newLine();
+    {
+      Phase _rootPhase = scenario.getRootPhase();
+      String _packageName_2 = bench.getPackageName();
+      Set<String> _resolvePhases = PhaseImportResolver.resolvePhases(_rootPhase, _packageName_2);
+      for(final String imp : _resolvePhases) {
+        _builder_1.append("import ");
+        _builder_1.append(imp, "");
+        _builder_1.newLineIfNotEmpty();
+      }
+    }
     _builder_1.newLine();
     _builder_1.newLine();
     _builder_1.append("public class ");
@@ -78,6 +93,11 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("\t");
     _builder_1.append("public void build() {");
     _builder_1.newLine();
+    _builder_1.append("\t\t");
+    Phase _rootPhase_1 = scenario.getRootPhase();
+    String _resolvePhases_1 = PhaseStructureResolver.resolvePhases(_rootPhase_1);
+    _builder_1.append(_resolvePhases_1, "\t\t");
+    _builder_1.newLineIfNotEmpty();
     _builder_1.append("\t\t");
     _builder_1.newLine();
     _builder_1.append("\t");
@@ -127,18 +147,127 @@ public class BenchmarkGenerator implements IGenerator {
     return null;
   }
   
-  protected Object _generate(final Element element, final IFileSystemAccess fsa, final Benchmark bench) {
+  protected Object _generate(final AtomicPhase atomic, final IFileSystemAccess fsa, final Benchmark bench) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _packageName = bench.getPackageName();
+    String _replace = _packageName.replace(".", "/");
+    _builder.append(_replace, "");
+    _builder.append("/phases/");
+    String _classname = atomic.getClassname();
+    _builder.append(_classname, "");
+    _builder.append(".java");
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("package ");
+    String _packageName_1 = bench.getPackageName();
+    _builder_1.append(_packageName_1, "");
+    _builder_1.append(".phases;");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.newLine();
+    _builder_1.append("import eu.mondo.sam.core.phases.AtomicPhase;");
+    _builder_1.newLine();
+    _builder_1.append("import eu.mondo.sam.core.DataToken;");
+    _builder_1.newLine();
+    _builder_1.append("import eu.mondo.sam.core.results.PhaseResult;");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("public class ");
+    String _classname_1 = atomic.getClassname();
+    _builder_1.append(_classname_1, "");
+    _builder_1.append(" extends AtomicPhase {");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("public ");
+    String _classname_2 = atomic.getClassname();
+    _builder_1.append(_classname_2, "\t");
+    _builder_1.append("(String phaseName) {");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t\t");
+    _builder_1.append("super(phaseName);");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("}");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("/**");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* Executes the operations which belongs to the AtomicPhase. Communicates");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* with other AtomicPhase operations via the DataToken object. Every");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* significant Metric result should be attached to the PhaseResult parameter");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* as BenchmarkMetric instance. The results of measurements will be");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* published only when the PhaseResult object contains the certain Metrics.");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* @see PhaseResult");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* @see BenchmarkMetric");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* ");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* @param token");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("*            Represents a communication unit between this and other phases.");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("* @param result");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("*            PhaseResult object. In the case of publishing metrics attach");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("*            BenchmarkMetric objects to it.");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("*/");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("@Override");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("public void execute(DataToken token, PhaseResult phaseResult) {");
+    _builder_1.newLine();
+    _builder_1.append("\t\t\t\t\t");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("}");
+    _builder_1.newLine();
+    _builder_1.append("}");
+    _builder_1.newLine();
+    fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
     return null;
   }
   
-  public Object generate(final Element scenario, final IFileSystemAccess fsa, final Benchmark bench) {
-    if (scenario instanceof Scenario) {
-      return _generate((Scenario)scenario, fsa, bench);
-    } else if (scenario != null) {
-      return _generate(scenario, fsa, bench);
+  protected Object _generate(final Phase phase, final IFileSystemAccess fsa, final Benchmark bench) {
+    return null;
+  }
+  
+  public Object generate(final Element atomic, final IFileSystemAccess fsa, final Benchmark bench) {
+    if (atomic instanceof AtomicPhase) {
+      return _generate((AtomicPhase)atomic, fsa, bench);
+    } else if (atomic instanceof Phase) {
+      return _generate((Phase)atomic, fsa, bench);
+    } else if (atomic instanceof Scenario) {
+      return _generate((Scenario)atomic, fsa, bench);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(scenario, fsa, bench).toString());
+        Arrays.<Object>asList(atomic, fsa, bench).toString());
     }
   }
 }

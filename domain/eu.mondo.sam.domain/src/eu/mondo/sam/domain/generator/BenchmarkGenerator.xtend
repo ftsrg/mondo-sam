@@ -14,9 +14,8 @@ import eu.mondo.sam.domain.benchmark.OptionalPhase
 import eu.mondo.sam.domain.benchmark.Benchmark
 import org.eclipse.xtext.generator.OutputConfiguration
 import eu.mondo.sam.domain.OutputConfigurationProvider
-
-//import org.eclipse.xtext.generator.IFileSystemAccessExtension2
-//import org.eclipse.xtext.xbase.file.JavaIOFileSystemSupport
+import eu.mondo.sam.domain.benchmark.Phase
+import java.util.Set
 
 /**
  * Generates code from your model files on save.
@@ -25,15 +24,7 @@ import eu.mondo.sam.domain.OutputConfigurationProvider
  */
 class BenchmarkGenerator implements IGenerator {
 	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		val OutputConfiguration defaultOutput = new OutputConfiguration(IFileSystemAccess.DEFAULT_OUTPUT);
-//    	defaultOutput.setDescription("Output Folder");
-//	    defaultOutput.setOutputDirectory("./src");
-//	    defaultOutput.setOverrideExistingResources(true);
-//	    defaultOutput.setCreateOutputDirectory(true);
-//	    defaultOutput.setCleanUpDerivedResources(true);
-//	    defaultOutput.setSetDerivedProperty(true);
-		
+	override void doGenerate(Resource resource, IFileSystemAccess fsa) {		
 		val Benchmark benchmark = resource.contents.head as Benchmark
 		for (Element element : benchmark.elements){
 			element.generate(fsa, benchmark)
@@ -48,6 +39,9 @@ class BenchmarkGenerator implements IGenerator {
 		
 		import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 		import eu.mondo.sam.core.results.CaseDescriptor;
+		«FOR imp : PhaseImportResolver::resolvePhases(scenario.rootPhase, bench.packageName)»
+		import «imp»
+		«ENDFOR»
 		
 		
 		public class «scenario.classname» extends BenchmarkScenario {
@@ -58,6 +52,9 @@ class BenchmarkGenerator implements IGenerator {
 			*/
 			@Override
 			public void build() {
+				«
+				PhaseStructureResolver::resolvePhases(scenario.rootPhase)			
+				»
 				
 			}
 
@@ -78,7 +75,48 @@ class BenchmarkGenerator implements IGenerator {
 		''')
 	}
 	
-	def dispatch generate(Element element, IFileSystemAccess fsa, Benchmark bench){
+	def dispatch generate(AtomicPhase atomic, IFileSystemAccess fsa, Benchmark bench){
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«atomic.classname».java''', IFileSystemAccess.DEFAULT_OUTPUT,
+		'''
+		package «bench.packageName».phases;
+		
+		import eu.mondo.sam.core.phases.AtomicPhase;
+		import eu.mondo.sam.core.DataToken;
+		import eu.mondo.sam.core.results.PhaseResult;
+		
+		public class «atomic.classname» extends AtomicPhase {
+			
+			
+			public «atomic.classname»(String phaseName) {
+				super(phaseName);
+			}
+
+			/**
+			* Executes the operations which belongs to the AtomicPhase. Communicates
+			* with other AtomicPhase operations via the DataToken object. Every
+			* significant Metric result should be attached to the PhaseResult parameter
+			* as BenchmarkMetric instance. The results of measurements will be
+			* published only when the PhaseResult object contains the certain Metrics.
+			* @see PhaseResult
+			* @see BenchmarkMetric
+			* 
+			* @param token
+			*            Represents a communication unit between this and other phases.
+			* @param result
+			*            PhaseResult object. In the case of publishing metrics attach
+			*            BenchmarkMetric objects to it.
+			*/
+			@Override
+			public void execute(DataToken token, PhaseResult phaseResult) {
+							
+			}
+		}
+		''')
+	}
+	
+	def dispatch generate(Phase phase, IFileSystemAccess fsa, Benchmark bench){
 		
 	}
+	
+	
 }

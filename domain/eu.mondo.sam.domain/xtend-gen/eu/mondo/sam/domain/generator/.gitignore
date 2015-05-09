@@ -1,1 +1,5 @@
 /.BenchmarkGenerator.java._trace
+/BenchmarkGenerator.java
+/.GeneratorUtil.java._trace
+/.PhaseStructureResolver.java._trace
+/.PhaseImportResolver.java._trace
