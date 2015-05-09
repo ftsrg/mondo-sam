@@ -1,0 +1,84 @@
+grammar eu.mondo.sam.domain.Benchmark with org.eclipse.xtext.common.Terminals
+
+generate benchmark "http://www.mondo.eu/sam/domain/Benchmark"
+
+
+Benchmark:
+	(elements += Element)*
+;
+	
+Element:
+	Scenario | Phase | PackageDeclaration
+;
+
+PackageDeclaration:
+  'package' name = QualifiedName
+;
+
+Scenario:
+	'Scenario' scenarioname=QualifiedName '{'
+		rootPhase = Phase
+	'}'
+;
+
+Phase:
+	SequencePhase | IterationPhase | OptionalPhase | AtomicPhase 
+;
+
+SequencePhase:
+	'Sequence'  (name= ID)? '(' 
+		(phases += AttachedPhase)+ 
+	')'
+;
+
+IterationPhase:
+	'Iteration' (name=ID)? '(' 
+		iteration=INT '*' phase = AttachedPhase	
+	')'
+;
+
+OptionalPhase:
+	'Optional'  (name=ID)? '(' 
+		phase = AttachedPhase
+	')'
+;
+
+AttachedPhase:
+	PhaseReference | NewPhase
+;
+
+PhaseReference:
+	phase = [Phase]
+;
+
+NewPhase:
+	phase = Phase
+;
+
+AtomicPhase:
+	'Atomic' (name=ID)? 'ClassName' atomicname = QualifiedName 'Metrics('
+		(metrics += AttachedMetric)*
+	')'
+;
+
+AttachedMetric:
+	MetricTypeReference | NewMetric
+;
+
+MetricTypeReference:
+	metric = MetricType
+;
+
+enum MetricType:
+	Time = 'Time' |
+	Memory = 'Memory' |
+	Scalar = 'Scalar'
+;
+
+NewMetric:
+	'new Metric' ('ID' name=ID)? metricname = QualifiedName
+;
+
+QualifiedName:
+  ID ('.' ID)*
+;

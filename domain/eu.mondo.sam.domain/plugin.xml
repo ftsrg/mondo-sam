@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.mondo.eu/sam/domain/Benchmark" 
+       class = "eu.mondo.sam.domain.benchmark.BenchmarkPackage"
+       genModel = "model/generated/Benchmark.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>

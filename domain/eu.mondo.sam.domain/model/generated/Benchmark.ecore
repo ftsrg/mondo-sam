@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="benchmark" nsURI="http://www.mondo.eu/sam/domain/Benchmark"
+    nsPrefix="benchmark">
+  <eClassifiers xsi:type="ecore:EClass" name="Benchmark">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Element" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageDeclaration" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scenarioname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootPhase" eType="#//Phase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Phase" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequencePhase" eSuperTypes="#//Phase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="phases" upperBound="-1"
+        eType="#//AttachedPhase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IterationPhase" eSuperTypes="#//Phase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="phase" eType="#//AttachedPhase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionalPhase" eSuperTypes="#//Phase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="phase" eType="#//AttachedPhase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttachedPhase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PhaseReference" eSuperTypes="#//AttachedPhase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="phase" eType="#//Phase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewPhase" eSuperTypes="#//AttachedPhase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="phase" eType="#//Phase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicPhase" eSuperTypes="#//Phase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atomicname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
+        eType="#//AttachedMetric" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttachedMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MetricTypeReference" eSuperTypes="#//AttachedMetric">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metric" eType="#//MetricType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MetricType">
+    <eLiterals name="Time" literal="Time"/>
+    <eLiterals name="Memory" value="1" literal="Memory"/>
+    <eLiterals name="Scalar" value="2" literal="Scalar"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewMetric" eSuperTypes="#//AttachedMetric">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metricname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

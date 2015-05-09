@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eu.mondo.sam.domain/src-gen" editDirectory="/eu.mondo.sam.domain.edit/src"
+    editorDirectory="/eu.mondo.sam.domain.editor/src" modelPluginID="eu.mondo.sam.domain"
+    forceOverwrite="true" modelName="Benchmark" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="eu.mondo.sam.domain.edit"
+    editorPluginID="eu.mondo.sam.domain.editor" runtimeVersion="2.10">
+  <genPackages prefix="Benchmark" basePackage="eu.mondo.sam.domain" disposableProviderFactory="true"
+      fileExtensions="bm" ecorePackage="Benchmark.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Benchmark.ecore#//MetricType">
+      <genEnumLiterals ecoreEnumLiteral="Benchmark.ecore#//MetricType/Time"/>
+      <genEnumLiterals ecoreEnumLiteral="Benchmark.ecore#//MetricType/Memory"/>
+      <genEnumLiterals ecoreEnumLiteral="Benchmark.ecore#//MetricType/Scalar"/>
+    </genEnums>
+    <genClasses ecoreClass="Benchmark.ecore#//Benchmark">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//Benchmark/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//Element"/>
+    <genClasses ecoreClass="Benchmark.ecore#//PackageDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//PackageDeclaration/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//Scenario">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//Scenario/scenarioname"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//Scenario/rootPhase"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//Phase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//Phase/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//SequencePhase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//SequencePhase/phases"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//IterationPhase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//IterationPhase/iteration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//IterationPhase/phase"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//OptionalPhase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//OptionalPhase/phase"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//AttachedPhase"/>
+    <genClasses ecoreClass="Benchmark.ecore#//PhaseReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Benchmark.ecore#//PhaseReference/phase"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//NewPhase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//NewPhase/phase"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//AtomicPhase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//AtomicPhase/atomicname"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//AtomicPhase/metrics"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//AttachedMetric"/>
+    <genClasses ecoreClass="Benchmark.ecore#//MetricTypeReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//MetricTypeReference/metric"/>
+    </genClasses>
+    <genClasses ecoreClass="Benchmark.ecore#//NewMetric">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//NewMetric/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//NewMetric/metricname"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
