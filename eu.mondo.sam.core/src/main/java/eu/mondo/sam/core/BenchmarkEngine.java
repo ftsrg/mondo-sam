@@ -58,6 +58,7 @@ public class BenchmarkEngine {
 	benchmarkResult.setCaseDescriptor(scenario.getCaseDescriptor());
 
 	int sequence = 1;
+	scenario.resetIterator();
 	while (scenario.hasNextPhase()) {
 	    AtomicPhase phase = scenario.getNextPhase();
 	    if (phase == null) {
