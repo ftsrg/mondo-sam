@@ -168,7 +168,6 @@ public class WorkflowTest {
 	sequence.addPhases(declaration, optional, declaration);
 
 	runBenchmark(sequence);
-	;
 	assertEquals(3, measuredPhases());
     }
 
@@ -179,6 +178,7 @@ public class WorkflowTest {
 
 	runBenchmark(iteration);
 	assertEquals(10, measuredPhases());
+
     }
 
     @Test

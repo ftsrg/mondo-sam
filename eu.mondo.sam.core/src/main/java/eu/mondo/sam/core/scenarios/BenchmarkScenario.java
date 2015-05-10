@@ -98,10 +98,13 @@ public abstract class BenchmarkScenario {
 	return phase;
     }
 
+    /**
+     * Receives a new iterator object from the rootPhase.
+     */
     public void resetIterator() {
-    	iterator = rootPhase.iterator();
+	iterator = rootPhase.iterator();
     }
-    
+
     /**
      * Returns the value of the size variable.
      * 
