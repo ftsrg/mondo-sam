@@ -13,7 +13,7 @@ import java.util.HashSet
 
 class PhaseImportResolver {
 	
-	def static Set<String> resolvePhases(Phase phase, String ownPackage){
+	def static Set<String> resolvePhases(AttachedPhase phase, String ownPackage){
 		var Set<String> imports = new HashSet<String>()
 		
 		phase.resolve(imports, ownPackage)

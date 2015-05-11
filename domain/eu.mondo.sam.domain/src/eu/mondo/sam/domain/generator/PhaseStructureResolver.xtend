@@ -11,7 +11,7 @@ import eu.mondo.sam.domain.benchmark.NewPhase
 
 class PhaseStructureResolver {
 	
-	def static String resolvePhases(Phase phase){
+	def static String resolvePhases(AttachedPhase phase){
 		var structure = "rootPhase = "
 		
 		structure += phase.resolve
@@ -20,13 +20,15 @@ class PhaseStructureResolver {
 	}
 	
 	def static dispatch resolve(SequencePhase sequence){
-		var structure = "new SequencePhase().addPhases("
+		var structure = "new SequencePhase("
 		var first = true
 		for (AttachedPhase phase : sequence.phases){
 			if (!first){
-				structure += ","
+				structure += ''','''
 			}
-			structure += phase.resolve
+			structure += '''
+				«phase.resolve»
+			'''
 			first = false
 		}
 		structure += ")"

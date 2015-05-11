@@ -16,12 +16,12 @@ Element:
 
 Scenario:
 	'Scenario' classname = STRING '{'
-		rootPhase = Phase
+		rootPhase = AttachedPhase
 	'}'
 ;
 
 Phase:
-	SequencePhase | IterationPhase | OptionalPhase | AtomicPhase 
+	SequencePhase | IterationPhase | OptionalPhase | AtomicPhase
 ;
 
 SequencePhase:
@@ -55,7 +55,7 @@ NewPhase:
 ;
 
 AtomicPhase:
-	'Atomic' (name=ID)? 'ClassName' classname = QualifiedName 'Metrics('
+	'Atomic' (name=ID)? 'ClassName' classname = ID 'Metrics('
 		(metrics += AttachedMetric)*
 	')'
 ;

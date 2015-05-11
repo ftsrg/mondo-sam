@@ -4,6 +4,7 @@
 package eu.mondo.sam.domain.generator;
 
 import eu.mondo.sam.domain.benchmark.AtomicPhase;
+import eu.mondo.sam.domain.benchmark.AttachedPhase;
 import eu.mondo.sam.domain.benchmark.Benchmark;
 import eu.mondo.sam.domain.benchmark.Element;
 import eu.mondo.sam.domain.benchmark.Phase;
@@ -58,7 +59,7 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("import eu.mondo.sam.core.results.CaseDescriptor;");
     _builder_1.newLine();
     {
-      Phase _rootPhase = scenario.getRootPhase();
+      AttachedPhase _rootPhase = scenario.getRootPhase();
       String _packageName_2 = bench.getPackageName();
       Set<String> _resolvePhases = PhaseImportResolver.resolvePhases(_rootPhase, _packageName_2);
       for(final String imp : _resolvePhases) {
@@ -94,7 +95,7 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("public void build() {");
     _builder_1.newLine();
     _builder_1.append("\t\t");
-    Phase _rootPhase_1 = scenario.getRootPhase();
+    AttachedPhase _rootPhase_1 = scenario.getRootPhase();
     String _resolvePhases_1 = PhaseStructureResolver.resolvePhases(_rootPhase_1);
     _builder_1.append(_resolvePhases_1, "\t\t");
     _builder_1.newLineIfNotEmpty();

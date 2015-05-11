@@ -412,7 +412,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleScenario"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:178:1: ruleScenario returns [EObject current=null] : (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:178:1: ruleScenario returns [EObject current=null] : (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' ) ;
     public final EObject ruleScenario() throws RecognitionException {
         EObject current = null;
 
@@ -426,11 +426,11 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:181:28: ( (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:181:28: ( (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:3: otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= rulePhase ) ) otherlv_4= '}'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:3: otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleScenario367); 
 
@@ -466,17 +466,17 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:208:1: ( (lv_rootPhase_3_0= rulePhase ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: (lv_rootPhase_3_0= rulePhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:208:1: ( (lv_rootPhase_3_0= ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: (lv_rootPhase_3_0= ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: (lv_rootPhase_3_0= rulePhase )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:210:3: lv_rootPhase_3_0= rulePhase
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:209:1: (lv_rootPhase_3_0= ruleAttachedPhase )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:210:3: lv_rootPhase_3_0= ruleAttachedPhase
             {
              
-            	        newCompositeNode(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); 
+            	        newCompositeNode(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_rulePhase_in_ruleScenario422);
-            lv_rootPhase_3_0=rulePhase();
+            pushFollow(FOLLOW_ruleAttachedPhase_in_ruleScenario422);
+            lv_rootPhase_3_0=ruleAttachedPhase();
 
             state._fsp--;
 
@@ -488,7 +488,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"rootPhase",
                     		lv_rootPhase_3_0, 
-                    		"Phase");
+                    		"AttachedPhase");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -1573,28 +1573,27 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAtomicPhase"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:649:1: ruleAtomicPhase returns [EObject current=null] : (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:649:1: ruleAtomicPhase returns [EObject current=null] : (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= RULE_ID ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) ;
     public final EObject ruleAtomicPhase() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
         Token otherlv_2=null;
+        Token lv_classname_3_0=null;
         Token otherlv_4=null;
         Token otherlv_6=null;
-        AntlrDatatypeRuleToken lv_classname_3_0 = null;
-
         EObject lv_metrics_5_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:652:28: ( (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:652:28: ( (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= RULE_ID ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= RULE_ID ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:3: otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= ruleQualifiedName ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:1: (otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= RULE_ID ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:653:3: otherlv_0= 'Atomic' ( (lv_name_1_0= RULE_ID ) )? otherlv_2= 'ClassName' ( (lv_classname_3_0= RULE_ID ) ) otherlv_4= 'Metrics(' ( (lv_metrics_5_0= ruleAttachedMetric ) )* otherlv_6= ')'
             {
             otherlv_0=(Token)match(input,21,FOLLOW_21_in_ruleAtomicPhase1476); 
 
@@ -1641,30 +1640,25 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getAtomicPhaseAccess().getClassNameKeyword_2());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:679:1: ( (lv_classname_3_0= ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: (lv_classname_3_0= ruleQualifiedName )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:679:1: ( (lv_classname_3_0= RULE_ID ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: (lv_classname_3_0= RULE_ID )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: (lv_classname_3_0= ruleQualifiedName )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:681:3: lv_classname_3_0= ruleQualifiedName
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:680:1: (lv_classname_3_0= RULE_ID )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:681:3: lv_classname_3_0= RULE_ID
             {
-             
-            	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); 
-            	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleAtomicPhase1532);
-            lv_classname_3_0=ruleQualifiedName();
+            lv_classname_3_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAtomicPhase1528); 
 
-            state._fsp--;
-
+            			newLeafNode(lv_classname_3_0, grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
+            		
 
             	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getAtomicPhaseRule());
+            	            current = createModelElement(grammarAccess.getAtomicPhaseRule());
             	        }
-                   		set(
+                   		setWithLastConsumed(
                    			current, 
                    			"classname",
                     		lv_classname_3_0, 
-                    		"QualifiedName");
-            	        afterParserOrEnumRuleCall();
+                    		"ID");
             	    
 
             }
@@ -1672,7 +1666,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,23,FOLLOW_23_in_ruleAtomicPhase1544); 
+            otherlv_4=(Token)match(input,23,FOLLOW_23_in_ruleAtomicPhase1545); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4());
                 
@@ -1697,7 +1691,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             	     
             	    	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getMetricsAttachedMetricParserRuleCall_5_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1565);
+            	    pushFollow(FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1566);
             	    lv_metrics_5_0=ruleAttachedMetric();
 
             	    state._fsp--;
@@ -1725,7 +1719,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleAtomicPhase1578); 
+            otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleAtomicPhase1579); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6());
                 
@@ -1762,13 +1756,13 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:733:2: iv_ruleAttachedMetric= ruleAttachedMetric EOF
             {
              newCompositeNode(grammarAccess.getAttachedMetricRule()); 
-            pushFollow(FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1614);
+            pushFollow(FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1615);
             iv_ruleAttachedMetric=ruleAttachedMetric();
 
             state._fsp--;
 
              current =iv_ruleAttachedMetric; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAttachedMetric1624); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAttachedMetric1625); 
 
             }
 
@@ -1824,7 +1818,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                      
                             newCompositeNode(grammarAccess.getAttachedMetricAccess().getMetricTypeReferenceParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1671);
+                    pushFollow(FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1672);
                     this_MetricTypeReference_0=ruleMetricTypeReference();
 
                     state._fsp--;
@@ -1842,7 +1836,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                      
                             newCompositeNode(grammarAccess.getAttachedMetricAccess().getNewMetricParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleNewMetric_in_ruleAttachedMetric1698);
+                    pushFollow(FOLLOW_ruleNewMetric_in_ruleAttachedMetric1699);
                     this_NewMetric_1=ruleNewMetric();
 
                     state._fsp--;
@@ -1887,13 +1881,13 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:773:2: iv_ruleMetricTypeReference= ruleMetricTypeReference EOF
             {
              newCompositeNode(grammarAccess.getMetricTypeReferenceRule()); 
-            pushFollow(FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1733);
+            pushFollow(FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1734);
             iv_ruleMetricTypeReference=ruleMetricTypeReference();
 
             state._fsp--;
 
              current =iv_ruleMetricTypeReference; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMetricTypeReference1743); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMetricTypeReference1744); 
 
             }
 
@@ -1933,7 +1927,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
              
             	        newCompositeNode(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0()); 
             	    
-            pushFollow(FOLLOW_ruleMetricType_in_ruleMetricTypeReference1788);
+            pushFollow(FOLLOW_ruleMetricType_in_ruleMetricTypeReference1789);
             lv_metric_0_0=ruleMetricType();
 
             state._fsp--;
@@ -1985,13 +1979,13 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:812:2: iv_ruleNewMetric= ruleNewMetric EOF
             {
              newCompositeNode(grammarAccess.getNewMetricRule()); 
-            pushFollow(FOLLOW_ruleNewMetric_in_entryRuleNewMetric1823);
+            pushFollow(FOLLOW_ruleNewMetric_in_entryRuleNewMetric1824);
             iv_ruleNewMetric=ruleNewMetric();
 
             state._fsp--;
 
              current =iv_ruleNewMetric; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNewMetric1833); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNewMetric1834); 
 
             }
 
@@ -2028,7 +2022,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:823:1: (otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) ) )
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:823:3: otherlv_0= 'new Metric' (otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) ) )? ( (lv_metricname_3_0= ruleQualifiedName ) )
             {
-            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleNewMetric1870); 
+            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleNewMetric1871); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getNewMetricAccess().getNewMetricKeyword_0());
                 
@@ -2043,7 +2037,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:827:3: otherlv_1= 'ID' ( (lv_name_2_0= RULE_ID ) )
                     {
-                    otherlv_1=(Token)match(input,25,FOLLOW_25_in_ruleNewMetric1883); 
+                    otherlv_1=(Token)match(input,25,FOLLOW_25_in_ruleNewMetric1884); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getNewMetricAccess().getIDKeyword_1_0());
                         
@@ -2053,7 +2047,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:832:1: (lv_name_2_0= RULE_ID )
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:833:3: lv_name_2_0= RULE_ID
                     {
-                    lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNewMetric1900); 
+                    lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNewMetric1901); 
 
                     			newLeafNode(lv_name_2_0, grammarAccess.getNewMetricAccess().getNameIDTerminalRuleCall_1_1_0()); 
                     		
@@ -2088,7 +2082,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
              
             	        newCompositeNode(grammarAccess.getNewMetricAccess().getMetricnameQualifiedNameParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleNewMetric1928);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleNewMetric1929);
             lv_metricname_3_0=ruleQualifiedName();
 
             state._fsp--;
@@ -2143,13 +2137,13 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:877:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1965);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1966);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
 
              current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName1976); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName1977); 
 
             }
 
@@ -2184,7 +2178,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:888:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:888:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2016); 
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2017); 
 
             		current.merge(this_ID_0);
                 
@@ -2206,12 +2200,12 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:896:2: kw= '.' this_ID_2= RULE_ID
             	    {
-            	    kw=(Token)match(input,26,FOLLOW_26_in_ruleQualifiedName2035); 
+            	    kw=(Token)match(input,26,FOLLOW_26_in_ruleQualifiedName2036); 
 
             	            current.merge(kw);
             	            newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             	        
-            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2050); 
+            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName2051); 
 
             	    		current.merge(this_ID_2);
             	        
@@ -2293,7 +2287,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:2: (enumLiteral_0= 'Time' )
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:919:4: enumLiteral_0= 'Time'
                     {
-                    enumLiteral_0=(Token)match(input,27,FOLLOW_27_in_ruleMetricType2111); 
+                    enumLiteral_0=(Token)match(input,27,FOLLOW_27_in_ruleMetricType2112); 
 
                             current = grammarAccess.getMetricTypeAccess().getTimeEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getMetricTypeAccess().getTimeEnumLiteralDeclaration_0()); 
@@ -2310,7 +2304,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:925:6: (enumLiteral_1= 'Memory' )
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:925:8: enumLiteral_1= 'Memory'
                     {
-                    enumLiteral_1=(Token)match(input,28,FOLLOW_28_in_ruleMetricType2128); 
+                    enumLiteral_1=(Token)match(input,28,FOLLOW_28_in_ruleMetricType2129); 
 
                             current = grammarAccess.getMetricTypeAccess().getMemoryEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getMetricTypeAccess().getMemoryEnumLiteralDeclaration_1()); 
@@ -2327,7 +2321,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:931:6: (enumLiteral_2= 'Scalar' )
                     // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:931:8: enumLiteral_2= 'Scalar'
                     {
-                    enumLiteral_2=(Token)match(input,29,FOLLOW_29_in_ruleMetricType2145); 
+                    enumLiteral_2=(Token)match(input,29,FOLLOW_29_in_ruleMetricType2146); 
 
                             current = grammarAccess.getMetricTypeAccess().getScalarEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getMetricTypeAccess().getScalarEnumLiteralDeclaration_2()); 
@@ -2375,8 +2369,8 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleScenario330 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_ruleScenario367 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleScenario384 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleScenario401 = new BitSet(new long[]{0x0000000000349000L});
-    public static final BitSet FOLLOW_rulePhase_in_ruleScenario422 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_13_in_ruleScenario401 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleScenario422 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_14_in_ruleScenario434 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePhase_in_entryRulePhase470 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePhase480 = new BitSet(new long[]{0x0000000000000002L});
@@ -2422,30 +2416,30 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_21_in_ruleAtomicPhase1476 = new BitSet(new long[]{0x0000000000400020L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleAtomicPhase1493 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_22_in_ruleAtomicPhase1511 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleAtomicPhase1532 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleAtomicPhase1544 = new BitSet(new long[]{0x0000000039020000L});
-    public static final BitSet FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1565 = new BitSet(new long[]{0x0000000039020000L});
-    public static final BitSet FOLLOW_17_in_ruleAtomicPhase1578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1614 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAttachedMetric1624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNewMetric_in_ruleAttachedMetric1698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1733 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMetricTypeReference1743 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricType_in_ruleMetricTypeReference1788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNewMetric_in_entryRuleNewMetric1823 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNewMetric1833 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleNewMetric1870 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleNewMetric1883 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleNewMetric1900 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNewMetric1928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1965 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName1976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2016 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_ruleQualifiedName2035 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2050 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_27_in_ruleMetricType2111 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleMetricType2128 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleMetricType2145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleAtomicPhase1528 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleAtomicPhase1545 = new BitSet(new long[]{0x0000000039020000L});
+    public static final BitSet FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1566 = new BitSet(new long[]{0x0000000039020000L});
+    public static final BitSet FOLLOW_17_in_ruleAtomicPhase1579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedMetric_in_entryRuleAttachedMetric1615 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAttachedMetric1625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricTypeReference_in_ruleAttachedMetric1672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNewMetric_in_ruleAttachedMetric1699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricTypeReference_in_entryRuleMetricTypeReference1734 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMetricTypeReference1744 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricType_in_ruleMetricTypeReference1789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNewMetric_in_entryRuleNewMetric1824 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNewMetric1834 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleNewMetric1871 = new BitSet(new long[]{0x0000000002000020L});
+    public static final BitSet FOLLOW_25_in_ruleNewMetric1884 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleNewMetric1901 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNewMetric1929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1966 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName1977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2017 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_26_in_ruleQualifiedName2036 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2051 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_27_in_ruleMetricType2112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleMetricType2129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleMetricType2146 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -2,8 +2,8 @@
  */
 package eu.mondo.sam.domain.benchmark.impl;
 
+import eu.mondo.sam.domain.benchmark.AttachedPhase;
 import eu.mondo.sam.domain.benchmark.BenchmarkPackage;
-import eu.mondo.sam.domain.benchmark.Phase;
 import eu.mondo.sam.domain.benchmark.Scenario;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -58,7 +58,7 @@ public class ScenarioImpl extends ElementImpl implements Scenario
    * @generated
    * @ordered
    */
-  protected Phase rootPhase;
+  protected AttachedPhase rootPhase;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,7 +109,7 @@ public class ScenarioImpl extends ElementImpl implements Scenario
    * <!-- end-user-doc -->
    * @generated
    */
-  public Phase getRootPhase()
+  public AttachedPhase getRootPhase()
   {
     return rootPhase;
   }
@@ -119,9 +119,9 @@ public class ScenarioImpl extends ElementImpl implements Scenario
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRootPhase(Phase newRootPhase, NotificationChain msgs)
+  public NotificationChain basicSetRootPhase(AttachedPhase newRootPhase, NotificationChain msgs)
   {
-    Phase oldRootPhase = rootPhase;
+    AttachedPhase oldRootPhase = rootPhase;
     rootPhase = newRootPhase;
     if (eNotificationRequired())
     {
@@ -136,7 +136,7 @@ public class ScenarioImpl extends ElementImpl implements Scenario
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRootPhase(Phase newRootPhase)
+  public void setRootPhase(AttachedPhase newRootPhase)
   {
     if (newRootPhase != rootPhase)
     {
@@ -200,7 +200,7 @@ public class ScenarioImpl extends ElementImpl implements Scenario
         setClassname((String)newValue);
         return;
       case BenchmarkPackage.SCENARIO__ROOT_PHASE:
-        setRootPhase((Phase)newValue);
+        setRootPhase((AttachedPhase)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -220,7 +220,7 @@ public class ScenarioImpl extends ElementImpl implements Scenario
         setClassname(CLASSNAME_EDEFAULT);
         return;
       case BenchmarkPackage.SCENARIO__ROOT_PHASE:
-        setRootPhase((Phase)null);
+        setRootPhase((AttachedPhase)null);
         return;
     }
     super.eUnset(featureID);

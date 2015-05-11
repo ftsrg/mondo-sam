@@ -17,7 +17,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class PhaseImportResolver {
-  public static Set<String> resolvePhases(final Phase phase, final String ownPackage) {
+  public static Set<String> resolvePhases(final AttachedPhase phase, final String ownPackage) {
     Set<String> _xblockexpression = null;
     {
       Set<String> imports = new HashSet<String>();

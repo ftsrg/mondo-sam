@@ -15,7 +15,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class PhaseStructureResolver {
-  public static String resolvePhases(final Phase phase) {
+  public static String resolvePhases(final AttachedPhase phase) {
     String _xblockexpression = null;
     {
       String structure = "rootPhase = ";
@@ -31,18 +31,23 @@ public class PhaseStructureResolver {
   protected static String _resolve(final SequencePhase sequence) {
     String _xblockexpression = null;
     {
-      String structure = "new SequencePhase().addPhases(";
+      String structure = "new SequencePhase(";
       boolean first = true;
       EList<AttachedPhase> _phases = sequence.getPhases();
       for (final AttachedPhase phase : _phases) {
         {
           if ((!first)) {
             String _structure = structure;
-            structure = (_structure + ",");
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append(",");
+            structure = (_structure + _builder);
           }
           String _structure_1 = structure;
+          StringConcatenation _builder_1 = new StringConcatenation();
           Object _resolve = PhaseStructureResolver.resolve(phase);
-          structure = (_structure_1 + _resolve);
+          _builder_1.append(_resolve, "");
+          _builder_1.newLineIfNotEmpty();
+          structure = (_structure_1 + _builder_1);
           first = false;
         }
       }

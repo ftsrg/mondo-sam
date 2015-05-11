@@ -57,12 +57,12 @@ public interface Scenario extends Element
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Root Phase</em>' containment reference.
-   * @see #setRootPhase(Phase)
+   * @see #setRootPhase(AttachedPhase)
    * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getScenario_RootPhase()
    * @model containment="true"
    * @generated
    */
-  Phase getRootPhase();
+  AttachedPhase getRootPhase();
 
   /**
    * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.Scenario#getRootPhase <em>Root Phase</em>}' containment reference.
@@ -72,6 +72,6 @@ public interface Scenario extends Element
    * @see #getRootPhase()
    * @generated
    */
-  void setRootPhase(Phase value);
+  void setRootPhase(AttachedPhase value);
 
 } // Scenario

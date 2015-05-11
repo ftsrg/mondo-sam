@@ -208,9 +208,9 @@ ruleScenario returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); 
 	    }
-		lv_rootPhase_3_0=rulePhase		{
+		lv_rootPhase_3_0=ruleAttachedPhase		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getScenarioRule());
 	        }
@@ -218,7 +218,7 @@ ruleScenario returns [EObject current=null]
        			$current, 
        			"rootPhase",
         		lv_rootPhase_3_0, 
-        		"Phase");
+        		"AttachedPhase");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -678,19 +678,19 @@ ruleAtomicPhase returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); 
-	    }
-		lv_classname_3_0=ruleQualifiedName		{
+		lv_classname_3_0=RULE_ID
+		{
+			newLeafNode(lv_classname_3_0, grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAtomicPhaseRule());
+	            $current = createModelElement(grammarAccess.getAtomicPhaseRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
        			"classname",
         		lv_classname_3_0, 
-        		"QualifiedName");
-	        afterParserOrEnumRuleCall();
+        		"ID");
 	    }
 
 )

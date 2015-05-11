@@ -22,8 +22,9 @@ public class SequencePhase implements BenchmarkPhase {
     /**
      * Instantiates the LinkedList which consist of BenchmarkPhase objects.
      */
-    public SequencePhase() {
+    public SequencePhase(BenchmarkPhase... phases) {
 	this.phases = new LinkedList<BenchmarkPhase>();
+	addPhases(phases);
     }
 
     /**

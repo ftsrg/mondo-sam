@@ -36,6 +36,11 @@ public class IterationPhase implements BenchmarkPhase {
 	this.maxIteration = maxIteration;
     }
 
+    public IterationPhase(int maxIteration, BenchmarkPhase phase) {
+	this.maxIteration = maxIteration;
+	this.phase = phase;
+    }
+
     /**
      * Returns a new IterationPhaseIterator instance, which has a reference to
      * this object and also can control the access to the field of this class.

@@ -3,3 +3,5 @@
 /.GeneratorUtil.java._trace
 /.PhaseStructureResolver.java._trace
 /.PhaseImportResolver.java._trace
+/PhaseImportResolver.java
+/PhaseStructureResolver.java

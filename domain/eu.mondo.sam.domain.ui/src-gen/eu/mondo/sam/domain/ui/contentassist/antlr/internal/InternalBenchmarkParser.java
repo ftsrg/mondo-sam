@@ -5249,25 +5249,25 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__RootPhaseAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1988:1: rule__Scenario__RootPhaseAssignment_3 : ( rulePhase ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1988:1: rule__Scenario__RootPhaseAssignment_3 : ( ruleAttachedPhase ) ;
     public final void rule__Scenario__RootPhaseAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1992:1: ( ( rulePhase ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1993:1: ( rulePhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1992:1: ( ( ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1993:1: ( ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1993:1: ( rulePhase )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1994:1: rulePhase
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1993:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1994:1: ruleAttachedPhase
             {
-             before(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_rulePhase_in_rule__Scenario__RootPhaseAssignment_33987);
-            rulePhase();
+             before(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); 
+            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__Scenario__RootPhaseAssignment_33987);
+            ruleAttachedPhase();
 
             state._fsp--;
 
-             after(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); 
+             after(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); 
 
             }
 
@@ -5684,25 +5684,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__ClassnameAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2157:1: rule__AtomicPhase__ClassnameAssignment_3 : ( ruleQualifiedName ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2157:1: rule__AtomicPhase__ClassnameAssignment_3 : ( RULE_ID ) ;
     public final void rule__AtomicPhase__ClassnameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2161:1: ( ( ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2162:1: ( ruleQualifiedName )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2161:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2162:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2162:1: ( ruleQualifiedName )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2163:1: ruleQualifiedName
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2162:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2163:1: RULE_ID
             {
-             before(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__AtomicPhase__ClassnameAssignment_34336);
-            ruleQualifiedName();
-
-            state._fsp--;
-
-             after(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); 
+             before(grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AtomicPhase__ClassnameAssignment_34336); 
+             after(grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
 
             }
 
@@ -5961,7 +5957,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_rule__Scenario__Group__1__Impl_in_rule__Scenario__Group__11560 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_rule__Scenario__Group__2_in_rule__Scenario__Group__11563 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Scenario__ClassnameAssignment_1_in_rule__Scenario__Group__1__Impl1590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__2__Impl_in_rule__Scenario__Group__21620 = new BitSet(new long[]{0x0000000001A48000L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__2__Impl_in_rule__Scenario__Group__21620 = new BitSet(new long[]{0x0000000001A48010L});
     public static final BitSet FOLLOW_rule__Scenario__Group__3_in_rule__Scenario__Group__21623 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_16_in_rule__Scenario__Group__2__Impl1651 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Scenario__Group__3__Impl_in_rule__Scenario__Group__31682 = new BitSet(new long[]{0x0000000000020000L});
@@ -6064,7 +6060,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Benchmark__PackageNameAssignment_13894 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleElement_in_rule__Benchmark__ElementsAssignment_23925 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Scenario__ClassnameAssignment_13956 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhase_in_rule__Scenario__RootPhaseAssignment_33987 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__Scenario__RootPhaseAssignment_33987 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__SequencePhase__NameAssignment_14018 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__SequencePhase__PhasesAssignment_34049 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__IterationPhase__NameAssignment_14080 = new BitSet(new long[]{0x0000000000000002L});
@@ -6075,7 +6071,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_RULE_ID_in_rule__PhaseReference__PhaseAssignment4239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePhase_in_rule__NewPhase__PhaseAssignment4274 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__AtomicPhase__NameAssignment_14305 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__AtomicPhase__ClassnameAssignment_34336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AtomicPhase__ClassnameAssignment_34336 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAttachedMetric_in_rule__AtomicPhase__MetricsAssignment_54367 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMetricType_in_rule__MetricTypeReference__MetricAssignment4398 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__NewMetric__NameAssignment_1_14429 = new BitSet(new long[]{0x0000000000000002L});

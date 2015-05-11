@@ -1991,8 +1991,8 @@ rule__Scenario__RootPhaseAssignment_3
     }
 :
 (
-{ before(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); }
-	rulePhase{ after(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0()); }
+{ before(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); }
+	ruleAttachedPhase{ after(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); }
 )
 
 ;
@@ -2160,8 +2160,8 @@ rule__AtomicPhase__ClassnameAssignment_3
     }
 :
 (
-{ before(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); }
-	ruleQualifiedName{ after(grammarAccess.getAtomicPhaseAccess().getClassnameQualifiedNameParserRuleCall_3_0()); }
+{ before(grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); }
+	RULE_ID{ after(grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); }
 )
 
 ;

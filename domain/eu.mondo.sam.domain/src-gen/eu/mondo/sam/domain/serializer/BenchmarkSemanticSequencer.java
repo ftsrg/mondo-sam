@@ -113,7 +113,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=ID? classname=QualifiedName metrics+=AttachedMetric*)
+	 *     (name=ID? classname=ID metrics+=AttachedMetric*)
 	 */
 	protected void sequence_AtomicPhase(EObject context, AtomicPhase semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -206,7 +206,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (classname=STRING rootPhase=Phase)
+	 *     (classname=STRING rootPhase=AttachedPhase)
 	 */
 	protected void sequence_Scenario(EObject context, Scenario semanticObject) {
 		if(errorAcceptor != null) {
@@ -218,7 +218,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0(), semanticObject.getClassname());
-		feeder.accept(grammarAccess.getScenarioAccess().getRootPhasePhaseParserRuleCall_3_0(), semanticObject.getRootPhase());
+		feeder.accept(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0(), semanticObject.getRootPhase());
 		feeder.finish();
 	}
 	

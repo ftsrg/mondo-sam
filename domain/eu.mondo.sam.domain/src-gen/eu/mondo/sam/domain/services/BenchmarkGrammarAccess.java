@@ -78,14 +78,14 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassnameSTRINGTerminalRuleCall_1_0 = (RuleCall)cClassnameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cRootPhaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRootPhasePhaseParserRuleCall_3_0 = (RuleCall)cRootPhaseAssignment_3.eContents().get(0);
+		private final RuleCall cRootPhaseAttachedPhaseParserRuleCall_3_0 = (RuleCall)cRootPhaseAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Scenario:
-		//	"Scenario" classname=STRING "{" rootPhase=Phase "}";
+		//	"Scenario" classname=STRING "{" rootPhase=AttachedPhase "}";
 		public ParserRule getRule() { return rule; }
 
-		//"Scenario" classname=STRING "{" rootPhase=Phase "}"
+		//"Scenario" classname=STRING "{" rootPhase=AttachedPhase "}"
 		public Group getGroup() { return cGroup; }
 
 		//"Scenario"
@@ -100,11 +100,11 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//rootPhase=Phase
+		//rootPhase=AttachedPhase
 		public Assignment getRootPhaseAssignment_3() { return cRootPhaseAssignment_3; }
 
-		//Phase
-		public RuleCall getRootPhasePhaseParserRuleCall_3_0() { return cRootPhasePhaseParserRuleCall_3_0; }
+		//AttachedPhase
+		public RuleCall getRootPhaseAttachedPhaseParserRuleCall_3_0() { return cRootPhaseAttachedPhaseParserRuleCall_3_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -334,17 +334,17 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cClassNameKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cClassnameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cClassnameQualifiedNameParserRuleCall_3_0 = (RuleCall)cClassnameAssignment_3.eContents().get(0);
+		private final RuleCall cClassnameIDTerminalRuleCall_3_0 = (RuleCall)cClassnameAssignment_3.eContents().get(0);
 		private final Keyword cMetricsKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cMetricsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cMetricsAttachedMetricParserRuleCall_5_0 = (RuleCall)cMetricsAssignment_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//AtomicPhase:
-		//	"Atomic" name=ID? "ClassName" classname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")";
+		//	"Atomic" name=ID? "ClassName" classname=ID "Metrics(" metrics+=AttachedMetric* ")";
 		public ParserRule getRule() { return rule; }
 
-		//"Atomic" name=ID? "ClassName" classname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")"
+		//"Atomic" name=ID? "ClassName" classname=ID "Metrics(" metrics+=AttachedMetric* ")"
 		public Group getGroup() { return cGroup; }
 
 		//"Atomic"
@@ -359,11 +359,11 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//"ClassName"
 		public Keyword getClassNameKeyword_2() { return cClassNameKeyword_2; }
 
-		//classname=QualifiedName
+		//classname=ID
 		public Assignment getClassnameAssignment_3() { return cClassnameAssignment_3; }
 
-		//QualifiedName
-		public RuleCall getClassnameQualifiedNameParserRuleCall_3_0() { return cClassnameQualifiedNameParserRuleCall_3_0; }
+		//ID
+		public RuleCall getClassnameIDTerminalRuleCall_3_0() { return cClassnameIDTerminalRuleCall_3_0; }
 
 		//"Metrics("
 		public Keyword getMetricsKeyword_4() { return cMetricsKeyword_4; }
@@ -611,7 +611,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Scenario:
-	//	"Scenario" classname=STRING "{" rootPhase=Phase "}";
+	//	"Scenario" classname=STRING "{" rootPhase=AttachedPhase "}";
 	public ScenarioElements getScenarioAccess() {
 		return pScenario;
 	}
@@ -691,7 +691,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AtomicPhase:
-	//	"Atomic" name=ID? "ClassName" classname=QualifiedName "Metrics(" metrics+=AttachedMetric* ")";
+	//	"Atomic" name=ID? "ClassName" classname=ID "Metrics(" metrics+=AttachedMetric* ")";
 	public AtomicPhaseElements getAtomicPhaseAccess() {
 		return pAtomicPhase;
 	}

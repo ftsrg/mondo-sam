@@ -21,12 +21,21 @@ class IterationPhaseTest {
  	private ValidationTestHelper helper;
 	
 	@Test
-	def testIteration(){
-		val model = parseHelper.parse("Iteration Name (0 * 
+	def testNullIteration(){
+		val model = parseHelper.parse("package test.pack Iteration Name (0 * 
 			Atomic ClassName AtomicName Metrics(
-			new Metric metricname
+			new Metric MetricName
 		))")
 		helper.assertError(model, BenchmarkPackage.Literals.ITERATION_PHASE, "invalid_iteration");
+	}
+	
+	@Test
+	def testPositiveIteration(){
+		val model = parseHelper.parse('''package test.pack Iteration it ( 1 * 
+			Atomic ClassName AtomicName Metrics(
+			new Metric MetricName
+		))''')
+		helper.assertNoErrors(model)
 	}
 	
 }

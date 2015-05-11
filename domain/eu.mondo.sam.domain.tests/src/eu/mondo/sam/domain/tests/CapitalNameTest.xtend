@@ -22,23 +22,25 @@ class CapitalNameTest {
  
   @Test
   def testValidScenarioDeclaration() {
-    val model = parseHelper.parse('Scenario name {Atomic ClassName AtomicName Metrics()}')
+    val model = parseHelper.parse('package test.pack Scenario "name" {Atomic ClassName AtomicName Metrics()}')
 	helper.assertWarning(model, BenchmarkPackage.Literals.SCENARIO, "invalid_scenario");
   }
   
   @Test
   def testValidAtomicPhaseDeclaration() {
-    val model = parseHelper.parse('Scenario Name {Atomic ClassName atomicName Metrics()}')
+    val model = parseHelper.parse('package test.pack Scenario "Name" {Atomic ClassName atomicName Metrics()}')
+    helper.assertNoErrors(model);
 	helper.assertWarning(model, BenchmarkPackage.Literals.ATOMIC_PHASE, "invalid_atomicphase");
   }
   
   @Test
   def testValidMetricDeclaration() {
-    val model = parseHelper.parse('Scenario name {
+    val model = parseHelper.parse('package test.pack Scenario "name" {
 				Atomic ClassName AtomicName Metrics(
 		new Metric metricname
 		)
 	}')
+	helper.assertNoErrors(model);
 	helper.assertWarning(model, BenchmarkPackage.Literals.NEW_METRIC, "invalid_metric");
   }
   
