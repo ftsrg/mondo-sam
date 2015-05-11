@@ -206,7 +206,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (classname=STRING rootPhase=AttachedPhase)
+	 *     (classname=ID rootPhase=AttachedPhase)
 	 */
 	protected void sequence_Scenario(EObject context, Scenario semanticObject) {
 		if(errorAcceptor != null) {
@@ -217,7 +217,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0(), semanticObject.getClassname());
+		feeder.accept(grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0(), semanticObject.getClassname());
 		feeder.accept(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0(), semanticObject.getRootPhase());
 		feeder.finish();
 	}

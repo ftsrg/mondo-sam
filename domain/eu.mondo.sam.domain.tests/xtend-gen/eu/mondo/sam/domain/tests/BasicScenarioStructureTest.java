@@ -28,7 +28,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName{");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("Atomic ClassName AtomicClass Metrics()");
@@ -48,7 +48,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName{");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("Iteration (1 * Atomic ClassName AtomicClass Metrics())");
@@ -68,7 +68,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName{");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("Sequence (Atomic ClassName AtomicClass Metrics())");
@@ -88,7 +88,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName{");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("Optional (Atomic ClassName AtomicClass Metrics())");
@@ -108,7 +108,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName{");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("a1");
@@ -130,7 +130,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName {");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("iter");
@@ -154,7 +154,7 @@ public class BasicScenarioStructureTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test.pack");
       _builder.newLine();
-      _builder.append("Scenario \"ScenarioName\"{");
+      _builder.append("Scenario ScenarioName {");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("opt");

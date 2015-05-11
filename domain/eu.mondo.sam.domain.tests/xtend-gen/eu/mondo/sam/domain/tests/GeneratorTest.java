@@ -38,7 +38,29 @@ public class GeneratorTest {
       _builder.append("package test");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("Scenario \"TestScenario\" {a1}");
+      _builder.append("Atomic a1 ClassName TestAtomic Metrics()");
+      _builder.newLine();
+      final Benchmark model = this.parseHelper.parse(_builder);
+      final InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
+      this.helper.assertNoErrors(model);
+      Resource _eResource = model.eResource();
+      this.underTest.doGenerate(_eResource, fsa);
+      Map<String, CharSequence> _files = fsa.getFiles();
+      boolean _containsKey = _files.containsKey((IFileSystemAccess.DEFAULT_OUTPUT + "test/phases/TestAtomic.java"));
+      Assert.assertTrue(_containsKey);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testScenarioGenerator() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package test");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("Scenario TestScenario {a1}");
       _builder.newLine();
       _builder.newLine();
       _builder.append("Atomic a1 ClassName TestAtomic Metrics()");

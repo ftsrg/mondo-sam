@@ -25,7 +25,7 @@ public class CapitalNameTest {
   @Test
   public void testValidScenarioDeclaration() {
     try {
-      final Benchmark model = this.parseHelper.parse("package test.pack Scenario \"name\" {Atomic ClassName AtomicName Metrics()}");
+      final Benchmark model = this.parseHelper.parse("package test.pack Scenario name {Atomic ClassName AtomicName Metrics()}");
       this.helper.assertWarning(model, BenchmarkPackage.Literals.SCENARIO, "invalid_scenario");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -35,7 +35,7 @@ public class CapitalNameTest {
   @Test
   public void testValidAtomicPhaseDeclaration() {
     try {
-      final Benchmark model = this.parseHelper.parse("package test.pack Scenario \"Name\" {Atomic ClassName atomicName Metrics()}");
+      final Benchmark model = this.parseHelper.parse("package test.pack Scenario Name {Atomic ClassName atomicName Metrics()}");
       this.helper.assertNoErrors(model);
       this.helper.assertWarning(model, BenchmarkPackage.Literals.ATOMIC_PHASE, "invalid_atomicphase");
     } catch (Throwable _e) {
@@ -46,7 +46,7 @@ public class CapitalNameTest {
   @Test
   public void testValidMetricDeclaration() {
     try {
-      final Benchmark model = this.parseHelper.parse("package test.pack Scenario \"name\" {\n\t\t\t\tAtomic ClassName AtomicName Metrics(\n\t\tnew Metric metricname\n\t\t)\n\t}");
+      final Benchmark model = this.parseHelper.parse("package test.pack Scenario name {\n\t\t\t\tAtomic ClassName AtomicName Metrics(\n\t\tnew Metric metricname\n\t\t)\n\t}");
       this.helper.assertNoErrors(model);
       this.helper.assertWarning(model, BenchmarkPackage.Literals.NEW_METRIC, "invalid_metric");
     } catch (Throwable _e) {

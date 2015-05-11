@@ -1976,8 +1976,8 @@ rule__Scenario__ClassnameAssignment_1
     }
 :
 (
-{ before(grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0()); }
-	RULE_STRING{ after(grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0()); }
+	RULE_ID{ after(grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0()); }
 )
 
 ;

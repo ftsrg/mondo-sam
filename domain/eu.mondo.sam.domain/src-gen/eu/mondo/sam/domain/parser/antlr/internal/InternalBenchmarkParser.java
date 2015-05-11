@@ -22,9 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'Scenario'", "'{'", "'}'", "'Sequence'", "'('", "')'", "'Iteration'", "'*'", "'Optional'", "'Atomic'", "'ClassName'", "'Metrics('", "'new Metric'", "'ID'", "'.'", "'Time'", "'Memory'", "'Scalar'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'Scenario'", "'{'", "'}'", "'Sequence'", "'('", "')'", "'Iteration'", "'*'", "'Optional'", "'Atomic'", "'ClassName'", "'Metrics('", "'new Metric'", "'ID'", "'.'", "'Time'", "'Memory'", "'Scalar'"
     };
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=4;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -40,7 +40,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__19=19;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=6;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
@@ -49,7 +49,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_INT=6;
+    public static final int RULE_INT=5;
     public static final int RULE_WS=9;
 
     // delegates
@@ -412,7 +412,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleScenario"
-    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:178:1: ruleScenario returns [EObject current=null] : (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' ) ;
+    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:178:1: ruleScenario returns [EObject current=null] : (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' ) ;
     public final EObject ruleScenario() throws RecognitionException {
         EObject current = null;
 
@@ -426,25 +426,25 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:181:28: ( (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:181:28: ( (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:3: otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:1: (otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:182:3: otherlv_0= 'Scenario' ( (lv_classname_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_rootPhase_3_0= ruleAttachedPhase ) ) otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleScenario367); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getScenarioAccess().getScenarioKeyword_0());
                 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:186:1: ( (lv_classname_1_0= RULE_STRING ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:187:1: (lv_classname_1_0= RULE_STRING )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:186:1: ( (lv_classname_1_0= RULE_ID ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:187:1: (lv_classname_1_0= RULE_ID )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:187:1: (lv_classname_1_0= RULE_STRING )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:188:3: lv_classname_1_0= RULE_STRING
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:187:1: (lv_classname_1_0= RULE_ID )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:188:3: lv_classname_1_0= RULE_ID
             {
-            lv_classname_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleScenario384); 
+            lv_classname_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleScenario384); 
 
-            			newLeafNode(lv_classname_1_0, grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_classname_1_0, grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
@@ -454,7 +454,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"classname",
                     		lv_classname_1_0, 
-                    		"STRING");
+                    		"ID");
             	    
 
             }
@@ -2358,7 +2358,7 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleBenchmark_in_entryRuleBenchmark75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBenchmark85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_ruleBenchmark122 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_11_in_ruleBenchmark122 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleBenchmark143 = new BitSet(new long[]{0x0000000000349002L});
     public static final BitSet FOLLOW_ruleElement_in_ruleBenchmark164 = new BitSet(new long[]{0x0000000000349002L});
     public static final BitSet FOLLOW_ruleElement_in_entryRuleElement201 = new BitSet(new long[]{0x0000000000000000L});
@@ -2368,8 +2368,8 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleScenario_in_entryRuleScenario320 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleScenario330 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_ruleScenario367 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleScenario384 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleScenario401 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleScenario384 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleScenario401 = new BitSet(new long[]{0x0000000000349010L});
     public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleScenario422 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_14_in_ruleScenario434 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePhase_in_entryRulePhase470 = new BitSet(new long[]{0x0000000000000000L});
@@ -2380,25 +2380,25 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAtomicPhase_in_rulePhase608 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSequencePhase_in_entryRuleSequencePhase643 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSequencePhase653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleSequencePhase690 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_15_in_ruleSequencePhase690 = new BitSet(new long[]{0x0000000000010010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleSequencePhase707 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleSequencePhase725 = new BitSet(new long[]{0x0000000000349020L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleSequencePhase746 = new BitSet(new long[]{0x0000000000369020L});
+    public static final BitSet FOLLOW_16_in_ruleSequencePhase725 = new BitSet(new long[]{0x0000000000349010L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleSequencePhase746 = new BitSet(new long[]{0x0000000000369010L});
     public static final BitSet FOLLOW_17_in_ruleSequencePhase759 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIterationPhase_in_entryRuleIterationPhase795 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIterationPhase805 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleIterationPhase842 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_18_in_ruleIterationPhase842 = new BitSet(new long[]{0x0000000000010010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleIterationPhase859 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleIterationPhase877 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_16_in_ruleIterationPhase877 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RULE_INT_in_ruleIterationPhase894 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleIterationPhase911 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_19_in_ruleIterationPhase911 = new BitSet(new long[]{0x0000000000349010L});
     public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleIterationPhase932 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleIterationPhase944 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleOptionalPhase_in_entryRuleOptionalPhase980 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOptionalPhase990 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleOptionalPhase1027 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_20_in_ruleOptionalPhase1027 = new BitSet(new long[]{0x0000000000010010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleOptionalPhase1044 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleOptionalPhase1062 = new BitSet(new long[]{0x0000000000349020L});
+    public static final BitSet FOLLOW_16_in_ruleOptionalPhase1062 = new BitSet(new long[]{0x0000000000349010L});
     public static final BitSet FOLLOW_ruleAttachedPhase_in_ruleOptionalPhase1083 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleOptionalPhase1095 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAttachedPhase_in_entryRuleAttachedPhase1131 = new BitSet(new long[]{0x0000000000000000L});
@@ -2413,9 +2413,9 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePhase_in_ruleNewPhase1394 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAtomicPhase_in_entryRuleAtomicPhase1429 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAtomicPhase1439 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleAtomicPhase1476 = new BitSet(new long[]{0x0000000000400020L});
+    public static final BitSet FOLLOW_21_in_ruleAtomicPhase1476 = new BitSet(new long[]{0x0000000000400010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleAtomicPhase1493 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ruleAtomicPhase1511 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_22_in_ruleAtomicPhase1511 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleAtomicPhase1528 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_23_in_ruleAtomicPhase1545 = new BitSet(new long[]{0x0000000039020000L});
     public static final BitSet FOLLOW_ruleAttachedMetric_in_ruleAtomicPhase1566 = new BitSet(new long[]{0x0000000039020000L});
@@ -2429,14 +2429,14 @@ public class InternalBenchmarkParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleMetricType_in_ruleMetricTypeReference1789 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNewMetric_in_entryRuleNewMetric1824 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleNewMetric1834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleNewMetric1871 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleNewMetric1884 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleNewMetric1901 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_24_in_ruleNewMetric1871 = new BitSet(new long[]{0x0000000002000010L});
+    public static final BitSet FOLLOW_25_in_ruleNewMetric1884 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleNewMetric1901 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNewMetric1929 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1966 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName1977 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2017 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_ruleQualifiedName2036 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_26_in_ruleQualifiedName2036 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName2051 = new BitSet(new long[]{0x0000000004000002L});
     public static final BitSet FOLLOW_27_in_ruleMetricType2112 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_28_in_ruleMetricType2129 = new BitSet(new long[]{0x0000000000000002L});

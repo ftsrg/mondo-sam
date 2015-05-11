@@ -25,7 +25,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithAtomicPhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName{
   			Atomic ClassName AtomicClass Metrics()
   		}
   		''')
@@ -36,7 +36,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithIterationPhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName{
   			Iteration (1 * Atomic ClassName AtomicClass Metrics())
   		}
   		''')
@@ -47,7 +47,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithSequencePhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName{
   			Sequence (Atomic ClassName AtomicClass Metrics())
   		}
   		''')
@@ -59,7 +59,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithoptionalPhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName{
   			Optional (Atomic ClassName AtomicClass Metrics())
   		}
   		''')
@@ -70,7 +70,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithAttachedAtomicPhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName{
   			a1
   		}
   		Atomic a1 ClassName AtomicClass Metrics()
@@ -82,7 +82,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithAttachedIterationPhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName {
   			iter
   		}
   		Iteration iter (1*a1)
@@ -95,7 +95,7 @@ class BasicScenarioStructureTest {
   	def testScenarioWithAttachedOptionalPhase(){
   		val model = parseHelper.parse('''
   		package test.pack
-  		Scenario "ScenarioName"{
+  		Scenario ScenarioName {
   			opt
   		}
   		Optional opt (a1)

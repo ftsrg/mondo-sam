@@ -28,8 +28,24 @@ class GeneratorTest {
 	def testAtomicPhaseGenerator(){
 		val model = parseHelper.parse('''
 		package test
-
-		Scenario "TestScenario" {a1}
+		
+		Atomic a1 ClassName TestAtomic Metrics()
+        ''')
+        val fsa = new InMemoryFileSystemAccess()
+        
+        helper.assertNoErrors(model)
+        
+        underTest.doGenerate(model.eResource, fsa)
+//        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"test/scenarios/TestScenario.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"test/phases/TestAtomic.java"))
+	}
+	
+	@Test
+	def testScenarioGenerator(){
+		val model = parseHelper.parse('''
+		package test
+		
+		Scenario TestScenario {a1}
 		
 		Atomic a1 ClassName TestAtomic Metrics()
         ''')
@@ -41,6 +57,4 @@ class GeneratorTest {
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"test/scenarios/TestScenario.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"test/phases/TestAtomic.java"))
 	}
-	
-	
 }

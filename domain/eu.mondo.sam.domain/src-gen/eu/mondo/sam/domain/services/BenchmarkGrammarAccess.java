@@ -75,27 +75,27 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cScenarioKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cClassnameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cClassnameSTRINGTerminalRuleCall_1_0 = (RuleCall)cClassnameAssignment_1.eContents().get(0);
+		private final RuleCall cClassnameIDTerminalRuleCall_1_0 = (RuleCall)cClassnameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cRootPhaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootPhaseAttachedPhaseParserRuleCall_3_0 = (RuleCall)cRootPhaseAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Scenario:
-		//	"Scenario" classname=STRING "{" rootPhase=AttachedPhase "}";
+		//	"Scenario" classname=ID "{" rootPhase=AttachedPhase "}";
 		public ParserRule getRule() { return rule; }
 
-		//"Scenario" classname=STRING "{" rootPhase=AttachedPhase "}"
+		//"Scenario" classname=ID "{" rootPhase=AttachedPhase "}"
 		public Group getGroup() { return cGroup; }
 
 		//"Scenario"
 		public Keyword getScenarioKeyword_0() { return cScenarioKeyword_0; }
 
-		//classname=STRING
+		//classname=ID
 		public Assignment getClassnameAssignment_1() { return cClassnameAssignment_1; }
 
-		//STRING
-		public RuleCall getClassnameSTRINGTerminalRuleCall_1_0() { return cClassnameSTRINGTerminalRuleCall_1_0; }
+		//ID
+		public RuleCall getClassnameIDTerminalRuleCall_1_0() { return cClassnameIDTerminalRuleCall_1_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -611,7 +611,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Scenario:
-	//	"Scenario" classname=STRING "{" rootPhase=AttachedPhase "}";
+	//	"Scenario" classname=ID "{" rootPhase=AttachedPhase "}";
 	public ScenarioElements getScenarioAccess() {
 		return pScenario;
 	}

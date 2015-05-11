@@ -185,9 +185,9 @@ ruleScenario returns [EObject current=null]
     }
 (
 (
-		lv_classname_1_0=RULE_STRING
+		lv_classname_1_0=RULE_ID
 		{
-			newLeafNode(lv_classname_1_0, grammarAccess.getScenarioAccess().getClassnameSTRINGTerminalRuleCall_1_0()); 
+			newLeafNode(lv_classname_1_0, grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -197,7 +197,7 @@ ruleScenario returns [EObject current=null]
        			$current, 
        			"classname",
         		lv_classname_1_0, 
-        		"STRING");
+        		"ID");
 	    }
 
 )
