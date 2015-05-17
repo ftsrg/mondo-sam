@@ -181,7 +181,7 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=ID? phase=AttachedPhase)
+	 *     (name=ID? classname=ID phase=AttachedPhase)
 	 */
 	protected void sequence_OptionalPhase(EObject context, OptionalPhase semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

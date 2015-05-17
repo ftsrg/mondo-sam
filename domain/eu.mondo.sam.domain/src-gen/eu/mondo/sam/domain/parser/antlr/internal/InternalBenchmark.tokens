@@ -2,8 +2,8 @@
 ')'=17
 '*'=19
 '.'=26
-'Atomic'=21
-'ClassName'=22
+'Atomic'=22
+'ClassName'=21
 'ID'=25
 'Iteration'=18
 'Memory'=28

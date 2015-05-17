@@ -60,7 +60,7 @@ class BasicScenarioStructureTest {
   		val model = parseHelper.parse('''
   		package test.pack
   		Scenario ScenarioName{
-  			Optional (Atomic ClassName AtomicClass Metrics())
+  			Optional ClassName OptionalTest (Atomic ClassName AtomicClass Metrics())
   		}
   		''')
   		helper.assertNoErrors(model)
@@ -98,7 +98,7 @@ class BasicScenarioStructureTest {
   		Scenario ScenarioName {
   			opt
   		}
-  		Optional opt (a1)
+  		Optional opt ClassName OptionalTest (a1)
   		Atomic a1 ClassName AtomicClass Metrics()
   		''')
   		helper.assertNoErrors(model)

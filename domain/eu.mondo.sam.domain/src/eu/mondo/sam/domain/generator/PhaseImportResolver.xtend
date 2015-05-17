@@ -34,7 +34,7 @@ class PhaseImportResolver {
 	}
 	
 	def static dispatch resolve(OptionalPhase optional, Set<String> imports, String ownPackage){
-		imports.add("eu.mondo.sam.core.phases.OptionalPhase;")
+		imports.add('''«ownPackage».phases.«optional.classname»;''')
 		optional.phase.resolve(imports, ownPackage)
 	}
 	

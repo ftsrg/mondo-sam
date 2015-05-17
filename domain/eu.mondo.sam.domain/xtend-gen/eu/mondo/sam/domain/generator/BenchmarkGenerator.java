@@ -7,11 +7,14 @@ import eu.mondo.sam.domain.benchmark.AtomicPhase;
 import eu.mondo.sam.domain.benchmark.AttachedPhase;
 import eu.mondo.sam.domain.benchmark.Benchmark;
 import eu.mondo.sam.domain.benchmark.Element;
+import eu.mondo.sam.domain.benchmark.OptionalPhase;
 import eu.mondo.sam.domain.benchmark.Phase;
 import eu.mondo.sam.domain.benchmark.Scenario;
+import eu.mondo.sam.domain.generator.PhaseContainmentResolver;
 import eu.mondo.sam.domain.generator.PhaseImportResolver;
 import eu.mondo.sam.domain.generator.PhaseStructureResolver;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -32,9 +35,21 @@ public class BenchmarkGenerator implements IGenerator {
     EList<EObject> _contents = resource.getContents();
     EObject _head = IterableExtensions.<EObject>head(_contents);
     final Benchmark benchmark = ((Benchmark) _head);
+    final Set<Element> generatedElements = new HashSet<Element>();
     EList<Element> _elements = benchmark.getElements();
     for (final Element element : _elements) {
-      this.generate(element, fsa, benchmark);
+      {
+        generatedElements.add(element);
+        if ((element instanceof Scenario)) {
+          final Scenario scen = ((Scenario) element);
+          AttachedPhase _rootPhase = scen.getRootPhase();
+          Set<Element> _resolvePhases = PhaseContainmentResolver.resolvePhases(_rootPhase, generatedElements);
+          generatedElements.addAll(_resolvePhases);
+        }
+        for (final Element genElement : generatedElements) {
+          this.generate(genElement, fsa, benchmark);
+        }
+      }
     }
   }
   
@@ -164,14 +179,13 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("import eu.mondo.sam.core.results.PhaseResult;");
     _builder_1.newLine();
     _builder_1.newLine();
+    _builder_1.newLine();
     _builder_1.append("public class ");
     String _classname_1 = atomic.getClassname();
     _builder_1.append(_classname_1, "");
     _builder_1.append(" extends AtomicPhase {");
     _builder_1.newLineIfNotEmpty();
-    _builder_1.append("\t");
     _builder_1.newLine();
-    _builder_1.append("\t");
     _builder_1.newLine();
     _builder_1.append("\t");
     _builder_1.append("public ");
@@ -237,13 +251,73 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("\t");
     _builder_1.append("public void execute(DataToken token, PhaseResult phaseResult) {");
     _builder_1.newLine();
-    _builder_1.append("\t\t\t\t\t");
+    _builder_1.append("\t\t");
     _builder_1.newLine();
     _builder_1.append("\t");
     _builder_1.append("}");
     _builder_1.newLine();
     _builder_1.append("}");
+    fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
+    return null;
+  }
+  
+  protected Object _generate(final OptionalPhase optional, final IFileSystemAccess fsa, final Benchmark bench) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _packageName = bench.getPackageName();
+    String _replace = _packageName.replace(".", "/");
+    _builder.append(_replace, "");
+    _builder.append("/phases/");
+    String _classname = optional.getClassname();
+    _builder.append(_classname, "");
+    _builder.append(".java");
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("package ");
+    String _packageName_1 = bench.getPackageName();
+    _builder_1.append(_packageName_1, "");
+    _builder_1.append(".phases;");
+    _builder_1.newLineIfNotEmpty();
     _builder_1.newLine();
+    _builder_1.append("import eu.mondo.sam.core.phases.OptionalPhase;");
+    _builder_1.newLine();
+    _builder_1.append("import eu.mondo.sam.core.phases.BenchmarkPhase;");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("public class ");
+    String _classname_1 = optional.getClassname();
+    _builder_1.append(_classname_1, "");
+    _builder_1.append(" extends OptionalPhase {");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("public ");
+    String _classname_2 = optional.getClassname();
+    _builder_1.append(_classname_2, "\t");
+    _builder_1.append("(BenchmarkPhase phase) {");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t\t");
+    _builder_1.append("this.phase = phase;");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("}");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("@Override");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("public boolean condition() {");
+    _builder_1.newLine();
+    _builder_1.append("\t\t");
+    _builder_1.append("// TODO define condition");
+    _builder_1.newLine();
+    _builder_1.append("\t\t");
+    _builder_1.append("return false;");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("}");
+    _builder_1.newLine();
+    _builder_1.append("}");
     fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
     return null;
   }
@@ -255,6 +329,8 @@ public class BenchmarkGenerator implements IGenerator {
   public Object generate(final Element atomic, final IFileSystemAccess fsa, final Benchmark bench) {
     if (atomic instanceof AtomicPhase) {
       return _generate((AtomicPhase)atomic, fsa, bench);
+    } else if (atomic instanceof OptionalPhase) {
+      return _generate((OptionalPhase)atomic, fsa, bench);
     } else if (atomic instanceof Phase) {
       return _generate((Phase)atomic, fsa, bench);
     } else if (atomic instanceof Scenario) {

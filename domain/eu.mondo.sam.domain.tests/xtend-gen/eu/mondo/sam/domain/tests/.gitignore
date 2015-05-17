@@ -5,3 +5,5 @@
 /.StructuralTest.java._trace
 /.BasicScenarioStructureTest.java._trace
 /.CompositePhasesTest.java._trace
+/.ScenarioGeneratorTest.java._trace
+/.AtomicPhaseGeneratorTest.java._trace

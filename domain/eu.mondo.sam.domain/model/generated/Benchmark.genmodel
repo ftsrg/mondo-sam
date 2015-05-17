@@ -32,6 +32,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//IterationPhase/phase"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//OptionalPhase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//OptionalPhase/classname"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//OptionalPhase/phase"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//AttachedPhase"/>

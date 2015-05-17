@@ -91,7 +91,7 @@ public class BasicScenarioStructureTest {
       _builder.append("Scenario ScenarioName{");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("Optional (Atomic ClassName AtomicClass Metrics())");
+      _builder.append("Optional ClassName OptionalTest (Atomic ClassName AtomicClass Metrics())");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();
@@ -161,7 +161,7 @@ public class BasicScenarioStructureTest {
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();
-      _builder.append("Optional opt (a1)");
+      _builder.append("Optional opt ClassName OptionalTest (a1)");
       _builder.newLine();
       _builder.append("Atomic a1 ClassName AtomicClass Metrics()");
       _builder.newLine();

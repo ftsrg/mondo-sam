@@ -16,6 +16,7 @@ import org.eclipse.xtext.generator.OutputConfiguration
 import eu.mondo.sam.domain.OutputConfigurationProvider
 import eu.mondo.sam.domain.benchmark.Phase
 import java.util.Set
+import java.util.HashSet
 
 /**
  * Generates code from your model files on save.
@@ -26,8 +27,18 @@ class BenchmarkGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {		
 		val Benchmark benchmark = resource.contents.head as Benchmark
+		
+		val Set<Element> generatedElements = new HashSet<Element>();
 		for (Element element : benchmark.elements){
-			element.generate(fsa, benchmark)
+			generatedElements.add(element)
+//			element.generate(fsa, benchmark)
+			if (element instanceof Scenario){
+				val scen = element as Scenario
+				generatedElements.addAll(PhaseContainmentResolver::resolvePhases(scen.rootPhase, generatedElements))
+			}
+			for (Element genElement : generatedElements){
+				genElement.generate(fsa, benchmark)
+			}
 		}
 	}
 	
@@ -80,9 +91,10 @@ class BenchmarkGenerator implements IGenerator {
 		import eu.mondo.sam.core.DataToken;
 		import eu.mondo.sam.core.results.PhaseResult;
 		
+		
 		public class «atomic.classname» extends AtomicPhase {
-			
-			
+		
+		
 			public «atomic.classname»(String phaseName) {
 				super(phaseName);
 			}
@@ -104,10 +116,32 @@ class BenchmarkGenerator implements IGenerator {
 			*/
 			@Override
 			public void execute(DataToken token, PhaseResult phaseResult) {
-							
+				
 			}
-		}
-		''')
+		}''')
+	}
+	
+	def dispatch generate(OptionalPhase optional, IFileSystemAccess fsa, Benchmark bench){
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«optional.classname».java''', IFileSystemAccess.DEFAULT_OUTPUT,
+		'''
+		package «bench.packageName».phases;
+		
+		import eu.mondo.sam.core.phases.OptionalPhase;
+		import eu.mondo.sam.core.phases.BenchmarkPhase;
+		
+		public class «optional.classname» extends OptionalPhase {
+		
+		
+			public «optional.classname»(BenchmarkPhase phase) {
+				this.phase = phase;
+			}
+		
+			@Override
+			public boolean condition() {
+				// TODO define condition
+				return false;
+			}
+		}''')
 	}
 	
 	def dispatch generate(Phase phase, IFileSystemAccess fsa, Benchmark bench){

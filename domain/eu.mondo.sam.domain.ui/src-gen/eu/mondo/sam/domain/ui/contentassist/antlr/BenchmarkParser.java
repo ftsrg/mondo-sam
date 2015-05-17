@@ -62,7 +62,8 @@ public class BenchmarkParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIterationPhaseAccess().getIterationAssignment_3(), "rule__IterationPhase__IterationAssignment_3");
 					put(grammarAccess.getIterationPhaseAccess().getPhaseAssignment_5(), "rule__IterationPhase__PhaseAssignment_5");
 					put(grammarAccess.getOptionalPhaseAccess().getNameAssignment_1(), "rule__OptionalPhase__NameAssignment_1");
-					put(grammarAccess.getOptionalPhaseAccess().getPhaseAssignment_3(), "rule__OptionalPhase__PhaseAssignment_3");
+					put(grammarAccess.getOptionalPhaseAccess().getClassnameAssignment_3(), "rule__OptionalPhase__ClassnameAssignment_3");
+					put(grammarAccess.getOptionalPhaseAccess().getPhaseAssignment_5(), "rule__OptionalPhase__PhaseAssignment_5");
 					put(grammarAccess.getPhaseReferenceAccess().getPhaseAssignment(), "rule__PhaseReference__PhaseAssignment");
 					put(grammarAccess.getNewPhaseAccess().getPhaseAssignment(), "rule__NewPhase__PhaseAssignment");
 					put(grammarAccess.getAtomicPhaseAccess().getNameAssignment_1(), "rule__AtomicPhase__NameAssignment_1");

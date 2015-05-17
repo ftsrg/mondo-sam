@@ -70,7 +70,7 @@ public class PhaseStructureResolver {
       _builder.append("new IterationPhase(");
       int _iteration = iteration.getIteration();
       _builder.append(_iteration, "");
-      _builder.append(", ");
+      _builder.append(",");
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t");
       AttachedPhase _phase = iteration.getPhase();
@@ -84,7 +84,23 @@ public class PhaseStructureResolver {
   }
   
   protected static String _resolve(final OptionalPhase optional) {
-    return null;
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("new ");
+      String _classname = optional.getClassname();
+      _builder.append(_classname, "");
+      _builder.append("(");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t");
+      AttachedPhase _phase = optional.getPhase();
+      Object _resolve = PhaseStructureResolver.resolve(_phase);
+      _builder.append(_resolve, "\t\t");
+      _builder.append(")");
+      String structure = _builder.toString();
+      _xblockexpression = structure;
+    }
+    return _xblockexpression;
   }
   
   protected static String _resolve(final AttachedPhase attached) {

@@ -37,7 +37,7 @@ IterationPhase:
 ;
 
 OptionalPhase:
-	'Optional'  (name=ID)? '(' 
+	'Optional'  (name=ID)? 'ClassName' classname = ID '(' 
 		phase = AttachedPhase
 	')'
 ;

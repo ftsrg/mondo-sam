@@ -38,13 +38,15 @@ class PhaseStructureResolver {
 	}
 	
 	def static dispatch resolve(IterationPhase iteration){
-		var structure = '''new IterationPhase(«iteration.iteration», 
+		var structure = '''new IterationPhase(«iteration.iteration»,
 		«iteration.phase.resolve»)'''
 		structure
 	}
 	
 	def static dispatch resolve(OptionalPhase optional){
-		
+		var structure = '''new «optional.classname»(
+		«optional.phase.resolve»)'''
+		structure
 	}
 	
 	def static dispatch resolve(AttachedPhase attached){

@@ -359,9 +359,19 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getOptionalPhase_Classname()
+  {
+    return (EAttribute)optionalPhaseEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getOptionalPhase_Phase()
   {
-    return (EReference)optionalPhaseEClass.getEStructuralFeatures().get(0);
+    return (EReference)optionalPhaseEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -565,6 +575,7 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     createEReference(iterationPhaseEClass, ITERATION_PHASE__PHASE);
 
     optionalPhaseEClass = createEClass(OPTIONAL_PHASE);
+    createEAttribute(optionalPhaseEClass, OPTIONAL_PHASE__CLASSNAME);
     createEReference(optionalPhaseEClass, OPTIONAL_PHASE__PHASE);
 
     attachedPhaseEClass = createEClass(ATTACHED_PHASE);
@@ -654,6 +665,7 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     initEReference(getIterationPhase_Phase(), this.getAttachedPhase(), null, "phase", null, 0, 1, IterationPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(optionalPhaseEClass, OptionalPhase.class, "OptionalPhase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOptionalPhase_Classname(), ecorePackage.getEString(), "classname", null, 0, 1, OptionalPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOptionalPhase_Phase(), this.getAttachedPhase(), null, "phase", null, 0, 1, OptionalPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attachedPhaseEClass, AttachedPhase.class, "AttachedPhase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

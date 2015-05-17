@@ -281,13 +281,22 @@ public interface BenchmarkPackage extends EPackage
   int OPTIONAL_PHASE__NAME = PHASE__NAME;
 
   /**
+   * The feature id for the '<em><b>Classname</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPTIONAL_PHASE__CLASSNAME = PHASE_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Phase</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OPTIONAL_PHASE__PHASE = PHASE_FEATURE_COUNT + 0;
+  int OPTIONAL_PHASE__PHASE = PHASE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Optional Phase</em>' class.
@@ -296,7 +305,7 @@ public interface BenchmarkPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OPTIONAL_PHASE_FEATURE_COUNT = PHASE_FEATURE_COUNT + 1;
+  int OPTIONAL_PHASE_FEATURE_COUNT = PHASE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link eu.mondo.sam.domain.benchmark.impl.AttachedPhaseImpl <em>Attached Phase</em>}' class.
@@ -673,6 +682,17 @@ public interface BenchmarkPackage extends EPackage
   EClass getOptionalPhase();
 
   /**
+   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.OptionalPhase#getClassname <em>Classname</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Classname</em>'.
+   * @see eu.mondo.sam.domain.benchmark.OptionalPhase#getClassname()
+   * @see #getOptionalPhase()
+   * @generated
+   */
+  EAttribute getOptionalPhase_Classname();
+
+  /**
    * Returns the meta object for the containment reference '{@link eu.mondo.sam.domain.benchmark.OptionalPhase#getPhase <em>Phase</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -996,6 +1016,14 @@ public interface BenchmarkPackage extends EPackage
      * @generated
      */
     EClass OPTIONAL_PHASE = eINSTANCE.getOptionalPhase();
+
+    /**
+     * The meta object literal for the '<em><b>Classname</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPTIONAL_PHASE__CLASSNAME = eINSTANCE.getOptionalPhase_Classname();
 
     /**
      * The meta object literal for the '<em><b>Phase</b></em>' containment reference feature.

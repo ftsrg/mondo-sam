@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.impl.OptionalPhaseImpl#getClassname <em>Classname</em>}</li>
  *   <li>{@link eu.mondo.sam.domain.benchmark.impl.OptionalPhaseImpl#getPhase <em>Phase</em>}</li>
  * </ul>
  * </p>
@@ -29,6 +30,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class OptionalPhaseImpl extends PhaseImpl implements OptionalPhase
 {
+  /**
+   * The default value of the '{@link #getClassname() <em>Classname</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getClassname()
+   * @generated
+   * @ordered
+   */
+  protected static final String CLASSNAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getClassname() <em>Classname</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getClassname()
+   * @generated
+   * @ordered
+   */
+  protected String classname = CLASSNAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getPhase() <em>Phase</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -58,6 +79,29 @@ public class OptionalPhaseImpl extends PhaseImpl implements OptionalPhase
   protected EClass eStaticClass()
   {
     return BenchmarkPackage.Literals.OPTIONAL_PHASE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getClassname()
+  {
+    return classname;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setClassname(String newClassname)
+  {
+    String oldClassname = classname;
+    classname = newClassname;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.OPTIONAL_PHASE__CLASSNAME, oldClassname, classname));
   }
 
   /**
@@ -134,6 +178,8 @@ public class OptionalPhaseImpl extends PhaseImpl implements OptionalPhase
   {
     switch (featureID)
     {
+      case BenchmarkPackage.OPTIONAL_PHASE__CLASSNAME:
+        return getClassname();
       case BenchmarkPackage.OPTIONAL_PHASE__PHASE:
         return getPhase();
     }
@@ -150,6 +196,9 @@ public class OptionalPhaseImpl extends PhaseImpl implements OptionalPhase
   {
     switch (featureID)
     {
+      case BenchmarkPackage.OPTIONAL_PHASE__CLASSNAME:
+        setClassname((String)newValue);
+        return;
       case BenchmarkPackage.OPTIONAL_PHASE__PHASE:
         setPhase((AttachedPhase)newValue);
         return;
@@ -167,6 +216,9 @@ public class OptionalPhaseImpl extends PhaseImpl implements OptionalPhase
   {
     switch (featureID)
     {
+      case BenchmarkPackage.OPTIONAL_PHASE__CLASSNAME:
+        setClassname(CLASSNAME_EDEFAULT);
+        return;
       case BenchmarkPackage.OPTIONAL_PHASE__PHASE:
         setPhase((AttachedPhase)null);
         return;
@@ -184,10 +236,29 @@ public class OptionalPhaseImpl extends PhaseImpl implements OptionalPhase
   {
     switch (featureID)
     {
+      case BenchmarkPackage.OPTIONAL_PHASE__CLASSNAME:
+        return CLASSNAME_EDEFAULT == null ? classname != null : !CLASSNAME_EDEFAULT.equals(classname);
       case BenchmarkPackage.OPTIONAL_PHASE__PHASE:
         return phase != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (classname: ");
+    result.append(classname);
+    result.append(')');
+    return result.toString();
   }
 
 } //OptionalPhaseImpl

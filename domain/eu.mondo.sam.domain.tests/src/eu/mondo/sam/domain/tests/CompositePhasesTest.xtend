@@ -56,7 +56,7 @@ class CompositePhasesTest {
  		val model = parseHelper.parse('''
   		package test.pack
   		
-  		Optional (Atomic a1 ClassName AtomicClass Metrics())
+  		Optional ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics())
   		''')
   		helper.assertNoErrors(model)
  	}
@@ -66,7 +66,7 @@ class CompositePhasesTest {
  		val model = parseHelper.parse('''
   		package test.pack
   		
-  		Optional (a1) 
+  		Optional ClassName OptionalTest (a1) 
   		Atomic a1 ClassName AtomicClass Metrics()
   		''')
   		helper.assertNoErrors(model)
@@ -110,7 +110,7 @@ class CompositePhasesTest {
  		val model = parseHelper.parse('''
   		package test.pack
   		
-  		Iteration (1 * Optional (Atomic a1 ClassName AtomicClass Metrics()))
+  		Iteration (1 * Optional ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics()))
   		''')
   		helper.assertNoErrors(model)
  	}
@@ -121,7 +121,7 @@ class CompositePhasesTest {
   		package test.pack
   		
   		Iteration (1 *o1) 
-  		Optional o1 (Atomic ClassName AtomicClass Metrics())
+  		Optional o1 ClassName OptionalTest (Atomic ClassName AtomicClass Metrics())
   		''')
   		helper.assertNoErrors(model)
  	}
@@ -154,7 +154,7 @@ class CompositePhasesTest {
   		
   		Sequence (
   			Iteration (1 * Atomic a1 ClassName AtomicClass Metrics())
-  			Optional (Atomic a1 ClassName AtomicClass Metrics())
+  			Optional ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics())
   			Sequence (Atomic a1 ClassName AtomicClass Metrics())
   			)
   		''')
@@ -169,7 +169,7 @@ class CompositePhasesTest {
   		Sequence s1 (it op seq)
   		
   		Iteration it (1 * Atomic a1 ClassName AtomicClass Metrics())
-  		Optional op (Atomic a1 ClassName AtomicClass Metrics())
+  		Optional op ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics())
   		Sequence seq (Atomic a1 ClassName AtomicClass Metrics())
   		''')
   		helper.assertNoErrors(model)

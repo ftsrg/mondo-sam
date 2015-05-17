@@ -79,7 +79,7 @@ public class CompositePhasesTest {
       _builder.append("package test.pack");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("Optional (Atomic a1 ClassName AtomicClass Metrics())");
+      _builder.append("Optional ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics())");
       _builder.newLine();
       final Benchmark model = this.parseHelper.parse(_builder);
       this.helper.assertNoErrors(model);
@@ -95,7 +95,7 @@ public class CompositePhasesTest {
       _builder.append("package test.pack");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("Optional (a1) ");
+      _builder.append("Optional ClassName OptionalTest (a1) ");
       _builder.newLine();
       _builder.append("Atomic a1 ClassName AtomicClass Metrics()");
       _builder.newLine();
@@ -167,7 +167,7 @@ public class CompositePhasesTest {
       _builder.append("package test.pack");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("Iteration (1 * Optional (Atomic a1 ClassName AtomicClass Metrics()))");
+      _builder.append("Iteration (1 * Optional ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics()))");
       _builder.newLine();
       final Benchmark model = this.parseHelper.parse(_builder);
       this.helper.assertNoErrors(model);
@@ -185,7 +185,7 @@ public class CompositePhasesTest {
       _builder.newLine();
       _builder.append("Iteration (1 *o1) ");
       _builder.newLine();
-      _builder.append("Optional o1 (Atomic ClassName AtomicClass Metrics())");
+      _builder.append("Optional o1 ClassName OptionalTest (Atomic ClassName AtomicClass Metrics())");
       _builder.newLine();
       final Benchmark model = this.parseHelper.parse(_builder);
       this.helper.assertNoErrors(model);
@@ -241,7 +241,7 @@ public class CompositePhasesTest {
       _builder.append("Iteration (1 * Atomic a1 ClassName AtomicClass Metrics())");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("Optional (Atomic a1 ClassName AtomicClass Metrics())");
+      _builder.append("Optional ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics())");
       _builder.newLine();
       _builder.append("\t");
       _builder.append("Sequence (Atomic a1 ClassName AtomicClass Metrics())");
@@ -268,7 +268,7 @@ public class CompositePhasesTest {
       _builder.newLine();
       _builder.append("Iteration it (1 * Atomic a1 ClassName AtomicClass Metrics())");
       _builder.newLine();
-      _builder.append("Optional op (Atomic a1 ClassName AtomicClass Metrics())");
+      _builder.append("Optional op ClassName OptionalTest (Atomic a1 ClassName AtomicClass Metrics())");
       _builder.newLine();
       _builder.append("Sequence seq (Atomic a1 ClassName AtomicClass Metrics())");
       _builder.newLine();

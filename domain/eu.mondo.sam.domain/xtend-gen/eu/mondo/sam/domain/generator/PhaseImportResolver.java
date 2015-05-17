@@ -49,7 +49,13 @@ public class PhaseImportResolver {
   protected static Object _resolve(final OptionalPhase optional, final Set<String> imports, final String ownPackage) {
     Object _xblockexpression = null;
     {
-      imports.add("eu.mondo.sam.core.phases.OptionalPhase;");
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(ownPackage, "");
+      _builder.append(".phases.");
+      String _classname = optional.getClassname();
+      _builder.append(_classname, "");
+      _builder.append(";");
+      imports.add(_builder.toString());
       AttachedPhase _phase = optional.getPhase();
       _xblockexpression = PhaseImportResolver.resolve(_phase, imports, ownPackage);
     }

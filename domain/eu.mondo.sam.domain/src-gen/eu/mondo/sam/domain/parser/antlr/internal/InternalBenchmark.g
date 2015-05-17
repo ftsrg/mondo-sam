@@ -490,31 +490,53 @@ ruleOptionalPhase returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_2='(' 
+)?	otherlv_2='ClassName' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getOptionalPhaseAccess().getClassNameKeyword_2());
+    }
+(
+(
+		lv_classname_3_0=RULE_ID
+		{
+			newLeafNode(lv_classname_3_0, grammarAccess.getOptionalPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getOptionalPhaseRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"classname",
+        		lv_classname_3_0, 
+        		"ID");
+	    }
+
+)
+)	otherlv_4='(' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_4());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getOptionalPhaseAccess().getPhaseAttachedPhaseParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getOptionalPhaseAccess().getPhaseAttachedPhaseParserRuleCall_5_0()); 
 	    }
-		lv_phase_3_0=ruleAttachedPhase		{
+		lv_phase_5_0=ruleAttachedPhase		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getOptionalPhaseRule());
 	        }
        		set(
        			$current, 
        			"phase",
-        		lv_phase_3_0, 
+        		lv_phase_5_0, 
         		"AttachedPhase");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4=')' 
+)	otherlv_6=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_4());
+    	newLeafNode(otherlv_6, grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_6());
     }
 )
 ;
