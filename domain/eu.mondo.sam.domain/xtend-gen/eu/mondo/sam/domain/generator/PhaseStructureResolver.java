@@ -31,23 +31,29 @@ public class PhaseStructureResolver {
   protected static String _resolve(final SequencePhase sequence) {
     String _xblockexpression = null;
     {
-      String structure = "new SequencePhase(";
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("new SequencePhase(");
+      _builder.newLine();
+      String structure = _builder.toString();
       boolean first = true;
       EList<AttachedPhase> _phases = sequence.getPhases();
       for (final AttachedPhase phase : _phases) {
         {
           if ((!first)) {
             String _structure = structure;
-            StringConcatenation _builder = new StringConcatenation();
-            _builder.append(",");
-            structure = (_structure + _builder);
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("\t\t");
+            _builder_1.append(",");
+            _builder_1.newLine();
+            structure = (_structure + _builder_1);
           }
           String _structure_1 = structure;
-          StringConcatenation _builder_1 = new StringConcatenation();
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("\t\t");
           Object _resolve = PhaseStructureResolver.resolve(phase);
-          _builder_1.append(_resolve, "");
-          _builder_1.newLineIfNotEmpty();
-          structure = (_structure_1 + _builder_1);
+          _builder_2.append(_resolve, "\t\t");
+          _builder_2.newLineIfNotEmpty();
+          structure = (_structure_1 + _builder_2);
           first = false;
         }
       }
@@ -70,10 +76,7 @@ public class PhaseStructureResolver {
       AttachedPhase _phase = iteration.getPhase();
       Object _resolve = PhaseStructureResolver.resolve(_phase);
       _builder.append(_resolve, "\t\t");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
       _builder.append(")");
-      _builder.newLine();
       String structure = _builder.toString();
       _xblockexpression = structure;
     }

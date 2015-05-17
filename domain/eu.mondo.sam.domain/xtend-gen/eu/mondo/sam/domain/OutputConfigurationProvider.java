@@ -14,7 +14,7 @@ public class OutputConfigurationProvider implements IOutputConfigurationProvider
     defaultOutput.setOutputDirectory("./src");
     defaultOutput.setOverrideExistingResources(true);
     defaultOutput.setCreateOutputDirectory(true);
-    defaultOutput.setCleanUpDerivedResources(true);
+    defaultOutput.setCleanUpDerivedResources(false);
     defaultOutput.setSetDerivedProperty(true);
     return CollectionLiterals.<OutputConfiguration>newHashSet(defaultOutput);
   }

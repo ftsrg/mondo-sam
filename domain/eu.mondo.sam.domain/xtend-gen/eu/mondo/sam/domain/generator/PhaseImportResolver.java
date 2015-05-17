@@ -9,8 +9,8 @@ import eu.mondo.sam.domain.benchmark.Phase;
 import eu.mondo.sam.domain.benchmark.PhaseReference;
 import eu.mondo.sam.domain.benchmark.SequencePhase;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -20,7 +20,7 @@ public class PhaseImportResolver {
   public static Set<String> resolvePhases(final AttachedPhase phase, final String ownPackage) {
     Set<String> _xblockexpression = null;
     {
-      Set<String> imports = new HashSet<String>();
+      Set<String> imports = new TreeSet<String>();
       PhaseImportResolver.resolve(phase, imports, ownPackage);
       _xblockexpression = imports;
     }

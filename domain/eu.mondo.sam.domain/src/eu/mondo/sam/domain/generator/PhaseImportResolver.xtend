@@ -1,6 +1,5 @@
 package eu.mondo.sam.domain.generator
 
-import eu.mondo.sam.domain.benchmark.Phase
 import eu.mondo.sam.domain.benchmark.SequencePhase
 import eu.mondo.sam.domain.benchmark.AttachedPhase
 import eu.mondo.sam.domain.benchmark.IterationPhase
@@ -10,11 +9,12 @@ import eu.mondo.sam.domain.benchmark.NewPhase
 import eu.mondo.sam.domain.benchmark.AtomicPhase
 import java.util.Set
 import java.util.HashSet
+import java.util.TreeSet
 
 class PhaseImportResolver {
 	
 	def static Set<String> resolvePhases(AttachedPhase phase, String ownPackage){
-		var Set<String> imports = new HashSet<String>()
+		var Set<String> imports = new TreeSet<String>()
 		
 		phase.resolve(imports, ownPackage)
 		

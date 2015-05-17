@@ -99,13 +99,11 @@ public class BenchmarkGenerator implements IGenerator {
     String _resolvePhases_1 = PhaseStructureResolver.resolvePhases(_rootPhase_1);
     _builder_1.append(_resolvePhases_1, "\t\t");
     _builder_1.newLineIfNotEmpty();
-    _builder_1.append("\t\t");
-    _builder_1.newLine();
     _builder_1.append("\t");
     _builder_1.append("}");
     _builder_1.newLine();
     _builder_1.newLine();
-    _builder_1.append("    ");
+    _builder_1.append("\t");
     _builder_1.append("/**");
     _builder_1.newLine();
     _builder_1.append("\t");
@@ -138,12 +136,7 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("\t");
     _builder_1.append("}");
     _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.newLine();
-    _builder_1.append("\t");
-    _builder_1.newLine();
     _builder_1.append("}");
-    _builder_1.newLine();
     fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
     return null;
   }

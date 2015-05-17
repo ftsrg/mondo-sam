@@ -20,15 +20,18 @@ class PhaseStructureResolver {
 	}
 	
 	def static dispatch resolve(SequencePhase sequence){
-		var structure = "new SequencePhase("
+		var structure = '''new SequencePhase(
+				'''
 		var first = true
 		for (AttachedPhase phase : sequence.phases){
 			if (!first){
-				structure += ''','''
+				structure += 
+				'''		,
+				'''
 			}
-			structure += '''
-				«phase.resolve»
-			'''
+			structure += 
+				'''		«phase.resolve»
+				'''
 			first = false
 		}
 		structure += ")"
@@ -36,9 +39,7 @@ class PhaseStructureResolver {
 	
 	def static dispatch resolve(IterationPhase iteration){
 		var structure = '''new IterationPhase(«iteration.iteration», 
-		«iteration.phase.resolve»
-		)
-		'''
+		«iteration.phase.resolve»)'''
 		structure
 	}
 	

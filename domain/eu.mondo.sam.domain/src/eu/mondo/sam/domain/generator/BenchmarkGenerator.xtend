@@ -55,10 +55,9 @@ class BenchmarkGenerator implements IGenerator {
 				«
 				PhaseStructureResolver::resolvePhases(scenario.rootPhase)			
 				»
-				
 			}
 
-		    /**
+			/**
 			* Instantiates a CaseDescriptor object.
 			* @see CaseDescriptor
 			* 
@@ -69,10 +68,7 @@ class BenchmarkGenerator implements IGenerator {
 				// TODO Instantiates a CaseDescriptor object
 				return null;
 			}
-			
-			
-		}
-		''')
+		}''')
 	}
 	
 	def dispatch generate(AtomicPhase atomic, IFileSystemAccess fsa, Benchmark bench){
