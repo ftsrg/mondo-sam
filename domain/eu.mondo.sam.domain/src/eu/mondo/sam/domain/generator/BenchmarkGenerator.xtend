@@ -3,20 +3,28 @@
  */
 package eu.mondo.sam.domain.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess
-import eu.mondo.sam.domain.benchmark.Scenario
-import java.util.List
-import eu.mondo.sam.domain.benchmark.Element
-import eu.mondo.sam.domain.benchmark.AtomicPhase
-import eu.mondo.sam.domain.benchmark.OptionalPhase
-import eu.mondo.sam.domain.benchmark.Benchmark
-import org.eclipse.xtext.generator.OutputConfiguration
 import eu.mondo.sam.domain.OutputConfigurationProvider
+import eu.mondo.sam.domain.benchmark.AtomicPhase
+import eu.mondo.sam.domain.benchmark.Benchmark
+import eu.mondo.sam.domain.benchmark.Element
+import eu.mondo.sam.domain.benchmark.OptionalPhase
 import eu.mondo.sam.domain.benchmark.Phase
-import java.util.Set
+import eu.mondo.sam.domain.benchmark.Scenario
+import java.io.File
 import java.util.HashSet
+import java.util.List
+import java.util.Set
+import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IResource
+import org.eclipse.core.resources.IWorkspace
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IFileSystemAccessExtension
+import org.eclipse.xtext.generator.IFileSystemAccessExtension2
+import org.eclipse.xtext.generator.IFileSystemAccessExtension3
+import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.generator.OutputConfiguration
 
 /**
  * Generates code from your model files on save.
@@ -24,129 +32,157 @@ import java.util.HashSet
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class BenchmarkGenerator implements IGenerator {
-	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {		
+
+	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		val Benchmark benchmark = resource.contents.head as Benchmark
-		
+
 		val Set<Element> generatedElements = new HashSet<Element>();
-		for (Element element : benchmark.elements){
+		for (Element element : benchmark.elements) {
 			generatedElements.add(element)
-//			element.generate(fsa, benchmark)
-			if (element instanceof Scenario){
+
+			//			element.generate(fsa, benchmark)
+			if (element instanceof Scenario) {
 				val scen = element as Scenario
 				generatedElements.addAll(PhaseContainmentResolver::resolvePhases(scen.rootPhase, generatedElements))
 			}
-			for (Element genElement : generatedElements){
+			for (Element genElement : generatedElements) {
 				genElement.generate(fsa, benchmark)
 			}
 		}
 	}
-	
-	def dispatch generate(Scenario scenario, IFileSystemAccess fsa, Benchmark bench){
-		
-		fsa.generateFile('''«bench.packageName.replace('.', '/')»/scenarios/«scenario.classname».java''', IFileSystemAccess.DEFAULT_OUTPUT,
-		'''
-		package «bench.packageName».scenarios;
-		
-		import eu.mondo.sam.core.scenarios.BenchmarkScenario;
-		import eu.mondo.sam.core.results.CaseDescriptor;
-		«FOR imp : PhaseImportResolver::resolvePhases(scenario.rootPhase, bench.packageName)»
-		import «imp»
-		«ENDFOR»
-		
-		
-		public class «scenario.classname» extends BenchmarkScenario {
 
-			/**
-			* Builds an arbitrary phase hierarchy where the leafs represent the
-			* AtomicPhase objects.
-			*/
-			@Override
-			public void build() {
-				«
-				PhaseStructureResolver::resolvePhases(scenario.rootPhase)			
-				»
-			}
-
-			/**
-			* Instantiates a CaseDescriptor object.
-			* @see CaseDescriptor
-			* 
-			* @return CaseDescriptor with every one of its field being initialized.
-			*/
-			@Override
-			public CaseDescriptor getCaseDescriptor() {
-				// TODO Instantiates a CaseDescriptor object
-				return null;
-			}
-		}''')
-	}
-	
-	def dispatch generate(AtomicPhase atomic, IFileSystemAccess fsa, Benchmark bench){
-		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«atomic.classname».java''', IFileSystemAccess.DEFAULT_OUTPUT,
-		'''
-		package «bench.packageName».phases;
-		
-		import eu.mondo.sam.core.phases.AtomicPhase;
-		import eu.mondo.sam.core.DataToken;
-		import eu.mondo.sam.core.results.PhaseResult;
-		
-		
-		public class «atomic.classname» extends AtomicPhase {
-		
-		
-			public «atomic.classname»(String phaseName) {
-				super(phaseName);
-			}
-
-			/**
-			* Executes the operations which belongs to the AtomicPhase. Communicates
-			* with other AtomicPhase operations via the DataToken object. Every
-			* significant Metric result should be attached to the PhaseResult parameter
-			* as BenchmarkMetric instance. The results of measurements will be
-			* published only when the PhaseResult object contains the certain Metrics.
-			* @see PhaseResult
-			* @see BenchmarkMetric
-			* 
-			* @param token
-			*            Represents a communication unit between this and other phases.
-			* @param result
-			*            PhaseResult object. In the case of publishing metrics attach
-			*            BenchmarkMetric objects to it.
-			*/
-			@Override
-			public void execute(DataToken token, PhaseResult phaseResult) {
+	def dispatch generate(Scenario scenario, IFileSystemAccess fsa, Benchmark bench) {
+		val f3 = fsa as IFileSystemAccessExtension3
+		var CharSequence file = null
+		try {
+			file = f3.readTextFile('''«bench.packageName.replace('.', '/')»/scenarios/«scenario.classname».java''',
+				IFileSystemAccess.DEFAULT_OUTPUT)
+		} catch (RuntimeException e) {
+			generateScenario(fsa, bench, scenario)
+		}
+		// generate structure of phases
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/scenarios/structures/«scenario.classname»Structure.java''',
+			IFileSystemAccess.DEFAULT_OUTPUT,
+			'''
+			package «bench.packageName».scenarios.structures;
+			
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			«FOR imp : PhaseImportResolver::resolvePhases(scenario.rootPhase, bench.packageName)»
+				import «imp»
+			«ENDFOR»
+			
+			public class «scenario.classname»Structure {
+			
+				private static BenchmarkPhase rootPhase;
 				
-			}
-		}''')
+				public static BenchmarkPhase getPhaseStructure(){
+					«PhaseStructureResolver::resolvePhases(scenario.rootPhase)»
+					return rootPhase;
+				}
+			}''')
 	}
-	
-	def dispatch generate(OptionalPhase optional, IFileSystemAccess fsa, Benchmark bench){
-		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«optional.classname».java''', IFileSystemAccess.DEFAULT_OUTPUT,
-		'''
-		package «bench.packageName».phases;
-		
-		import eu.mondo.sam.core.phases.OptionalPhase;
-		import eu.mondo.sam.core.phases.BenchmarkPhase;
-		
-		public class «optional.classname» extends OptionalPhase {
-		
-		
-			public «optional.classname»(BenchmarkPhase phase) {
-				this.phase = phase;
-			}
-		
-			@Override
-			public boolean condition() {
-				// TODO define condition
-				return false;
-			}
-		}''')
+
+	protected def generateScenario(IFileSystemAccess fsa, Benchmark bench, Scenario scenario) {
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/scenarios/«scenario.classname».java''',
+			IFileSystemAccess.DEFAULT_OUTPUT,
+			'''
+			package «bench.packageName».scenarios;
+			
+			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
+			import eu.mondo.sam.core.results.CaseDescriptor;
+			import «bench.packageName».scenarios.structures.«scenario.classname»Structure;
+			
+			
+			public class «scenario.classname» extends BenchmarkScenario {
+			
+				/**
+				* Builds an arbitrary phase hierarchy where the leafs represent the
+				* AtomicPhase objects.
+				*/
+				@Override
+				public void build() {
+					rootPhase = «scenario.classname»Structure.getPhaseStructure();
+				}
+			
+				/**
+				* Instantiates a CaseDescriptor object.
+				* @see CaseDescriptor
+				* 
+				* @return CaseDescriptor with every one of its field being initialized.
+				*/
+				@Override
+				public CaseDescriptor getCaseDescriptor() {
+					// TODO Instantiates a CaseDescriptor object
+					return null;
+				}
+			}''')
 	}
-	
-	def dispatch generate(Phase phase, IFileSystemAccess fsa, Benchmark bench){
-		
+
+	def dispatch generate(AtomicPhase atomic, IFileSystemAccess fsa, Benchmark bench) {
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«atomic.classname».java''',
+			IFileSystemAccess.DEFAULT_OUTPUT,
+			'''
+			package «bench.packageName».phases;
+			
+			import eu.mondo.sam.core.phases.AtomicPhase;
+			import eu.mondo.sam.core.DataToken;
+			import eu.mondo.sam.core.results.PhaseResult;
+			
+			
+			public class «atomic.classname» extends AtomicPhase {
+			
+			
+				public «atomic.classname»(String phaseName) {
+					super(phaseName);
+				}
+			
+				/**
+				* Executes the operations which belongs to the AtomicPhase. Communicates
+				* with other AtomicPhase operations via the DataToken object. Every
+				* significant Metric result should be attached to the PhaseResult parameter
+				* as BenchmarkMetric instance. The results of measurements will be
+				* published only when the PhaseResult object contains the certain Metrics.
+				* @see PhaseResult
+				* @see BenchmarkMetric
+				* 
+				* @param token
+				*            Represents a communication unit between this and other phases.
+				* @param result
+				*            PhaseResult object. In the case of publishing metrics attach
+				*            BenchmarkMetric objects to it.
+				*/
+				@Override
+				public void execute(DataToken token, PhaseResult phaseResult) {
+					
+				}
+			}''')
 	}
-	
-	
+
+	def dispatch generate(OptionalPhase optional, IFileSystemAccess fsa, Benchmark bench) {
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«optional.classname».java''',
+			IFileSystemAccess.DEFAULT_OUTPUT,
+			'''
+			package «bench.packageName».phases;
+			
+			import eu.mondo.sam.core.phases.OptionalPhase;
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			
+			public class «optional.classname» extends OptionalPhase {
+			
+			
+				public «optional.classname»(BenchmarkPhase phase) {
+					this.phase = phase;
+				}
+			
+				@Override
+				public boolean condition() {
+					// TODO define condition
+					return false;
+				}
+			}''')
+	}
+
+	def dispatch generate(Phase phase, IFileSystemAccess fsa, Benchmark bench) {
+	}
+
 }

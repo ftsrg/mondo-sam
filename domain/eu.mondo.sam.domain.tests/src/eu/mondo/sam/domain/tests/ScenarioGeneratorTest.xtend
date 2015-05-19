@@ -40,6 +40,7 @@ class ScenarioGeneratorTest {
         
         underTest.doGenerate(model.eResource, fsa)
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/phases/TestAtomic.java"))
 	}
 
@@ -58,6 +59,7 @@ class ScenarioGeneratorTest {
         
         underTest.doGenerate(model.eResource, fsa)
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "fully/qualified/pack/name/scenarios/TestScenario.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "fully/qualified/pack/name/scenarios/structures/TestScenarioStructure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "fully/qualified/pack/name/phases/TestAtomic.java"))
 	}
 
@@ -81,8 +83,11 @@ class ScenarioGeneratorTest {
         
         underTest.doGenerate(model.eResource, fsa)
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario1.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenario1Structure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario2.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenario2Structure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/testscenario.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/testscenarioStructure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/phases/TestAtomic.java"))
 		
 	}
@@ -109,8 +114,11 @@ class ScenarioGeneratorTest {
         
         underTest.doGenerate(model.eResource, fsa)
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario1.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenario1Structure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario2.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenario2Structure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/testscenario.java"))
+        assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/testscenarioStructure.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/phases/TestAtomic1.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/phases/TestAtomic2.java"))
         assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + "test/phases/TestAtomic3.java"))
@@ -139,7 +147,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import test.phases.TestAtomic;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -150,7 +158,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new TestAtomic("TestAtomic");
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -165,6 +173,24 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import test.phases.TestAtomic;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new TestAtomic("TestAtomic");
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
+			
 	}
 	
 	@Test
@@ -190,8 +216,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import eu.mondo.sam.core.phases.IterationPhase;
-			import test.phases.TestAtomic;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -202,8 +227,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new IterationPhase(1,
-							new TestAtomic("TestAtomic"));
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -218,6 +242,25 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import eu.mondo.sam.core.phases.IterationPhase;
+			import test.phases.TestAtomic;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new IterationPhase(1,
+							new TestAtomic("TestAtomic"));
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
 	}
 	
 	
@@ -244,8 +287,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import eu.mondo.sam.core.phases.SequencePhase;
-			import test.phases.TestAtomic;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -256,9 +298,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new SequencePhase(
-							new TestAtomic("TestAtomic")
-					);
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -273,6 +313,27 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import eu.mondo.sam.core.phases.SequencePhase;
+			import test.phases.TestAtomic;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new SequencePhase(
+							new TestAtomic("TestAtomic")
+					);
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
 	}
 	
 	@Test
@@ -298,9 +359,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import eu.mondo.sam.core.phases.IterationPhase;
-			import eu.mondo.sam.core.phases.SequencePhase;
-			import test.phases.TestAtomic;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -311,10 +370,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new SequencePhase(
-							new IterationPhase(3,
-									new TestAtomic("TestAtomic"))
-					);
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -329,6 +385,29 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import eu.mondo.sam.core.phases.IterationPhase;
+			import eu.mondo.sam.core.phases.SequencePhase;
+			import test.phases.TestAtomic;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new SequencePhase(
+							new IterationPhase(3,
+									new TestAtomic("TestAtomic"))
+					);
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
 	}
 	
 	@Test
@@ -354,9 +433,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import eu.mondo.sam.core.phases.IterationPhase;
-			import eu.mondo.sam.core.phases.SequencePhase;
-			import test.phases.TestAtomic;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -367,10 +444,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new IterationPhase(12,
-							new SequencePhase(
-									new TestAtomic("TestAtomic")
-							));
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -385,6 +459,29 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import eu.mondo.sam.core.phases.IterationPhase;
+			import eu.mondo.sam.core.phases.SequencePhase;
+			import test.phases.TestAtomic;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new IterationPhase(12,
+							new SequencePhase(
+									new TestAtomic("TestAtomic")
+							));
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
 	}
 	
 	
@@ -419,11 +516,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import eu.mondo.sam.core.phases.IterationPhase;
-			import eu.mondo.sam.core.phases.SequencePhase;
-			import test.phases.TestAtomic1;
-			import test.phases.TestAtomic2;
-			import test.phases.TestAtomic3;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -434,16 +527,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new SequencePhase(
-							new TestAtomic1("TestAtomic1")
-							,
-							new TestAtomic2("TestAtomic2")
-							,
-							new TestAtomic3("TestAtomic3")
-							,
-							new IterationPhase(3,
-									new TestAtomic1("TestAtomic1"))
-					);
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -458,6 +542,37 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import eu.mondo.sam.core.phases.IterationPhase;
+			import eu.mondo.sam.core.phases.SequencePhase;
+			import test.phases.TestAtomic1;
+			import test.phases.TestAtomic2;
+			import test.phases.TestAtomic3;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new SequencePhase(
+							new TestAtomic1("TestAtomic1")
+							,
+							new TestAtomic2("TestAtomic2")
+							,
+							new TestAtomic3("TestAtomic3")
+							,
+							new IterationPhase(3,
+									new TestAtomic1("TestAtomic1"))
+					);
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
 	}
 	
 	@Test
@@ -491,11 +606,7 @@ class ScenarioGeneratorTest {
 
 			import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 			import eu.mondo.sam.core.results.CaseDescriptor;
-			import eu.mondo.sam.core.phases.IterationPhase;
-			import eu.mondo.sam.core.phases.SequencePhase;
-			import test.phases.TestAtomic1;
-			import test.phases.TestAtomic2;
-			import test.phases.TestAtomic3;
+			import test.scenarios.structures.TestScenarioStructure;
 
 
 			public class TestScenario extends BenchmarkScenario {
@@ -506,14 +617,7 @@ class ScenarioGeneratorTest {
 				*/
 				@Override
 				public void build() {
-					rootPhase = new IterationPhase(3,
-							new SequencePhase(
-									new TestAtomic1("TestAtomic1")
-									,
-									new TestAtomic2("TestAtomic2")
-									,
-									new TestAtomic3("TestAtomic3")
-							));
+					rootPhase = TestScenarioStructure.getPhaseStructure();
 				}
 
 				/**
@@ -528,5 +632,34 @@ class ScenarioGeneratorTest {
 					return null;
 				}
 			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/TestScenario.java").toString)
+			
+		
+		assertEquals(
+            '''
+			package test.scenarios.structures;
+
+			import eu.mondo.sam.core.phases.BenchmarkPhase;
+			import eu.mondo.sam.core.phases.IterationPhase;
+			import eu.mondo.sam.core.phases.SequencePhase;
+			import test.phases.TestAtomic1;
+			import test.phases.TestAtomic2;
+			import test.phases.TestAtomic3;
+
+			public class TestScenarioStructure {
+
+				private static BenchmarkPhase rootPhase;
+				
+				public static BenchmarkPhase getPhaseStructure(){
+					rootPhase = new IterationPhase(3,
+							new SequencePhase(
+									new TestAtomic1("TestAtomic1")
+									,
+									new TestAtomic2("TestAtomic2")
+									,
+									new TestAtomic3("TestAtomic3")
+							));
+					return rootPhase;
+				}
+			}'''.toString, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + "test/scenarios/structures/TestScenarioStructure.java").toString)
 	}
 }

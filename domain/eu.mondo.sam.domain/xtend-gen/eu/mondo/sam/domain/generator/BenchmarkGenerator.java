@@ -21,7 +21,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
+import org.eclipse.xtext.generator.IFileSystemAccessExtension3;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -54,6 +56,88 @@ public class BenchmarkGenerator implements IGenerator {
   }
   
   protected Object _generate(final Scenario scenario, final IFileSystemAccess fsa, final Benchmark bench) {
+    final IFileSystemAccessExtension3 f3 = ((IFileSystemAccessExtension3) fsa);
+    CharSequence file = null;
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      String _packageName = bench.getPackageName();
+      String _replace = _packageName.replace(".", "/");
+      _builder.append(_replace, "");
+      _builder.append("/scenarios/");
+      String _classname = scenario.getClassname();
+      _builder.append(_classname, "");
+      _builder.append(".java");
+      CharSequence _readTextFile = f3.readTextFile(_builder.toString(), 
+        IFileSystemAccess.DEFAULT_OUTPUT);
+      file = _readTextFile;
+    } catch (final Throwable _t) {
+      if (_t instanceof RuntimeException) {
+        final RuntimeException e = (RuntimeException)_t;
+        this.generateScenario(fsa, bench, scenario);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    String _packageName_1 = bench.getPackageName();
+    String _replace_1 = _packageName_1.replace(".", "/");
+    _builder_1.append(_replace_1, "");
+    _builder_1.append("/scenarios/structures/");
+    String _classname_1 = scenario.getClassname();
+    _builder_1.append(_classname_1, "");
+    _builder_1.append("Structure.java");
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("package ");
+    String _packageName_2 = bench.getPackageName();
+    _builder_2.append(_packageName_2, "");
+    _builder_2.append(".scenarios.structures;");
+    _builder_2.newLineIfNotEmpty();
+    _builder_2.newLine();
+    _builder_2.append("import eu.mondo.sam.core.phases.BenchmarkPhase;");
+    _builder_2.newLine();
+    {
+      AttachedPhase _rootPhase = scenario.getRootPhase();
+      String _packageName_3 = bench.getPackageName();
+      Set<String> _resolvePhases = PhaseImportResolver.resolvePhases(_rootPhase, _packageName_3);
+      for(final String imp : _resolvePhases) {
+        _builder_2.append("import ");
+        _builder_2.append(imp, "");
+        _builder_2.newLineIfNotEmpty();
+      }
+    }
+    _builder_2.newLine();
+    _builder_2.append("public class ");
+    String _classname_2 = scenario.getClassname();
+    _builder_2.append(_classname_2, "");
+    _builder_2.append("Structure {");
+    _builder_2.newLineIfNotEmpty();
+    _builder_2.newLine();
+    _builder_2.append("\t");
+    _builder_2.append("private static BenchmarkPhase rootPhase;");
+    _builder_2.newLine();
+    _builder_2.append("\t");
+    _builder_2.newLine();
+    _builder_2.append("\t");
+    _builder_2.append("public static BenchmarkPhase getPhaseStructure(){");
+    _builder_2.newLine();
+    _builder_2.append("\t\t");
+    AttachedPhase _rootPhase_1 = scenario.getRootPhase();
+    String _resolvePhases_1 = PhaseStructureResolver.resolvePhases(_rootPhase_1);
+    _builder_2.append(_resolvePhases_1, "\t\t");
+    _builder_2.newLineIfNotEmpty();
+    _builder_2.append("\t\t");
+    _builder_2.append("return rootPhase;");
+    _builder_2.newLine();
+    _builder_2.append("\t");
+    _builder_2.append("}");
+    _builder_2.newLine();
+    _builder_2.append("}");
+    fsa.generateFile(_builder_1.toString(), 
+      IFileSystemAccess.DEFAULT_OUTPUT, _builder_2);
+    return null;
+  }
+  
+  protected void generateScenario(final IFileSystemAccess fsa, final Benchmark bench, final Scenario scenario) {
     StringConcatenation _builder = new StringConcatenation();
     String _packageName = bench.getPackageName();
     String _replace = _packageName.replace(".", "/");
@@ -73,21 +157,19 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.newLine();
     _builder_1.append("import eu.mondo.sam.core.results.CaseDescriptor;");
     _builder_1.newLine();
-    {
-      AttachedPhase _rootPhase = scenario.getRootPhase();
-      String _packageName_2 = bench.getPackageName();
-      Set<String> _resolvePhases = PhaseImportResolver.resolvePhases(_rootPhase, _packageName_2);
-      for(final String imp : _resolvePhases) {
-        _builder_1.append("import ");
-        _builder_1.append(imp, "");
-        _builder_1.newLineIfNotEmpty();
-      }
-    }
+    _builder_1.append("import ");
+    String _packageName_2 = bench.getPackageName();
+    _builder_1.append(_packageName_2, "");
+    _builder_1.append(".scenarios.structures.");
+    String _classname_1 = scenario.getClassname();
+    _builder_1.append(_classname_1, "");
+    _builder_1.append("Structure;");
+    _builder_1.newLineIfNotEmpty();
     _builder_1.newLine();
     _builder_1.newLine();
     _builder_1.append("public class ");
-    String _classname_1 = scenario.getClassname();
-    _builder_1.append(_classname_1, "");
+    String _classname_2 = scenario.getClassname();
+    _builder_1.append(_classname_2, "");
     _builder_1.append(" extends BenchmarkScenario {");
     _builder_1.newLineIfNotEmpty();
     _builder_1.newLine();
@@ -110,9 +192,10 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("public void build() {");
     _builder_1.newLine();
     _builder_1.append("\t\t");
-    AttachedPhase _rootPhase_1 = scenario.getRootPhase();
-    String _resolvePhases_1 = PhaseStructureResolver.resolvePhases(_rootPhase_1);
-    _builder_1.append(_resolvePhases_1, "\t\t");
+    _builder_1.append("rootPhase = ");
+    String _classname_3 = scenario.getClassname();
+    _builder_1.append(_classname_3, "\t\t");
+    _builder_1.append("Structure.getPhaseStructure();");
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("\t");
     _builder_1.append("}");
@@ -152,8 +235,8 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("}");
     _builder_1.newLine();
     _builder_1.append("}");
-    fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
-    return null;
+    fsa.generateFile(_builder.toString(), 
+      IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
   }
   
   protected Object _generate(final AtomicPhase atomic, final IFileSystemAccess fsa, final Benchmark bench) {
@@ -257,7 +340,8 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("}");
     _builder_1.newLine();
     _builder_1.append("}");
-    fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
+    fsa.generateFile(_builder.toString(), 
+      IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
     return null;
   }
   
@@ -318,7 +402,8 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("}");
     _builder_1.newLine();
     _builder_1.append("}");
-    fsa.generateFile(_builder.toString(), IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
+    fsa.generateFile(_builder.toString(), 
+      IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
     return null;
   }
   
