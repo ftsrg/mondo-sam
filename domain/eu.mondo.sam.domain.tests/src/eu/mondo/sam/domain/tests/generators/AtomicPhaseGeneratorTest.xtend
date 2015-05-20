@@ -1,4 +1,4 @@
-package eu.mondo.sam.domain.tests
+package eu.mondo.sam.domain.tests.generators
 
 import org.eclipse.xtext.generator.IGenerator
 import com.google.inject.Inject
@@ -58,15 +58,19 @@ class AtomicPhaseGeneratorTest {
 			package test.phases;
 
 			import eu.mondo.sam.core.phases.AtomicPhase;
+			import test.phases.metrics.TestAtomicMetrics;
+			import eu.mondo.sam.core.metrics.BenchmarkMetric;
 			import eu.mondo.sam.core.DataToken;
 			import eu.mondo.sam.core.results.PhaseResult;
 
 
 			public class TestAtomic extends AtomicPhase {
 			
+				private TestAtomicMetrics metrics; 
 			
 				public TestAtomic(String phaseName) {
 					super(phaseName);
+					metrics = new TestAtomicMetrics();
 				}
 			
 				/**

@@ -18,8 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link eu.mondo.sam.domain.benchmark.impl.NewMetricImpl#getName <em>Name</em>}</li>
- *   <li>{@link eu.mondo.sam.domain.benchmark.impl.NewMetricImpl#getMetricname <em>Metricname</em>}</li>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.impl.NewMetricImpl#getClassname <em>Classname</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,44 +27,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getClassname() <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getClassname()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String CLASSNAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getClassname() <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getClassname()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getMetricname() <em>Metricname</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMetricname()
-   * @generated
-   * @ordered
-   */
-  protected static final String METRICNAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getMetricname() <em>Metricname</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMetricname()
-   * @generated
-   * @ordered
-   */
-  protected String metricname = METRICNAME_EDEFAULT;
+  protected String classname = CLASSNAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -93,9 +72,9 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public String getClassname()
   {
-    return name;
+    return classname;
   }
 
   /**
@@ -103,35 +82,12 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setClassname(String newClassname)
   {
-    String oldName = name;
-    name = newName;
+    String oldClassname = classname;
+    classname = newClassname;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.NEW_METRIC__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getMetricname()
-  {
-    return metricname;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMetricname(String newMetricname)
-  {
-    String oldMetricname = metricname;
-    metricname = newMetricname;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.NEW_METRIC__METRICNAME, oldMetricname, metricname));
+      eNotify(new ENotificationImpl(this, Notification.SET, BenchmarkPackage.NEW_METRIC__CLASSNAME, oldClassname, classname));
   }
 
   /**
@@ -144,10 +100,8 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
   {
     switch (featureID)
     {
-      case BenchmarkPackage.NEW_METRIC__NAME:
-        return getName();
-      case BenchmarkPackage.NEW_METRIC__METRICNAME:
-        return getMetricname();
+      case BenchmarkPackage.NEW_METRIC__CLASSNAME:
+        return getClassname();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -162,11 +116,8 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
   {
     switch (featureID)
     {
-      case BenchmarkPackage.NEW_METRIC__NAME:
-        setName((String)newValue);
-        return;
-      case BenchmarkPackage.NEW_METRIC__METRICNAME:
-        setMetricname((String)newValue);
+      case BenchmarkPackage.NEW_METRIC__CLASSNAME:
+        setClassname((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -182,11 +133,8 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
   {
     switch (featureID)
     {
-      case BenchmarkPackage.NEW_METRIC__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case BenchmarkPackage.NEW_METRIC__METRICNAME:
-        setMetricname(METRICNAME_EDEFAULT);
+      case BenchmarkPackage.NEW_METRIC__CLASSNAME:
+        setClassname(CLASSNAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -202,10 +150,8 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
   {
     switch (featureID)
     {
-      case BenchmarkPackage.NEW_METRIC__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case BenchmarkPackage.NEW_METRIC__METRICNAME:
-        return METRICNAME_EDEFAULT == null ? metricname != null : !METRICNAME_EDEFAULT.equals(metricname);
+      case BenchmarkPackage.NEW_METRIC__CLASSNAME:
+        return CLASSNAME_EDEFAULT == null ? classname != null : !CLASSNAME_EDEFAULT.equals(classname);
     }
     return super.eIsSet(featureID);
   }
@@ -221,10 +167,8 @@ public class NewMetricImpl extends AttachedMetricImpl implements NewMetric
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", metricname: ");
-    result.append(metricname);
+    result.append(" (classname: ");
+    result.append(classname);
     result.append(')');
     return result.toString();
   }

@@ -50,7 +50,7 @@ public class BenchmarkValidator extends AbstractBenchmarkValidator {
     boolean _not = (!_isUpperCase);
     if (_not) {
       this.warning("The name of the metric should start with capital since it represents a new class name.", 
-        BenchmarkPackage.Literals.NEW_METRIC__METRICNAME, "invalid_metric");
+        BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME, "invalid_metric");
     }
   }
   

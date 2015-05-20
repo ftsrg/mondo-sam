@@ -439,13 +439,22 @@ public interface BenchmarkPackage extends EPackage
   int ATTACHED_METRIC = 11;
 
   /**
+   * The feature id for the '<em><b>Metricname</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTACHED_METRIC__METRICNAME = 0;
+
+  /**
    * The number of structural features of the '<em>Attached Metric</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTACHED_METRIC_FEATURE_COUNT = 0;
+  int ATTACHED_METRIC_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link eu.mondo.sam.domain.benchmark.impl.MetricTypeReferenceImpl <em>Metric Type Reference</em>}' class.
@@ -456,6 +465,15 @@ public interface BenchmarkPackage extends EPackage
    * @generated
    */
   int METRIC_TYPE_REFERENCE = 12;
+
+  /**
+   * The feature id for the '<em><b>Metricname</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METRIC_TYPE_REFERENCE__METRICNAME = ATTACHED_METRIC__METRICNAME;
 
   /**
    * The feature id for the '<em><b>Metric</b></em>' attribute.
@@ -486,22 +504,22 @@ public interface BenchmarkPackage extends EPackage
   int NEW_METRIC = 13;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEW_METRIC__NAME = ATTACHED_METRIC_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Metricname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEW_METRIC__METRICNAME = ATTACHED_METRIC_FEATURE_COUNT + 1;
+  int NEW_METRIC__METRICNAME = ATTACHED_METRIC__METRICNAME;
+
+  /**
+   * The feature id for the '<em><b>Classname</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_METRIC__CLASSNAME = ATTACHED_METRIC_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>New Metric</em>' class.
@@ -510,7 +528,7 @@ public interface BenchmarkPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NEW_METRIC_FEATURE_COUNT = ATTACHED_METRIC_FEATURE_COUNT + 2;
+  int NEW_METRIC_FEATURE_COUNT = ATTACHED_METRIC_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link eu.mondo.sam.domain.benchmark.MetricType <em>Metric Type</em>}' enum.
@@ -798,6 +816,17 @@ public interface BenchmarkPackage extends EPackage
   EClass getAttachedMetric();
 
   /**
+   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.AttachedMetric#getMetricname <em>Metricname</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Metricname</em>'.
+   * @see eu.mondo.sam.domain.benchmark.AttachedMetric#getMetricname()
+   * @see #getAttachedMetric()
+   * @generated
+   */
+  EAttribute getAttachedMetric_Metricname();
+
+  /**
    * Returns the meta object for class '{@link eu.mondo.sam.domain.benchmark.MetricTypeReference <em>Metric Type Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -829,26 +858,15 @@ public interface BenchmarkPackage extends EPackage
   EClass getNewMetric();
 
   /**
-   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.NewMetric#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.NewMetric#getClassname <em>Classname</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see eu.mondo.sam.domain.benchmark.NewMetric#getName()
+   * @return the meta object for the attribute '<em>Classname</em>'.
+   * @see eu.mondo.sam.domain.benchmark.NewMetric#getClassname()
    * @see #getNewMetric()
    * @generated
    */
-  EAttribute getNewMetric_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link eu.mondo.sam.domain.benchmark.NewMetric#getMetricname <em>Metricname</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Metricname</em>'.
-   * @see eu.mondo.sam.domain.benchmark.NewMetric#getMetricname()
-   * @see #getNewMetric()
-   * @generated
-   */
-  EAttribute getNewMetric_Metricname();
+  EAttribute getNewMetric_Classname();
 
   /**
    * Returns the meta object for enum '{@link eu.mondo.sam.domain.benchmark.MetricType <em>Metric Type</em>}'.
@@ -1116,6 +1134,14 @@ public interface BenchmarkPackage extends EPackage
     EClass ATTACHED_METRIC = eINSTANCE.getAttachedMetric();
 
     /**
+     * The meta object literal for the '<em><b>Metricname</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTACHED_METRIC__METRICNAME = eINSTANCE.getAttachedMetric_Metricname();
+
+    /**
      * The meta object literal for the '{@link eu.mondo.sam.domain.benchmark.impl.MetricTypeReferenceImpl <em>Metric Type Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1144,20 +1170,12 @@ public interface BenchmarkPackage extends EPackage
     EClass NEW_METRIC = eINSTANCE.getNewMetric();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Classname</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NEW_METRIC__NAME = eINSTANCE.getNewMetric_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Metricname</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEW_METRIC__METRICNAME = eINSTANCE.getNewMetric_Metricname();
+    EAttribute NEW_METRIC__CLASSNAME = eINSTANCE.getNewMetric_Classname();
 
     /**
      * The meta object literal for the '{@link eu.mondo.sam.domain.benchmark.MetricType <em>Metric Type</em>}' enum.

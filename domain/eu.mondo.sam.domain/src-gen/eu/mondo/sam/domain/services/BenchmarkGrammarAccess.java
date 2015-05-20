@@ -412,58 +412,70 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class MetricTypeReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetricTypeReference");
-		private final Assignment cMetricAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cMetricMetricTypeEnumRuleCall_0 = (RuleCall)cMetricAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cMetricAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cMetricMetricTypeEnumRuleCall_0_0 = (RuleCall)cMetricAssignment_0.eContents().get(0);
+		private final Keyword cIDKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cMetricnameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMetricnameIDTerminalRuleCall_2_0 = (RuleCall)cMetricnameAssignment_2.eContents().get(0);
 		
 		//MetricTypeReference:
-		//	metric=MetricType;
+		//	metric=MetricType "ID" metricname=ID;
 		public ParserRule getRule() { return rule; }
 
+		//metric=MetricType "ID" metricname=ID
+		public Group getGroup() { return cGroup; }
+
 		//metric=MetricType
-		public Assignment getMetricAssignment() { return cMetricAssignment; }
+		public Assignment getMetricAssignment_0() { return cMetricAssignment_0; }
 
 		//MetricType
-		public RuleCall getMetricMetricTypeEnumRuleCall_0() { return cMetricMetricTypeEnumRuleCall_0; }
+		public RuleCall getMetricMetricTypeEnumRuleCall_0_0() { return cMetricMetricTypeEnumRuleCall_0_0; }
+
+		//"ID"
+		public Keyword getIDKeyword_1() { return cIDKeyword_1; }
+
+		//metricname=ID
+		public Assignment getMetricnameAssignment_2() { return cMetricnameAssignment_2; }
+
+		//ID
+		public RuleCall getMetricnameIDTerminalRuleCall_2_0() { return cMetricnameIDTerminalRuleCall_2_0; }
 	}
 
 	public class NewMetricElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NewMetric");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNewMetricKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cIDKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
-		private final Assignment cMetricnameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMetricnameQualifiedNameParserRuleCall_2_0 = (RuleCall)cMetricnameAssignment_2.eContents().get(0);
+		private final Keyword cNewMetricClassNameKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cClassnameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cClassnameIDTerminalRuleCall_1_0 = (RuleCall)cClassnameAssignment_1.eContents().get(0);
+		private final Keyword cIDKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cMetricnameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMetricnameIDTerminalRuleCall_3_0 = (RuleCall)cMetricnameAssignment_3.eContents().get(0);
 		
 		//NewMetric:
-		//	"new Metric" ("ID" name=ID)? metricname=QualifiedName;
+		//	"new Metric ClassName" classname=ID "ID" metricname=ID;
 		public ParserRule getRule() { return rule; }
 
-		//"new Metric" ("ID" name=ID)? metricname=QualifiedName
+		//"new Metric ClassName" classname=ID "ID" metricname=ID
 		public Group getGroup() { return cGroup; }
 
-		//"new Metric"
-		public Keyword getNewMetricKeyword_0() { return cNewMetricKeyword_0; }
+		//"new Metric ClassName"
+		public Keyword getNewMetricClassNameKeyword_0() { return cNewMetricClassNameKeyword_0; }
 
-		//("ID" name=ID)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"ID"
-		public Keyword getIDKeyword_1_0() { return cIDKeyword_1_0; }
-
-		//name=ID
-		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+		//classname=ID
+		public Assignment getClassnameAssignment_1() { return cClassnameAssignment_1; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_1_0() { return cNameIDTerminalRuleCall_1_1_0; }
+		public RuleCall getClassnameIDTerminalRuleCall_1_0() { return cClassnameIDTerminalRuleCall_1_0; }
 
-		//metricname=QualifiedName
-		public Assignment getMetricnameAssignment_2() { return cMetricnameAssignment_2; }
+		//"ID"
+		public Keyword getIDKeyword_2() { return cIDKeyword_2; }
 
-		//QualifiedName
-		public RuleCall getMetricnameQualifiedNameParserRuleCall_2_0() { return cMetricnameQualifiedNameParserRuleCall_2_0; }
+		//metricname=ID
+		public Assignment getMetricnameAssignment_3() { return cMetricnameAssignment_3; }
+
+		//ID
+		public RuleCall getMetricnameIDTerminalRuleCall_3_0() { return cMetricnameIDTerminalRuleCall_3_0; }
 	}
 
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
@@ -723,7 +735,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MetricTypeReference:
-	//	metric=MetricType;
+	//	metric=MetricType "ID" metricname=ID;
 	public MetricTypeReferenceElements getMetricTypeReferenceAccess() {
 		return pMetricTypeReference;
 	}
@@ -743,7 +755,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NewMetric:
-	//	"new Metric" ("ID" name=ID)? metricname=QualifiedName;
+	//	"new Metric ClassName" classname=ID "ID" metricname=ID;
 	public NewMetricElements getNewMetricAccess() {
 		return pNewMetric;
 	}

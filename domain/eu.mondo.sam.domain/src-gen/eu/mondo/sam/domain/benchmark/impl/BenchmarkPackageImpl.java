@@ -469,6 +469,16 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getAttachedMetric_Metricname()
+  {
+    return (EAttribute)attachedMetricEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMetricTypeReference()
   {
     return metricTypeReferenceEClass;
@@ -499,19 +509,9 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNewMetric_Name()
+  public EAttribute getNewMetric_Classname()
   {
     return (EAttribute)newMetricEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNewMetric_Metricname()
-  {
-    return (EAttribute)newMetricEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -591,13 +591,13 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     createEReference(atomicPhaseEClass, ATOMIC_PHASE__METRICS);
 
     attachedMetricEClass = createEClass(ATTACHED_METRIC);
+    createEAttribute(attachedMetricEClass, ATTACHED_METRIC__METRICNAME);
 
     metricTypeReferenceEClass = createEClass(METRIC_TYPE_REFERENCE);
     createEAttribute(metricTypeReferenceEClass, METRIC_TYPE_REFERENCE__METRIC);
 
     newMetricEClass = createEClass(NEW_METRIC);
-    createEAttribute(newMetricEClass, NEW_METRIC__NAME);
-    createEAttribute(newMetricEClass, NEW_METRIC__METRICNAME);
+    createEAttribute(newMetricEClass, NEW_METRIC__CLASSNAME);
 
     // Create enums
     metricTypeEEnum = createEEnum(METRIC_TYPE);
@@ -681,13 +681,13 @@ public class BenchmarkPackageImpl extends EPackageImpl implements BenchmarkPacka
     initEReference(getAtomicPhase_Metrics(), this.getAttachedMetric(), null, "metrics", null, 0, -1, AtomicPhase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attachedMetricEClass, AttachedMetric.class, "AttachedMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAttachedMetric_Metricname(), ecorePackage.getEString(), "metricname", null, 0, 1, AttachedMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(metricTypeReferenceEClass, MetricTypeReference.class, "MetricTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMetricTypeReference_Metric(), this.getMetricType(), "metric", null, 0, 1, MetricTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(newMetricEClass, NewMetric.class, "NewMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNewMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, NewMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNewMetric_Metricname(), ecorePackage.getEString(), "metricname", null, 0, 1, NewMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNewMetric_Classname(), ecorePackage.getEString(), "classname", null, 0, 1, NewMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(metricTypeEEnum, MetricType.class, "MetricType");

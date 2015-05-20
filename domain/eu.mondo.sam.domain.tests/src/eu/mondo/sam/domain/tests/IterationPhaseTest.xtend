@@ -33,7 +33,7 @@ class IterationPhaseTest {
 	def testPositiveIteration(){
 		val model = parseHelper.parse('''package test.pack Iteration it ( 1 * 
 			Atomic ClassName AtomicName Metrics(
-			new Metric MetricName
+			new Metric ClassName MetricName ID met
 		))''')
 		helper.assertNoErrors(model)
 	}

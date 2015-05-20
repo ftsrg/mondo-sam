@@ -3,10 +3,15 @@
  */
 package eu.mondo.sam.domain.generator;
 
+import com.google.common.base.Objects;
 import eu.mondo.sam.domain.benchmark.AtomicPhase;
+import eu.mondo.sam.domain.benchmark.AttachedMetric;
 import eu.mondo.sam.domain.benchmark.AttachedPhase;
 import eu.mondo.sam.domain.benchmark.Benchmark;
 import eu.mondo.sam.domain.benchmark.Element;
+import eu.mondo.sam.domain.benchmark.MetricType;
+import eu.mondo.sam.domain.benchmark.MetricTypeReference;
+import eu.mondo.sam.domain.benchmark.NewMetric;
 import eu.mondo.sam.domain.benchmark.OptionalPhase;
 import eu.mondo.sam.domain.benchmark.Phase;
 import eu.mondo.sam.domain.benchmark.Scenario;
@@ -16,6 +21,7 @@ import eu.mondo.sam.domain.generator.PhaseStructureResolver;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -240,6 +246,188 @@ public class BenchmarkGenerator implements IGenerator {
   }
   
   protected Object _generate(final AtomicPhase atomic, final IFileSystemAccess fsa, final Benchmark bench) {
+    final IFileSystemAccessExtension3 f3 = ((IFileSystemAccessExtension3) fsa);
+    CharSequence file = null;
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      String _packageName = bench.getPackageName();
+      String _replace = _packageName.replace(".", "/");
+      _builder.append(_replace, "");
+      _builder.append("/phases/");
+      String _classname = atomic.getClassname();
+      _builder.append(_classname, "");
+      _builder.append(".java");
+      CharSequence _readTextFile = f3.readTextFile(_builder.toString(), 
+        IFileSystemAccess.DEFAULT_OUTPUT);
+      file = _readTextFile;
+    } catch (final Throwable _t) {
+      if (_t instanceof RuntimeException) {
+        final RuntimeException e = (RuntimeException)_t;
+        this.generateAtomic(fsa, bench, atomic);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    final Set<String> metricsImport = new TreeSet<String>();
+    final Set<String> metricsInitializations = new TreeSet<String>();
+    EList<AttachedMetric> _metrics = atomic.getMetrics();
+    for (final AttachedMetric m : _metrics) {
+      if ((m instanceof MetricTypeReference)) {
+        MetricType _metric = ((MetricTypeReference) m).getMetric();
+        boolean _equals = Objects.equal(_metric, MetricType.TIME);
+        if (_equals) {
+          metricsImport.add("eu.mondo.sam.core.metrics.TimeMetric;");
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("metrics.put(\"");
+          String _metricname = ((MetricTypeReference)m).getMetricname();
+          _builder_1.append(_metricname, "");
+          _builder_1.append("\", new TimeMetric(\"");
+          String _metricname_1 = ((MetricTypeReference)m).getMetricname();
+          _builder_1.append(_metricname_1, "");
+          _builder_1.append("\"));");
+          metricsInitializations.add(_builder_1.toString());
+        } else {
+          MetricType _metric_1 = ((MetricTypeReference) m).getMetric();
+          boolean _equals_1 = Objects.equal(_metric_1, MetricType.MEMORY);
+          if (_equals_1) {
+            metricsImport.add("eu.mondo.sam.core.metrics.MemoryMetric;");
+            StringConcatenation _builder_2 = new StringConcatenation();
+            _builder_2.append("metrics.put(\"");
+            String _metricname_2 = ((MetricTypeReference)m).getMetricname();
+            _builder_2.append(_metricname_2, "");
+            _builder_2.append("\", new MemoryMetric(\"");
+            String _metricname_3 = ((MetricTypeReference)m).getMetricname();
+            _builder_2.append(_metricname_3, "");
+            _builder_2.append("\"));");
+            metricsInitializations.add(_builder_2.toString());
+          } else {
+            MetricType _metric_2 = ((MetricTypeReference) m).getMetric();
+            boolean _equals_2 = Objects.equal(_metric_2, MetricType.SCALAR);
+            if (_equals_2) {
+              metricsImport.add("eu.mondo.sam.core.metrics.ScalarMetric;");
+              StringConcatenation _builder_3 = new StringConcatenation();
+              _builder_3.append("metrics.put(\"");
+              String _metricname_4 = ((MetricTypeReference)m).getMetricname();
+              _builder_3.append(_metricname_4, "");
+              _builder_3.append("\", new ScalarMetric(\"");
+              String _metricname_5 = ((MetricTypeReference)m).getMetricname();
+              _builder_3.append(_metricname_5, "");
+              _builder_3.append("\"));");
+              metricsInitializations.add(_builder_3.toString());
+            }
+          }
+        }
+      } else {
+        if ((m instanceof NewMetric)) {
+          StringConcatenation _builder_4 = new StringConcatenation();
+          String _packageName_1 = bench.getPackageName();
+          _builder_4.append(_packageName_1, "");
+          _builder_4.append(".metrics.");
+          String _classname_1 = ((NewMetric)m).getClassname();
+          _builder_4.append(_classname_1, "");
+          _builder_4.append(";");
+          metricsImport.add(_builder_4.toString());
+          StringConcatenation _builder_5 = new StringConcatenation();
+          _builder_5.append("metrics.put(\"");
+          String _metricname_6 = ((NewMetric)m).getMetricname();
+          _builder_5.append(_metricname_6, "");
+          _builder_5.append("\", new ");
+          String _classname_2 = ((NewMetric)m).getClassname();
+          _builder_5.append(_classname_2, "");
+          _builder_5.append("(\"");
+          String _metricname_7 = ((NewMetric)m).getMetricname();
+          _builder_5.append(_metricname_7, "");
+          _builder_5.append("\"));");
+          metricsInitializations.add(_builder_5.toString());
+        }
+      }
+    }
+    StringConcatenation _builder_6 = new StringConcatenation();
+    String _packageName_2 = bench.getPackageName();
+    String _replace_1 = _packageName_2.replace(".", "/");
+    _builder_6.append(_replace_1, "");
+    _builder_6.append("/phases/metrics/");
+    String _classname_3 = atomic.getClassname();
+    _builder_6.append(_classname_3, "");
+    _builder_6.append("Metrics.java");
+    StringConcatenation _builder_7 = new StringConcatenation();
+    _builder_7.append("package ");
+    String _packageName_3 = bench.getPackageName();
+    _builder_7.append(_packageName_3, "");
+    _builder_7.append(".phases.metrics;");
+    _builder_7.newLineIfNotEmpty();
+    _builder_7.newLine();
+    _builder_7.append("import eu.mondo.sam.core.metrics.BenchmarkMetric;");
+    _builder_7.newLine();
+    {
+      for(final String m_1 : metricsImport) {
+        _builder_7.append("import ");
+        _builder_7.append(m_1, "");
+        _builder_7.newLineIfNotEmpty();
+      }
+    }
+    _builder_7.newLine();
+    _builder_7.append("import java.util.Map;");
+    _builder_7.newLine();
+    _builder_7.append("import java.util.HashMap;");
+    _builder_7.newLine();
+    _builder_7.newLine();
+    _builder_7.newLine();
+    _builder_7.append("public class ");
+    String _classname_4 = atomic.getClassname();
+    _builder_7.append(_classname_4, "");
+    _builder_7.append("Metrics {");
+    _builder_7.newLineIfNotEmpty();
+    _builder_7.append("\t");
+    _builder_7.newLine();
+    _builder_7.append("\t");
+    _builder_7.append("private HashMap<String, BenchmarkMetric> metrics;");
+    _builder_7.newLine();
+    _builder_7.append("\t");
+    _builder_7.newLine();
+    _builder_7.append("\t");
+    _builder_7.append("public ");
+    String _classname_5 = atomic.getClassname();
+    _builder_7.append(_classname_5, "\t");
+    _builder_7.append("Metrics(){");
+    _builder_7.newLineIfNotEmpty();
+    _builder_7.append("\t\t");
+    _builder_7.append("metrics = new HashMap<String, BenchmarkMetric>();");
+    _builder_7.newLine();
+    {
+      for(final String m_2 : metricsInitializations) {
+        _builder_7.append("\t\t");
+        _builder_7.append(m_2, "\t\t");
+        _builder_7.newLineIfNotEmpty();
+      }
+    }
+    _builder_7.append("\t");
+    _builder_7.append("}");
+    _builder_7.newLine();
+    _builder_7.append("\t");
+    _builder_7.newLine();
+    _builder_7.append("\t");
+    _builder_7.append("public Map<String, BenchmarkMetric> getMetrics(){");
+    _builder_7.newLine();
+    _builder_7.append("\t\t");
+    _builder_7.append("return metrics;");
+    _builder_7.newLine();
+    _builder_7.append("\t");
+    _builder_7.append("}");
+    _builder_7.newLine();
+    _builder_7.append("}");
+    fsa.generateFile(_builder_6.toString(), 
+      IFileSystemAccess.DEFAULT_OUTPUT, _builder_7);
+    EList<AttachedMetric> _metrics_1 = atomic.getMetrics();
+    for (final AttachedMetric m_3 : _metrics_1) {
+      if ((m_3 instanceof NewMetric)) {
+        this.generateNewMetric(fsa, bench, ((NewMetric)m_3));
+      }
+    }
+    return null;
+  }
+  
+  protected void generateAtomic(final IFileSystemAccess fsa, final Benchmark bench, final AtomicPhase atomic) {
     StringConcatenation _builder = new StringConcatenation();
     String _packageName = bench.getPackageName();
     String _replace = _packageName.replace(".", "/");
@@ -257,6 +445,16 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.newLine();
     _builder_1.append("import eu.mondo.sam.core.phases.AtomicPhase;");
     _builder_1.newLine();
+    _builder_1.append("import ");
+    String _packageName_2 = bench.getPackageName();
+    _builder_1.append(_packageName_2, "");
+    _builder_1.append(".phases.metrics.");
+    String _classname_1 = atomic.getClassname();
+    _builder_1.append(_classname_1, "");
+    _builder_1.append("Metrics;");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("import eu.mondo.sam.core.metrics.BenchmarkMetric;");
+    _builder_1.newLine();
     _builder_1.append("import eu.mondo.sam.core.DataToken;");
     _builder_1.newLine();
     _builder_1.append("import eu.mondo.sam.core.results.PhaseResult;");
@@ -264,21 +462,33 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.newLine();
     _builder_1.newLine();
     _builder_1.append("public class ");
-    String _classname_1 = atomic.getClassname();
-    _builder_1.append(_classname_1, "");
+    String _classname_2 = atomic.getClassname();
+    _builder_1.append(_classname_2, "");
     _builder_1.append(" extends AtomicPhase {");
     _builder_1.newLineIfNotEmpty();
     _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("private ");
+    String _classname_3 = atomic.getClassname();
+    _builder_1.append(_classname_3, "\t");
+    _builder_1.append("Metrics metrics; ");
+    _builder_1.newLineIfNotEmpty();
     _builder_1.newLine();
     _builder_1.append("\t");
     _builder_1.append("public ");
-    String _classname_2 = atomic.getClassname();
-    _builder_1.append(_classname_2, "\t");
+    String _classname_4 = atomic.getClassname();
+    _builder_1.append(_classname_4, "\t");
     _builder_1.append("(String phaseName) {");
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("\t\t");
     _builder_1.append("super(phaseName);");
     _builder_1.newLine();
+    _builder_1.append("\t\t");
+    _builder_1.append("metrics = new ");
+    String _classname_5 = atomic.getClassname();
+    _builder_1.append(_classname_5, "\t\t");
+    _builder_1.append("Metrics();");
+    _builder_1.newLineIfNotEmpty();
     _builder_1.append("\t");
     _builder_1.append("}");
     _builder_1.newLine();
@@ -342,7 +552,93 @@ public class BenchmarkGenerator implements IGenerator {
     _builder_1.append("}");
     fsa.generateFile(_builder.toString(), 
       IFileSystemAccess.DEFAULT_OUTPUT, _builder_1);
-    return null;
+  }
+  
+  public CharSequence generateNewMetric(final IFileSystemAccess fsa, final Benchmark bench, final NewMetric metric) {
+    CharSequence _xblockexpression = null;
+    {
+      final IFileSystemAccessExtension3 f3 = ((IFileSystemAccessExtension3) fsa);
+      CharSequence file = null;
+      CharSequence _xtrycatchfinallyexpression = null;
+      try {
+        StringConcatenation _builder = new StringConcatenation();
+        String _packageName = bench.getPackageName();
+        String _replace = _packageName.replace(".", "/");
+        _builder.append(_replace, "");
+        _builder.append("/metrics/");
+        String _classname = metric.getClassname();
+        _builder.append(_classname, "");
+        _builder.append(".java");
+        CharSequence _readTextFile = f3.readTextFile(_builder.toString(), 
+          IFileSystemAccess.DEFAULT_OUTPUT);
+        _xtrycatchfinallyexpression = file = _readTextFile;
+      } catch (final Throwable _t) {
+        if (_t instanceof RuntimeException) {
+          final RuntimeException e = (RuntimeException)_t;
+          StringConcatenation _builder_1 = new StringConcatenation();
+          String _packageName_1 = bench.getPackageName();
+          String _replace_1 = _packageName_1.replace(".", "/");
+          _builder_1.append(_replace_1, "");
+          _builder_1.append("/metrics/");
+          String _classname_1 = metric.getClassname();
+          _builder_1.append(_classname_1, "");
+          _builder_1.append(".java");
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("package ");
+          String _packageName_2 = bench.getPackageName();
+          _builder_2.append(_packageName_2, "");
+          _builder_2.append(".metrics;");
+          _builder_2.newLineIfNotEmpty();
+          _builder_2.newLine();
+          _builder_2.append("import eu.mondo.sam.core.metrics.BenchmarkMetric;");
+          _builder_2.newLine();
+          _builder_2.newLine();
+          _builder_2.append("public class ");
+          String _classname_2 = metric.getClassname();
+          _builder_2.append(_classname_2, "");
+          _builder_2.append(" extends BenchmarkMetric{");
+          _builder_2.newLineIfNotEmpty();
+          _builder_2.append("\t");
+          _builder_2.newLine();
+          _builder_2.append("\t");
+          _builder_2.append("public ");
+          String _classname_3 = metric.getClassname();
+          _builder_2.append(_classname_3, "\t");
+          _builder_2.append("(String name){");
+          _builder_2.newLineIfNotEmpty();
+          _builder_2.append("\t\t");
+          _builder_2.append("super(name);");
+          _builder_2.newLine();
+          _builder_2.append("\t");
+          _builder_2.append("}");
+          _builder_2.newLine();
+          _builder_2.append("\t");
+          _builder_2.newLine();
+          _builder_2.append("\t");
+          _builder_2.append("@Override");
+          _builder_2.newLine();
+          _builder_2.append("\t");
+          _builder_2.append("public String getValue() {");
+          _builder_2.newLine();
+          _builder_2.append("\t\t");
+          _builder_2.append("// TODO implement this");
+          _builder_2.newLine();
+          _builder_2.append("\t\t");
+          _builder_2.append("return \"\";");
+          _builder_2.newLine();
+          _builder_2.append("\t");
+          _builder_2.append("}");
+          _builder_2.newLine();
+          _builder_2.append("}");
+          fsa.generateFile(_builder_1.toString(), 
+            IFileSystemAccess.DEFAULT_OUTPUT, _builder_2);
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+      _xblockexpression = _xtrycatchfinallyexpression;
+    }
+    return _xblockexpression;
   }
   
   protected Object _generate(final OptionalPhase optional, final IFileSystemAccess fsa, final Benchmark bench) {

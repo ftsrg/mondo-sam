@@ -40,7 +40,7 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 	def checkMetricStartsWithCapital(NewMetric metric) {
 		if (!Character.isUpperCase(metric.metricname.charAt(0))) {
 			warning('The name of the metric should start with capital since it represents a new class name.', 
-				BenchmarkPackage.Literals.NEW_METRIC__METRICNAME, "invalid_metric"
+				BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME, "invalid_metric"
 			)
 		}
 	}

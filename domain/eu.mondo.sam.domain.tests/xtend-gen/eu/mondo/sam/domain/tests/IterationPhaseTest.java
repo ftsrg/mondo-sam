@@ -43,7 +43,7 @@ public class IterationPhaseTest {
       _builder.append("Atomic ClassName AtomicName Metrics(");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("new Metric MetricName");
+      _builder.append("new Metric ClassName MetricName ID met");
       _builder.newLine();
       _builder.append("\t\t");
       _builder.append("))");

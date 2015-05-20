@@ -1,4 +1,4 @@
-package eu.mondo.sam.domain.tests
+package eu.mondo.sam.domain.tests.generators
 
 import org.eclipse.xtext.generator.IGenerator
 import com.google.inject.Inject

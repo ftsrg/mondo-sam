@@ -408,9 +408,9 @@ ruleMetricTypeReference
     }
 	:
 (
-{ before(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment()); }
-(rule__MetricTypeReference__MetricAssignment)
-{ after(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment()); }
+{ before(grammarAccess.getMetricTypeReferenceAccess().getGroup()); }
+(rule__MetricTypeReference__Group__0)
+{ after(grammarAccess.getMetricTypeReferenceAccess().getGroup()); }
 )
 
 ;
@@ -1722,6 +1722,100 @@ finally {
 
 
 
+rule__MetricTypeReference__Group__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetricTypeReference__Group__0__Impl
+	rule__MetricTypeReference__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetricTypeReference__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment_0()); }
+(rule__MetricTypeReference__MetricAssignment_0)
+{ after(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetricTypeReference__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetricTypeReference__Group__1__Impl
+	rule__MetricTypeReference__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetricTypeReference__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetricTypeReferenceAccess().getIDKeyword_1()); }
+
+	'ID' 
+
+{ after(grammarAccess.getMetricTypeReferenceAccess().getIDKeyword_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetricTypeReference__Group__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetricTypeReference__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetricTypeReference__Group__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetricTypeReferenceAccess().getMetricnameAssignment_2()); }
+(rule__MetricTypeReference__MetricnameAssignment_2)
+{ after(grammarAccess.getMetricTypeReferenceAccess().getMetricnameAssignment_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+
+
 rule__NewMetric__Group__0
     @init {
 		int stackSize = keepStackSize();
@@ -1740,11 +1834,11 @@ rule__NewMetric__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getNewMetricAccess().getNewMetricKeyword_0()); }
+{ before(grammarAccess.getNewMetricAccess().getNewMetricClassNameKeyword_0()); }
 
-	'new Metric' 
+	'new Metric ClassName' 
 
-{ after(grammarAccess.getNewMetricAccess().getNewMetricKeyword_0()); }
+{ after(grammarAccess.getNewMetricAccess().getNewMetricClassNameKeyword_0()); }
 )
 
 ;
@@ -1771,9 +1865,9 @@ rule__NewMetric__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getNewMetricAccess().getGroup_1()); }
-(rule__NewMetric__Group_1__0)?
-{ after(grammarAccess.getNewMetricAccess().getGroup_1()); }
+{ before(grammarAccess.getNewMetricAccess().getClassnameAssignment_1()); }
+(rule__NewMetric__ClassnameAssignment_1)
+{ after(grammarAccess.getNewMetricAccess().getClassnameAssignment_1()); }
 )
 
 ;
@@ -1788,6 +1882,7 @@ rule__NewMetric__Group__2
     }
 :
 	rule__NewMetric__Group__2__Impl
+	rule__NewMetric__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1799,46 +1894,11 @@ rule__NewMetric__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getNewMetricAccess().getMetricnameAssignment_2()); }
-(rule__NewMetric__MetricnameAssignment_2)
-{ after(grammarAccess.getNewMetricAccess().getMetricnameAssignment_2()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
-
-
-
-
-rule__NewMetric__Group_1__0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__NewMetric__Group_1__0__Impl
-	rule__NewMetric__Group_1__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__NewMetric__Group_1__0__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getNewMetricAccess().getIDKeyword_1_0()); }
+{ before(grammarAccess.getNewMetricAccess().getIDKeyword_2()); }
 
 	'ID' 
 
-{ after(grammarAccess.getNewMetricAccess().getIDKeyword_1_0()); }
+{ after(grammarAccess.getNewMetricAccess().getIDKeyword_2()); }
 )
 
 ;
@@ -1847,32 +1907,36 @@ finally {
 }
 
 
-rule__NewMetric__Group_1__1
+rule__NewMetric__Group__3
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__NewMetric__Group_1__1__Impl
+	rule__NewMetric__Group__3__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NewMetric__Group_1__1__Impl
+rule__NewMetric__Group__3__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNewMetricAccess().getNameAssignment_1_1()); }
-(rule__NewMetric__NameAssignment_1_1)
-{ after(grammarAccess.getNewMetricAccess().getNameAssignment_1_1()); }
+{ before(grammarAccess.getNewMetricAccess().getMetricnameAssignment_3()); }
+(rule__NewMetric__MetricnameAssignment_3)
+{ after(grammarAccess.getNewMetricAccess().getMetricnameAssignment_3()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+
+
 
 
 
@@ -2263,14 +2327,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MetricTypeReference__MetricAssignment
+rule__MetricTypeReference__MetricAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0()); }
-	ruleMetricType{ after(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0()); }
+{ before(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0_0()); }
+	ruleMetricType{ after(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0_0()); }
 )
 
 ;
@@ -2278,14 +2342,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NewMetric__NameAssignment_1_1
+rule__MetricTypeReference__MetricnameAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNewMetricAccess().getNameIDTerminalRuleCall_1_1_0()); }
-	RULE_ID{ after(grammarAccess.getNewMetricAccess().getNameIDTerminalRuleCall_1_1_0()); }
+{ before(grammarAccess.getMetricTypeReferenceAccess().getMetricnameIDTerminalRuleCall_2_0()); }
+	RULE_ID{ after(grammarAccess.getMetricTypeReferenceAccess().getMetricnameIDTerminalRuleCall_2_0()); }
 )
 
 ;
@@ -2293,14 +2357,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NewMetric__MetricnameAssignment_2
+rule__NewMetric__ClassnameAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNewMetricAccess().getMetricnameQualifiedNameParserRuleCall_2_0()); }
-	ruleQualifiedName{ after(grammarAccess.getNewMetricAccess().getMetricnameQualifiedNameParserRuleCall_2_0()); }
+{ before(grammarAccess.getNewMetricAccess().getClassnameIDTerminalRuleCall_1_0()); }
+	RULE_ID{ after(grammarAccess.getNewMetricAccess().getClassnameIDTerminalRuleCall_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__NewMetric__MetricnameAssignment_3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getNewMetricAccess().getMetricnameIDTerminalRuleCall_3_0()); }
+	RULE_ID{ after(grammarAccess.getNewMetricAccess().getMetricnameIDTerminalRuleCall_3_0()); }
 )
 
 ;

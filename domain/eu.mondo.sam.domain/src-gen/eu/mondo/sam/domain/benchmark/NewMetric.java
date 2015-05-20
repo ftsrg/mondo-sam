@@ -11,8 +11,7 @@ package eu.mondo.sam.domain.benchmark;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link eu.mondo.sam.domain.benchmark.NewMetric#getName <em>Name</em>}</li>
- *   <li>{@link eu.mondo.sam.domain.benchmark.NewMetric#getMetricname <em>Metricname</em>}</li>
+ *   <li>{@link eu.mondo.sam.domain.benchmark.NewMetric#getClassname <em>Classname</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,55 +22,29 @@ package eu.mondo.sam.domain.benchmark;
 public interface NewMetric extends AttachedMetric
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Classname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Classname</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getNewMetric_Name()
+   * @return the value of the '<em>Classname</em>' attribute.
+   * @see #setClassname(String)
+   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getNewMetric_Classname()
    * @model
    * @generated
    */
-  String getName();
+  String getClassname();
 
   /**
-   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.NewMetric#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.NewMetric#getClassname <em>Classname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Classname</em>' attribute.
+   * @see #getClassname()
    * @generated
    */
-  void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Metricname</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Metricname</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Metricname</em>' attribute.
-   * @see #setMetricname(String)
-   * @see eu.mondo.sam.domain.benchmark.BenchmarkPackage#getNewMetric_Metricname()
-   * @model
-   * @generated
-   */
-  String getMetricname();
-
-  /**
-   * Sets the value of the '{@link eu.mondo.sam.domain.benchmark.NewMetric#getMetricname <em>Metricname</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Metricname</em>' attribute.
-   * @see #getMetricname()
-   * @generated
-   */
-  void setMetricname(String value);
+  void setClassname(String value);
 
 } // NewMetric

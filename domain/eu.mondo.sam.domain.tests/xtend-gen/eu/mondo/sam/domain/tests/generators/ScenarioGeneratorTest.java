@@ -1,4 +1,4 @@
-package eu.mondo.sam.domain.tests;
+package eu.mondo.sam.domain.tests.generators;
 
 import com.google.inject.Inject;
 import eu.mondo.sam.domain.BenchmarkInjectorProvider;

@@ -5,8 +5,12 @@ package eu.mondo.sam.domain.generator
 
 import eu.mondo.sam.domain.OutputConfigurationProvider
 import eu.mondo.sam.domain.benchmark.AtomicPhase
+import eu.mondo.sam.domain.benchmark.AttachedMetric
 import eu.mondo.sam.domain.benchmark.Benchmark
 import eu.mondo.sam.domain.benchmark.Element
+import eu.mondo.sam.domain.benchmark.MetricType
+import eu.mondo.sam.domain.benchmark.MetricTypeReference
+import eu.mondo.sam.domain.benchmark.NewMetric
 import eu.mondo.sam.domain.benchmark.OptionalPhase
 import eu.mondo.sam.domain.benchmark.Phase
 import eu.mondo.sam.domain.benchmark.Scenario
@@ -14,6 +18,7 @@ import java.io.File
 import java.util.HashSet
 import java.util.List
 import java.util.Set
+import java.util.TreeSet
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IWorkspace
@@ -40,7 +45,6 @@ class BenchmarkGenerator implements IGenerator {
 		for (Element element : benchmark.elements) {
 			generatedElements.add(element)
 
-			//			element.generate(fsa, benchmark)
 			if (element instanceof Scenario) {
 				val scen = element as Scenario
 				generatedElements.addAll(PhaseContainmentResolver::resolvePhases(scen.rootPhase, generatedElements))
@@ -119,21 +123,96 @@ class BenchmarkGenerator implements IGenerator {
 	}
 
 	def dispatch generate(AtomicPhase atomic, IFileSystemAccess fsa, Benchmark bench) {
+		val f3 = fsa as IFileSystemAccessExtension3
+		var CharSequence file = null
+		try {
+			file = f3.readTextFile('''«bench.packageName.replace('.', '/')»/phases/«atomic.classname».java''',
+				IFileSystemAccess.DEFAULT_OUTPUT)
+		} catch (RuntimeException e) {
+			generateAtomic(fsa, bench, atomic)
+		}
+		
+		val Set<String> metricsImport = new TreeSet<String>();
+		val Set<String> metricsInitializations = new TreeSet<String>();
+		
+		for (AttachedMetric m : atomic.metrics){
+			if (m instanceof MetricTypeReference){
+				if ((m as MetricTypeReference).metric == MetricType.TIME){
+					metricsImport.add("eu.mondo.sam.core.metrics.TimeMetric;")
+					metricsInitializations.add('''metrics.put("«m.metricname»", new TimeMetric("«m.metricname»"));''')
+				}
+				else if ((m as MetricTypeReference).metric == MetricType.MEMORY){
+					metricsImport.add("eu.mondo.sam.core.metrics.MemoryMetric;")
+					metricsInitializations.add('''metrics.put("«m.metricname»", new MemoryMetric("«m.metricname»"));''')
+				}
+				else if ((m as MetricTypeReference).metric == MetricType.SCALAR){
+					metricsImport.add("eu.mondo.sam.core.metrics.ScalarMetric;")
+					metricsInitializations.add('''metrics.put("«m.metricname»", new ScalarMetric("«m.metricname»"));''')
+				}
+			}
+			else if (m instanceof NewMetric){
+				metricsImport.add('''«bench.packageName».metrics.«m.classname»;''')
+				metricsInitializations.add('''metrics.put("«m.metricname»", new «m.classname»("«m.metricname»"));''')
+			}
+		}
+		
+		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/metrics/«atomic.classname»Metrics.java''',
+			IFileSystemAccess.DEFAULT_OUTPUT,
+			'''
+			package «bench.packageName».phases.metrics;
+			
+			import eu.mondo.sam.core.metrics.BenchmarkMetric;
+			«FOR m : metricsImport»
+				import «m»
+			«ENDFOR»
+			
+			import java.util.Map;
+			import java.util.HashMap;
+			
+			
+			public class «atomic.classname»Metrics {
+				
+				private HashMap<String, BenchmarkMetric> metrics;
+				
+				public «atomic.classname»Metrics(){
+					metrics = new HashMap<String, BenchmarkMetric>();
+					«FOR m : metricsInitializations»
+						«m»
+					«ENDFOR»
+				}
+				
+				public Map<String, BenchmarkMetric> getMetrics(){
+					return metrics;
+				}
+			}''')
+			
+		for (m : atomic.metrics){
+			if (m instanceof NewMetric){
+				generateNewMetric(fsa, bench, m)
+			}
+		}
+	}
+	
+	protected def generateAtomic(IFileSystemAccess fsa, Benchmark bench, AtomicPhase atomic) {
 		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«atomic.classname».java''',
 			IFileSystemAccess.DEFAULT_OUTPUT,
 			'''
 			package «bench.packageName».phases;
 			
 			import eu.mondo.sam.core.phases.AtomicPhase;
+			import «bench.packageName».phases.metrics.«atomic.classname»Metrics;
+			import eu.mondo.sam.core.metrics.BenchmarkMetric;
 			import eu.mondo.sam.core.DataToken;
 			import eu.mondo.sam.core.results.PhaseResult;
 			
 			
 			public class «atomic.classname» extends AtomicPhase {
 			
+				private «atomic.classname»Metrics metrics; 
 			
 				public «atomic.classname»(String phaseName) {
 					super(phaseName);
+					metrics = new «atomic.classname»Metrics();
 				}
 			
 				/**
@@ -158,6 +237,47 @@ class BenchmarkGenerator implements IGenerator {
 			}''')
 	}
 
+//	def dispatch generate(NewMetric metric, IFileSystemAccess fsa, Benchmark bench) {
+//		print("metric called\n")
+//		val f3 = fsa as IFileSystemAccessExtension3
+//		var CharSequence file = null
+//		try {
+//			file = f3.readTextFile('''«bench.packageName.replace('.', '/')»/metrics/«metric.classname».java''',
+//				IFileSystemAccess.DEFAULT_OUTPUT)
+//		} catch (RuntimeException e) {
+//			generateNewMetric(fsa, bench, metric)
+//		}
+//	}
+	
+	def generateNewMetric(IFileSystemAccess fsa, Benchmark bench, NewMetric metric) {
+		val f3 = fsa as IFileSystemAccessExtension3
+		var CharSequence file = null
+		try {
+			file = f3.readTextFile('''«bench.packageName.replace('.', '/')»/metrics/«metric.classname».java''',
+				IFileSystemAccess.DEFAULT_OUTPUT)
+		} catch (RuntimeException e) {
+			fsa.generateFile('''«bench.packageName.replace('.', '/')»/metrics/«metric.classname».java''',
+				IFileSystemAccess.DEFAULT_OUTPUT,
+				'''
+				package «bench.packageName».metrics;
+				
+				import eu.mondo.sam.core.metrics.BenchmarkMetric;
+				
+				public class «metric.classname» extends BenchmarkMetric{
+					
+					public «metric.classname»(String name){
+						super(name);
+					}
+					
+					@Override
+					public String getValue() {
+						// TODO implement this
+						return "";
+					}
+				}''')
+		}
+	}
+	
 	def dispatch generate(OptionalPhase optional, IFileSystemAccess fsa, Benchmark bench) {
 		fsa.generateFile('''«bench.packageName.replace('.', '/')»/phases/«optional.classname».java''',
 			IFileSystemAccess.DEFAULT_OUTPUT,
@@ -181,7 +301,7 @@ class BenchmarkGenerator implements IGenerator {
 				}
 			}''')
 	}
-
+	
 	def dispatch generate(Phase phase, IFileSystemAccess fsa, Benchmark bench) {
 	}
 

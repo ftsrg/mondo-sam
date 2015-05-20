@@ -43,7 +43,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
         eType="#//AttachedMetric" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttachedMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttachedMetric">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metricname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetricTypeReference" eSuperTypes="#//AttachedMetric">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metric" eType="#//MetricType"/>
   </eClassifiers>
@@ -53,7 +55,6 @@
     <eLiterals name="Scalar" value="2" literal="Scalar"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NewMetric" eSuperTypes="#//AttachedMetric">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metricname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

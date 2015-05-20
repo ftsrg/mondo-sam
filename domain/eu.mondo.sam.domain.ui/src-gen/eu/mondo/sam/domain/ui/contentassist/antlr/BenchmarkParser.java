@@ -48,8 +48,8 @@ public class BenchmarkParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIterationPhaseAccess().getGroup(), "rule__IterationPhase__Group__0");
 					put(grammarAccess.getOptionalPhaseAccess().getGroup(), "rule__OptionalPhase__Group__0");
 					put(grammarAccess.getAtomicPhaseAccess().getGroup(), "rule__AtomicPhase__Group__0");
+					put(grammarAccess.getMetricTypeReferenceAccess().getGroup(), "rule__MetricTypeReference__Group__0");
 					put(grammarAccess.getNewMetricAccess().getGroup(), "rule__NewMetric__Group__0");
-					put(grammarAccess.getNewMetricAccess().getGroup_1(), "rule__NewMetric__Group_1__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getBenchmarkAccess().getPackageNameAssignment_1(), "rule__Benchmark__PackageNameAssignment_1");
@@ -69,9 +69,10 @@ public class BenchmarkParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicPhaseAccess().getNameAssignment_1(), "rule__AtomicPhase__NameAssignment_1");
 					put(grammarAccess.getAtomicPhaseAccess().getClassnameAssignment_3(), "rule__AtomicPhase__ClassnameAssignment_3");
 					put(grammarAccess.getAtomicPhaseAccess().getMetricsAssignment_5(), "rule__AtomicPhase__MetricsAssignment_5");
-					put(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment(), "rule__MetricTypeReference__MetricAssignment");
-					put(grammarAccess.getNewMetricAccess().getNameAssignment_1_1(), "rule__NewMetric__NameAssignment_1_1");
-					put(grammarAccess.getNewMetricAccess().getMetricnameAssignment_2(), "rule__NewMetric__MetricnameAssignment_2");
+					put(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment_0(), "rule__MetricTypeReference__MetricAssignment_0");
+					put(grammarAccess.getMetricTypeReferenceAccess().getMetricnameAssignment_2(), "rule__MetricTypeReference__MetricnameAssignment_2");
+					put(grammarAccess.getNewMetricAccess().getClassnameAssignment_1(), "rule__NewMetric__ClassnameAssignment_1");
+					put(grammarAccess.getNewMetricAccess().getMetricnameAssignment_3(), "rule__NewMetric__MetricnameAssignment_3");
 				}
 			};
 		}

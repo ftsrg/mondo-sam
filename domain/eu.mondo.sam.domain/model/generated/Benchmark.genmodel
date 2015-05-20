@@ -46,13 +46,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//AtomicPhase/classname"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Benchmark.ecore#//AtomicPhase/metrics"/>
     </genClasses>
-    <genClasses ecoreClass="Benchmark.ecore#//AttachedMetric"/>
+    <genClasses ecoreClass="Benchmark.ecore#//AttachedMetric">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//AttachedMetric/metricname"/>
+    </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//MetricTypeReference">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//MetricTypeReference/metric"/>
     </genClasses>
     <genClasses ecoreClass="Benchmark.ecore#//NewMetric">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//NewMetric/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//NewMetric/metricname"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Benchmark.ecore#//NewMetric/classname"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

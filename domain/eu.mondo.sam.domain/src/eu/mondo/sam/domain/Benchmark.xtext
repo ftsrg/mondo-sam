@@ -65,7 +65,7 @@ AttachedMetric:
 ;
 
 MetricTypeReference:
-	metric = MetricType
+	metric = MetricType 'ID' metricname = ID
 ;
 
 enum MetricType:
@@ -75,7 +75,7 @@ enum MetricType:
 ;
 
 NewMetric:
-	'new Metric' ('ID' name=ID)? metricname = QualifiedName
+	'new Metric ClassName' classname = ID 'ID' metricname = ID
 ;
 
 QualifiedName:

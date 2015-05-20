@@ -803,10 +803,10 @@ ruleMetricTypeReference returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0_0()); 
 	    }
 		lv_metric_0_0=ruleMetricType		{
 	        if ($current==null) {
@@ -821,7 +821,29 @@ ruleMetricTypeReference returns [EObject current=null]
 	    }
 
 )
+)	otherlv_1='ID' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMetricTypeReferenceAccess().getIDKeyword_1());
+    }
+(
+(
+		lv_metricname_2_0=RULE_ID
+		{
+			newLeafNode(lv_metricname_2_0, grammarAccess.getMetricTypeReferenceAccess().getMetricnameIDTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetricTypeReferenceRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"metricname",
+        		lv_metricname_2_0, 
+        		"ID");
+	    }
+
 )
+))
 ;
 
 
@@ -842,19 +864,15 @@ ruleNewMetric returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='new Metric' 
+(	otherlv_0='new Metric ClassName' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getNewMetricAccess().getNewMetricKeyword_0());
-    }
-(	otherlv_1='ID' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getNewMetricAccess().getIDKeyword_1_0());
+    	newLeafNode(otherlv_0, grammarAccess.getNewMetricAccess().getNewMetricClassNameKeyword_0());
     }
 (
 (
-		lv_name_2_0=RULE_ID
+		lv_classname_1_0=RULE_ID
 		{
-			newLeafNode(lv_name_2_0, grammarAccess.getNewMetricAccess().getNameIDTerminalRuleCall_1_1_0()); 
+			newLeafNode(lv_classname_1_0, grammarAccess.getNewMetricAccess().getClassnameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -862,27 +880,31 @@ ruleNewMetric returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"name",
-        		lv_name_2_0, 
+       			"classname",
+        		lv_classname_1_0, 
         		"ID");
 	    }
 
 )
-))?(
+)	otherlv_2='ID' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getNewMetricAccess().getIDKeyword_2());
+    }
 (
-		{ 
-	        newCompositeNode(grammarAccess.getNewMetricAccess().getMetricnameQualifiedNameParserRuleCall_2_0()); 
-	    }
-		lv_metricname_3_0=ruleQualifiedName		{
+(
+		lv_metricname_3_0=RULE_ID
+		{
+			newLeafNode(lv_metricname_3_0, grammarAccess.getNewMetricAccess().getMetricnameIDTerminalRuleCall_3_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getNewMetricRule());
+	            $current = createModelElement(grammarAccess.getNewMetricRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
        			"metricname",
         		lv_metricname_3_0, 
-        		"QualifiedName");
-	        afterParserOrEnumRuleCall();
+        		"ID");
 	    }
 
 )

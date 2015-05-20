@@ -28,7 +28,7 @@ class CapitalNameTest {
   
   @Test
   def testValidAtomicPhaseDeclaration() {
-    val model = parseHelper.parse('package test.pack Scenario Name {Atomic ClassName atomicName Metrics()}')
+    val model = parseHelper.parse('package test.pack Scenario ScenarioName {Atomic ClassName atomicName Metrics()}')
     helper.assertNoErrors(model);
 	helper.assertWarning(model, BenchmarkPackage.Literals.ATOMIC_PHASE, "invalid_atomicphase");
   }
@@ -37,7 +37,7 @@ class CapitalNameTest {
   def testValidMetricDeclaration() {
     val model = parseHelper.parse('package test.pack Scenario name {
 				Atomic ClassName AtomicName Metrics(
-		new Metric metricname
+		new Metric ClassName metricname ID met
 		)
 	}')
 	helper.assertNoErrors(model);

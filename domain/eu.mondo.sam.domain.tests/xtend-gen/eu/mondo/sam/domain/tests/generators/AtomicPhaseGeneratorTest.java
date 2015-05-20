@@ -1,4 +1,4 @@
-package eu.mondo.sam.domain.tests;
+package eu.mondo.sam.domain.tests.generators;
 
 import com.google.inject.Inject;
 import eu.mondo.sam.domain.BenchmarkInjectorProvider;
@@ -73,6 +73,10 @@ public class AtomicPhaseGeneratorTest {
       _builder_1.newLine();
       _builder_1.append("import eu.mondo.sam.core.phases.AtomicPhase;");
       _builder_1.newLine();
+      _builder_1.append("import test.phases.metrics.TestAtomicMetrics;");
+      _builder_1.newLine();
+      _builder_1.append("import eu.mondo.sam.core.metrics.BenchmarkMetric;");
+      _builder_1.newLine();
       _builder_1.append("import eu.mondo.sam.core.DataToken;");
       _builder_1.newLine();
       _builder_1.append("import eu.mondo.sam.core.results.PhaseResult;");
@@ -82,12 +86,18 @@ public class AtomicPhaseGeneratorTest {
       _builder_1.append("public class TestAtomic extends AtomicPhase {");
       _builder_1.newLine();
       _builder_1.newLine();
+      _builder_1.append("\t");
+      _builder_1.append("private TestAtomicMetrics metrics; ");
+      _builder_1.newLine();
       _builder_1.newLine();
       _builder_1.append("\t");
       _builder_1.append("public TestAtomic(String phaseName) {");
       _builder_1.newLine();
       _builder_1.append("\t\t");
       _builder_1.append("super(phaseName);");
+      _builder_1.newLine();
+      _builder_1.append("\t\t");
+      _builder_1.append("metrics = new TestAtomicMetrics();");
       _builder_1.newLine();
       _builder_1.append("\t");
       _builder_1.append("}");

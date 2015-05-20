@@ -4,7 +4,7 @@
 '.'=26
 'Atomic'=22
 'ClassName'=21
-'ID'=25
+'ID'=24
 'Iteration'=18
 'Memory'=28
 'Metrics('=23
@@ -13,7 +13,7 @@
 'Scenario'=12
 'Sequence'=15
 'Time'=27
-'new Metric'=24
+'new Metric ClassName'=25
 'package'=11
 '{'=13
 '}'=14

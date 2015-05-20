@@ -140,26 +140,39 @@ public class BenchmarkSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     metric=MetricType
+	 *     (metric=MetricType metricname=ID)
 	 */
 	protected void sequence_MetricTypeReference(EObject context, MetricTypeReference semanticObject) {
 		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME));
 			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.METRIC_TYPE_REFERENCE__METRIC) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.METRIC_TYPE_REFERENCE__METRIC));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0(), semanticObject.getMetric());
+		feeder.accept(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0_0(), semanticObject.getMetric());
+		feeder.accept(grammarAccess.getMetricTypeReferenceAccess().getMetricnameIDTerminalRuleCall_2_0(), semanticObject.getMetricname());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=ID? metricname=QualifiedName)
+	 *     (classname=ID metricname=ID)
 	 */
 	protected void sequence_NewMetric(EObject context, NewMetric semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME));
+			if(transientValues.isValueTransient(semanticObject, BenchmarkPackage.Literals.NEW_METRIC__CLASSNAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BenchmarkPackage.Literals.NEW_METRIC__CLASSNAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getNewMetricAccess().getClassnameIDTerminalRuleCall_1_0(), semanticObject.getClassname());
+		feeder.accept(grammarAccess.getNewMetricAccess().getMetricnameIDTerminalRuleCall_3_0(), semanticObject.getMetricname());
+		feeder.finish();
 	}
 	
 	
