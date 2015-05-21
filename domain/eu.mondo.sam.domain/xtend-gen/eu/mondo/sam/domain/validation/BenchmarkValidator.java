@@ -5,6 +5,7 @@ package eu.mondo.sam.domain.validation;
 
 import com.google.common.base.Objects;
 import eu.mondo.sam.domain.benchmark.AtomicPhase;
+import eu.mondo.sam.domain.benchmark.AttachedPhase;
 import eu.mondo.sam.domain.benchmark.Benchmark;
 import eu.mondo.sam.domain.benchmark.BenchmarkPackage;
 import eu.mondo.sam.domain.benchmark.Element;
@@ -13,12 +14,16 @@ import eu.mondo.sam.domain.benchmark.NewMetric;
 import eu.mondo.sam.domain.benchmark.OptionalPhase;
 import eu.mondo.sam.domain.benchmark.Scenario;
 import eu.mondo.sam.domain.validation.AbstractBenchmarkValidator;
+import eu.mondo.sam.domain.validation.CircleResolver;
 import eu.mondo.sam.domain.validation.ClassNameResolver;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 /**
  * Custom validation rules.
@@ -143,12 +148,29 @@ public class BenchmarkValidator extends AbstractBenchmarkValidator {
           }
         }
         if ((match > 1)) {
-          this.error("The class names must be unique", 
+          this.error("The class names of scenarios and phases must be unique", 
             BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "not_unique_scenario");
           return;
         }
         match = 0;
       }
+    }
+  }
+  
+  @Check
+  public void checkCycle(final Scenario scenario) {
+    InputOutput.<String>print("circle check");
+    AttachedPhase _rootPhase = scenario.getRootPhase();
+    boolean _equals = Objects.equal(_rootPhase, null);
+    if (_equals) {
+      return;
+    }
+    final Set<EObject> phases = new HashSet<EObject>();
+    AttachedPhase _rootPhase_1 = scenario.getRootPhase();
+    boolean _resolve = CircleResolver.resolve(_rootPhase_1, phases);
+    if (_resolve) {
+      this.error("There is a circular reference in the structure of phases.", 
+        BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "circle_in_scenario");
     }
   }
 }

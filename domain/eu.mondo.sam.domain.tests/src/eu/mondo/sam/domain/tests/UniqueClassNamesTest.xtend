@@ -262,20 +262,82 @@ class UniqueClassNamesTest {
   		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
 	}
 	
-//	@Test
-//	def testSameClassNameOfAtomicsAndMetrics(){
-//		val model = parseHelper.parse('''
-//  			package test
-//  			Scenario SameName {
-//  				Atomic a1 ClassName OtherAtomicName Metrics()
-//  			}
-//  			
-//  			Scenario OtherName {
-//  				Atomic a1 ClassName OtherAtomicName2 Metrics(
-//  					new Metric ClassName SameName
-//  				)
-//  			}
-//  			''')
-//  		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
-//	}
+	@Test
+	def testSameClassNameOfAtomicsAndOptionals5(){
+		val model = parseHelper.parse('''
+  			package test
+  			Scenario Other1 {
+  				Atomic a1 ClassName Other3 Metrics()
+  				o1
+  			}
+  			Optional o1 ClassName SameName (Atomic ClassName SameName Metrics())
+  			''')
+  		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+	}
+	
+	@Test
+	def testSameClassNameOfAtomicsAndMetrics1(){
+		val model = parseHelper.parse('''
+  			package test
+  			Scenario OtherS1 {
+  				Atomic a1 ClassName SameName Metrics()
+  			}
+  			
+  			Scenario OtherS2 {
+  				Atomic a1 ClassName OtherAtomicName2 Metrics(
+  					new Metric ClassName SameName
+  				)
+  			}
+  			''')
+  		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+	}
+	
+	@Test
+	def testSameClassNameOfAtomicsAndMetrics2(){
+		val model = parseHelper.parse('''
+  			package test
+  			Scenario OtherS1 {
+  				Atomic a1 ClassName OtherAtomic Metrics()
+  			}
+  			
+  			Scenario OtherS2 {
+  				Atomic a1 ClassName SameName Metrics(
+  					new Metric ClassName SameName
+  				)
+  			}
+  			''')
+  		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+	}
+	
+	@Test
+	def testSameClassNameOfMetrics1(){
+		val model = parseHelper.parse('''
+  			package test
+  			Scenario OtherS1 {
+  				Atomic a1 ClassName OtherAtomic Metrics(
+  				new Metric ClassName SameName)
+  			}
+  			
+  			Scenario OtherS2 {
+  				Atomic a1 ClassName OtherAtomic2 Metrics(
+  					new Metric ClassName SameName
+  				)
+  			}
+  			''')
+  		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+	}
+	
+	@Test
+	def testSameClassNameOfMetrics2(){
+		val model = parseHelper.parse('''
+  			package test
+  			Scenario OtherS1 {
+  				Atomic a1 ClassName OtherAtomic Metrics(
+  				new Metric ClassName SameName
+  				new Metric ClassName SameName
+  				)
+  			}
+  			''')
+  		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+	}
 }

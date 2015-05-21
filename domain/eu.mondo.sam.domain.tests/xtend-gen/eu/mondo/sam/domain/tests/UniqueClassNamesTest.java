@@ -481,4 +481,163 @@ public class UniqueClassNamesTest {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+  
+  @Test
+  public void testSameClassNameOfAtomicsAndOptionals5() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package test");
+      _builder.newLine();
+      _builder.append("Scenario Other1 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName Other3 Metrics()");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("o1");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("Optional o1 ClassName SameName (Atomic ClassName SameName Metrics())");
+      _builder.newLine();
+      final Benchmark model = this.parseHelper.parse(_builder);
+      this.helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testSameClassNameOfAtomicsAndMetrics1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package test");
+      _builder.newLine();
+      _builder.append("Scenario OtherS1 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName SameName Metrics()");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("Scenario OtherS2 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName OtherAtomicName2 Metrics(");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("new Metric ClassName SameName");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append(")");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      final Benchmark model = this.parseHelper.parse(_builder);
+      this.helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testSameClassNameOfAtomicsAndMetrics2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package test");
+      _builder.newLine();
+      _builder.append("Scenario OtherS1 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName OtherAtomic Metrics()");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("Scenario OtherS2 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName SameName Metrics(");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("new Metric ClassName SameName");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append(")");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      final Benchmark model = this.parseHelper.parse(_builder);
+      this.helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testSameClassNameOfMetrics1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package test");
+      _builder.newLine();
+      _builder.append("Scenario OtherS1 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName OtherAtomic Metrics(");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("new Metric ClassName SameName)");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("Scenario OtherS2 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName OtherAtomic2 Metrics(");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("new Metric ClassName SameName");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append(")");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      final Benchmark model = this.parseHelper.parse(_builder);
+      this.helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testSameClassNameOfMetrics2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package test");
+      _builder.newLine();
+      _builder.append("Scenario OtherS1 {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("Atomic a1 ClassName OtherAtomic Metrics(");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("new Metric ClassName SameName");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("new Metric ClassName SameName");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append(")");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      final Benchmark model = this.parseHelper.parse(_builder);
+      this.helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "not_unique_scenario");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

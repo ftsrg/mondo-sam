@@ -21,6 +21,7 @@ import java.util.HashSet
 import eu.mondo.sam.domain.benchmark.AttachedPhase
 import java.util.ArrayList
 import java.util.List
+import org.eclipse.emf.ecore.EObject
 
 /**
  * Custom validation rules. 
@@ -114,7 +115,7 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 				}
 			}
 			if (match > 1){
-				error("The class names must be unique",
+				error("The class names of scenarios and phases must be unique",
 						BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "not_unique_scenario"
 					)
 				return
@@ -123,18 +124,70 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 		}
 }
 
-//	@Check
-//	def searchCycle(Scenario scenario){
-//		if (scenario.rootPhase == null){
-//			return
-//		}
-//		val Phase root = scenario.rootPhase
-//		if (!root.containAtomicPhase){
-//			error('The scenario must contain Atomic phases',
-//				BenchmarkPackage.Literals.SCENARIO__ROOT_PHASE
-//			)
-//		}
-//	}
+	@Check
+	def checkCycle(Scenario scenario){
+		print("circle check")
+		if (scenario.rootPhase == null){
+			return
+		}
+		val Set<EObject> phases = new HashSet<EObject>
+		if (CircleResolver::resolve(scenario.rootPhase, phases)){
+			error("There is a circular reference in the structure of phases.",
+						BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "circle_in_scenario"
+					)
+		}
+		
+	}
 
+	
+//	def boolean containsCircle(AttachedPhase phase, Set<Element> phases){
+//		print("contains method\n")
+//		if (phase instanceof OptionalPhase){
+//			print("optional")
+//			if (phases.contains(phase)){
+//				return true
+//			}
+//			else{
+//				phases.add(phase)
+//				if (containsCircle(phase.phase, phases)){
+//					return true
+//				}
+//			}
+//		}
+//		if (phase instanceof IterationPhase){
+//			print("iteraiton")
+//			if (phases.contains(phase)){
+//				return true
+//			}
+//			else{
+//				phases.add(phase)
+//				if (containsCircle(phase.phase, phases)){
+//					return true
+//				}
+//			}
+//		}
+//		if (phase instanceof SequencePhase){
+//			print("seq")
+//			if (phases.contains(phase)){
+//				return true
+//			}
+//			else{
+//				phases.add(phase)
+//				for (p : phase.phases){
+//					if (containsCircle(p, phases)){
+//						return true
+//					}
+//				}
+//			}
+//		}
+//		
+//		if (phase instanceof PhaseReference){
+//			if (containsCircle(phase.phase, phases)){
+//				return true
+//			}
+//		}
+//		
+//		return false
+//	}
 	
 }
