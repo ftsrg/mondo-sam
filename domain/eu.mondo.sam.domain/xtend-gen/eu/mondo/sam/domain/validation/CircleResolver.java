@@ -10,12 +10,10 @@ import java.util.Arrays;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class CircleResolver {
   protected static boolean _resolve(final OptionalPhase phase, final Set<EObject> phases) {
-    InputOutput.<String>print("optional");
     boolean _contains = phases.contains(phase);
     if (_contains) {
       return true;
@@ -24,29 +22,26 @@ public class CircleResolver {
       AttachedPhase _phase = phase.getPhase();
       boolean _resolve = CircleResolver.resolve(_phase, phases);
       if (_resolve) {
+        return true;
       }
     }
     return false;
   }
   
   protected static boolean _resolve(final Phase phase, final Set<EObject> phases) {
-    InputOutput.<String>print("phase");
     return false;
   }
   
   protected static boolean _resolve(final AttachedPhase phase, final Set<EObject> phases) {
-    InputOutput.<String>print("ttached");
     return false;
   }
   
   protected static boolean _resolve(final PhaseReference phase, final Set<EObject> phases) {
-    InputOutput.<String>print("phase ref");
     Phase _phase = phase.getPhase();
     return CircleResolver.resolve(_phase, phases);
   }
   
   protected static boolean _resolve(final SequencePhase phase, final Set<EObject> phases) {
-    InputOutput.<String>print("seq");
     boolean _contains = phases.contains(phase);
     if (_contains) {
       return true;
@@ -64,7 +59,6 @@ public class CircleResolver {
   }
   
   protected static boolean _resolve(final IterationPhase phase, final Set<EObject> phases) {
-    InputOutput.<String>print("iter");
     boolean _contains = phases.contains(phase);
     if (_contains) {
       return true;

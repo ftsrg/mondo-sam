@@ -76,16 +76,16 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cScenarioKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cClassnameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cClassnameIDTerminalRuleCall_1_0 = (RuleCall)cClassnameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cLBRACETerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Assignment cRootPhaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootPhaseAttachedPhaseParserRuleCall_3_0 = (RuleCall)cRootPhaseAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cRBRACETerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//Scenario:
-		//	"Scenario" classname=ID "{" rootPhase=AttachedPhase "}";
+		//	"Scenario" classname=ID LBRACE rootPhase=AttachedPhase RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//"Scenario" classname=ID "{" rootPhase=AttachedPhase "}"
+		//"Scenario" classname=ID LBRACE rootPhase=AttachedPhase RBRACE
 		public Group getGroup() { return cGroup; }
 
 		//"Scenario"
@@ -97,8 +97,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getClassnameIDTerminalRuleCall_1_0() { return cClassnameIDTerminalRuleCall_1_0; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		//LBRACE
+		public RuleCall getLBRACETerminalRuleCall_2() { return cLBRACETerminalRuleCall_2; }
 
 		//rootPhase=AttachedPhase
 		public Assignment getRootPhaseAssignment_3() { return cRootPhaseAssignment_3; }
@@ -106,8 +106,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//AttachedPhase
 		public RuleCall getRootPhaseAttachedPhaseParserRuleCall_3_0() { return cRootPhaseAttachedPhaseParserRuleCall_3_0; }
 
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		//RBRACE
+		public RuleCall getRBRACETerminalRuleCall_4() { return cRBRACETerminalRuleCall_4; }
 	}
 
 	public class PhaseElements extends AbstractParserRuleElementFinder {
@@ -144,16 +144,16 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSequenceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cLPARTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Assignment cPhasesAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cPhasesAttachedPhaseParserRuleCall_3_0 = (RuleCall)cPhasesAssignment_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cRPARTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//SequencePhase:
-		//	"Sequence" name=ID? "(" phases+=AttachedPhase+ ")";
+		//	"Sequence" name=ID? LPAR phases+=AttachedPhase+ RPAR;
 		public ParserRule getRule() { return rule; }
 
-		//"Sequence" name=ID? "(" phases+=AttachedPhase+ ")"
+		//"Sequence" name=ID? LPAR phases+=AttachedPhase+ RPAR
 		public Group getGroup() { return cGroup; }
 
 		//"Sequence"
@@ -165,8 +165,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		//LPAR
+		public RuleCall getLPARTerminalRuleCall_2() { return cLPARTerminalRuleCall_2; }
 
 		//phases+=AttachedPhase+
 		public Assignment getPhasesAssignment_3() { return cPhasesAssignment_3; }
@@ -174,8 +174,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//AttachedPhase
 		public RuleCall getPhasesAttachedPhaseParserRuleCall_3_0() { return cPhasesAttachedPhaseParserRuleCall_3_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		//RPAR
+		public RuleCall getRPARTerminalRuleCall_4() { return cRPARTerminalRuleCall_4; }
 	}
 
 	public class IterationPhaseElements extends AbstractParserRuleElementFinder {
@@ -184,19 +184,19 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIterationKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cLPARTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Assignment cIterationAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cIterationINTTerminalRuleCall_3_0 = (RuleCall)cIterationAssignment_3.eContents().get(0);
 		private final Keyword cAsteriskKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cPhaseAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cPhaseAttachedPhaseParserRuleCall_5_0 = (RuleCall)cPhaseAssignment_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cRPARTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//IterationPhase:
-		//	"Iteration" name=ID? "(" iteration=INT "*" phase=AttachedPhase ")";
+		//	"Iteration" name=ID? LPAR iteration=INT "*" phase=AttachedPhase RPAR;
 		public ParserRule getRule() { return rule; }
 
-		//"Iteration" name=ID? "(" iteration=INT "*" phase=AttachedPhase ")"
+		//"Iteration" name=ID? LPAR iteration=INT "*" phase=AttachedPhase RPAR
 		public Group getGroup() { return cGroup; }
 
 		//"Iteration"
@@ -208,8 +208,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		//LPAR
+		public RuleCall getLPARTerminalRuleCall_2() { return cLPARTerminalRuleCall_2; }
 
 		//iteration=INT
 		public Assignment getIterationAssignment_3() { return cIterationAssignment_3; }
@@ -226,8 +226,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//AttachedPhase
 		public RuleCall getPhaseAttachedPhaseParserRuleCall_5_0() { return cPhaseAttachedPhaseParserRuleCall_5_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		//RPAR
+		public RuleCall getRPARTerminalRuleCall_6() { return cRPARTerminalRuleCall_6; }
 	}
 
 	public class OptionalPhaseElements extends AbstractParserRuleElementFinder {
@@ -239,16 +239,16 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cClassNameKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cClassnameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cClassnameIDTerminalRuleCall_3_0 = (RuleCall)cClassnameAssignment_3.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cLPARTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		private final Assignment cPhaseAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cPhaseAttachedPhaseParserRuleCall_5_0 = (RuleCall)cPhaseAssignment_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cRPARTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//OptionalPhase:
-		//	"Optional" name=ID? "ClassName" classname=ID "(" phase=AttachedPhase ")";
+		//	"Optional" name=ID? "ClassName" classname=ID LPAR phase=AttachedPhase RPAR;
 		public ParserRule getRule() { return rule; }
 
-		//"Optional" name=ID? "ClassName" classname=ID "(" phase=AttachedPhase ")"
+		//"Optional" name=ID? "ClassName" classname=ID LPAR phase=AttachedPhase RPAR
 		public Group getGroup() { return cGroup; }
 
 		//"Optional"
@@ -269,8 +269,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getClassnameIDTerminalRuleCall_3_0() { return cClassnameIDTerminalRuleCall_3_0; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_4() { return cLeftParenthesisKeyword_4; }
+		//LPAR
+		public RuleCall getLPARTerminalRuleCall_4() { return cLPARTerminalRuleCall_4; }
 
 		//phase=AttachedPhase
 		public Assignment getPhaseAssignment_5() { return cPhaseAssignment_5; }
@@ -278,8 +278,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//AttachedPhase
 		public RuleCall getPhaseAttachedPhaseParserRuleCall_5_0() { return cPhaseAttachedPhaseParserRuleCall_5_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		//RPAR
+		public RuleCall getRPARTerminalRuleCall_6() { return cRPARTerminalRuleCall_6; }
 	}
 
 	public class AttachedPhaseElements extends AbstractParserRuleElementFinder {
@@ -347,16 +347,16 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cClassNameKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cClassnameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cClassnameIDTerminalRuleCall_3_0 = (RuleCall)cClassnameAssignment_3.eContents().get(0);
-		private final Keyword cMetricsKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cMETRICSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		private final Assignment cMetricsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cMetricsAttachedMetricParserRuleCall_5_0 = (RuleCall)cMetricsAssignment_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cRPARTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//AtomicPhase:
-		//	"Atomic" name=ID? "ClassName" classname=ID "Metrics(" metrics+=AttachedMetric* ")";
+		//	"Atomic" name=ID? "ClassName" classname=ID METRICS metrics+=AttachedMetric* RPAR;
 		public ParserRule getRule() { return rule; }
 
-		//"Atomic" name=ID? "ClassName" classname=ID "Metrics(" metrics+=AttachedMetric* ")"
+		//"Atomic" name=ID? "ClassName" classname=ID METRICS metrics+=AttachedMetric* RPAR
 		public Group getGroup() { return cGroup; }
 
 		//"Atomic"
@@ -377,8 +377,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getClassnameIDTerminalRuleCall_3_0() { return cClassnameIDTerminalRuleCall_3_0; }
 
-		//"Metrics("
-		public Keyword getMetricsKeyword_4() { return cMetricsKeyword_4; }
+		//METRICS
+		public RuleCall getMETRICSTerminalRuleCall_4() { return cMETRICSTerminalRuleCall_4; }
 
 		//metrics+=AttachedMetric*
 		public Assignment getMetricsAssignment_5() { return cMetricsAssignment_5; }
@@ -386,8 +386,8 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		//AttachedMetric
 		public RuleCall getMetricsAttachedMetricParserRuleCall_5_0() { return cMetricsAttachedMetricParserRuleCall_5_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		//RPAR
+		public RuleCall getRPARTerminalRuleCall_6() { return cRPARTerminalRuleCall_6; }
 	}
 
 	public class AttachedMetricElements extends AbstractParserRuleElementFinder {
@@ -559,6 +559,11 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	private final MetricTypeElements unknownRuleMetricType;
 	private final NewMetricElements pNewMetric;
 	private final QualifiedNameElements pQualifiedName;
+	private final TerminalRule tLBRACE;
+	private final TerminalRule tRBRACE;
+	private final TerminalRule tMETRICS;
+	private final TerminalRule tLPAR;
+	private final TerminalRule tRPAR;
 	
 	private final Grammar grammar;
 
@@ -585,6 +590,11 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 		this.unknownRuleMetricType = new MetricTypeElements();
 		this.pNewMetric = new NewMetricElements();
 		this.pQualifiedName = new QualifiedNameElements();
+		this.tLBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LBRACE");
+		this.tRBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RBRACE");
+		this.tMETRICS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "METRICS");
+		this.tLPAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAR");
+		this.tRPAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RPAR");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -635,7 +645,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Scenario:
-	//	"Scenario" classname=ID "{" rootPhase=AttachedPhase "}";
+	//	"Scenario" classname=ID LBRACE rootPhase=AttachedPhase RBRACE;
 	public ScenarioElements getScenarioAccess() {
 		return pScenario;
 	}
@@ -655,7 +665,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequencePhase:
-	//	"Sequence" name=ID? "(" phases+=AttachedPhase+ ")";
+	//	"Sequence" name=ID? LPAR phases+=AttachedPhase+ RPAR;
 	public SequencePhaseElements getSequencePhaseAccess() {
 		return pSequencePhase;
 	}
@@ -665,7 +675,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IterationPhase:
-	//	"Iteration" name=ID? "(" iteration=INT "*" phase=AttachedPhase ")";
+	//	"Iteration" name=ID? LPAR iteration=INT "*" phase=AttachedPhase RPAR;
 	public IterationPhaseElements getIterationPhaseAccess() {
 		return pIterationPhase;
 	}
@@ -675,7 +685,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OptionalPhase:
-	//	"Optional" name=ID? "ClassName" classname=ID "(" phase=AttachedPhase ")";
+	//	"Optional" name=ID? "ClassName" classname=ID LPAR phase=AttachedPhase RPAR;
 	public OptionalPhaseElements getOptionalPhaseAccess() {
 		return pOptionalPhase;
 	}
@@ -715,7 +725,7 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AtomicPhase:
-	//	"Atomic" name=ID? "ClassName" classname=ID "Metrics(" metrics+=AttachedMetric* ")";
+	//	"Atomic" name=ID? "ClassName" classname=ID METRICS metrics+=AttachedMetric* RPAR;
 	public AtomicPhaseElements getAtomicPhaseAccess() {
 		return pAtomicPhase;
 	}
@@ -773,6 +783,36 @@ public class BenchmarkGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getQualifiedNameRule() {
 		return getQualifiedNameAccess().getRule();
 	}
+
+	//terminal LBRACE:
+	//	"{";
+	public TerminalRule getLBRACERule() {
+		return tLBRACE;
+	} 
+
+	//terminal RBRACE:
+	//	"}";
+	public TerminalRule getRBRACERule() {
+		return tRBRACE;
+	} 
+
+	//terminal METRICS:
+	//	"Metrics(";
+	public TerminalRule getMETRICSRule() {
+		return tMETRICS;
+	} 
+
+	//terminal LPAR:
+	//	"(";
+	public TerminalRule getLPARRule() {
+		return tLPAR;
+	} 
+
+	//terminal RPAR:
+	//	")";
+	public TerminalRule getRPARRule() {
+		return tRPAR;
+	} 
 
 	//terminal ID:
 	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;

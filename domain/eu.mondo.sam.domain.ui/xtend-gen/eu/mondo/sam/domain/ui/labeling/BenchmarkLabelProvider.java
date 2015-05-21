@@ -4,6 +4,14 @@
 package eu.mondo.sam.domain.ui.labeling;
 
 import com.google.inject.Inject;
+import eu.mondo.sam.domain.benchmark.AtomicPhase;
+import eu.mondo.sam.domain.benchmark.BenchmarkPackage;
+import eu.mondo.sam.domain.benchmark.IterationPhase;
+import eu.mondo.sam.domain.benchmark.MetricType;
+import eu.mondo.sam.domain.benchmark.MetricTypeReference;
+import eu.mondo.sam.domain.benchmark.NewMetric;
+import eu.mondo.sam.domain.benchmark.OptionalPhase;
+import eu.mondo.sam.domain.benchmark.Scenario;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
@@ -17,5 +25,39 @@ public class BenchmarkLabelProvider extends DefaultEObjectLabelProvider {
   @Inject
   public BenchmarkLabelProvider(final AdapterFactoryLabelProvider delegate) {
     super(delegate);
+  }
+  
+  public String text(final BenchmarkPackage pack) {
+    String _name = pack.getName();
+    return ("Package " + _name);
+  }
+  
+  public String text(final AtomicPhase phase) {
+    String _classname = phase.getClassname();
+    return ("Atomic Phase " + _classname);
+  }
+  
+  public String text(final IterationPhase phase) {
+    return "Iteration Phase";
+  }
+  
+  public String text(final OptionalPhase phase) {
+    String _classname = phase.getClassname();
+    return ("Optional Phase " + _classname);
+  }
+  
+  public String text(final MetricTypeReference metric) {
+    MetricType _metric = metric.getMetric();
+    return ("Metric: " + _metric);
+  }
+  
+  public String text(final Scenario scenario) {
+    String _classname = scenario.getClassname();
+    return ("Scenario " + _classname);
+  }
+  
+  public String text(final NewMetric metric) {
+    String _classname = metric.getClassname();
+    return ("Metric: " + _classname);
   }
 }

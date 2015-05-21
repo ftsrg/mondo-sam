@@ -23,9 +23,63 @@ public class BenchmarkSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if(ruleCall.getRule() == grammarAccess.getLBRACERule())
+			return getLBRACEToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getLPARRule())
+			return getLPARToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getMETRICSRule())
+			return getMETRICSToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getRBRACERule())
+			return getRBRACEToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getRPARRule())
+			return getRPARToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * terminal LBRACE: '{';
+	 */
+	protected String getLBRACEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "{";
+	}
+	
+	/**
+	 * terminal LPAR: '(';
+	 */
+	protected String getLPARToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "(";
+	}
+	
+	/**
+	 * terminal METRICS: 'Metrics(';
+	 */
+	protected String getMETRICSToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "Metrics(";
+	}
+	
+	/**
+	 * terminal RBRACE: '}';
+	 */
+	protected String getRBRACEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "}";
+	}
+	
+	/**
+	 * terminal RPAR: ')';
+	 */
+	protected String getRPARToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ")";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {

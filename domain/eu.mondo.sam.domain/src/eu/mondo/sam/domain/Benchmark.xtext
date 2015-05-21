@@ -15,9 +15,9 @@ Element:
 
 
 Scenario:
-	'Scenario' classname = ID '{'
+	'Scenario' classname = ID LBRACE
 		rootPhase = AttachedPhase
-	'}'
+	RBRACE
 ;
 
 Phase:
@@ -25,21 +25,21 @@ Phase:
 ;
 
 SequencePhase:
-	'Sequence'  (name= ID)? '(' 
+	'Sequence'  (name= ID)? LPAR 
 		(phases += AttachedPhase)+ 
-	')'
+	RPAR
 ;
 
 IterationPhase:
-	'Iteration' (name=ID)? '(' 
+	'Iteration' (name=ID)? LPAR 
 		iteration=INT '*' phase = AttachedPhase	
-	')'
+	RPAR
 ;
 
 OptionalPhase:
-	'Optional'  (name=ID)? 'ClassName' classname = ID '(' 
+	'Optional'  (name=ID)? 'ClassName' classname = ID LPAR 
 		phase = AttachedPhase
-	')'
+	RPAR
 ;
 
 AttachedPhase:
@@ -55,9 +55,9 @@ NewPhase:
 ;
 
 AtomicPhase:
-	'Atomic' (name=ID)? 'ClassName' classname = ID 'Metrics('
+	'Atomic' (name=ID)? 'ClassName' classname = ID METRICS
 		(metrics += AttachedMetric)*
-	')'
+	RPAR
 ;
 
 AttachedMetric:
@@ -81,3 +81,9 @@ NewMetric:
 QualifiedName:
   ID ('.' ID)*
 ;
+
+terminal LBRACE: '{';
+terminal RBRACE: '}';
+terminal METRICS: 'Metrics(';
+terminal LPAR: '(';
+terminal RPAR: ')';

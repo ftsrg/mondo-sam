@@ -801,11 +801,9 @@ rule__Scenario__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2()); }
-
-	'{' 
-
-{ after(grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2()); }
+{ before(grammarAccess.getScenarioAccess().getLBRACETerminalRuleCall_2()); }
+	RULE_LBRACE
+{ after(grammarAccess.getScenarioAccess().getLBRACETerminalRuleCall_2()); }
 )
 
 ;
@@ -860,11 +858,9 @@ rule__Scenario__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getScenarioAccess().getRightCurlyBracketKeyword_4()); }
-
-	'}' 
-
-{ after(grammarAccess.getScenarioAccess().getRightCurlyBracketKeyword_4()); }
+{ before(grammarAccess.getScenarioAccess().getRBRACETerminalRuleCall_4()); }
+	RULE_RBRACE
+{ after(grammarAccess.getScenarioAccess().getRBRACETerminalRuleCall_4()); }
 )
 
 ;
@@ -961,11 +957,9 @@ rule__SequencePhase__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getSequencePhaseAccess().getLeftParenthesisKeyword_2()); }
-
-	'(' 
-
-{ after(grammarAccess.getSequencePhaseAccess().getLeftParenthesisKeyword_2()); }
+{ before(grammarAccess.getSequencePhaseAccess().getLPARTerminalRuleCall_2()); }
+	RULE_LPAR
+{ after(grammarAccess.getSequencePhaseAccess().getLPARTerminalRuleCall_2()); }
 )
 
 ;
@@ -1027,11 +1021,9 @@ rule__SequencePhase__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getSequencePhaseAccess().getRightParenthesisKeyword_4()); }
-
-	')' 
-
-{ after(grammarAccess.getSequencePhaseAccess().getRightParenthesisKeyword_4()); }
+{ before(grammarAccess.getSequencePhaseAccess().getRPARTerminalRuleCall_4()); }
+	RULE_RPAR
+{ after(grammarAccess.getSequencePhaseAccess().getRPARTerminalRuleCall_4()); }
 )
 
 ;
@@ -1128,11 +1120,9 @@ rule__IterationPhase__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getIterationPhaseAccess().getLeftParenthesisKeyword_2()); }
-
-	'(' 
-
-{ after(grammarAccess.getIterationPhaseAccess().getLeftParenthesisKeyword_2()); }
+{ before(grammarAccess.getIterationPhaseAccess().getLPARTerminalRuleCall_2()); }
+	RULE_LPAR
+{ after(grammarAccess.getIterationPhaseAccess().getLPARTerminalRuleCall_2()); }
 )
 
 ;
@@ -1247,11 +1237,9 @@ rule__IterationPhase__Group__6__Impl
     }
 :
 (
-{ before(grammarAccess.getIterationPhaseAccess().getRightParenthesisKeyword_6()); }
-
-	')' 
-
-{ after(grammarAccess.getIterationPhaseAccess().getRightParenthesisKeyword_6()); }
+{ before(grammarAccess.getIterationPhaseAccess().getRPARTerminalRuleCall_6()); }
+	RULE_RPAR
+{ after(grammarAccess.getIterationPhaseAccess().getRPARTerminalRuleCall_6()); }
 )
 
 ;
@@ -1412,11 +1400,9 @@ rule__OptionalPhase__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_4()); }
-
-	'(' 
-
-{ after(grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_4()); }
+{ before(grammarAccess.getOptionalPhaseAccess().getLPARTerminalRuleCall_4()); }
+	RULE_LPAR
+{ after(grammarAccess.getOptionalPhaseAccess().getLPARTerminalRuleCall_4()); }
 )
 
 ;
@@ -1471,11 +1457,9 @@ rule__OptionalPhase__Group__6__Impl
     }
 :
 (
-{ before(grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_6()); }
-
-	')' 
-
-{ after(grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_6()); }
+{ before(grammarAccess.getOptionalPhaseAccess().getRPARTerminalRuleCall_6()); }
+	RULE_RPAR
+{ after(grammarAccess.getOptionalPhaseAccess().getRPARTerminalRuleCall_6()); }
 )
 
 ;
@@ -1636,11 +1620,9 @@ rule__AtomicPhase__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4()); }
-
-	'Metrics(' 
-
-{ after(grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4()); }
+{ before(grammarAccess.getAtomicPhaseAccess().getMETRICSTerminalRuleCall_4()); }
+	RULE_METRICS
+{ after(grammarAccess.getAtomicPhaseAccess().getMETRICSTerminalRuleCall_4()); }
 )
 
 ;
@@ -1695,11 +1677,9 @@ rule__AtomicPhase__Group__6__Impl
     }
 :
 (
-{ before(grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6()); }
-
-	')' 
-
-{ after(grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6()); }
+{ before(grammarAccess.getAtomicPhaseAccess().getRPARTerminalRuleCall_6()); }
+	RULE_RPAR
+{ after(grammarAccess.getAtomicPhaseAccess().getRPARTerminalRuleCall_6()); }
 )
 
 ;
@@ -2387,6 +2367,16 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+
+RULE_LBRACE : '{';
+
+RULE_RBRACE : '}';
+
+RULE_METRICS : 'Metrics(';
+
+RULE_LPAR : '(';
+
+RULE_RPAR : ')';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

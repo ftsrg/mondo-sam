@@ -14,31 +14,31 @@ import java.util.ArrayList;
 public class InternalBenchmarkLexer extends Lexer {
     public static final int RULE_ID=4;
     public static final int T__29=29;
+    public static final int RULE_RBRACE=6;
     public static final int T__28=28;
     public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
     public static final int T__24=24;
+    public static final int RULE_LPAR=7;
     public static final int T__23=23;
     public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int RULE_ANY_OTHER=15;
     public static final int T__21=21;
     public static final int T__20=20;
     public static final int EOF=-1;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_SL_COMMENT=13;
+    public static final int RULE_ML_COMMENT=12;
     public static final int T__19=19;
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=11;
     public static final int T__16=16;
-    public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
-    public static final int T__12=12;
-    public static final int T__11=11;
-    public static final int T__14=14;
-    public static final int T__13=13;
-    public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
+    public static final int RULE_RPAR=8;
+    public static final int RULE_INT=9;
+    public static final int RULE_LBRACE=5;
+    public static final int RULE_WS=14;
+    public static final int RULE_METRICS=10;
 
     // delegates
     // delegators
@@ -53,118 +53,16 @@ public class InternalBenchmarkLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g"; }
 
-    // $ANTLR start "T__11"
-    public final void mT__11() throws RecognitionException {
+    // $ANTLR start "T__16"
+    public final void mT__16() throws RecognitionException {
         try {
-            int _type = T__11;
+            int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:11:7: ( 'package' )
             // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:11:9: 'package'
             {
             match("package"); 
 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__11"
-
-    // $ANTLR start "T__12"
-    public final void mT__12() throws RecognitionException {
-        try {
-            int _type = T__12;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:12:7: ( 'Scenario' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:12:9: 'Scenario'
-            {
-            match("Scenario"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__12"
-
-    // $ANTLR start "T__13"
-    public final void mT__13() throws RecognitionException {
-        try {
-            int _type = T__13;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:13:7: ( '{' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:13:9: '{'
-            {
-            match('{'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__13"
-
-    // $ANTLR start "T__14"
-    public final void mT__14() throws RecognitionException {
-        try {
-            int _type = T__14;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:14:7: ( '}' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:14:9: '}'
-            {
-            match('}'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__14"
-
-    // $ANTLR start "T__15"
-    public final void mT__15() throws RecognitionException {
-        try {
-            int _type = T__15;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:15:7: ( 'Sequence' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:15:9: 'Sequence'
-            {
-            match("Sequence"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__15"
-
-    // $ANTLR start "T__16"
-    public final void mT__16() throws RecognitionException {
-        try {
-            int _type = T__16;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:16:7: ( '(' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:16:9: '('
-            {
-            match('('); 
 
             }
 
@@ -181,10 +79,11 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:17:7: ( ')' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:17:9: ')'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:12:7: ( 'Scenario' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:12:9: 'Scenario'
             {
-            match(')'); 
+            match("Scenario"); 
+
 
             }
 
@@ -201,10 +100,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:18:7: ( 'Iteration' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:18:9: 'Iteration'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:13:7: ( 'Sequence' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:13:9: 'Sequence'
             {
-            match("Iteration"); 
+            match("Sequence"); 
 
 
             }
@@ -222,10 +121,11 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:19:7: ( '*' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:19:9: '*'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:14:7: ( 'Iteration' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:14:9: 'Iteration'
             {
-            match('*'); 
+            match("Iteration"); 
+
 
             }
 
@@ -242,11 +142,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:20:7: ( 'Optional' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:20:9: 'Optional'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:15:7: ( '*' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:15:9: '*'
             {
-            match("Optional"); 
-
+            match('*'); 
 
             }
 
@@ -263,10 +162,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:21:7: ( 'ClassName' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:21:9: 'ClassName'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:16:7: ( 'Optional' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:16:9: 'Optional'
             {
-            match("ClassName"); 
+            match("Optional"); 
 
 
             }
@@ -284,10 +183,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:22:7: ( 'Atomic' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:22:9: 'Atomic'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:17:7: ( 'ClassName' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:17:9: 'ClassName'
             {
-            match("Atomic"); 
+            match("ClassName"); 
 
 
             }
@@ -305,10 +204,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:23:7: ( 'Metrics(' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:23:9: 'Metrics('
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:18:7: ( 'Atomic' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:18:9: 'Atomic'
             {
-            match("Metrics("); 
+            match("Atomic"); 
 
 
             }
@@ -326,8 +225,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:24:7: ( 'ID' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:24:9: 'ID'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:19:7: ( 'ID' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:19:9: 'ID'
             {
             match("ID"); 
 
@@ -347,8 +246,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:25:7: ( 'new Metric ClassName' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:25:9: 'new Metric ClassName'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:20:7: ( 'new Metric ClassName' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:20:9: 'new Metric ClassName'
             {
             match("new Metric ClassName"); 
 
@@ -368,8 +267,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:26:7: ( '.' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:26:9: '.'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:21:7: ( '.' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:21:9: '.'
             {
             match('.'); 
 
@@ -388,8 +287,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:27:7: ( 'Time' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:27:9: 'Time'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:22:7: ( 'Time' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:22:9: 'Time'
             {
             match("Time"); 
 
@@ -409,8 +308,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:28:7: ( 'Memory' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:28:9: 'Memory'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:23:7: ( 'Memory' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:23:9: 'Memory'
             {
             match("Memory"); 
 
@@ -430,8 +329,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:29:7: ( 'Scalar' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:29:9: 'Scalar'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:24:7: ( 'Scalar' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:24:9: 'Scalar'
             {
             match("Scalar"); 
 
@@ -446,15 +345,116 @@ public class InternalBenchmarkLexer extends Lexer {
     }
     // $ANTLR end "T__29"
 
+    // $ANTLR start "RULE_LBRACE"
+    public final void mRULE_LBRACE() throws RecognitionException {
+        try {
+            int _type = RULE_LBRACE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:13: ( '{' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:15: '{'
+            {
+            match('{'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_LBRACE"
+
+    // $ANTLR start "RULE_RBRACE"
+    public final void mRULE_RBRACE() throws RecognitionException {
+        try {
+            int _type = RULE_RBRACE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:986:13: ( '}' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:986:15: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_RBRACE"
+
+    // $ANTLR start "RULE_METRICS"
+    public final void mRULE_METRICS() throws RecognitionException {
+        try {
+            int _type = RULE_METRICS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:14: ( 'Metrics(' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:16: 'Metrics('
+            {
+            match("Metrics("); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_METRICS"
+
+    // $ANTLR start "RULE_LPAR"
+    public final void mRULE_LPAR() throws RecognitionException {
+        try {
+            int _type = RULE_LPAR;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:990:11: ( '(' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:990:13: '('
+            {
+            match('('); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_LPAR"
+
+    // $ANTLR start "RULE_RPAR"
+    public final void mRULE_RPAR() throws RecognitionException {
+        try {
+            int _type = RULE_RPAR;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:11: ( ')' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:13: ')'
+            {
+            match(')'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_RPAR"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:11: ( '^' )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -463,7 +463,7 @@ public class InternalBenchmarkLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:11: '^'
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:11: '^'
                     {
                     match('^'); 
 
@@ -481,7 +481,7 @@ public class InternalBenchmarkLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:984:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -530,10 +530,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:986:10: ( ( '0' .. '9' )+ )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:986:12: ( '0' .. '9' )+
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:996:10: ( ( '0' .. '9' )+ )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:996:12: ( '0' .. '9' )+
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:986:12: ( '0' .. '9' )+
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:996:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -547,7 +547,7 @@ public class InternalBenchmarkLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:986:13: '0' .. '9'
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:996:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -579,10 +579,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -600,10 +600,10 @@ public class InternalBenchmarkLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -619,7 +619,7 @@ public class InternalBenchmarkLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:21: '\\\\' .
+                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -627,7 +627,7 @@ public class InternalBenchmarkLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -652,10 +652,10 @@ public class InternalBenchmarkLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -671,7 +671,7 @@ public class InternalBenchmarkLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:54: '\\\\' .
+                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -679,7 +679,7 @@ public class InternalBenchmarkLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:988:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:998:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -722,12 +722,12 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:990:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:990:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1000:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1000:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:990:24: ( options {greedy=false; } : . )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1000:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -752,7 +752,7 @@ public class InternalBenchmarkLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:990:52: .
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1000:52: .
             	    {
             	    matchAny(); 
 
@@ -782,12 +782,12 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -800,7 +800,7 @@ public class InternalBenchmarkLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -820,7 +820,7 @@ public class InternalBenchmarkLexer extends Lexer {
                 }
             } while (true);
 
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:40: ( ( '\\r' )? '\\n' )?
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -829,9 +829,9 @@ public class InternalBenchmarkLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:41: ( '\\r' )? '\\n'
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:41: ( '\\r' )? '\\n'
                     {
-                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:41: ( '\\r' )?
+                    // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -840,7 +840,7 @@ public class InternalBenchmarkLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:992:41: '\\r'
+                            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1002:41: '\\r'
                             {
                             match('\r'); 
 
@@ -872,10 +872,10 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1004:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1004:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:994:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1004:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -929,8 +929,8 @@ public class InternalBenchmarkLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:996:16: ( . )
-            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:996:18: .
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1006:16: ( . )
+            // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1006:18: .
             {
             matchAny(); 
 
@@ -945,187 +945,187 @@ public class InternalBenchmarkLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_LBRACE | RULE_RBRACE | RULE_METRICS | RULE_LPAR | RULE_RPAR | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt12=26;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:10: T__11
-                {
-                mT__11(); 
-
-                }
-                break;
-            case 2 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:16: T__12
-                {
-                mT__12(); 
-
-                }
-                break;
-            case 3 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:22: T__13
-                {
-                mT__13(); 
-
-                }
-                break;
-            case 4 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:28: T__14
-                {
-                mT__14(); 
-
-                }
-                break;
-            case 5 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:34: T__15
-                {
-                mT__15(); 
-
-                }
-                break;
-            case 6 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:40: T__16
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:10: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
-            case 7 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:46: T__17
+            case 2 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:16: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
-            case 8 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:52: T__18
+            case 3 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:22: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
-            case 9 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:58: T__19
+            case 4 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:28: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
-            case 10 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:64: T__20
+            case 5 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:34: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
-            case 11 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:70: T__21
+            case 6 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:40: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
-            case 12 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:76: T__22
+            case 7 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:46: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
-            case 13 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:82: T__23
+            case 8 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:52: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
-            case 14 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:88: T__24
+            case 9 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:58: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
-            case 15 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:94: T__25
+            case 10 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:64: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
-            case 16 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:100: T__26
+            case 11 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:70: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
-            case 17 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:106: T__27
+            case 12 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:76: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
-            case 18 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:112: T__28
+            case 13 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:82: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
-            case 19 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:118: T__29
+            case 14 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:88: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
+            case 15 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:94: RULE_LBRACE
+                {
+                mRULE_LBRACE(); 
+
+                }
+                break;
+            case 16 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:106: RULE_RBRACE
+                {
+                mRULE_RBRACE(); 
+
+                }
+                break;
+            case 17 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:118: RULE_METRICS
+                {
+                mRULE_METRICS(); 
+
+                }
+                break;
+            case 18 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:131: RULE_LPAR
+                {
+                mRULE_LPAR(); 
+
+                }
+                break;
+            case 19 :
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:141: RULE_RPAR
+                {
+                mRULE_RPAR(); 
+
+                }
+                break;
             case 20 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:124: RULE_ID
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:151: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 21 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:132: RULE_INT
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:159: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 22 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:141: RULE_STRING
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:168: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 23 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:153: RULE_ML_COMMENT
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:180: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 24 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:169: RULE_SL_COMMENT
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:196: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 25 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:185: RULE_WS
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:212: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 26 :
-                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:193: RULE_ANY_OTHER
+                // ../eu.mondo.sam.domain/src-gen/eu/mondo/sam/domain/parser/antlr/internal/InternalBenchmark.g:1:220: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1139,34 +1139,34 @@ public class InternalBenchmarkLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\2\31\4\uffff\1\31\1\uffff\5\31\1\uffff\1\31\1\27\2\uffff\3\27\2\uffff\1\31\1\uffff\2\31\4\uffff\1\31\1\64\1\uffff\5\31\1\uffff\1\31\5\uffff\5\31\1\uffff\21\31\1\uffff\1\122\12\31\1\uffff\2\31\1\137\4\31\1\144\1\31\1\146\1\147\1\31\1\uffff\4\31\1\uffff\1\31\2\uffff\1\156\1\157\1\31\1\161\1\31\3\uffff\1\163\1\uffff\1\164\2\uffff";
+        "\1\uffff\3\31\1\uffff\4\31\1\uffff\2\31\4\uffff\1\27\2\uffff\3\27\2\uffff\1\31\1\uffff\3\31\1\64\1\uffff\4\31\1\uffff\2\31\11\uffff\5\31\1\uffff\17\31\1\uffff\1\120\12\31\1\uffff\4\31\1\137\4\31\1\144\1\145\1\31\1\147\1\31\1\uffff\4\31\2\uffff\1\31\1\uffff\1\156\1\157\1\31\1\161\1\31\3\uffff\1\163\1\uffff\1\164\2\uffff";
     static final String DFA12_eofS =
         "\165\uffff";
     static final String DFA12_minS =
-        "\1\0\1\141\1\143\4\uffff\1\104\1\uffff\1\160\1\154\1\164\2\145\1\uffff\1\151\1\101\2\uffff\2\0\1\52\2\uffff\1\143\1\uffff\1\141\1\161\4\uffff\1\145\1\60\1\uffff\1\164\1\141\1\157\1\155\1\167\1\uffff\1\155\5\uffff\1\153\1\156\1\154\1\165\1\162\1\uffff\1\151\1\163\1\155\1\162\1\157\1\40\1\145\3\141\1\145\1\141\1\157\1\163\2\151\1\162\1\uffff\1\60\1\147\2\162\1\156\1\164\1\156\1\116\2\143\1\171\1\uffff\1\145\1\151\1\60\1\143\1\151\2\141\1\60\1\163\2\60\1\157\1\uffff\1\145\1\157\1\154\1\155\1\uffff\1\50\2\uffff\2\60\1\156\1\60\1\145\3\uffff\1\60\1\uffff\1\60\2\uffff";
+        "\1\0\1\141\1\143\1\104\1\uffff\1\160\1\154\1\164\1\145\1\uffff\1\151\1\145\4\uffff\1\101\2\uffff\2\0\1\52\2\uffff\1\143\1\uffff\1\141\1\161\1\145\1\60\1\uffff\1\164\1\141\1\157\1\167\1\uffff\2\155\11\uffff\1\153\1\156\1\154\1\165\1\162\1\uffff\1\151\1\163\1\155\1\40\1\145\1\157\1\162\3\141\1\145\1\141\1\157\1\163\1\151\1\uffff\1\60\1\162\1\151\1\147\2\162\1\156\1\164\1\156\1\116\1\143\1\uffff\1\171\1\143\1\145\1\151\1\60\1\143\1\151\2\141\2\60\1\163\1\60\1\157\1\uffff\1\145\1\157\1\154\1\155\2\uffff\1\50\1\uffff\2\60\1\156\1\60\1\145\3\uffff\1\60\1\uffff\1\60\2\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\141\1\145\4\uffff\1\164\1\uffff\1\160\1\154\1\164\2\145\1\uffff\1\151\1\172\2\uffff\2\uffff\1\57\2\uffff\1\143\1\uffff\1\145\1\161\4\uffff\1\145\1\172\1\uffff\1\164\1\141\1\157\1\164\1\167\1\uffff\1\155\5\uffff\1\153\1\156\1\154\1\165\1\162\1\uffff\1\151\1\163\1\155\1\162\1\157\1\40\1\145\3\141\1\145\1\141\1\157\1\163\2\151\1\162\1\uffff\1\172\1\147\2\162\1\156\1\164\1\156\1\116\2\143\1\171\1\uffff\1\145\1\151\1\172\1\143\1\151\2\141\1\172\1\163\2\172\1\157\1\uffff\1\145\1\157\1\154\1\155\1\uffff\1\50\2\uffff\2\172\1\156\1\172\1\145\3\uffff\1\172\1\uffff\1\172\2\uffff";
+        "\1\uffff\1\141\1\145\1\164\1\uffff\1\160\1\154\1\164\1\145\1\uffff\1\151\1\145\4\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\1\143\1\uffff\1\145\1\161\1\145\1\172\1\uffff\1\164\1\141\1\157\1\167\1\uffff\1\155\1\164\11\uffff\1\153\1\156\1\154\1\165\1\162\1\uffff\1\151\1\163\1\155\1\40\1\145\1\157\1\162\3\141\1\145\1\141\1\157\1\163\1\151\1\uffff\1\172\1\162\1\151\1\147\2\162\1\156\1\164\1\156\1\116\1\143\1\uffff\1\171\1\143\1\145\1\151\1\172\1\143\1\151\2\141\2\172\1\163\1\172\1\157\1\uffff\1\145\1\157\1\154\1\155\2\uffff\1\50\1\uffff\2\172\1\156\1\172\1\145\3\uffff\1\172\1\uffff\1\172\2\uffff";
     static final String DFA12_acceptS =
-        "\3\uffff\1\3\1\4\1\6\1\7\1\uffff\1\11\5\uffff\1\20\2\uffff\1\24\1\25\3\uffff\1\31\1\32\1\uffff\1\24\2\uffff\1\3\1\4\1\6\1\7\2\uffff\1\11\5\uffff\1\20\1\uffff\1\25\1\26\1\27\1\30\1\31\5\uffff\1\16\21\uffff\1\17\13\uffff\1\21\14\uffff\1\23\4\uffff\1\14\1\uffff\1\22\1\1\5\uffff\1\15\1\2\1\5\1\uffff\1\12\1\uffff\1\10\1\13";
+        "\4\uffff\1\5\4\uffff\1\13\2\uffff\1\17\1\20\1\22\1\23\1\uffff\1\24\1\25\3\uffff\1\31\1\32\1\uffff\1\24\4\uffff\1\5\4\uffff\1\13\2\uffff\1\17\1\20\1\22\1\23\1\25\1\26\1\27\1\30\1\31\5\uffff\1\11\17\uffff\1\12\13\uffff\1\14\16\uffff\1\16\4\uffff\1\10\1\15\1\uffff\1\1\5\uffff\1\21\1\2\1\3\1\uffff\1\6\1\uffff\1\4\1\7";
     static final String DFA12_specialS =
         "\1\1\22\uffff\1\0\1\2\140\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\27\2\26\2\27\1\26\22\27\1\26\1\27\1\23\4\27\1\24\1\5\1\6\1\10\3\27\1\16\1\25\12\22\7\27\1\13\1\21\1\12\5\21\1\7\3\21\1\14\1\21\1\11\3\21\1\2\1\17\6\21\3\27\1\20\1\21\1\27\15\21\1\15\1\21\1\1\12\21\1\3\1\27\1\4\uff82\27",
+            "\11\27\2\26\2\27\1\26\22\27\1\26\1\27\1\23\4\27\1\24\1\16\1\17\1\4\3\27\1\11\1\25\12\22\7\27\1\7\1\21\1\6\5\21\1\3\3\21\1\13\1\21\1\5\3\21\1\2\1\12\6\21\3\27\1\20\1\21\1\27\15\21\1\10\1\21\1\1\12\21\1\14\1\27\1\15\uff82\27",
             "\1\30",
             "\1\32\1\uffff\1\33",
+            "\1\35\57\uffff\1\34",
             "",
+            "\1\37",
+            "\1\40",
+            "\1\41",
+            "\1\42",
             "",
-            "",
-            "",
-            "\1\41\57\uffff\1\40",
-            "",
-            "\1\43",
             "\1\44",
             "\1\45",
-            "\1\46",
-            "\1\47",
             "",
-            "\1\51",
+            "",
+            "",
+            "",
             "\32\31\4\uffff\1\31\1\uffff\32\31",
             "",
             "",
@@ -1179,20 +1179,20 @@ public class InternalBenchmarkLexer extends Lexer {
             "",
             "\1\61\3\uffff\1\60",
             "\1\62",
-            "",
-            "",
-            "",
-            "",
             "\1\63",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
             "",
             "\1\65",
             "\1\66",
             "\1\67",
-            "\1\71\6\uffff\1\70",
-            "\1\72",
+            "\1\70",
             "",
-            "\1\73",
+            "\1\71",
+            "\1\72\6\uffff\1\73",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -1219,10 +1219,10 @@ public class InternalBenchmarkLexer extends Lexer {
             "\1\115",
             "\1\116",
             "\1\117",
-            "\1\120",
-            "\1\121",
             "",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\1\121",
+            "\1\122",
             "\1\123",
             "\1\124",
             "\1\125",
@@ -1231,9 +1231,9 @@ public class InternalBenchmarkLexer extends Lexer {
             "\1\130",
             "\1\131",
             "\1\132",
+            "",
             "\1\133",
             "\1\134",
-            "",
             "\1\135",
             "\1\136",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
@@ -1242,8 +1242,8 @@ public class InternalBenchmarkLexer extends Lexer {
             "\1\142",
             "\1\143",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\145",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\1\146",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
             "\1\150",
             "",
@@ -1252,8 +1252,8 @@ public class InternalBenchmarkLexer extends Lexer {
             "\1\153",
             "\1\154",
             "",
-            "\1\155",
             "",
+            "\1\155",
             "",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
             "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
@@ -1300,7 +1300,7 @@ public class InternalBenchmarkLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_LBRACE | RULE_RBRACE | RULE_METRICS | RULE_LPAR | RULE_RPAR | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
@@ -1324,31 +1324,31 @@ public class InternalBenchmarkLexer extends Lexer {
 
                         else if ( (LA12_0=='S') ) {s = 2;}
 
-                        else if ( (LA12_0=='{') ) {s = 3;}
+                        else if ( (LA12_0=='I') ) {s = 3;}
 
-                        else if ( (LA12_0=='}') ) {s = 4;}
+                        else if ( (LA12_0=='*') ) {s = 4;}
 
-                        else if ( (LA12_0=='(') ) {s = 5;}
+                        else if ( (LA12_0=='O') ) {s = 5;}
 
-                        else if ( (LA12_0==')') ) {s = 6;}
+                        else if ( (LA12_0=='C') ) {s = 6;}
 
-                        else if ( (LA12_0=='I') ) {s = 7;}
+                        else if ( (LA12_0=='A') ) {s = 7;}
 
-                        else if ( (LA12_0=='*') ) {s = 8;}
+                        else if ( (LA12_0=='n') ) {s = 8;}
 
-                        else if ( (LA12_0=='O') ) {s = 9;}
+                        else if ( (LA12_0=='.') ) {s = 9;}
 
-                        else if ( (LA12_0=='C') ) {s = 10;}
+                        else if ( (LA12_0=='T') ) {s = 10;}
 
-                        else if ( (LA12_0=='A') ) {s = 11;}
+                        else if ( (LA12_0=='M') ) {s = 11;}
 
-                        else if ( (LA12_0=='M') ) {s = 12;}
+                        else if ( (LA12_0=='{') ) {s = 12;}
 
-                        else if ( (LA12_0=='n') ) {s = 13;}
+                        else if ( (LA12_0=='}') ) {s = 13;}
 
-                        else if ( (LA12_0=='.') ) {s = 14;}
+                        else if ( (LA12_0=='(') ) {s = 14;}
 
-                        else if ( (LA12_0=='T') ) {s = 15;}
+                        else if ( (LA12_0==')') ) {s = 15;}
 
                         else if ( (LA12_0=='^') ) {s = 16;}
 

@@ -19,14 +19,13 @@ import eu.mondo.sam.domain.benchmark.PhaseReference
 class CircleResolver {
 			
 	def static dispatch boolean resolve(OptionalPhase phase, Set<EObject> phases){
-		print("optional")
 		if (phases.contains(phase)){
 			return true
 		}
 		else{
 			phases.add(phase)
 			if (resolve(phase.phase, phases)){
-				
+				return true
 			}
 			
 		}
@@ -34,23 +33,19 @@ class CircleResolver {
 	}
 	
 	def static dispatch boolean resolve(Phase phase, Set<EObject> phases){
-		print("phase")
 		return false
 	}
 	
 	def static dispatch boolean resolve(AttachedPhase phase, Set<EObject> phases){
-		print("ttached")
 		return false
 	}
 	
 	def static dispatch boolean resolve(PhaseReference phase, Set<EObject> phases){
-		print("phase ref")
 		return resolve(phase.phase, phases)
 	}
 	
 	
 	def static dispatch boolean resolve(SequencePhase phase, Set<EObject> phases){
-		print("seq")
 		if (phases.contains(phase)){
 			return true
 		}
@@ -66,7 +61,6 @@ class CircleResolver {
 	}
 	
 	def static dispatch boolean resolve(IterationPhase phase, Set<EObject> phases){
-		print("iter")
 		if (phases.contains(phase)){
 			return true
 		}

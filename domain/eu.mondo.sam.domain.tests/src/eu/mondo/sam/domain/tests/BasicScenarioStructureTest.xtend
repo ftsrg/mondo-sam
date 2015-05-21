@@ -9,7 +9,6 @@ import org.eclipse.xtext.junit4.util.ParseHelper
 import javax.inject.Inject
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import org.junit.Test
-import eu.mondo.sam.domain.benchmark.BenchmarkPackage
 
 
 @InjectWith(BenchmarkInjectorProvider)

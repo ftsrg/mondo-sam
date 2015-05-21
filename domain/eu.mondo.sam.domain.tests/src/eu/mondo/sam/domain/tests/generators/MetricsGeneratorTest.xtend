@@ -13,7 +13,6 @@ import org.junit.Test
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
-import org.junit.Ignore
 
 @RunWith(typeof(XtextRunner))
 @InjectWith(typeof(BenchmarkInjectorProvider))

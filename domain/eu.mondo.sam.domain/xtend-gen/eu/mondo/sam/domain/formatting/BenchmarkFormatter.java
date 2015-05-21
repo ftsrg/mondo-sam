@@ -3,8 +3,14 @@
  */
 package eu.mondo.sam.domain.formatting;
 
+import com.google.inject.Inject;
+import eu.mondo.sam.domain.services.BenchmarkGrammarAccess;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
+import org.eclipse.xtext.xbase.lib.Extension;
 
 /**
  * This class contains custom formatting description.
@@ -16,6 +22,68 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
  */
 @SuppressWarnings("all")
 public class BenchmarkFormatter extends AbstractDeclarativeFormatter {
+  @Inject
+  @Extension
+  private BenchmarkGrammarAccess _benchmarkGrammarAccess;
+  
   protected void configureFormatting(final FormattingConfig c) {
+    FormattingConfig.LinewrapLocator _setLinewrap = c.setLinewrap(0, 1, 2);
+    TerminalRule _sL_COMMENTRule = this._benchmarkGrammarAccess.getSL_COMMENTRule();
+    _setLinewrap.before(_sL_COMMENTRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_1 = c.setLinewrap(0, 1, 2);
+    TerminalRule _mL_COMMENTRule = this._benchmarkGrammarAccess.getML_COMMENTRule();
+    _setLinewrap_1.before(_mL_COMMENTRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_2 = c.setLinewrap(1, 1, 1);
+    TerminalRule _lBRACERule = this._benchmarkGrammarAccess.getLBRACERule();
+    _setLinewrap_2.after(_lBRACERule);
+    FormattingConfig.LinewrapLocator _setLinewrap_3 = c.setLinewrap(1, 1, 1);
+    TerminalRule _rBRACERule = this._benchmarkGrammarAccess.getRBRACERule();
+    _setLinewrap_3.before(_rBRACERule);
+    FormattingConfig.IndentationLocatorStart _setIndentationIncrement = c.setIndentationIncrement();
+    TerminalRule _lBRACERule_1 = this._benchmarkGrammarAccess.getLBRACERule();
+    _setIndentationIncrement.after(_lBRACERule_1);
+    FormattingConfig.IndentationLocatorEnd _setIndentationDecrement = c.setIndentationDecrement();
+    TerminalRule _rBRACERule_1 = this._benchmarkGrammarAccess.getRBRACERule();
+    _setIndentationDecrement.before(_rBRACERule_1);
+    FormattingConfig.LinewrapLocator _setLinewrap_4 = c.setLinewrap(1, 1, 1);
+    TerminalRule _rBRACERule_2 = this._benchmarkGrammarAccess.getRBRACERule();
+    _setLinewrap_4.after(_rBRACERule_2);
+    FormattingConfig.LinewrapLocator _setLinewrap_5 = c.setLinewrap(1, 1, 1);
+    ParserRule _atomicPhaseRule = this._benchmarkGrammarAccess.getAtomicPhaseRule();
+    _setLinewrap_5.after(_atomicPhaseRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_6 = c.setLinewrap(1, 1, 1);
+    TerminalRule _lPARRule = this._benchmarkGrammarAccess.getLPARRule();
+    _setLinewrap_6.after(_lPARRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_7 = c.setLinewrap(1, 1, 1);
+    TerminalRule _rPARRule = this._benchmarkGrammarAccess.getRPARRule();
+    _setLinewrap_7.before(_rPARRule);
+    FormattingConfig.IndentationLocatorStart _setIndentationIncrement_1 = c.setIndentationIncrement();
+    TerminalRule _lPARRule_1 = this._benchmarkGrammarAccess.getLPARRule();
+    _setIndentationIncrement_1.after(_lPARRule_1);
+    FormattingConfig.IndentationLocatorEnd _setIndentationDecrement_1 = c.setIndentationDecrement();
+    TerminalRule _rPARRule_1 = this._benchmarkGrammarAccess.getRPARRule();
+    _setIndentationDecrement_1.before(_rPARRule_1);
+    FormattingConfig.LinewrapLocator _setLinewrap_8 = c.setLinewrap(1, 1, 1);
+    TerminalRule _mETRICSRule = this._benchmarkGrammarAccess.getMETRICSRule();
+    _setLinewrap_8.after(_mETRICSRule);
+    FormattingConfig.IndentationLocatorStart _setIndentationIncrement_2 = c.setIndentationIncrement();
+    TerminalRule _mETRICSRule_1 = this._benchmarkGrammarAccess.getMETRICSRule();
+    _setIndentationIncrement_2.after(_mETRICSRule_1);
+    FormattingConfig.LinewrapLocator _setLinewrap_9 = c.setLinewrap(1, 1, 1);
+    ParserRule _metricTypeReferenceRule = this._benchmarkGrammarAccess.getMetricTypeReferenceRule();
+    _setLinewrap_9.after(_metricTypeReferenceRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_10 = c.setLinewrap(2, 2, 2);
+    ParserRule _elementRule = this._benchmarkGrammarAccess.getElementRule();
+    _setLinewrap_10.before(_elementRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_11 = c.setLinewrap(2, 2, 2);
+    ParserRule _elementRule_1 = this._benchmarkGrammarAccess.getElementRule();
+    _setLinewrap_11.after(_elementRule_1);
+    FormattingConfig.LinewrapLocator _setLinewrap_12 = c.setLinewrap(2, 2, 2);
+    ParserRule _benchmarkRule = this._benchmarkGrammarAccess.getBenchmarkRule();
+    _setLinewrap_12.after(_benchmarkRule);
+    FormattingConfig.LinewrapLocator _setLinewrap_13 = c.setLinewrap(1, 1, 1);
+    BenchmarkGrammarAccess.SequencePhaseElements _sequencePhaseAccess = this._benchmarkGrammarAccess.getSequencePhaseAccess();
+    Assignment _phasesAssignment_3 = _sequencePhaseAccess.getPhasesAssignment_3();
+    _setLinewrap_13.after(_phasesAssignment_3);
   }
 }

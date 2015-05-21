@@ -5,6 +5,12 @@ package eu.mondo.sam.domain.ui.labeling
 
 import com.google.inject.Inject
 import eu.mondo.sam.domain.benchmark.AtomicPhase
+import eu.mondo.sam.domain.benchmark.IterationPhase
+import eu.mondo.sam.domain.benchmark.OptionalPhase
+import eu.mondo.sam.domain.benchmark.MetricTypeReference
+import eu.mondo.sam.domain.benchmark.Scenario
+import eu.mondo.sam.domain.benchmark.NewMetric
+import eu.mondo.sam.domain.benchmark.BenchmarkPackage
 
 /**
  * Provides labels for a EObjects.
@@ -20,11 +26,31 @@ class BenchmarkLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLa
 
 	// Labels and icons can be computed like this:
 	
-//	def text(AtomicPhase ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(AtomicPhase ele) {
-//		'Greeting.gif'
-//	}
+	def text(BenchmarkPackage pack){
+		'Package ' + pack.name
+	}
+	
+	def text(AtomicPhase phase) {
+		'Atomic Phase ' + phase.classname
+	}
+	
+	def text(IterationPhase phase){
+		'Iteration Phase'
+	}	
+	
+	def text(OptionalPhase phase){
+		'Optional Phase ' + phase.classname
+	}
+	
+	def text(MetricTypeReference metric){
+		'Metric: ' + metric.metric
+	}
+	
+	def text(Scenario scenario){
+		'Scenario ' + scenario.classname
+	}
+	
+	def text(NewMetric metric){
+		'Metric: ' + metric.classname
+	}
 }

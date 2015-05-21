@@ -5,8 +5,8 @@ package eu.mondo.sam.domain.formatting
 
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter
 import org.eclipse.xtext.formatting.impl.FormattingConfig
-// import com.google.inject.Inject;
-// import eu.mondo.sam.domain.services.BenchmarkGrammarAccess
+import com.google.inject.Inject;
+import eu.mondo.sam.domain.services.BenchmarkGrammarAccess
 
 /**
  * This class contains custom formatting description.
@@ -18,13 +18,40 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig
  */
 class BenchmarkFormatter extends AbstractDeclarativeFormatter {
 
-//	@Inject extension BenchmarkGrammarAccess
+	@Inject extension BenchmarkGrammarAccess
 	
 	override protected void configureFormatting(FormattingConfig c) {
  // It's usually a good idea to activate the following three statements.
  // They will add and preserve newlines around comments
-//		c.setLinewrap(0, 1, 2).before(SL_COMMENTRule)
-//		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
-//		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
+		c.setLinewrap(0, 1, 2).before(SL_COMMENTRule)
+		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
+		
+		c.setLinewrap(1, 1, 1).after(LBRACERule)
+		c.setLinewrap(1, 1, 1).before(RBRACERule)
+		c.setIndentationIncrement.after(LBRACERule)
+		c.setIndentationDecrement.before(RBRACERule)
+		c.setLinewrap(1, 1, 1).after(RBRACERule)
+		
+		c.setLinewrap(1, 1, 1).after(atomicPhaseRule)
+		
+		c.setLinewrap(1, 1, 1).after(LPARRule)
+		c.setLinewrap(1, 1, 1).before(RPARRule)
+		c.setIndentationIncrement.after(LPARRule)
+		c.setIndentationDecrement.before(RPARRule)
+		
+		c.setLinewrap(1, 1, 1).after(METRICSRule)
+		c.setIndentationIncrement.after(METRICSRule)
+		
+		c.setLinewrap(1, 1, 1).after(metricTypeReferenceRule)
+		
+		c.setLinewrap(2, 2, 2).before(elementRule)
+		c.setLinewrap(2, 2, 2).after(elementRule)
+		
+		c.setLinewrap(2, 2, 2).after(benchmarkRule)
+		
+		c.setLinewrap(1, 1, 1).after(sequencePhaseAccess.phasesAssignment_3)
+		
+		
+		
 	}
 }

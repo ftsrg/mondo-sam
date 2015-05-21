@@ -201,9 +201,9 @@ ruleScenario returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2='{' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2());
+)this_LBRACE_2=RULE_LBRACE
+    { 
+    newLeafNode(this_LBRACE_2, grammarAccess.getScenarioAccess().getLBRACETerminalRuleCall_2()); 
     }
 (
 (
@@ -223,9 +223,9 @@ ruleScenario returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4='}' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getScenarioAccess().getRightCurlyBracketKeyword_4());
+)this_RBRACE_4=RULE_RBRACE
+    { 
+    newLeafNode(this_RBRACE_4, grammarAccess.getScenarioAccess().getRBRACETerminalRuleCall_4()); 
     }
 )
 ;
@@ -330,9 +330,9 @@ ruleSequencePhase returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getSequencePhaseAccess().getLeftParenthesisKeyword_2());
+)?this_LPAR_2=RULE_LPAR
+    { 
+    newLeafNode(this_LPAR_2, grammarAccess.getSequencePhaseAccess().getLPARTerminalRuleCall_2()); 
     }
 (
 (
@@ -352,9 +352,9 @@ ruleSequencePhase returns [EObject current=null]
 	    }
 
 )
-)+	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getSequencePhaseAccess().getRightParenthesisKeyword_4());
+)+this_RPAR_4=RULE_RPAR
+    { 
+    newLeafNode(this_RPAR_4, grammarAccess.getSequencePhaseAccess().getRPARTerminalRuleCall_4()); 
     }
 )
 ;
@@ -399,9 +399,9 @@ ruleIterationPhase returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getIterationPhaseAccess().getLeftParenthesisKeyword_2());
+)?this_LPAR_2=RULE_LPAR
+    { 
+    newLeafNode(this_LPAR_2, grammarAccess.getIterationPhaseAccess().getLPARTerminalRuleCall_2()); 
     }
 (
 (
@@ -443,9 +443,9 @@ ruleIterationPhase returns [EObject current=null]
 	    }
 
 )
-)	otherlv_6=')' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getIterationPhaseAccess().getRightParenthesisKeyword_6());
+)this_RPAR_6=RULE_RPAR
+    { 
+    newLeafNode(this_RPAR_6, grammarAccess.getIterationPhaseAccess().getRPARTerminalRuleCall_6()); 
     }
 )
 ;
@@ -512,9 +512,9 @@ ruleOptionalPhase returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4='(' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_4());
+)this_LPAR_4=RULE_LPAR
+    { 
+    newLeafNode(this_LPAR_4, grammarAccess.getOptionalPhaseAccess().getLPARTerminalRuleCall_4()); 
     }
 (
 (
@@ -534,9 +534,9 @@ ruleOptionalPhase returns [EObject current=null]
 	    }
 
 )
-)	otherlv_6=')' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_6());
+)this_RPAR_6=RULE_RPAR
+    { 
+    newLeafNode(this_RPAR_6, grammarAccess.getOptionalPhaseAccess().getRPARTerminalRuleCall_6()); 
     }
 )
 ;
@@ -716,9 +716,9 @@ ruleAtomicPhase returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4='Metrics(' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4());
+)this_METRICS_4=RULE_METRICS
+    { 
+    newLeafNode(this_METRICS_4, grammarAccess.getAtomicPhaseAccess().getMETRICSTerminalRuleCall_4()); 
     }
 (
 (
@@ -738,9 +738,9 @@ ruleAtomicPhase returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_6=')' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6());
+)*this_RPAR_6=RULE_RPAR
+    { 
+    newLeafNode(this_RPAR_6, grammarAccess.getAtomicPhaseAccess().getRPARTerminalRuleCall_6()); 
     }
 )
 ;
@@ -980,6 +980,16 @@ ruleMetricType returns [Enumerator current=null]
 ));
 
 
+
+RULE_LBRACE : '{';
+
+RULE_RBRACE : '}';
+
+RULE_METRICS : 'Metrics(';
+
+RULE_LPAR : '(';
+
+RULE_RPAR : ')';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -23,7 +23,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 /**
  * Custom validation rules.
@@ -159,7 +158,6 @@ public class BenchmarkValidator extends AbstractBenchmarkValidator {
   
   @Check
   public void checkCycle(final Scenario scenario) {
-    InputOutput.<String>print("circle check");
     AttachedPhase _rootPhase = scenario.getRootPhase();
     boolean _equals = Objects.equal(_rootPhase, null);
     if (_equals) {

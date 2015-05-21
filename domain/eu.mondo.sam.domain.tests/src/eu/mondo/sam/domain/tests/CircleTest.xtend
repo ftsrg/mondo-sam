@@ -37,4 +37,56 @@ class CircleTest {
 	    ''')
 		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "circle_in_scenario");
   	}
+  	
+  	@Test
+  	def testSequences() {
+	    val model = parseHelper.parse('''
+	    package test.pack 
+	    
+	    Scenario Name {
+	    	s1
+	    }
+	    Sequence s1 (
+	    	s2
+	    	a1
+	    	s2
+	    )
+	    Sequence s2 (s1 a1 s1)	    
+	    Atomic a1 ClassName AtomicName Metrics()
+	    ''')
+		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "circle_in_scenario");
+  	}
+  	
+  	@Test
+  	def testSequences2() {
+	    val model = parseHelper.parse('''
+	    package test.pack 
+	    
+	    Scenario Name {
+	    	s1
+	    }
+	    Sequence s1 (
+	    	s1
+	    	a1
+	    )
+	    Atomic a1 ClassName AtomicName Metrics()
+	    ''')
+		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "circle_in_scenario");
+  	}
+  	
+  	@Test
+  	def testOptional() {
+	    val model = parseHelper.parse('''
+	    package test.pack 
+	    
+	    Scenario Name {
+	    	o1
+	    }
+	    Optional o1 ClassName OptTest2 (
+	    	o2
+	    )
+	    Optional o2 ClassName OptTest (o1)
+	    ''')
+		helper.assertError(model, BenchmarkPackage.Literals.SCENARIO, "circle_in_scenario");
+  	}
 }

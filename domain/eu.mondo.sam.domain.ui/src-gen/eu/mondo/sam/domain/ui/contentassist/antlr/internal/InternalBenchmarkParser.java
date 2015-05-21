@@ -22,35 +22,35 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBenchmarkParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Time'", "'Memory'", "'Scalar'", "'package'", "'Scenario'", "'{'", "'}'", "'Sequence'", "'('", "')'", "'Iteration'", "'*'", "'Optional'", "'ClassName'", "'Atomic'", "'Metrics('", "'ID'", "'new Metric ClassName'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LBRACE", "RULE_RBRACE", "RULE_LPAR", "RULE_RPAR", "RULE_METRICS", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Time'", "'Memory'", "'Scalar'", "'package'", "'Scenario'", "'Sequence'", "'Iteration'", "'*'", "'Optional'", "'ClassName'", "'Atomic'", "'ID'", "'new Metric ClassName'", "'.'"
     };
-    public static final int RULE_ID=4;
+    public static final int RULE_ID=9;
     public static final int T__29=29;
+    public static final int RULE_RBRACE=5;
     public static final int T__28=28;
     public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
     public static final int T__24=24;
+    public static final int RULE_LPAR=6;
     public static final int T__23=23;
     public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int RULE_ANY_OTHER=15;
     public static final int T__21=21;
     public static final int T__20=20;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_SL_COMMENT=13;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_ML_COMMENT=12;
     public static final int T__19=19;
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=11;
     public static final int T__16=16;
-    public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
-    public static final int T__12=12;
-    public static final int T__11=11;
-    public static final int T__14=14;
-    public static final int T__13=13;
-    public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
+    public static final int RULE_RPAR=7;
+    public static final int RULE_INT=10;
+    public static final int RULE_LBRACE=4;
+    public static final int RULE_WS=14;
+    public static final int RULE_METRICS=8;
 
     // delegates
     // delegators
@@ -1302,10 +1302,10 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==15) ) {
+            if ( (LA1_0==20) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==18||LA1_0==21||LA1_0==23||LA1_0==25) ) {
+            else if ( ((LA1_0>=21 && LA1_0<=22)||LA1_0==24||LA1_0==26) ) {
                 alt1=2;
             }
             else {
@@ -1380,22 +1380,22 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:525:1: ( ( ruleSequencePhase ) | ( ruleIterationPhase ) | ( ruleOptionalPhase ) | ( ruleAtomicPhase ) )
             int alt2=4;
             switch ( input.LA(1) ) {
-            case 18:
+            case 21:
                 {
                 alt2=1;
                 }
                 break;
-            case 21:
+            case 22:
                 {
                 alt2=2;
                 }
                 break;
-            case 23:
+            case 24:
                 {
                 alt2=3;
                 }
                 break;
-            case 25:
+            case 26:
                 {
                 alt2=4;
                 }
@@ -1515,7 +1515,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             if ( (LA3_0==RULE_ID) ) {
                 alt3=1;
             }
-            else if ( (LA3_0==18||LA3_0==21||LA3_0==23||LA3_0==25) ) {
+            else if ( ((LA3_0>=21 && LA3_0<=22)||LA3_0==24||LA3_0==26) ) {
                 alt3=2;
             }
             else {
@@ -1591,7 +1591,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>=11 && LA4_0<=13)) ) {
+            if ( ((LA4_0>=16 && LA4_0<=18)) ) {
                 alt4=1;
             }
             else if ( (LA4_0==28) ) {
@@ -1669,17 +1669,17 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:603:1: ( ( ( 'Time' ) ) | ( ( 'Memory' ) ) | ( ( 'Scalar' ) ) )
             int alt5=3;
             switch ( input.LA(1) ) {
-            case 11:
+            case 16:
                 {
                 alt5=1;
                 }
                 break;
-            case 12:
+            case 17:
                 {
                 alt5=2;
                 }
                 break;
-            case 13:
+            case 18:
                 {
                 alt5=3;
                 }
@@ -1702,7 +1702,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
                     // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:606:1: ( 'Time' )
                     // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:606:3: 'Time'
                     {
-                    match(input,11,FOLLOW_11_in_rule__MetricType__Alternatives1237); 
+                    match(input,16,FOLLOW_16_in_rule__MetricType__Alternatives1237); 
 
                     }
 
@@ -1723,7 +1723,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
                     // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:613:1: ( 'Memory' )
                     // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:613:3: 'Memory'
                     {
-                    match(input,12,FOLLOW_12_in_rule__MetricType__Alternatives1258); 
+                    match(input,17,FOLLOW_17_in_rule__MetricType__Alternatives1258); 
 
                     }
 
@@ -1744,7 +1744,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
                     // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:620:1: ( 'Scalar' )
                     // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:620:3: 'Scalar'
                     {
-                    match(input,13,FOLLOW_13_in_rule__MetricType__Alternatives1279); 
+                    match(input,18,FOLLOW_18_in_rule__MetricType__Alternatives1279); 
 
                     }
 
@@ -1824,7 +1824,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:650:1: 'package'
             {
              before(grammarAccess.getBenchmarkAccess().getPackageKeyword_0()); 
-            match(input,14,FOLLOW_14_in_rule__Benchmark__Group__0__Impl1343); 
+            match(input,19,FOLLOW_19_in_rule__Benchmark__Group__0__Impl1343); 
              after(grammarAccess.getBenchmarkAccess().getPackageKeyword_0()); 
 
             }
@@ -1985,7 +1985,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
                 int alt6=2;
                 int LA6_0 = input.LA(1);
 
-                if ( (LA6_0==15||LA6_0==18||LA6_0==21||LA6_0==23||LA6_0==25) ) {
+                if ( ((LA6_0>=20 && LA6_0<=22)||LA6_0==24||LA6_0==26) ) {
                     alt6=1;
                 }
 
@@ -2082,7 +2082,7 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:744:1: 'Scenario'
             {
              before(grammarAccess.getScenarioAccess().getScenarioKeyword_0()); 
-            match(input,15,FOLLOW_15_in_rule__Scenario__Group__0__Impl1529); 
+            match(input,20,FOLLOW_20_in_rule__Scenario__Group__0__Impl1529); 
              after(grammarAccess.getScenarioAccess().getScenarioKeyword_0()); 
 
             }
@@ -2229,21 +2229,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:798:1: rule__Scenario__Group__2__Impl : ( '{' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:798:1: rule__Scenario__Group__2__Impl : ( RULE_LBRACE ) ;
     public final void rule__Scenario__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:802:1: ( ( '{' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:803:1: ( '{' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:802:1: ( ( RULE_LBRACE ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:803:1: ( RULE_LBRACE )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:803:1: ( '{' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:804:1: '{'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:803:1: ( RULE_LBRACE )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:804:1: RULE_LBRACE
             {
-             before(grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2()); 
-            match(input,16,FOLLOW_16_in_rule__Scenario__Group__2__Impl1651); 
-             after(grammarAccess.getScenarioAccess().getLeftCurlyBracketKeyword_2()); 
+             before(grammarAccess.getScenarioAccess().getLBRACETerminalRuleCall_2()); 
+            match(input,RULE_LBRACE,FOLLOW_RULE_LBRACE_in_rule__Scenario__Group__2__Impl1650); 
+             after(grammarAccess.getScenarioAccess().getLBRACETerminalRuleCall_2()); 
 
             }
 
@@ -2266,21 +2266,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__Group__3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:817:1: rule__Scenario__Group__3 : rule__Scenario__Group__3__Impl rule__Scenario__Group__4 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:815:1: rule__Scenario__Group__3 : rule__Scenario__Group__3__Impl rule__Scenario__Group__4 ;
     public final void rule__Scenario__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:821:1: ( rule__Scenario__Group__3__Impl rule__Scenario__Group__4 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:822:2: rule__Scenario__Group__3__Impl rule__Scenario__Group__4
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:819:1: ( rule__Scenario__Group__3__Impl rule__Scenario__Group__4 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:820:2: rule__Scenario__Group__3__Impl rule__Scenario__Group__4
             {
-            pushFollow(FOLLOW_rule__Scenario__Group__3__Impl_in_rule__Scenario__Group__31682);
+            pushFollow(FOLLOW_rule__Scenario__Group__3__Impl_in_rule__Scenario__Group__31679);
             rule__Scenario__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Scenario__Group__4_in_rule__Scenario__Group__31685);
+            pushFollow(FOLLOW_rule__Scenario__Group__4_in_rule__Scenario__Group__31682);
             rule__Scenario__Group__4();
 
             state._fsp--;
@@ -2304,23 +2304,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__Group__3__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:829:1: rule__Scenario__Group__3__Impl : ( ( rule__Scenario__RootPhaseAssignment_3 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:827:1: rule__Scenario__Group__3__Impl : ( ( rule__Scenario__RootPhaseAssignment_3 ) ) ;
     public final void rule__Scenario__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:833:1: ( ( ( rule__Scenario__RootPhaseAssignment_3 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:834:1: ( ( rule__Scenario__RootPhaseAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:831:1: ( ( ( rule__Scenario__RootPhaseAssignment_3 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:832:1: ( ( rule__Scenario__RootPhaseAssignment_3 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:834:1: ( ( rule__Scenario__RootPhaseAssignment_3 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:835:1: ( rule__Scenario__RootPhaseAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:832:1: ( ( rule__Scenario__RootPhaseAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:833:1: ( rule__Scenario__RootPhaseAssignment_3 )
             {
              before(grammarAccess.getScenarioAccess().getRootPhaseAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:836:1: ( rule__Scenario__RootPhaseAssignment_3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:836:2: rule__Scenario__RootPhaseAssignment_3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:834:1: ( rule__Scenario__RootPhaseAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:834:2: rule__Scenario__RootPhaseAssignment_3
             {
-            pushFollow(FOLLOW_rule__Scenario__RootPhaseAssignment_3_in_rule__Scenario__Group__3__Impl1712);
+            pushFollow(FOLLOW_rule__Scenario__RootPhaseAssignment_3_in_rule__Scenario__Group__3__Impl1709);
             rule__Scenario__RootPhaseAssignment_3();
 
             state._fsp--;
@@ -2351,16 +2351,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__Group__4"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:846:1: rule__Scenario__Group__4 : rule__Scenario__Group__4__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:844:1: rule__Scenario__Group__4 : rule__Scenario__Group__4__Impl ;
     public final void rule__Scenario__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:850:1: ( rule__Scenario__Group__4__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:851:2: rule__Scenario__Group__4__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:848:1: ( rule__Scenario__Group__4__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:849:2: rule__Scenario__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__Scenario__Group__4__Impl_in_rule__Scenario__Group__41742);
+            pushFollow(FOLLOW_rule__Scenario__Group__4__Impl_in_rule__Scenario__Group__41739);
             rule__Scenario__Group__4__Impl();
 
             state._fsp--;
@@ -2384,21 +2384,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__Group__4__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:857:1: rule__Scenario__Group__4__Impl : ( '}' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:855:1: rule__Scenario__Group__4__Impl : ( RULE_RBRACE ) ;
     public final void rule__Scenario__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:861:1: ( ( '}' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:862:1: ( '}' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:859:1: ( ( RULE_RBRACE ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:860:1: ( RULE_RBRACE )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:862:1: ( '}' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:863:1: '}'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:860:1: ( RULE_RBRACE )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:861:1: RULE_RBRACE
             {
-             before(grammarAccess.getScenarioAccess().getRightCurlyBracketKeyword_4()); 
-            match(input,17,FOLLOW_17_in_rule__Scenario__Group__4__Impl1770); 
-             after(grammarAccess.getScenarioAccess().getRightCurlyBracketKeyword_4()); 
+             before(grammarAccess.getScenarioAccess().getRBRACETerminalRuleCall_4()); 
+            match(input,RULE_RBRACE,FOLLOW_RULE_RBRACE_in_rule__Scenario__Group__4__Impl1766); 
+             after(grammarAccess.getScenarioAccess().getRBRACETerminalRuleCall_4()); 
 
             }
 
@@ -2421,21 +2421,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:886:1: rule__SequencePhase__Group__0 : rule__SequencePhase__Group__0__Impl rule__SequencePhase__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:882:1: rule__SequencePhase__Group__0 : rule__SequencePhase__Group__0__Impl rule__SequencePhase__Group__1 ;
     public final void rule__SequencePhase__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:890:1: ( rule__SequencePhase__Group__0__Impl rule__SequencePhase__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:891:2: rule__SequencePhase__Group__0__Impl rule__SequencePhase__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:886:1: ( rule__SequencePhase__Group__0__Impl rule__SequencePhase__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:887:2: rule__SequencePhase__Group__0__Impl rule__SequencePhase__Group__1
             {
-            pushFollow(FOLLOW_rule__SequencePhase__Group__0__Impl_in_rule__SequencePhase__Group__01811);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__0__Impl_in_rule__SequencePhase__Group__01805);
             rule__SequencePhase__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SequencePhase__Group__1_in_rule__SequencePhase__Group__01814);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__1_in_rule__SequencePhase__Group__01808);
             rule__SequencePhase__Group__1();
 
             state._fsp--;
@@ -2459,20 +2459,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:898:1: rule__SequencePhase__Group__0__Impl : ( 'Sequence' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:894:1: rule__SequencePhase__Group__0__Impl : ( 'Sequence' ) ;
     public final void rule__SequencePhase__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:902:1: ( ( 'Sequence' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:903:1: ( 'Sequence' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:898:1: ( ( 'Sequence' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:899:1: ( 'Sequence' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:903:1: ( 'Sequence' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:904:1: 'Sequence'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:899:1: ( 'Sequence' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:900:1: 'Sequence'
             {
              before(grammarAccess.getSequencePhaseAccess().getSequenceKeyword_0()); 
-            match(input,18,FOLLOW_18_in_rule__SequencePhase__Group__0__Impl1842); 
+            match(input,21,FOLLOW_21_in_rule__SequencePhase__Group__0__Impl1836); 
              after(grammarAccess.getSequencePhaseAccess().getSequenceKeyword_0()); 
 
             }
@@ -2496,21 +2496,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:917:1: rule__SequencePhase__Group__1 : rule__SequencePhase__Group__1__Impl rule__SequencePhase__Group__2 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:913:1: rule__SequencePhase__Group__1 : rule__SequencePhase__Group__1__Impl rule__SequencePhase__Group__2 ;
     public final void rule__SequencePhase__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:921:1: ( rule__SequencePhase__Group__1__Impl rule__SequencePhase__Group__2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:922:2: rule__SequencePhase__Group__1__Impl rule__SequencePhase__Group__2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:917:1: ( rule__SequencePhase__Group__1__Impl rule__SequencePhase__Group__2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:918:2: rule__SequencePhase__Group__1__Impl rule__SequencePhase__Group__2
             {
-            pushFollow(FOLLOW_rule__SequencePhase__Group__1__Impl_in_rule__SequencePhase__Group__11873);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__1__Impl_in_rule__SequencePhase__Group__11867);
             rule__SequencePhase__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SequencePhase__Group__2_in_rule__SequencePhase__Group__11876);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__2_in_rule__SequencePhase__Group__11870);
             rule__SequencePhase__Group__2();
 
             state._fsp--;
@@ -2534,20 +2534,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:929:1: rule__SequencePhase__Group__1__Impl : ( ( rule__SequencePhase__NameAssignment_1 )? ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:925:1: rule__SequencePhase__Group__1__Impl : ( ( rule__SequencePhase__NameAssignment_1 )? ) ;
     public final void rule__SequencePhase__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:933:1: ( ( ( rule__SequencePhase__NameAssignment_1 )? ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:934:1: ( ( rule__SequencePhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:929:1: ( ( ( rule__SequencePhase__NameAssignment_1 )? ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:930:1: ( ( rule__SequencePhase__NameAssignment_1 )? )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:934:1: ( ( rule__SequencePhase__NameAssignment_1 )? )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:935:1: ( rule__SequencePhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:930:1: ( ( rule__SequencePhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:931:1: ( rule__SequencePhase__NameAssignment_1 )?
             {
              before(grammarAccess.getSequencePhaseAccess().getNameAssignment_1()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:936:1: ( rule__SequencePhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:932:1: ( rule__SequencePhase__NameAssignment_1 )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2556,9 +2556,9 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             }
             switch (alt7) {
                 case 1 :
-                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:936:2: rule__SequencePhase__NameAssignment_1
+                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:932:2: rule__SequencePhase__NameAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__SequencePhase__NameAssignment_1_in_rule__SequencePhase__Group__1__Impl1903);
+                    pushFollow(FOLLOW_rule__SequencePhase__NameAssignment_1_in_rule__SequencePhase__Group__1__Impl1897);
                     rule__SequencePhase__NameAssignment_1();
 
                     state._fsp--;
@@ -2592,21 +2592,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:946:1: rule__SequencePhase__Group__2 : rule__SequencePhase__Group__2__Impl rule__SequencePhase__Group__3 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:942:1: rule__SequencePhase__Group__2 : rule__SequencePhase__Group__2__Impl rule__SequencePhase__Group__3 ;
     public final void rule__SequencePhase__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:950:1: ( rule__SequencePhase__Group__2__Impl rule__SequencePhase__Group__3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:951:2: rule__SequencePhase__Group__2__Impl rule__SequencePhase__Group__3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:946:1: ( rule__SequencePhase__Group__2__Impl rule__SequencePhase__Group__3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:947:2: rule__SequencePhase__Group__2__Impl rule__SequencePhase__Group__3
             {
-            pushFollow(FOLLOW_rule__SequencePhase__Group__2__Impl_in_rule__SequencePhase__Group__21934);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__2__Impl_in_rule__SequencePhase__Group__21928);
             rule__SequencePhase__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SequencePhase__Group__3_in_rule__SequencePhase__Group__21937);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__3_in_rule__SequencePhase__Group__21931);
             rule__SequencePhase__Group__3();
 
             state._fsp--;
@@ -2630,21 +2630,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:958:1: rule__SequencePhase__Group__2__Impl : ( '(' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:954:1: rule__SequencePhase__Group__2__Impl : ( RULE_LPAR ) ;
     public final void rule__SequencePhase__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:962:1: ( ( '(' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:963:1: ( '(' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:958:1: ( ( RULE_LPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:959:1: ( RULE_LPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:963:1: ( '(' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:964:1: '('
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:959:1: ( RULE_LPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:960:1: RULE_LPAR
             {
-             before(grammarAccess.getSequencePhaseAccess().getLeftParenthesisKeyword_2()); 
-            match(input,19,FOLLOW_19_in_rule__SequencePhase__Group__2__Impl1965); 
-             after(grammarAccess.getSequencePhaseAccess().getLeftParenthesisKeyword_2()); 
+             before(grammarAccess.getSequencePhaseAccess().getLPARTerminalRuleCall_2()); 
+            match(input,RULE_LPAR,FOLLOW_RULE_LPAR_in_rule__SequencePhase__Group__2__Impl1958); 
+             after(grammarAccess.getSequencePhaseAccess().getLPARTerminalRuleCall_2()); 
 
             }
 
@@ -2667,21 +2667,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:977:1: rule__SequencePhase__Group__3 : rule__SequencePhase__Group__3__Impl rule__SequencePhase__Group__4 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:971:1: rule__SequencePhase__Group__3 : rule__SequencePhase__Group__3__Impl rule__SequencePhase__Group__4 ;
     public final void rule__SequencePhase__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:981:1: ( rule__SequencePhase__Group__3__Impl rule__SequencePhase__Group__4 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:982:2: rule__SequencePhase__Group__3__Impl rule__SequencePhase__Group__4
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:975:1: ( rule__SequencePhase__Group__3__Impl rule__SequencePhase__Group__4 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:976:2: rule__SequencePhase__Group__3__Impl rule__SequencePhase__Group__4
             {
-            pushFollow(FOLLOW_rule__SequencePhase__Group__3__Impl_in_rule__SequencePhase__Group__31996);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__3__Impl_in_rule__SequencePhase__Group__31987);
             rule__SequencePhase__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SequencePhase__Group__4_in_rule__SequencePhase__Group__31999);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__4_in_rule__SequencePhase__Group__31990);
             rule__SequencePhase__Group__4();
 
             state._fsp--;
@@ -2705,26 +2705,26 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__3__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:989:1: rule__SequencePhase__Group__3__Impl : ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:983:1: rule__SequencePhase__Group__3__Impl : ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) ) ;
     public final void rule__SequencePhase__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:993:1: ( ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:994:1: ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:987:1: ( ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:988:1: ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:994:1: ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:995:1: ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:988:1: ( ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:989:1: ( ( rule__SequencePhase__PhasesAssignment_3 ) ) ( ( rule__SequencePhase__PhasesAssignment_3 )* )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:995:1: ( ( rule__SequencePhase__PhasesAssignment_3 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:996:1: ( rule__SequencePhase__PhasesAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:989:1: ( ( rule__SequencePhase__PhasesAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:990:1: ( rule__SequencePhase__PhasesAssignment_3 )
             {
              before(grammarAccess.getSequencePhaseAccess().getPhasesAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:997:1: ( rule__SequencePhase__PhasesAssignment_3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:997:2: rule__SequencePhase__PhasesAssignment_3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:991:1: ( rule__SequencePhase__PhasesAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:991:2: rule__SequencePhase__PhasesAssignment_3
             {
-            pushFollow(FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2028);
+            pushFollow(FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2019);
             rule__SequencePhase__PhasesAssignment_3();
 
             state._fsp--;
@@ -2736,26 +2736,26 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
             }
 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1000:1: ( ( rule__SequencePhase__PhasesAssignment_3 )* )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1001:1: ( rule__SequencePhase__PhasesAssignment_3 )*
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:994:1: ( ( rule__SequencePhase__PhasesAssignment_3 )* )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:995:1: ( rule__SequencePhase__PhasesAssignment_3 )*
             {
              before(grammarAccess.getSequencePhaseAccess().getPhasesAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1002:1: ( rule__SequencePhase__PhasesAssignment_3 )*
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:996:1: ( rule__SequencePhase__PhasesAssignment_3 )*
             loop8:
             do {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( (LA8_0==RULE_ID||LA8_0==18||LA8_0==21||LA8_0==23||LA8_0==25) ) {
+                if ( (LA8_0==RULE_ID||(LA8_0>=21 && LA8_0<=22)||LA8_0==24||LA8_0==26) ) {
                     alt8=1;
                 }
 
 
                 switch (alt8) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1002:2: rule__SequencePhase__PhasesAssignment_3
+            	    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:996:2: rule__SequencePhase__PhasesAssignment_3
             	    {
-            	    pushFollow(FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2040);
+            	    pushFollow(FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2031);
             	    rule__SequencePhase__PhasesAssignment_3();
 
             	    state._fsp--;
@@ -2795,16 +2795,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__4"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1013:1: rule__SequencePhase__Group__4 : rule__SequencePhase__Group__4__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1007:1: rule__SequencePhase__Group__4 : rule__SequencePhase__Group__4__Impl ;
     public final void rule__SequencePhase__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1017:1: ( rule__SequencePhase__Group__4__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1018:2: rule__SequencePhase__Group__4__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1011:1: ( rule__SequencePhase__Group__4__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1012:2: rule__SequencePhase__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__SequencePhase__Group__4__Impl_in_rule__SequencePhase__Group__42073);
+            pushFollow(FOLLOW_rule__SequencePhase__Group__4__Impl_in_rule__SequencePhase__Group__42064);
             rule__SequencePhase__Group__4__Impl();
 
             state._fsp--;
@@ -2828,21 +2828,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__Group__4__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1024:1: rule__SequencePhase__Group__4__Impl : ( ')' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1018:1: rule__SequencePhase__Group__4__Impl : ( RULE_RPAR ) ;
     public final void rule__SequencePhase__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1028:1: ( ( ')' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1029:1: ( ')' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1022:1: ( ( RULE_RPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1023:1: ( RULE_RPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1029:1: ( ')' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1030:1: ')'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1023:1: ( RULE_RPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1024:1: RULE_RPAR
             {
-             before(grammarAccess.getSequencePhaseAccess().getRightParenthesisKeyword_4()); 
-            match(input,20,FOLLOW_20_in_rule__SequencePhase__Group__4__Impl2101); 
-             after(grammarAccess.getSequencePhaseAccess().getRightParenthesisKeyword_4()); 
+             before(grammarAccess.getSequencePhaseAccess().getRPARTerminalRuleCall_4()); 
+            match(input,RULE_RPAR,FOLLOW_RULE_RPAR_in_rule__SequencePhase__Group__4__Impl2091); 
+             after(grammarAccess.getSequencePhaseAccess().getRPARTerminalRuleCall_4()); 
 
             }
 
@@ -2865,21 +2865,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1053:1: rule__IterationPhase__Group__0 : rule__IterationPhase__Group__0__Impl rule__IterationPhase__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1045:1: rule__IterationPhase__Group__0 : rule__IterationPhase__Group__0__Impl rule__IterationPhase__Group__1 ;
     public final void rule__IterationPhase__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1057:1: ( rule__IterationPhase__Group__0__Impl rule__IterationPhase__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1058:2: rule__IterationPhase__Group__0__Impl rule__IterationPhase__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1049:1: ( rule__IterationPhase__Group__0__Impl rule__IterationPhase__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1050:2: rule__IterationPhase__Group__0__Impl rule__IterationPhase__Group__1
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__0__Impl_in_rule__IterationPhase__Group__02142);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__0__Impl_in_rule__IterationPhase__Group__02130);
             rule__IterationPhase__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__IterationPhase__Group__1_in_rule__IterationPhase__Group__02145);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__1_in_rule__IterationPhase__Group__02133);
             rule__IterationPhase__Group__1();
 
             state._fsp--;
@@ -2903,20 +2903,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1065:1: rule__IterationPhase__Group__0__Impl : ( 'Iteration' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1057:1: rule__IterationPhase__Group__0__Impl : ( 'Iteration' ) ;
     public final void rule__IterationPhase__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1069:1: ( ( 'Iteration' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1070:1: ( 'Iteration' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1061:1: ( ( 'Iteration' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1062:1: ( 'Iteration' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1070:1: ( 'Iteration' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1071:1: 'Iteration'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1062:1: ( 'Iteration' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1063:1: 'Iteration'
             {
              before(grammarAccess.getIterationPhaseAccess().getIterationKeyword_0()); 
-            match(input,21,FOLLOW_21_in_rule__IterationPhase__Group__0__Impl2173); 
+            match(input,22,FOLLOW_22_in_rule__IterationPhase__Group__0__Impl2161); 
              after(grammarAccess.getIterationPhaseAccess().getIterationKeyword_0()); 
 
             }
@@ -2940,21 +2940,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1084:1: rule__IterationPhase__Group__1 : rule__IterationPhase__Group__1__Impl rule__IterationPhase__Group__2 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1076:1: rule__IterationPhase__Group__1 : rule__IterationPhase__Group__1__Impl rule__IterationPhase__Group__2 ;
     public final void rule__IterationPhase__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1088:1: ( rule__IterationPhase__Group__1__Impl rule__IterationPhase__Group__2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1089:2: rule__IterationPhase__Group__1__Impl rule__IterationPhase__Group__2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1080:1: ( rule__IterationPhase__Group__1__Impl rule__IterationPhase__Group__2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1081:2: rule__IterationPhase__Group__1__Impl rule__IterationPhase__Group__2
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__1__Impl_in_rule__IterationPhase__Group__12204);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__1__Impl_in_rule__IterationPhase__Group__12192);
             rule__IterationPhase__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__IterationPhase__Group__2_in_rule__IterationPhase__Group__12207);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__2_in_rule__IterationPhase__Group__12195);
             rule__IterationPhase__Group__2();
 
             state._fsp--;
@@ -2978,20 +2978,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1096:1: rule__IterationPhase__Group__1__Impl : ( ( rule__IterationPhase__NameAssignment_1 )? ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1088:1: rule__IterationPhase__Group__1__Impl : ( ( rule__IterationPhase__NameAssignment_1 )? ) ;
     public final void rule__IterationPhase__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1100:1: ( ( ( rule__IterationPhase__NameAssignment_1 )? ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1101:1: ( ( rule__IterationPhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1092:1: ( ( ( rule__IterationPhase__NameAssignment_1 )? ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1093:1: ( ( rule__IterationPhase__NameAssignment_1 )? )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1101:1: ( ( rule__IterationPhase__NameAssignment_1 )? )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1102:1: ( rule__IterationPhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1093:1: ( ( rule__IterationPhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1094:1: ( rule__IterationPhase__NameAssignment_1 )?
             {
              before(grammarAccess.getIterationPhaseAccess().getNameAssignment_1()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1103:1: ( rule__IterationPhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1095:1: ( rule__IterationPhase__NameAssignment_1 )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -3000,9 +3000,9 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             }
             switch (alt9) {
                 case 1 :
-                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1103:2: rule__IterationPhase__NameAssignment_1
+                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1095:2: rule__IterationPhase__NameAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__IterationPhase__NameAssignment_1_in_rule__IterationPhase__Group__1__Impl2234);
+                    pushFollow(FOLLOW_rule__IterationPhase__NameAssignment_1_in_rule__IterationPhase__Group__1__Impl2222);
                     rule__IterationPhase__NameAssignment_1();
 
                     state._fsp--;
@@ -3036,21 +3036,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1113:1: rule__IterationPhase__Group__2 : rule__IterationPhase__Group__2__Impl rule__IterationPhase__Group__3 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1105:1: rule__IterationPhase__Group__2 : rule__IterationPhase__Group__2__Impl rule__IterationPhase__Group__3 ;
     public final void rule__IterationPhase__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1117:1: ( rule__IterationPhase__Group__2__Impl rule__IterationPhase__Group__3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1118:2: rule__IterationPhase__Group__2__Impl rule__IterationPhase__Group__3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1109:1: ( rule__IterationPhase__Group__2__Impl rule__IterationPhase__Group__3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1110:2: rule__IterationPhase__Group__2__Impl rule__IterationPhase__Group__3
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__2__Impl_in_rule__IterationPhase__Group__22265);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__2__Impl_in_rule__IterationPhase__Group__22253);
             rule__IterationPhase__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__IterationPhase__Group__3_in_rule__IterationPhase__Group__22268);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__3_in_rule__IterationPhase__Group__22256);
             rule__IterationPhase__Group__3();
 
             state._fsp--;
@@ -3074,21 +3074,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1125:1: rule__IterationPhase__Group__2__Impl : ( '(' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1117:1: rule__IterationPhase__Group__2__Impl : ( RULE_LPAR ) ;
     public final void rule__IterationPhase__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1129:1: ( ( '(' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1130:1: ( '(' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1121:1: ( ( RULE_LPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1122:1: ( RULE_LPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1130:1: ( '(' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1131:1: '('
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1122:1: ( RULE_LPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1123:1: RULE_LPAR
             {
-             before(grammarAccess.getIterationPhaseAccess().getLeftParenthesisKeyword_2()); 
-            match(input,19,FOLLOW_19_in_rule__IterationPhase__Group__2__Impl2296); 
-             after(grammarAccess.getIterationPhaseAccess().getLeftParenthesisKeyword_2()); 
+             before(grammarAccess.getIterationPhaseAccess().getLPARTerminalRuleCall_2()); 
+            match(input,RULE_LPAR,FOLLOW_RULE_LPAR_in_rule__IterationPhase__Group__2__Impl2283); 
+             after(grammarAccess.getIterationPhaseAccess().getLPARTerminalRuleCall_2()); 
 
             }
 
@@ -3111,21 +3111,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1144:1: rule__IterationPhase__Group__3 : rule__IterationPhase__Group__3__Impl rule__IterationPhase__Group__4 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1134:1: rule__IterationPhase__Group__3 : rule__IterationPhase__Group__3__Impl rule__IterationPhase__Group__4 ;
     public final void rule__IterationPhase__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1148:1: ( rule__IterationPhase__Group__3__Impl rule__IterationPhase__Group__4 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1149:2: rule__IterationPhase__Group__3__Impl rule__IterationPhase__Group__4
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1138:1: ( rule__IterationPhase__Group__3__Impl rule__IterationPhase__Group__4 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1139:2: rule__IterationPhase__Group__3__Impl rule__IterationPhase__Group__4
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__3__Impl_in_rule__IterationPhase__Group__32327);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__3__Impl_in_rule__IterationPhase__Group__32312);
             rule__IterationPhase__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__IterationPhase__Group__4_in_rule__IterationPhase__Group__32330);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__4_in_rule__IterationPhase__Group__32315);
             rule__IterationPhase__Group__4();
 
             state._fsp--;
@@ -3149,23 +3149,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__3__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1156:1: rule__IterationPhase__Group__3__Impl : ( ( rule__IterationPhase__IterationAssignment_3 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1146:1: rule__IterationPhase__Group__3__Impl : ( ( rule__IterationPhase__IterationAssignment_3 ) ) ;
     public final void rule__IterationPhase__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1160:1: ( ( ( rule__IterationPhase__IterationAssignment_3 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1161:1: ( ( rule__IterationPhase__IterationAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1150:1: ( ( ( rule__IterationPhase__IterationAssignment_3 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1151:1: ( ( rule__IterationPhase__IterationAssignment_3 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1161:1: ( ( rule__IterationPhase__IterationAssignment_3 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1162:1: ( rule__IterationPhase__IterationAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1151:1: ( ( rule__IterationPhase__IterationAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1152:1: ( rule__IterationPhase__IterationAssignment_3 )
             {
              before(grammarAccess.getIterationPhaseAccess().getIterationAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1163:1: ( rule__IterationPhase__IterationAssignment_3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1163:2: rule__IterationPhase__IterationAssignment_3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1153:1: ( rule__IterationPhase__IterationAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1153:2: rule__IterationPhase__IterationAssignment_3
             {
-            pushFollow(FOLLOW_rule__IterationPhase__IterationAssignment_3_in_rule__IterationPhase__Group__3__Impl2357);
+            pushFollow(FOLLOW_rule__IterationPhase__IterationAssignment_3_in_rule__IterationPhase__Group__3__Impl2342);
             rule__IterationPhase__IterationAssignment_3();
 
             state._fsp--;
@@ -3196,21 +3196,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__4"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1173:1: rule__IterationPhase__Group__4 : rule__IterationPhase__Group__4__Impl rule__IterationPhase__Group__5 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1163:1: rule__IterationPhase__Group__4 : rule__IterationPhase__Group__4__Impl rule__IterationPhase__Group__5 ;
     public final void rule__IterationPhase__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1177:1: ( rule__IterationPhase__Group__4__Impl rule__IterationPhase__Group__5 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1178:2: rule__IterationPhase__Group__4__Impl rule__IterationPhase__Group__5
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1167:1: ( rule__IterationPhase__Group__4__Impl rule__IterationPhase__Group__5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1168:2: rule__IterationPhase__Group__4__Impl rule__IterationPhase__Group__5
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__4__Impl_in_rule__IterationPhase__Group__42387);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__4__Impl_in_rule__IterationPhase__Group__42372);
             rule__IterationPhase__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__IterationPhase__Group__5_in_rule__IterationPhase__Group__42390);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__5_in_rule__IterationPhase__Group__42375);
             rule__IterationPhase__Group__5();
 
             state._fsp--;
@@ -3234,20 +3234,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__4__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1185:1: rule__IterationPhase__Group__4__Impl : ( '*' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1175:1: rule__IterationPhase__Group__4__Impl : ( '*' ) ;
     public final void rule__IterationPhase__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1189:1: ( ( '*' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1190:1: ( '*' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1179:1: ( ( '*' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1180:1: ( '*' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1190:1: ( '*' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1191:1: '*'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1180:1: ( '*' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1181:1: '*'
             {
              before(grammarAccess.getIterationPhaseAccess().getAsteriskKeyword_4()); 
-            match(input,22,FOLLOW_22_in_rule__IterationPhase__Group__4__Impl2418); 
+            match(input,23,FOLLOW_23_in_rule__IterationPhase__Group__4__Impl2403); 
              after(grammarAccess.getIterationPhaseAccess().getAsteriskKeyword_4()); 
 
             }
@@ -3271,21 +3271,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__5"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1204:1: rule__IterationPhase__Group__5 : rule__IterationPhase__Group__5__Impl rule__IterationPhase__Group__6 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1194:1: rule__IterationPhase__Group__5 : rule__IterationPhase__Group__5__Impl rule__IterationPhase__Group__6 ;
     public final void rule__IterationPhase__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1208:1: ( rule__IterationPhase__Group__5__Impl rule__IterationPhase__Group__6 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1209:2: rule__IterationPhase__Group__5__Impl rule__IterationPhase__Group__6
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1198:1: ( rule__IterationPhase__Group__5__Impl rule__IterationPhase__Group__6 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1199:2: rule__IterationPhase__Group__5__Impl rule__IterationPhase__Group__6
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__5__Impl_in_rule__IterationPhase__Group__52449);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__5__Impl_in_rule__IterationPhase__Group__52434);
             rule__IterationPhase__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__IterationPhase__Group__6_in_rule__IterationPhase__Group__52452);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__6_in_rule__IterationPhase__Group__52437);
             rule__IterationPhase__Group__6();
 
             state._fsp--;
@@ -3309,23 +3309,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__5__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1216:1: rule__IterationPhase__Group__5__Impl : ( ( rule__IterationPhase__PhaseAssignment_5 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1206:1: rule__IterationPhase__Group__5__Impl : ( ( rule__IterationPhase__PhaseAssignment_5 ) ) ;
     public final void rule__IterationPhase__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1220:1: ( ( ( rule__IterationPhase__PhaseAssignment_5 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1221:1: ( ( rule__IterationPhase__PhaseAssignment_5 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1210:1: ( ( ( rule__IterationPhase__PhaseAssignment_5 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1211:1: ( ( rule__IterationPhase__PhaseAssignment_5 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1221:1: ( ( rule__IterationPhase__PhaseAssignment_5 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1222:1: ( rule__IterationPhase__PhaseAssignment_5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1211:1: ( ( rule__IterationPhase__PhaseAssignment_5 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1212:1: ( rule__IterationPhase__PhaseAssignment_5 )
             {
              before(grammarAccess.getIterationPhaseAccess().getPhaseAssignment_5()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1223:1: ( rule__IterationPhase__PhaseAssignment_5 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1223:2: rule__IterationPhase__PhaseAssignment_5
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1213:1: ( rule__IterationPhase__PhaseAssignment_5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1213:2: rule__IterationPhase__PhaseAssignment_5
             {
-            pushFollow(FOLLOW_rule__IterationPhase__PhaseAssignment_5_in_rule__IterationPhase__Group__5__Impl2479);
+            pushFollow(FOLLOW_rule__IterationPhase__PhaseAssignment_5_in_rule__IterationPhase__Group__5__Impl2464);
             rule__IterationPhase__PhaseAssignment_5();
 
             state._fsp--;
@@ -3356,16 +3356,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__6"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1233:1: rule__IterationPhase__Group__6 : rule__IterationPhase__Group__6__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1223:1: rule__IterationPhase__Group__6 : rule__IterationPhase__Group__6__Impl ;
     public final void rule__IterationPhase__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1237:1: ( rule__IterationPhase__Group__6__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1238:2: rule__IterationPhase__Group__6__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1227:1: ( rule__IterationPhase__Group__6__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1228:2: rule__IterationPhase__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__IterationPhase__Group__6__Impl_in_rule__IterationPhase__Group__62509);
+            pushFollow(FOLLOW_rule__IterationPhase__Group__6__Impl_in_rule__IterationPhase__Group__62494);
             rule__IterationPhase__Group__6__Impl();
 
             state._fsp--;
@@ -3389,21 +3389,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__Group__6__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1244:1: rule__IterationPhase__Group__6__Impl : ( ')' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1234:1: rule__IterationPhase__Group__6__Impl : ( RULE_RPAR ) ;
     public final void rule__IterationPhase__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1248:1: ( ( ')' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1249:1: ( ')' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1238:1: ( ( RULE_RPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1239:1: ( RULE_RPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1249:1: ( ')' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1250:1: ')'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1239:1: ( RULE_RPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1240:1: RULE_RPAR
             {
-             before(grammarAccess.getIterationPhaseAccess().getRightParenthesisKeyword_6()); 
-            match(input,20,FOLLOW_20_in_rule__IterationPhase__Group__6__Impl2537); 
-             after(grammarAccess.getIterationPhaseAccess().getRightParenthesisKeyword_6()); 
+             before(grammarAccess.getIterationPhaseAccess().getRPARTerminalRuleCall_6()); 
+            match(input,RULE_RPAR,FOLLOW_RULE_RPAR_in_rule__IterationPhase__Group__6__Impl2521); 
+             after(grammarAccess.getIterationPhaseAccess().getRPARTerminalRuleCall_6()); 
 
             }
 
@@ -3426,21 +3426,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1277:1: rule__OptionalPhase__Group__0 : rule__OptionalPhase__Group__0__Impl rule__OptionalPhase__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1265:1: rule__OptionalPhase__Group__0 : rule__OptionalPhase__Group__0__Impl rule__OptionalPhase__Group__1 ;
     public final void rule__OptionalPhase__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1281:1: ( rule__OptionalPhase__Group__0__Impl rule__OptionalPhase__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1282:2: rule__OptionalPhase__Group__0__Impl rule__OptionalPhase__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1269:1: ( rule__OptionalPhase__Group__0__Impl rule__OptionalPhase__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1270:2: rule__OptionalPhase__Group__0__Impl rule__OptionalPhase__Group__1
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__0__Impl_in_rule__OptionalPhase__Group__02582);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__0__Impl_in_rule__OptionalPhase__Group__02564);
             rule__OptionalPhase__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__1_in_rule__OptionalPhase__Group__02585);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__1_in_rule__OptionalPhase__Group__02567);
             rule__OptionalPhase__Group__1();
 
             state._fsp--;
@@ -3464,20 +3464,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1289:1: rule__OptionalPhase__Group__0__Impl : ( 'Optional' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1277:1: rule__OptionalPhase__Group__0__Impl : ( 'Optional' ) ;
     public final void rule__OptionalPhase__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1293:1: ( ( 'Optional' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1294:1: ( 'Optional' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1281:1: ( ( 'Optional' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1282:1: ( 'Optional' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1294:1: ( 'Optional' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1295:1: 'Optional'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1282:1: ( 'Optional' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1283:1: 'Optional'
             {
              before(grammarAccess.getOptionalPhaseAccess().getOptionalKeyword_0()); 
-            match(input,23,FOLLOW_23_in_rule__OptionalPhase__Group__0__Impl2613); 
+            match(input,24,FOLLOW_24_in_rule__OptionalPhase__Group__0__Impl2595); 
              after(grammarAccess.getOptionalPhaseAccess().getOptionalKeyword_0()); 
 
             }
@@ -3501,21 +3501,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1308:1: rule__OptionalPhase__Group__1 : rule__OptionalPhase__Group__1__Impl rule__OptionalPhase__Group__2 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1296:1: rule__OptionalPhase__Group__1 : rule__OptionalPhase__Group__1__Impl rule__OptionalPhase__Group__2 ;
     public final void rule__OptionalPhase__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1312:1: ( rule__OptionalPhase__Group__1__Impl rule__OptionalPhase__Group__2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1313:2: rule__OptionalPhase__Group__1__Impl rule__OptionalPhase__Group__2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1300:1: ( rule__OptionalPhase__Group__1__Impl rule__OptionalPhase__Group__2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1301:2: rule__OptionalPhase__Group__1__Impl rule__OptionalPhase__Group__2
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__1__Impl_in_rule__OptionalPhase__Group__12644);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__1__Impl_in_rule__OptionalPhase__Group__12626);
             rule__OptionalPhase__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__2_in_rule__OptionalPhase__Group__12647);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__2_in_rule__OptionalPhase__Group__12629);
             rule__OptionalPhase__Group__2();
 
             state._fsp--;
@@ -3539,20 +3539,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1320:1: rule__OptionalPhase__Group__1__Impl : ( ( rule__OptionalPhase__NameAssignment_1 )? ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1308:1: rule__OptionalPhase__Group__1__Impl : ( ( rule__OptionalPhase__NameAssignment_1 )? ) ;
     public final void rule__OptionalPhase__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1324:1: ( ( ( rule__OptionalPhase__NameAssignment_1 )? ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1325:1: ( ( rule__OptionalPhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1312:1: ( ( ( rule__OptionalPhase__NameAssignment_1 )? ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1313:1: ( ( rule__OptionalPhase__NameAssignment_1 )? )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1325:1: ( ( rule__OptionalPhase__NameAssignment_1 )? )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1326:1: ( rule__OptionalPhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1313:1: ( ( rule__OptionalPhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1314:1: ( rule__OptionalPhase__NameAssignment_1 )?
             {
              before(grammarAccess.getOptionalPhaseAccess().getNameAssignment_1()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1327:1: ( rule__OptionalPhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1315:1: ( rule__OptionalPhase__NameAssignment_1 )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -3561,9 +3561,9 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             }
             switch (alt10) {
                 case 1 :
-                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1327:2: rule__OptionalPhase__NameAssignment_1
+                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1315:2: rule__OptionalPhase__NameAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__OptionalPhase__NameAssignment_1_in_rule__OptionalPhase__Group__1__Impl2674);
+                    pushFollow(FOLLOW_rule__OptionalPhase__NameAssignment_1_in_rule__OptionalPhase__Group__1__Impl2656);
                     rule__OptionalPhase__NameAssignment_1();
 
                     state._fsp--;
@@ -3597,21 +3597,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1337:1: rule__OptionalPhase__Group__2 : rule__OptionalPhase__Group__2__Impl rule__OptionalPhase__Group__3 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1325:1: rule__OptionalPhase__Group__2 : rule__OptionalPhase__Group__2__Impl rule__OptionalPhase__Group__3 ;
     public final void rule__OptionalPhase__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1341:1: ( rule__OptionalPhase__Group__2__Impl rule__OptionalPhase__Group__3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1342:2: rule__OptionalPhase__Group__2__Impl rule__OptionalPhase__Group__3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1329:1: ( rule__OptionalPhase__Group__2__Impl rule__OptionalPhase__Group__3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1330:2: rule__OptionalPhase__Group__2__Impl rule__OptionalPhase__Group__3
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__2__Impl_in_rule__OptionalPhase__Group__22705);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__2__Impl_in_rule__OptionalPhase__Group__22687);
             rule__OptionalPhase__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__3_in_rule__OptionalPhase__Group__22708);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__3_in_rule__OptionalPhase__Group__22690);
             rule__OptionalPhase__Group__3();
 
             state._fsp--;
@@ -3635,20 +3635,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1349:1: rule__OptionalPhase__Group__2__Impl : ( 'ClassName' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1337:1: rule__OptionalPhase__Group__2__Impl : ( 'ClassName' ) ;
     public final void rule__OptionalPhase__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1353:1: ( ( 'ClassName' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1354:1: ( 'ClassName' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1341:1: ( ( 'ClassName' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1342:1: ( 'ClassName' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1354:1: ( 'ClassName' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1355:1: 'ClassName'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1342:1: ( 'ClassName' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1343:1: 'ClassName'
             {
              before(grammarAccess.getOptionalPhaseAccess().getClassNameKeyword_2()); 
-            match(input,24,FOLLOW_24_in_rule__OptionalPhase__Group__2__Impl2736); 
+            match(input,25,FOLLOW_25_in_rule__OptionalPhase__Group__2__Impl2718); 
              after(grammarAccess.getOptionalPhaseAccess().getClassNameKeyword_2()); 
 
             }
@@ -3672,21 +3672,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1368:1: rule__OptionalPhase__Group__3 : rule__OptionalPhase__Group__3__Impl rule__OptionalPhase__Group__4 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1356:1: rule__OptionalPhase__Group__3 : rule__OptionalPhase__Group__3__Impl rule__OptionalPhase__Group__4 ;
     public final void rule__OptionalPhase__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1372:1: ( rule__OptionalPhase__Group__3__Impl rule__OptionalPhase__Group__4 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1373:2: rule__OptionalPhase__Group__3__Impl rule__OptionalPhase__Group__4
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1360:1: ( rule__OptionalPhase__Group__3__Impl rule__OptionalPhase__Group__4 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1361:2: rule__OptionalPhase__Group__3__Impl rule__OptionalPhase__Group__4
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__3__Impl_in_rule__OptionalPhase__Group__32767);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__3__Impl_in_rule__OptionalPhase__Group__32749);
             rule__OptionalPhase__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__4_in_rule__OptionalPhase__Group__32770);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__4_in_rule__OptionalPhase__Group__32752);
             rule__OptionalPhase__Group__4();
 
             state._fsp--;
@@ -3710,23 +3710,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__3__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1380:1: rule__OptionalPhase__Group__3__Impl : ( ( rule__OptionalPhase__ClassnameAssignment_3 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1368:1: rule__OptionalPhase__Group__3__Impl : ( ( rule__OptionalPhase__ClassnameAssignment_3 ) ) ;
     public final void rule__OptionalPhase__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1384:1: ( ( ( rule__OptionalPhase__ClassnameAssignment_3 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1385:1: ( ( rule__OptionalPhase__ClassnameAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1372:1: ( ( ( rule__OptionalPhase__ClassnameAssignment_3 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1373:1: ( ( rule__OptionalPhase__ClassnameAssignment_3 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1385:1: ( ( rule__OptionalPhase__ClassnameAssignment_3 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1386:1: ( rule__OptionalPhase__ClassnameAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1373:1: ( ( rule__OptionalPhase__ClassnameAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1374:1: ( rule__OptionalPhase__ClassnameAssignment_3 )
             {
              before(grammarAccess.getOptionalPhaseAccess().getClassnameAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1387:1: ( rule__OptionalPhase__ClassnameAssignment_3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1387:2: rule__OptionalPhase__ClassnameAssignment_3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1375:1: ( rule__OptionalPhase__ClassnameAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1375:2: rule__OptionalPhase__ClassnameAssignment_3
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__ClassnameAssignment_3_in_rule__OptionalPhase__Group__3__Impl2797);
+            pushFollow(FOLLOW_rule__OptionalPhase__ClassnameAssignment_3_in_rule__OptionalPhase__Group__3__Impl2779);
             rule__OptionalPhase__ClassnameAssignment_3();
 
             state._fsp--;
@@ -3757,21 +3757,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__4"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1397:1: rule__OptionalPhase__Group__4 : rule__OptionalPhase__Group__4__Impl rule__OptionalPhase__Group__5 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1385:1: rule__OptionalPhase__Group__4 : rule__OptionalPhase__Group__4__Impl rule__OptionalPhase__Group__5 ;
     public final void rule__OptionalPhase__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1401:1: ( rule__OptionalPhase__Group__4__Impl rule__OptionalPhase__Group__5 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1402:2: rule__OptionalPhase__Group__4__Impl rule__OptionalPhase__Group__5
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1389:1: ( rule__OptionalPhase__Group__4__Impl rule__OptionalPhase__Group__5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1390:2: rule__OptionalPhase__Group__4__Impl rule__OptionalPhase__Group__5
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__4__Impl_in_rule__OptionalPhase__Group__42827);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__4__Impl_in_rule__OptionalPhase__Group__42809);
             rule__OptionalPhase__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__5_in_rule__OptionalPhase__Group__42830);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__5_in_rule__OptionalPhase__Group__42812);
             rule__OptionalPhase__Group__5();
 
             state._fsp--;
@@ -3795,21 +3795,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__4__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1409:1: rule__OptionalPhase__Group__4__Impl : ( '(' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1397:1: rule__OptionalPhase__Group__4__Impl : ( RULE_LPAR ) ;
     public final void rule__OptionalPhase__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1413:1: ( ( '(' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1414:1: ( '(' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1401:1: ( ( RULE_LPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1402:1: ( RULE_LPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1414:1: ( '(' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1415:1: '('
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1402:1: ( RULE_LPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1403:1: RULE_LPAR
             {
-             before(grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_4()); 
-            match(input,19,FOLLOW_19_in_rule__OptionalPhase__Group__4__Impl2858); 
-             after(grammarAccess.getOptionalPhaseAccess().getLeftParenthesisKeyword_4()); 
+             before(grammarAccess.getOptionalPhaseAccess().getLPARTerminalRuleCall_4()); 
+            match(input,RULE_LPAR,FOLLOW_RULE_LPAR_in_rule__OptionalPhase__Group__4__Impl2839); 
+             after(grammarAccess.getOptionalPhaseAccess().getLPARTerminalRuleCall_4()); 
 
             }
 
@@ -3832,21 +3832,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__5"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1428:1: rule__OptionalPhase__Group__5 : rule__OptionalPhase__Group__5__Impl rule__OptionalPhase__Group__6 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1414:1: rule__OptionalPhase__Group__5 : rule__OptionalPhase__Group__5__Impl rule__OptionalPhase__Group__6 ;
     public final void rule__OptionalPhase__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1432:1: ( rule__OptionalPhase__Group__5__Impl rule__OptionalPhase__Group__6 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1433:2: rule__OptionalPhase__Group__5__Impl rule__OptionalPhase__Group__6
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1418:1: ( rule__OptionalPhase__Group__5__Impl rule__OptionalPhase__Group__6 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1419:2: rule__OptionalPhase__Group__5__Impl rule__OptionalPhase__Group__6
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__5__Impl_in_rule__OptionalPhase__Group__52889);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__5__Impl_in_rule__OptionalPhase__Group__52868);
             rule__OptionalPhase__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__6_in_rule__OptionalPhase__Group__52892);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__6_in_rule__OptionalPhase__Group__52871);
             rule__OptionalPhase__Group__6();
 
             state._fsp--;
@@ -3870,23 +3870,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__5__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1440:1: rule__OptionalPhase__Group__5__Impl : ( ( rule__OptionalPhase__PhaseAssignment_5 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1426:1: rule__OptionalPhase__Group__5__Impl : ( ( rule__OptionalPhase__PhaseAssignment_5 ) ) ;
     public final void rule__OptionalPhase__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1444:1: ( ( ( rule__OptionalPhase__PhaseAssignment_5 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1445:1: ( ( rule__OptionalPhase__PhaseAssignment_5 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1430:1: ( ( ( rule__OptionalPhase__PhaseAssignment_5 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1431:1: ( ( rule__OptionalPhase__PhaseAssignment_5 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1445:1: ( ( rule__OptionalPhase__PhaseAssignment_5 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1446:1: ( rule__OptionalPhase__PhaseAssignment_5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1431:1: ( ( rule__OptionalPhase__PhaseAssignment_5 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1432:1: ( rule__OptionalPhase__PhaseAssignment_5 )
             {
              before(grammarAccess.getOptionalPhaseAccess().getPhaseAssignment_5()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1447:1: ( rule__OptionalPhase__PhaseAssignment_5 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1447:2: rule__OptionalPhase__PhaseAssignment_5
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1433:1: ( rule__OptionalPhase__PhaseAssignment_5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1433:2: rule__OptionalPhase__PhaseAssignment_5
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__PhaseAssignment_5_in_rule__OptionalPhase__Group__5__Impl2919);
+            pushFollow(FOLLOW_rule__OptionalPhase__PhaseAssignment_5_in_rule__OptionalPhase__Group__5__Impl2898);
             rule__OptionalPhase__PhaseAssignment_5();
 
             state._fsp--;
@@ -3917,16 +3917,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__6"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1457:1: rule__OptionalPhase__Group__6 : rule__OptionalPhase__Group__6__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1443:1: rule__OptionalPhase__Group__6 : rule__OptionalPhase__Group__6__Impl ;
     public final void rule__OptionalPhase__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1461:1: ( rule__OptionalPhase__Group__6__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1462:2: rule__OptionalPhase__Group__6__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1447:1: ( rule__OptionalPhase__Group__6__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1448:2: rule__OptionalPhase__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__OptionalPhase__Group__6__Impl_in_rule__OptionalPhase__Group__62949);
+            pushFollow(FOLLOW_rule__OptionalPhase__Group__6__Impl_in_rule__OptionalPhase__Group__62928);
             rule__OptionalPhase__Group__6__Impl();
 
             state._fsp--;
@@ -3950,21 +3950,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__Group__6__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1468:1: rule__OptionalPhase__Group__6__Impl : ( ')' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1454:1: rule__OptionalPhase__Group__6__Impl : ( RULE_RPAR ) ;
     public final void rule__OptionalPhase__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1472:1: ( ( ')' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1473:1: ( ')' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1458:1: ( ( RULE_RPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1459:1: ( RULE_RPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1473:1: ( ')' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1474:1: ')'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1459:1: ( RULE_RPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1460:1: RULE_RPAR
             {
-             before(grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_6()); 
-            match(input,20,FOLLOW_20_in_rule__OptionalPhase__Group__6__Impl2977); 
-             after(grammarAccess.getOptionalPhaseAccess().getRightParenthesisKeyword_6()); 
+             before(grammarAccess.getOptionalPhaseAccess().getRPARTerminalRuleCall_6()); 
+            match(input,RULE_RPAR,FOLLOW_RULE_RPAR_in_rule__OptionalPhase__Group__6__Impl2955); 
+             after(grammarAccess.getOptionalPhaseAccess().getRPARTerminalRuleCall_6()); 
 
             }
 
@@ -3987,21 +3987,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1501:1: rule__AtomicPhase__Group__0 : rule__AtomicPhase__Group__0__Impl rule__AtomicPhase__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1485:1: rule__AtomicPhase__Group__0 : rule__AtomicPhase__Group__0__Impl rule__AtomicPhase__Group__1 ;
     public final void rule__AtomicPhase__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1505:1: ( rule__AtomicPhase__Group__0__Impl rule__AtomicPhase__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1506:2: rule__AtomicPhase__Group__0__Impl rule__AtomicPhase__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1489:1: ( rule__AtomicPhase__Group__0__Impl rule__AtomicPhase__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1490:2: rule__AtomicPhase__Group__0__Impl rule__AtomicPhase__Group__1
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__0__Impl_in_rule__AtomicPhase__Group__03022);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__0__Impl_in_rule__AtomicPhase__Group__02998);
             rule__AtomicPhase__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__1_in_rule__AtomicPhase__Group__03025);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__1_in_rule__AtomicPhase__Group__03001);
             rule__AtomicPhase__Group__1();
 
             state._fsp--;
@@ -4025,20 +4025,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1513:1: rule__AtomicPhase__Group__0__Impl : ( 'Atomic' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1497:1: rule__AtomicPhase__Group__0__Impl : ( 'Atomic' ) ;
     public final void rule__AtomicPhase__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1517:1: ( ( 'Atomic' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1518:1: ( 'Atomic' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1501:1: ( ( 'Atomic' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1502:1: ( 'Atomic' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1518:1: ( 'Atomic' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1519:1: 'Atomic'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1502:1: ( 'Atomic' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1503:1: 'Atomic'
             {
              before(grammarAccess.getAtomicPhaseAccess().getAtomicKeyword_0()); 
-            match(input,25,FOLLOW_25_in_rule__AtomicPhase__Group__0__Impl3053); 
+            match(input,26,FOLLOW_26_in_rule__AtomicPhase__Group__0__Impl3029); 
              after(grammarAccess.getAtomicPhaseAccess().getAtomicKeyword_0()); 
 
             }
@@ -4062,21 +4062,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1532:1: rule__AtomicPhase__Group__1 : rule__AtomicPhase__Group__1__Impl rule__AtomicPhase__Group__2 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1516:1: rule__AtomicPhase__Group__1 : rule__AtomicPhase__Group__1__Impl rule__AtomicPhase__Group__2 ;
     public final void rule__AtomicPhase__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1536:1: ( rule__AtomicPhase__Group__1__Impl rule__AtomicPhase__Group__2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1537:2: rule__AtomicPhase__Group__1__Impl rule__AtomicPhase__Group__2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1520:1: ( rule__AtomicPhase__Group__1__Impl rule__AtomicPhase__Group__2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1521:2: rule__AtomicPhase__Group__1__Impl rule__AtomicPhase__Group__2
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__1__Impl_in_rule__AtomicPhase__Group__13084);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__1__Impl_in_rule__AtomicPhase__Group__13060);
             rule__AtomicPhase__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__2_in_rule__AtomicPhase__Group__13087);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__2_in_rule__AtomicPhase__Group__13063);
             rule__AtomicPhase__Group__2();
 
             state._fsp--;
@@ -4100,20 +4100,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1544:1: rule__AtomicPhase__Group__1__Impl : ( ( rule__AtomicPhase__NameAssignment_1 )? ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1528:1: rule__AtomicPhase__Group__1__Impl : ( ( rule__AtomicPhase__NameAssignment_1 )? ) ;
     public final void rule__AtomicPhase__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1548:1: ( ( ( rule__AtomicPhase__NameAssignment_1 )? ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1549:1: ( ( rule__AtomicPhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1532:1: ( ( ( rule__AtomicPhase__NameAssignment_1 )? ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1533:1: ( ( rule__AtomicPhase__NameAssignment_1 )? )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1549:1: ( ( rule__AtomicPhase__NameAssignment_1 )? )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1550:1: ( rule__AtomicPhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1533:1: ( ( rule__AtomicPhase__NameAssignment_1 )? )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1534:1: ( rule__AtomicPhase__NameAssignment_1 )?
             {
              before(grammarAccess.getAtomicPhaseAccess().getNameAssignment_1()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1551:1: ( rule__AtomicPhase__NameAssignment_1 )?
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1535:1: ( rule__AtomicPhase__NameAssignment_1 )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -4122,9 +4122,9 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
             }
             switch (alt11) {
                 case 1 :
-                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1551:2: rule__AtomicPhase__NameAssignment_1
+                    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1535:2: rule__AtomicPhase__NameAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__AtomicPhase__NameAssignment_1_in_rule__AtomicPhase__Group__1__Impl3114);
+                    pushFollow(FOLLOW_rule__AtomicPhase__NameAssignment_1_in_rule__AtomicPhase__Group__1__Impl3090);
                     rule__AtomicPhase__NameAssignment_1();
 
                     state._fsp--;
@@ -4158,21 +4158,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1561:1: rule__AtomicPhase__Group__2 : rule__AtomicPhase__Group__2__Impl rule__AtomicPhase__Group__3 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1545:1: rule__AtomicPhase__Group__2 : rule__AtomicPhase__Group__2__Impl rule__AtomicPhase__Group__3 ;
     public final void rule__AtomicPhase__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1565:1: ( rule__AtomicPhase__Group__2__Impl rule__AtomicPhase__Group__3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1566:2: rule__AtomicPhase__Group__2__Impl rule__AtomicPhase__Group__3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1549:1: ( rule__AtomicPhase__Group__2__Impl rule__AtomicPhase__Group__3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1550:2: rule__AtomicPhase__Group__2__Impl rule__AtomicPhase__Group__3
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__2__Impl_in_rule__AtomicPhase__Group__23145);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__2__Impl_in_rule__AtomicPhase__Group__23121);
             rule__AtomicPhase__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__3_in_rule__AtomicPhase__Group__23148);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__3_in_rule__AtomicPhase__Group__23124);
             rule__AtomicPhase__Group__3();
 
             state._fsp--;
@@ -4196,20 +4196,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1573:1: rule__AtomicPhase__Group__2__Impl : ( 'ClassName' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1557:1: rule__AtomicPhase__Group__2__Impl : ( 'ClassName' ) ;
     public final void rule__AtomicPhase__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1577:1: ( ( 'ClassName' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1578:1: ( 'ClassName' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1561:1: ( ( 'ClassName' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1562:1: ( 'ClassName' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1578:1: ( 'ClassName' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1579:1: 'ClassName'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1562:1: ( 'ClassName' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1563:1: 'ClassName'
             {
              before(grammarAccess.getAtomicPhaseAccess().getClassNameKeyword_2()); 
-            match(input,24,FOLLOW_24_in_rule__AtomicPhase__Group__2__Impl3176); 
+            match(input,25,FOLLOW_25_in_rule__AtomicPhase__Group__2__Impl3152); 
              after(grammarAccess.getAtomicPhaseAccess().getClassNameKeyword_2()); 
 
             }
@@ -4233,21 +4233,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1592:1: rule__AtomicPhase__Group__3 : rule__AtomicPhase__Group__3__Impl rule__AtomicPhase__Group__4 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1576:1: rule__AtomicPhase__Group__3 : rule__AtomicPhase__Group__3__Impl rule__AtomicPhase__Group__4 ;
     public final void rule__AtomicPhase__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1596:1: ( rule__AtomicPhase__Group__3__Impl rule__AtomicPhase__Group__4 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1597:2: rule__AtomicPhase__Group__3__Impl rule__AtomicPhase__Group__4
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1580:1: ( rule__AtomicPhase__Group__3__Impl rule__AtomicPhase__Group__4 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1581:2: rule__AtomicPhase__Group__3__Impl rule__AtomicPhase__Group__4
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__3__Impl_in_rule__AtomicPhase__Group__33207);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__3__Impl_in_rule__AtomicPhase__Group__33183);
             rule__AtomicPhase__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__4_in_rule__AtomicPhase__Group__33210);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__4_in_rule__AtomicPhase__Group__33186);
             rule__AtomicPhase__Group__4();
 
             state._fsp--;
@@ -4271,23 +4271,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__3__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1604:1: rule__AtomicPhase__Group__3__Impl : ( ( rule__AtomicPhase__ClassnameAssignment_3 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1588:1: rule__AtomicPhase__Group__3__Impl : ( ( rule__AtomicPhase__ClassnameAssignment_3 ) ) ;
     public final void rule__AtomicPhase__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1608:1: ( ( ( rule__AtomicPhase__ClassnameAssignment_3 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1609:1: ( ( rule__AtomicPhase__ClassnameAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1592:1: ( ( ( rule__AtomicPhase__ClassnameAssignment_3 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1593:1: ( ( rule__AtomicPhase__ClassnameAssignment_3 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1609:1: ( ( rule__AtomicPhase__ClassnameAssignment_3 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1610:1: ( rule__AtomicPhase__ClassnameAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1593:1: ( ( rule__AtomicPhase__ClassnameAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1594:1: ( rule__AtomicPhase__ClassnameAssignment_3 )
             {
              before(grammarAccess.getAtomicPhaseAccess().getClassnameAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1611:1: ( rule__AtomicPhase__ClassnameAssignment_3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1611:2: rule__AtomicPhase__ClassnameAssignment_3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1595:1: ( rule__AtomicPhase__ClassnameAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1595:2: rule__AtomicPhase__ClassnameAssignment_3
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__ClassnameAssignment_3_in_rule__AtomicPhase__Group__3__Impl3237);
+            pushFollow(FOLLOW_rule__AtomicPhase__ClassnameAssignment_3_in_rule__AtomicPhase__Group__3__Impl3213);
             rule__AtomicPhase__ClassnameAssignment_3();
 
             state._fsp--;
@@ -4318,21 +4318,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__4"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1621:1: rule__AtomicPhase__Group__4 : rule__AtomicPhase__Group__4__Impl rule__AtomicPhase__Group__5 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1605:1: rule__AtomicPhase__Group__4 : rule__AtomicPhase__Group__4__Impl rule__AtomicPhase__Group__5 ;
     public final void rule__AtomicPhase__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1625:1: ( rule__AtomicPhase__Group__4__Impl rule__AtomicPhase__Group__5 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1626:2: rule__AtomicPhase__Group__4__Impl rule__AtomicPhase__Group__5
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1609:1: ( rule__AtomicPhase__Group__4__Impl rule__AtomicPhase__Group__5 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1610:2: rule__AtomicPhase__Group__4__Impl rule__AtomicPhase__Group__5
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__4__Impl_in_rule__AtomicPhase__Group__43267);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__4__Impl_in_rule__AtomicPhase__Group__43243);
             rule__AtomicPhase__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__5_in_rule__AtomicPhase__Group__43270);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__5_in_rule__AtomicPhase__Group__43246);
             rule__AtomicPhase__Group__5();
 
             state._fsp--;
@@ -4356,21 +4356,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__4__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1633:1: rule__AtomicPhase__Group__4__Impl : ( 'Metrics(' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1617:1: rule__AtomicPhase__Group__4__Impl : ( RULE_METRICS ) ;
     public final void rule__AtomicPhase__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1637:1: ( ( 'Metrics(' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1638:1: ( 'Metrics(' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1621:1: ( ( RULE_METRICS ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1622:1: ( RULE_METRICS )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1638:1: ( 'Metrics(' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1639:1: 'Metrics('
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1622:1: ( RULE_METRICS )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1623:1: RULE_METRICS
             {
-             before(grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4()); 
-            match(input,26,FOLLOW_26_in_rule__AtomicPhase__Group__4__Impl3298); 
-             after(grammarAccess.getAtomicPhaseAccess().getMetricsKeyword_4()); 
+             before(grammarAccess.getAtomicPhaseAccess().getMETRICSTerminalRuleCall_4()); 
+            match(input,RULE_METRICS,FOLLOW_RULE_METRICS_in_rule__AtomicPhase__Group__4__Impl3273); 
+             after(grammarAccess.getAtomicPhaseAccess().getMETRICSTerminalRuleCall_4()); 
 
             }
 
@@ -4393,21 +4393,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__5"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1652:1: rule__AtomicPhase__Group__5 : rule__AtomicPhase__Group__5__Impl rule__AtomicPhase__Group__6 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1634:1: rule__AtomicPhase__Group__5 : rule__AtomicPhase__Group__5__Impl rule__AtomicPhase__Group__6 ;
     public final void rule__AtomicPhase__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1656:1: ( rule__AtomicPhase__Group__5__Impl rule__AtomicPhase__Group__6 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1657:2: rule__AtomicPhase__Group__5__Impl rule__AtomicPhase__Group__6
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1638:1: ( rule__AtomicPhase__Group__5__Impl rule__AtomicPhase__Group__6 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1639:2: rule__AtomicPhase__Group__5__Impl rule__AtomicPhase__Group__6
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__5__Impl_in_rule__AtomicPhase__Group__53329);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__5__Impl_in_rule__AtomicPhase__Group__53302);
             rule__AtomicPhase__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__6_in_rule__AtomicPhase__Group__53332);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__6_in_rule__AtomicPhase__Group__53305);
             rule__AtomicPhase__Group__6();
 
             state._fsp--;
@@ -4431,35 +4431,35 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__5__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1664:1: rule__AtomicPhase__Group__5__Impl : ( ( rule__AtomicPhase__MetricsAssignment_5 )* ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1646:1: rule__AtomicPhase__Group__5__Impl : ( ( rule__AtomicPhase__MetricsAssignment_5 )* ) ;
     public final void rule__AtomicPhase__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1668:1: ( ( ( rule__AtomicPhase__MetricsAssignment_5 )* ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1669:1: ( ( rule__AtomicPhase__MetricsAssignment_5 )* )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1650:1: ( ( ( rule__AtomicPhase__MetricsAssignment_5 )* ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1651:1: ( ( rule__AtomicPhase__MetricsAssignment_5 )* )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1669:1: ( ( rule__AtomicPhase__MetricsAssignment_5 )* )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1670:1: ( rule__AtomicPhase__MetricsAssignment_5 )*
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1651:1: ( ( rule__AtomicPhase__MetricsAssignment_5 )* )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1652:1: ( rule__AtomicPhase__MetricsAssignment_5 )*
             {
              before(grammarAccess.getAtomicPhaseAccess().getMetricsAssignment_5()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1671:1: ( rule__AtomicPhase__MetricsAssignment_5 )*
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1653:1: ( rule__AtomicPhase__MetricsAssignment_5 )*
             loop12:
             do {
                 int alt12=2;
                 int LA12_0 = input.LA(1);
 
-                if ( ((LA12_0>=11 && LA12_0<=13)||LA12_0==28) ) {
+                if ( ((LA12_0>=16 && LA12_0<=18)||LA12_0==28) ) {
                     alt12=1;
                 }
 
 
                 switch (alt12) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1671:2: rule__AtomicPhase__MetricsAssignment_5
+            	    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1653:2: rule__AtomicPhase__MetricsAssignment_5
             	    {
-            	    pushFollow(FOLLOW_rule__AtomicPhase__MetricsAssignment_5_in_rule__AtomicPhase__Group__5__Impl3359);
+            	    pushFollow(FOLLOW_rule__AtomicPhase__MetricsAssignment_5_in_rule__AtomicPhase__Group__5__Impl3332);
             	    rule__AtomicPhase__MetricsAssignment_5();
 
             	    state._fsp--;
@@ -4496,16 +4496,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__6"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1681:1: rule__AtomicPhase__Group__6 : rule__AtomicPhase__Group__6__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1663:1: rule__AtomicPhase__Group__6 : rule__AtomicPhase__Group__6__Impl ;
     public final void rule__AtomicPhase__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1685:1: ( rule__AtomicPhase__Group__6__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1686:2: rule__AtomicPhase__Group__6__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1667:1: ( rule__AtomicPhase__Group__6__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1668:2: rule__AtomicPhase__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__AtomicPhase__Group__6__Impl_in_rule__AtomicPhase__Group__63390);
+            pushFollow(FOLLOW_rule__AtomicPhase__Group__6__Impl_in_rule__AtomicPhase__Group__63363);
             rule__AtomicPhase__Group__6__Impl();
 
             state._fsp--;
@@ -4529,21 +4529,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__Group__6__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1692:1: rule__AtomicPhase__Group__6__Impl : ( ')' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1674:1: rule__AtomicPhase__Group__6__Impl : ( RULE_RPAR ) ;
     public final void rule__AtomicPhase__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1696:1: ( ( ')' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1697:1: ( ')' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1678:1: ( ( RULE_RPAR ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1679:1: ( RULE_RPAR )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1697:1: ( ')' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1698:1: ')'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1679:1: ( RULE_RPAR )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1680:1: RULE_RPAR
             {
-             before(grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6()); 
-            match(input,20,FOLLOW_20_in_rule__AtomicPhase__Group__6__Impl3418); 
-             after(grammarAccess.getAtomicPhaseAccess().getRightParenthesisKeyword_6()); 
+             before(grammarAccess.getAtomicPhaseAccess().getRPARTerminalRuleCall_6()); 
+            match(input,RULE_RPAR,FOLLOW_RULE_RPAR_in_rule__AtomicPhase__Group__6__Impl3390); 
+             after(grammarAccess.getAtomicPhaseAccess().getRPARTerminalRuleCall_6()); 
 
             }
 
@@ -4566,21 +4566,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1725:1: rule__MetricTypeReference__Group__0 : rule__MetricTypeReference__Group__0__Impl rule__MetricTypeReference__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1705:1: rule__MetricTypeReference__Group__0 : rule__MetricTypeReference__Group__0__Impl rule__MetricTypeReference__Group__1 ;
     public final void rule__MetricTypeReference__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1729:1: ( rule__MetricTypeReference__Group__0__Impl rule__MetricTypeReference__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1730:2: rule__MetricTypeReference__Group__0__Impl rule__MetricTypeReference__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1709:1: ( rule__MetricTypeReference__Group__0__Impl rule__MetricTypeReference__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1710:2: rule__MetricTypeReference__Group__0__Impl rule__MetricTypeReference__Group__1
             {
-            pushFollow(FOLLOW_rule__MetricTypeReference__Group__0__Impl_in_rule__MetricTypeReference__Group__03463);
+            pushFollow(FOLLOW_rule__MetricTypeReference__Group__0__Impl_in_rule__MetricTypeReference__Group__03433);
             rule__MetricTypeReference__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__MetricTypeReference__Group__1_in_rule__MetricTypeReference__Group__03466);
+            pushFollow(FOLLOW_rule__MetricTypeReference__Group__1_in_rule__MetricTypeReference__Group__03436);
             rule__MetricTypeReference__Group__1();
 
             state._fsp--;
@@ -4604,23 +4604,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1737:1: rule__MetricTypeReference__Group__0__Impl : ( ( rule__MetricTypeReference__MetricAssignment_0 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1717:1: rule__MetricTypeReference__Group__0__Impl : ( ( rule__MetricTypeReference__MetricAssignment_0 ) ) ;
     public final void rule__MetricTypeReference__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1741:1: ( ( ( rule__MetricTypeReference__MetricAssignment_0 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1742:1: ( ( rule__MetricTypeReference__MetricAssignment_0 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1721:1: ( ( ( rule__MetricTypeReference__MetricAssignment_0 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1722:1: ( ( rule__MetricTypeReference__MetricAssignment_0 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1742:1: ( ( rule__MetricTypeReference__MetricAssignment_0 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1743:1: ( rule__MetricTypeReference__MetricAssignment_0 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1722:1: ( ( rule__MetricTypeReference__MetricAssignment_0 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1723:1: ( rule__MetricTypeReference__MetricAssignment_0 )
             {
              before(grammarAccess.getMetricTypeReferenceAccess().getMetricAssignment_0()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1744:1: ( rule__MetricTypeReference__MetricAssignment_0 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1744:2: rule__MetricTypeReference__MetricAssignment_0
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1724:1: ( rule__MetricTypeReference__MetricAssignment_0 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1724:2: rule__MetricTypeReference__MetricAssignment_0
             {
-            pushFollow(FOLLOW_rule__MetricTypeReference__MetricAssignment_0_in_rule__MetricTypeReference__Group__0__Impl3493);
+            pushFollow(FOLLOW_rule__MetricTypeReference__MetricAssignment_0_in_rule__MetricTypeReference__Group__0__Impl3463);
             rule__MetricTypeReference__MetricAssignment_0();
 
             state._fsp--;
@@ -4651,21 +4651,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1754:1: rule__MetricTypeReference__Group__1 : rule__MetricTypeReference__Group__1__Impl rule__MetricTypeReference__Group__2 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1734:1: rule__MetricTypeReference__Group__1 : rule__MetricTypeReference__Group__1__Impl rule__MetricTypeReference__Group__2 ;
     public final void rule__MetricTypeReference__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1758:1: ( rule__MetricTypeReference__Group__1__Impl rule__MetricTypeReference__Group__2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1759:2: rule__MetricTypeReference__Group__1__Impl rule__MetricTypeReference__Group__2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1738:1: ( rule__MetricTypeReference__Group__1__Impl rule__MetricTypeReference__Group__2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1739:2: rule__MetricTypeReference__Group__1__Impl rule__MetricTypeReference__Group__2
             {
-            pushFollow(FOLLOW_rule__MetricTypeReference__Group__1__Impl_in_rule__MetricTypeReference__Group__13523);
+            pushFollow(FOLLOW_rule__MetricTypeReference__Group__1__Impl_in_rule__MetricTypeReference__Group__13493);
             rule__MetricTypeReference__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__MetricTypeReference__Group__2_in_rule__MetricTypeReference__Group__13526);
+            pushFollow(FOLLOW_rule__MetricTypeReference__Group__2_in_rule__MetricTypeReference__Group__13496);
             rule__MetricTypeReference__Group__2();
 
             state._fsp--;
@@ -4689,20 +4689,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1766:1: rule__MetricTypeReference__Group__1__Impl : ( 'ID' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1746:1: rule__MetricTypeReference__Group__1__Impl : ( 'ID' ) ;
     public final void rule__MetricTypeReference__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1770:1: ( ( 'ID' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1771:1: ( 'ID' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1750:1: ( ( 'ID' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1751:1: ( 'ID' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1771:1: ( 'ID' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1772:1: 'ID'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1751:1: ( 'ID' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1752:1: 'ID'
             {
              before(grammarAccess.getMetricTypeReferenceAccess().getIDKeyword_1()); 
-            match(input,27,FOLLOW_27_in_rule__MetricTypeReference__Group__1__Impl3554); 
+            match(input,27,FOLLOW_27_in_rule__MetricTypeReference__Group__1__Impl3524); 
              after(grammarAccess.getMetricTypeReferenceAccess().getIDKeyword_1()); 
 
             }
@@ -4726,16 +4726,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__Group__2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1785:1: rule__MetricTypeReference__Group__2 : rule__MetricTypeReference__Group__2__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1765:1: rule__MetricTypeReference__Group__2 : rule__MetricTypeReference__Group__2__Impl ;
     public final void rule__MetricTypeReference__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1789:1: ( rule__MetricTypeReference__Group__2__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1790:2: rule__MetricTypeReference__Group__2__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1769:1: ( rule__MetricTypeReference__Group__2__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1770:2: rule__MetricTypeReference__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__MetricTypeReference__Group__2__Impl_in_rule__MetricTypeReference__Group__23585);
+            pushFollow(FOLLOW_rule__MetricTypeReference__Group__2__Impl_in_rule__MetricTypeReference__Group__23555);
             rule__MetricTypeReference__Group__2__Impl();
 
             state._fsp--;
@@ -4759,23 +4759,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1796:1: rule__MetricTypeReference__Group__2__Impl : ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1776:1: rule__MetricTypeReference__Group__2__Impl : ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) ) ;
     public final void rule__MetricTypeReference__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1800:1: ( ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1801:1: ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1780:1: ( ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1781:1: ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1801:1: ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1802:1: ( rule__MetricTypeReference__MetricnameAssignment_2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1781:1: ( ( rule__MetricTypeReference__MetricnameAssignment_2 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1782:1: ( rule__MetricTypeReference__MetricnameAssignment_2 )
             {
              before(grammarAccess.getMetricTypeReferenceAccess().getMetricnameAssignment_2()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1803:1: ( rule__MetricTypeReference__MetricnameAssignment_2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1803:2: rule__MetricTypeReference__MetricnameAssignment_2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1783:1: ( rule__MetricTypeReference__MetricnameAssignment_2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1783:2: rule__MetricTypeReference__MetricnameAssignment_2
             {
-            pushFollow(FOLLOW_rule__MetricTypeReference__MetricnameAssignment_2_in_rule__MetricTypeReference__Group__2__Impl3612);
+            pushFollow(FOLLOW_rule__MetricTypeReference__MetricnameAssignment_2_in_rule__MetricTypeReference__Group__2__Impl3582);
             rule__MetricTypeReference__MetricnameAssignment_2();
 
             state._fsp--;
@@ -4806,21 +4806,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1819:1: rule__NewMetric__Group__0 : rule__NewMetric__Group__0__Impl rule__NewMetric__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1799:1: rule__NewMetric__Group__0 : rule__NewMetric__Group__0__Impl rule__NewMetric__Group__1 ;
     public final void rule__NewMetric__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1823:1: ( rule__NewMetric__Group__0__Impl rule__NewMetric__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1824:2: rule__NewMetric__Group__0__Impl rule__NewMetric__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1803:1: ( rule__NewMetric__Group__0__Impl rule__NewMetric__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1804:2: rule__NewMetric__Group__0__Impl rule__NewMetric__Group__1
             {
-            pushFollow(FOLLOW_rule__NewMetric__Group__0__Impl_in_rule__NewMetric__Group__03648);
+            pushFollow(FOLLOW_rule__NewMetric__Group__0__Impl_in_rule__NewMetric__Group__03618);
             rule__NewMetric__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__NewMetric__Group__1_in_rule__NewMetric__Group__03651);
+            pushFollow(FOLLOW_rule__NewMetric__Group__1_in_rule__NewMetric__Group__03621);
             rule__NewMetric__Group__1();
 
             state._fsp--;
@@ -4844,20 +4844,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1831:1: rule__NewMetric__Group__0__Impl : ( 'new Metric ClassName' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1811:1: rule__NewMetric__Group__0__Impl : ( 'new Metric ClassName' ) ;
     public final void rule__NewMetric__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1835:1: ( ( 'new Metric ClassName' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1836:1: ( 'new Metric ClassName' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1815:1: ( ( 'new Metric ClassName' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1816:1: ( 'new Metric ClassName' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1836:1: ( 'new Metric ClassName' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1837:1: 'new Metric ClassName'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1816:1: ( 'new Metric ClassName' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1817:1: 'new Metric ClassName'
             {
              before(grammarAccess.getNewMetricAccess().getNewMetricClassNameKeyword_0()); 
-            match(input,28,FOLLOW_28_in_rule__NewMetric__Group__0__Impl3679); 
+            match(input,28,FOLLOW_28_in_rule__NewMetric__Group__0__Impl3649); 
              after(grammarAccess.getNewMetricAccess().getNewMetricClassNameKeyword_0()); 
 
             }
@@ -4881,21 +4881,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1850:1: rule__NewMetric__Group__1 : rule__NewMetric__Group__1__Impl rule__NewMetric__Group__2 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1830:1: rule__NewMetric__Group__1 : rule__NewMetric__Group__1__Impl rule__NewMetric__Group__2 ;
     public final void rule__NewMetric__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1854:1: ( rule__NewMetric__Group__1__Impl rule__NewMetric__Group__2 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1855:2: rule__NewMetric__Group__1__Impl rule__NewMetric__Group__2
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1834:1: ( rule__NewMetric__Group__1__Impl rule__NewMetric__Group__2 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1835:2: rule__NewMetric__Group__1__Impl rule__NewMetric__Group__2
             {
-            pushFollow(FOLLOW_rule__NewMetric__Group__1__Impl_in_rule__NewMetric__Group__13710);
+            pushFollow(FOLLOW_rule__NewMetric__Group__1__Impl_in_rule__NewMetric__Group__13680);
             rule__NewMetric__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__NewMetric__Group__2_in_rule__NewMetric__Group__13713);
+            pushFollow(FOLLOW_rule__NewMetric__Group__2_in_rule__NewMetric__Group__13683);
             rule__NewMetric__Group__2();
 
             state._fsp--;
@@ -4919,23 +4919,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1862:1: rule__NewMetric__Group__1__Impl : ( ( rule__NewMetric__ClassnameAssignment_1 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1842:1: rule__NewMetric__Group__1__Impl : ( ( rule__NewMetric__ClassnameAssignment_1 ) ) ;
     public final void rule__NewMetric__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1866:1: ( ( ( rule__NewMetric__ClassnameAssignment_1 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1867:1: ( ( rule__NewMetric__ClassnameAssignment_1 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1846:1: ( ( ( rule__NewMetric__ClassnameAssignment_1 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1847:1: ( ( rule__NewMetric__ClassnameAssignment_1 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1867:1: ( ( rule__NewMetric__ClassnameAssignment_1 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1868:1: ( rule__NewMetric__ClassnameAssignment_1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1847:1: ( ( rule__NewMetric__ClassnameAssignment_1 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1848:1: ( rule__NewMetric__ClassnameAssignment_1 )
             {
              before(grammarAccess.getNewMetricAccess().getClassnameAssignment_1()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1869:1: ( rule__NewMetric__ClassnameAssignment_1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1869:2: rule__NewMetric__ClassnameAssignment_1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1849:1: ( rule__NewMetric__ClassnameAssignment_1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1849:2: rule__NewMetric__ClassnameAssignment_1
             {
-            pushFollow(FOLLOW_rule__NewMetric__ClassnameAssignment_1_in_rule__NewMetric__Group__1__Impl3740);
+            pushFollow(FOLLOW_rule__NewMetric__ClassnameAssignment_1_in_rule__NewMetric__Group__1__Impl3710);
             rule__NewMetric__ClassnameAssignment_1();
 
             state._fsp--;
@@ -4966,21 +4966,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1879:1: rule__NewMetric__Group__2 : rule__NewMetric__Group__2__Impl rule__NewMetric__Group__3 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1859:1: rule__NewMetric__Group__2 : rule__NewMetric__Group__2__Impl rule__NewMetric__Group__3 ;
     public final void rule__NewMetric__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1883:1: ( rule__NewMetric__Group__2__Impl rule__NewMetric__Group__3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1884:2: rule__NewMetric__Group__2__Impl rule__NewMetric__Group__3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1863:1: ( rule__NewMetric__Group__2__Impl rule__NewMetric__Group__3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1864:2: rule__NewMetric__Group__2__Impl rule__NewMetric__Group__3
             {
-            pushFollow(FOLLOW_rule__NewMetric__Group__2__Impl_in_rule__NewMetric__Group__23770);
+            pushFollow(FOLLOW_rule__NewMetric__Group__2__Impl_in_rule__NewMetric__Group__23740);
             rule__NewMetric__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__NewMetric__Group__3_in_rule__NewMetric__Group__23773);
+            pushFollow(FOLLOW_rule__NewMetric__Group__3_in_rule__NewMetric__Group__23743);
             rule__NewMetric__Group__3();
 
             state._fsp--;
@@ -5004,20 +5004,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__2__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1891:1: rule__NewMetric__Group__2__Impl : ( 'ID' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1871:1: rule__NewMetric__Group__2__Impl : ( 'ID' ) ;
     public final void rule__NewMetric__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1895:1: ( ( 'ID' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1896:1: ( 'ID' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1875:1: ( ( 'ID' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1876:1: ( 'ID' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1896:1: ( 'ID' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1897:1: 'ID'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1876:1: ( 'ID' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1877:1: 'ID'
             {
              before(grammarAccess.getNewMetricAccess().getIDKeyword_2()); 
-            match(input,27,FOLLOW_27_in_rule__NewMetric__Group__2__Impl3801); 
+            match(input,27,FOLLOW_27_in_rule__NewMetric__Group__2__Impl3771); 
              after(grammarAccess.getNewMetricAccess().getIDKeyword_2()); 
 
             }
@@ -5041,16 +5041,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1910:1: rule__NewMetric__Group__3 : rule__NewMetric__Group__3__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1890:1: rule__NewMetric__Group__3 : rule__NewMetric__Group__3__Impl ;
     public final void rule__NewMetric__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1914:1: ( rule__NewMetric__Group__3__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1915:2: rule__NewMetric__Group__3__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1894:1: ( rule__NewMetric__Group__3__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1895:2: rule__NewMetric__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__NewMetric__Group__3__Impl_in_rule__NewMetric__Group__33832);
+            pushFollow(FOLLOW_rule__NewMetric__Group__3__Impl_in_rule__NewMetric__Group__33802);
             rule__NewMetric__Group__3__Impl();
 
             state._fsp--;
@@ -5074,23 +5074,23 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__Group__3__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1921:1: rule__NewMetric__Group__3__Impl : ( ( rule__NewMetric__MetricnameAssignment_3 ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1901:1: rule__NewMetric__Group__3__Impl : ( ( rule__NewMetric__MetricnameAssignment_3 ) ) ;
     public final void rule__NewMetric__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1925:1: ( ( ( rule__NewMetric__MetricnameAssignment_3 ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1926:1: ( ( rule__NewMetric__MetricnameAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1905:1: ( ( ( rule__NewMetric__MetricnameAssignment_3 ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1906:1: ( ( rule__NewMetric__MetricnameAssignment_3 ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1926:1: ( ( rule__NewMetric__MetricnameAssignment_3 ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1927:1: ( rule__NewMetric__MetricnameAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1906:1: ( ( rule__NewMetric__MetricnameAssignment_3 ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1907:1: ( rule__NewMetric__MetricnameAssignment_3 )
             {
              before(grammarAccess.getNewMetricAccess().getMetricnameAssignment_3()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1928:1: ( rule__NewMetric__MetricnameAssignment_3 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1928:2: rule__NewMetric__MetricnameAssignment_3
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1908:1: ( rule__NewMetric__MetricnameAssignment_3 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1908:2: rule__NewMetric__MetricnameAssignment_3
             {
-            pushFollow(FOLLOW_rule__NewMetric__MetricnameAssignment_3_in_rule__NewMetric__Group__3__Impl3859);
+            pushFollow(FOLLOW_rule__NewMetric__MetricnameAssignment_3_in_rule__NewMetric__Group__3__Impl3829);
             rule__NewMetric__MetricnameAssignment_3();
 
             state._fsp--;
@@ -5121,21 +5121,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1946:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1926:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1950:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1951:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1930:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1931:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__03897);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__03867);
             rule__QualifiedName__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__03900);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__03870);
             rule__QualifiedName__Group__1();
 
             state._fsp--;
@@ -5159,20 +5159,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1958:1: rule__QualifiedName__Group__0__Impl : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1938:1: rule__QualifiedName__Group__0__Impl : ( RULE_ID ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1962:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1963:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1942:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1943:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1963:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1964:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1943:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1944:1: RULE_ID
             {
              before(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__QualifiedName__Group__0__Impl3927); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__QualifiedName__Group__0__Impl3897); 
              after(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
 
             }
@@ -5196,16 +5196,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1975:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1955:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1979:1: ( rule__QualifiedName__Group__1__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1980:2: rule__QualifiedName__Group__1__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1959:1: ( rule__QualifiedName__Group__1__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1960:2: rule__QualifiedName__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__13956);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__13926);
             rule__QualifiedName__Group__1__Impl();
 
             state._fsp--;
@@ -5229,20 +5229,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1986:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1966:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1990:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1991:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1970:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1971:1: ( ( rule__QualifiedName__Group_1__0 )* )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1991:1: ( ( rule__QualifiedName__Group_1__0 )* )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1992:1: ( rule__QualifiedName__Group_1__0 )*
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1971:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1972:1: ( rule__QualifiedName__Group_1__0 )*
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1993:1: ( rule__QualifiedName__Group_1__0 )*
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1973:1: ( rule__QualifiedName__Group_1__0 )*
             loop13:
             do {
                 int alt13=2;
@@ -5255,9 +5255,9 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
                 switch (alt13) {
             	case 1 :
-            	    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1993:2: rule__QualifiedName__Group_1__0
+            	    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1973:2: rule__QualifiedName__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl3983);
+            	    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl3953);
             	    rule__QualifiedName__Group_1__0();
 
             	    state._fsp--;
@@ -5294,21 +5294,21 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2007:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1987:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
     public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2011:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2012:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1991:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1992:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__04018);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__03988);
             rule__QualifiedName__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__04021);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__03991);
             rule__QualifiedName__Group_1__1();
 
             state._fsp--;
@@ -5332,20 +5332,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2019:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:1999:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
     public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2023:1: ( ( '.' ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2024:1: ( '.' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2003:1: ( ( '.' ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2004:1: ( '.' )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2024:1: ( '.' )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2025:1: '.'
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2004:1: ( '.' )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2005:1: '.'
             {
              before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__QualifiedName__Group_1__0__Impl4049); 
+            match(input,29,FOLLOW_29_in_rule__QualifiedName__Group_1__0__Impl4019); 
              after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
 
             }
@@ -5369,16 +5369,16 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2038:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2018:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
     public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2042:1: ( rule__QualifiedName__Group_1__1__Impl )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2043:2: rule__QualifiedName__Group_1__1__Impl
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2022:1: ( rule__QualifiedName__Group_1__1__Impl )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2023:2: rule__QualifiedName__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__14080);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__14050);
             rule__QualifiedName__Group_1__1__Impl();
 
             state._fsp--;
@@ -5402,20 +5402,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2049:1: rule__QualifiedName__Group_1__1__Impl : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2029:1: rule__QualifiedName__Group_1__1__Impl : ( RULE_ID ) ;
     public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2053:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2054:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2033:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2034:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2054:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2055:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2034:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2035:1: RULE_ID
             {
              before(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__QualifiedName__Group_1__1__Impl4107); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__QualifiedName__Group_1__1__Impl4077); 
              after(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1()); 
 
             }
@@ -5439,20 +5439,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Benchmark__PackageNameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2071:1: rule__Benchmark__PackageNameAssignment_1 : ( ruleQualifiedName ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2051:1: rule__Benchmark__PackageNameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__Benchmark__PackageNameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2075:1: ( ( ruleQualifiedName ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2076:1: ( ruleQualifiedName )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2055:1: ( ( ruleQualifiedName ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2056:1: ( ruleQualifiedName )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2076:1: ( ruleQualifiedName )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2077:1: ruleQualifiedName
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2056:1: ( ruleQualifiedName )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2057:1: ruleQualifiedName
             {
              before(grammarAccess.getBenchmarkAccess().getPackageNameQualifiedNameParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Benchmark__PackageNameAssignment_14145);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Benchmark__PackageNameAssignment_14115);
             ruleQualifiedName();
 
             state._fsp--;
@@ -5480,20 +5480,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Benchmark__ElementsAssignment_2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2086:1: rule__Benchmark__ElementsAssignment_2 : ( ruleElement ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2066:1: rule__Benchmark__ElementsAssignment_2 : ( ruleElement ) ;
     public final void rule__Benchmark__ElementsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2090:1: ( ( ruleElement ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2091:1: ( ruleElement )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2070:1: ( ( ruleElement ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2071:1: ( ruleElement )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2091:1: ( ruleElement )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2092:1: ruleElement
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2071:1: ( ruleElement )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2072:1: ruleElement
             {
              before(grammarAccess.getBenchmarkAccess().getElementsElementParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleElement_in_rule__Benchmark__ElementsAssignment_24176);
+            pushFollow(FOLLOW_ruleElement_in_rule__Benchmark__ElementsAssignment_24146);
             ruleElement();
 
             state._fsp--;
@@ -5521,20 +5521,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__ClassnameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2101:1: rule__Scenario__ClassnameAssignment_1 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2081:1: rule__Scenario__ClassnameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Scenario__ClassnameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2105:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2106:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2085:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2086:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2106:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2107:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2086:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2087:1: RULE_ID
             {
              before(grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Scenario__ClassnameAssignment_14207); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Scenario__ClassnameAssignment_14177); 
              after(grammarAccess.getScenarioAccess().getClassnameIDTerminalRuleCall_1_0()); 
 
             }
@@ -5558,20 +5558,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Scenario__RootPhaseAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2116:1: rule__Scenario__RootPhaseAssignment_3 : ( ruleAttachedPhase ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2096:1: rule__Scenario__RootPhaseAssignment_3 : ( ruleAttachedPhase ) ;
     public final void rule__Scenario__RootPhaseAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2120:1: ( ( ruleAttachedPhase ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2121:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2100:1: ( ( ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2101:1: ( ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2121:1: ( ruleAttachedPhase )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2122:1: ruleAttachedPhase
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2101:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2102:1: ruleAttachedPhase
             {
              before(grammarAccess.getScenarioAccess().getRootPhaseAttachedPhaseParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__Scenario__RootPhaseAssignment_34238);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__Scenario__RootPhaseAssignment_34208);
             ruleAttachedPhase();
 
             state._fsp--;
@@ -5599,20 +5599,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__NameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2131:1: rule__SequencePhase__NameAssignment_1 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2111:1: rule__SequencePhase__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__SequencePhase__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2135:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2136:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2115:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2116:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2136:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2137:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2116:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2117:1: RULE_ID
             {
              before(grammarAccess.getSequencePhaseAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SequencePhase__NameAssignment_14269); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SequencePhase__NameAssignment_14239); 
              after(grammarAccess.getSequencePhaseAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -5636,20 +5636,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__SequencePhase__PhasesAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2146:1: rule__SequencePhase__PhasesAssignment_3 : ( ruleAttachedPhase ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2126:1: rule__SequencePhase__PhasesAssignment_3 : ( ruleAttachedPhase ) ;
     public final void rule__SequencePhase__PhasesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2150:1: ( ( ruleAttachedPhase ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2151:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2130:1: ( ( ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2131:1: ( ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2151:1: ( ruleAttachedPhase )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2152:1: ruleAttachedPhase
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2131:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2132:1: ruleAttachedPhase
             {
              before(grammarAccess.getSequencePhaseAccess().getPhasesAttachedPhaseParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__SequencePhase__PhasesAssignment_34300);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__SequencePhase__PhasesAssignment_34270);
             ruleAttachedPhase();
 
             state._fsp--;
@@ -5677,20 +5677,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__NameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2161:1: rule__IterationPhase__NameAssignment_1 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2141:1: rule__IterationPhase__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__IterationPhase__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2165:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2166:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2145:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2146:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2166:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2167:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2146:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2147:1: RULE_ID
             {
              before(grammarAccess.getIterationPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__IterationPhase__NameAssignment_14331); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__IterationPhase__NameAssignment_14301); 
              after(grammarAccess.getIterationPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -5714,20 +5714,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__IterationAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2176:1: rule__IterationPhase__IterationAssignment_3 : ( RULE_INT ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2156:1: rule__IterationPhase__IterationAssignment_3 : ( RULE_INT ) ;
     public final void rule__IterationPhase__IterationAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2180:1: ( ( RULE_INT ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2181:1: ( RULE_INT )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2160:1: ( ( RULE_INT ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2161:1: ( RULE_INT )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2181:1: ( RULE_INT )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2182:1: RULE_INT
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2161:1: ( RULE_INT )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2162:1: RULE_INT
             {
              before(grammarAccess.getIterationPhaseAccess().getIterationINTTerminalRuleCall_3_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__IterationPhase__IterationAssignment_34362); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__IterationPhase__IterationAssignment_34332); 
              after(grammarAccess.getIterationPhaseAccess().getIterationINTTerminalRuleCall_3_0()); 
 
             }
@@ -5751,20 +5751,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__IterationPhase__PhaseAssignment_5"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2191:1: rule__IterationPhase__PhaseAssignment_5 : ( ruleAttachedPhase ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2171:1: rule__IterationPhase__PhaseAssignment_5 : ( ruleAttachedPhase ) ;
     public final void rule__IterationPhase__PhaseAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2195:1: ( ( ruleAttachedPhase ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2196:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2175:1: ( ( ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2176:1: ( ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2196:1: ( ruleAttachedPhase )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2197:1: ruleAttachedPhase
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2176:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2177:1: ruleAttachedPhase
             {
              before(grammarAccess.getIterationPhaseAccess().getPhaseAttachedPhaseParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__IterationPhase__PhaseAssignment_54393);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__IterationPhase__PhaseAssignment_54363);
             ruleAttachedPhase();
 
             state._fsp--;
@@ -5792,20 +5792,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__NameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2206:1: rule__OptionalPhase__NameAssignment_1 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2186:1: rule__OptionalPhase__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__OptionalPhase__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2210:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2211:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2190:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2191:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2211:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2212:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2191:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2192:1: RULE_ID
             {
              before(grammarAccess.getOptionalPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__OptionalPhase__NameAssignment_14424); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__OptionalPhase__NameAssignment_14394); 
              after(grammarAccess.getOptionalPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -5829,20 +5829,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__ClassnameAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2221:1: rule__OptionalPhase__ClassnameAssignment_3 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2201:1: rule__OptionalPhase__ClassnameAssignment_3 : ( RULE_ID ) ;
     public final void rule__OptionalPhase__ClassnameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2225:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2226:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2205:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2206:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2226:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2227:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2206:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2207:1: RULE_ID
             {
              before(grammarAccess.getOptionalPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__OptionalPhase__ClassnameAssignment_34455); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__OptionalPhase__ClassnameAssignment_34425); 
              after(grammarAccess.getOptionalPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
 
             }
@@ -5866,20 +5866,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__OptionalPhase__PhaseAssignment_5"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2236:1: rule__OptionalPhase__PhaseAssignment_5 : ( ruleAttachedPhase ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2216:1: rule__OptionalPhase__PhaseAssignment_5 : ( ruleAttachedPhase ) ;
     public final void rule__OptionalPhase__PhaseAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2240:1: ( ( ruleAttachedPhase ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2241:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2220:1: ( ( ruleAttachedPhase ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2221:1: ( ruleAttachedPhase )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2241:1: ( ruleAttachedPhase )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2242:1: ruleAttachedPhase
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2221:1: ( ruleAttachedPhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2222:1: ruleAttachedPhase
             {
              before(grammarAccess.getOptionalPhaseAccess().getPhaseAttachedPhaseParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__OptionalPhase__PhaseAssignment_54486);
+            pushFollow(FOLLOW_ruleAttachedPhase_in_rule__OptionalPhase__PhaseAssignment_54456);
             ruleAttachedPhase();
 
             state._fsp--;
@@ -5907,24 +5907,24 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__PhaseReference__PhaseAssignment"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2251:1: rule__PhaseReference__PhaseAssignment : ( ( RULE_ID ) ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2231:1: rule__PhaseReference__PhaseAssignment : ( ( RULE_ID ) ) ;
     public final void rule__PhaseReference__PhaseAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2255:1: ( ( ( RULE_ID ) ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2256:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2235:1: ( ( ( RULE_ID ) ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2236:1: ( ( RULE_ID ) )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2256:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2257:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2236:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2237:1: ( RULE_ID )
             {
              before(grammarAccess.getPhaseReferenceAccess().getPhasePhaseCrossReference_0()); 
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2258:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2259:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2238:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2239:1: RULE_ID
             {
              before(grammarAccess.getPhaseReferenceAccess().getPhasePhaseIDTerminalRuleCall_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PhaseReference__PhaseAssignment4521); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PhaseReference__PhaseAssignment4491); 
              after(grammarAccess.getPhaseReferenceAccess().getPhasePhaseIDTerminalRuleCall_0_1()); 
 
             }
@@ -5952,20 +5952,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewPhase__PhaseAssignment"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2270:1: rule__NewPhase__PhaseAssignment : ( rulePhase ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2250:1: rule__NewPhase__PhaseAssignment : ( rulePhase ) ;
     public final void rule__NewPhase__PhaseAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2274:1: ( ( rulePhase ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2275:1: ( rulePhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2254:1: ( ( rulePhase ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2255:1: ( rulePhase )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2275:1: ( rulePhase )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2276:1: rulePhase
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2255:1: ( rulePhase )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2256:1: rulePhase
             {
              before(grammarAccess.getNewPhaseAccess().getPhasePhaseParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulePhase_in_rule__NewPhase__PhaseAssignment4556);
+            pushFollow(FOLLOW_rulePhase_in_rule__NewPhase__PhaseAssignment4526);
             rulePhase();
 
             state._fsp--;
@@ -5993,20 +5993,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__NameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2285:1: rule__AtomicPhase__NameAssignment_1 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2265:1: rule__AtomicPhase__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__AtomicPhase__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2289:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2290:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2269:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2270:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2290:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2291:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2270:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2271:1: RULE_ID
             {
              before(grammarAccess.getAtomicPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AtomicPhase__NameAssignment_14587); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AtomicPhase__NameAssignment_14557); 
              after(grammarAccess.getAtomicPhaseAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -6030,20 +6030,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__ClassnameAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2300:1: rule__AtomicPhase__ClassnameAssignment_3 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2280:1: rule__AtomicPhase__ClassnameAssignment_3 : ( RULE_ID ) ;
     public final void rule__AtomicPhase__ClassnameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2304:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2305:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2284:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2285:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2305:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2306:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2285:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2286:1: RULE_ID
             {
              before(grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AtomicPhase__ClassnameAssignment_34618); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AtomicPhase__ClassnameAssignment_34588); 
              after(grammarAccess.getAtomicPhaseAccess().getClassnameIDTerminalRuleCall_3_0()); 
 
             }
@@ -6067,20 +6067,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AtomicPhase__MetricsAssignment_5"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2315:1: rule__AtomicPhase__MetricsAssignment_5 : ( ruleAttachedMetric ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2295:1: rule__AtomicPhase__MetricsAssignment_5 : ( ruleAttachedMetric ) ;
     public final void rule__AtomicPhase__MetricsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2319:1: ( ( ruleAttachedMetric ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2320:1: ( ruleAttachedMetric )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2299:1: ( ( ruleAttachedMetric ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2300:1: ( ruleAttachedMetric )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2320:1: ( ruleAttachedMetric )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2321:1: ruleAttachedMetric
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2300:1: ( ruleAttachedMetric )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2301:1: ruleAttachedMetric
             {
              before(grammarAccess.getAtomicPhaseAccess().getMetricsAttachedMetricParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleAttachedMetric_in_rule__AtomicPhase__MetricsAssignment_54649);
+            pushFollow(FOLLOW_ruleAttachedMetric_in_rule__AtomicPhase__MetricsAssignment_54619);
             ruleAttachedMetric();
 
             state._fsp--;
@@ -6108,20 +6108,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__MetricAssignment_0"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2330:1: rule__MetricTypeReference__MetricAssignment_0 : ( ruleMetricType ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2310:1: rule__MetricTypeReference__MetricAssignment_0 : ( ruleMetricType ) ;
     public final void rule__MetricTypeReference__MetricAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2334:1: ( ( ruleMetricType ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2335:1: ( ruleMetricType )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2314:1: ( ( ruleMetricType ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2315:1: ( ruleMetricType )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2335:1: ( ruleMetricType )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2336:1: ruleMetricType
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2315:1: ( ruleMetricType )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2316:1: ruleMetricType
             {
              before(grammarAccess.getMetricTypeReferenceAccess().getMetricMetricTypeEnumRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleMetricType_in_rule__MetricTypeReference__MetricAssignment_04680);
+            pushFollow(FOLLOW_ruleMetricType_in_rule__MetricTypeReference__MetricAssignment_04650);
             ruleMetricType();
 
             state._fsp--;
@@ -6149,20 +6149,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__MetricTypeReference__MetricnameAssignment_2"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2345:1: rule__MetricTypeReference__MetricnameAssignment_2 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2325:1: rule__MetricTypeReference__MetricnameAssignment_2 : ( RULE_ID ) ;
     public final void rule__MetricTypeReference__MetricnameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2349:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2350:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2329:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2330:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2350:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2351:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2330:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2331:1: RULE_ID
             {
              before(grammarAccess.getMetricTypeReferenceAccess().getMetricnameIDTerminalRuleCall_2_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MetricTypeReference__MetricnameAssignment_24711); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MetricTypeReference__MetricnameAssignment_24681); 
              after(grammarAccess.getMetricTypeReferenceAccess().getMetricnameIDTerminalRuleCall_2_0()); 
 
             }
@@ -6186,20 +6186,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__ClassnameAssignment_1"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2360:1: rule__NewMetric__ClassnameAssignment_1 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2340:1: rule__NewMetric__ClassnameAssignment_1 : ( RULE_ID ) ;
     public final void rule__NewMetric__ClassnameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2364:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2365:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2344:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2345:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2365:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2366:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2345:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2346:1: RULE_ID
             {
              before(grammarAccess.getNewMetricAccess().getClassnameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NewMetric__ClassnameAssignment_14742); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NewMetric__ClassnameAssignment_14712); 
              after(grammarAccess.getNewMetricAccess().getClassnameIDTerminalRuleCall_1_0()); 
 
             }
@@ -6223,20 +6223,20 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__NewMetric__MetricnameAssignment_3"
-    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2375:1: rule__NewMetric__MetricnameAssignment_3 : ( RULE_ID ) ;
+    // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2355:1: rule__NewMetric__MetricnameAssignment_3 : ( RULE_ID ) ;
     public final void rule__NewMetric__MetricnameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2379:1: ( ( RULE_ID ) )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2380:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2359:1: ( ( RULE_ID ) )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2360:1: ( RULE_ID )
             {
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2380:1: ( RULE_ID )
-            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2381:1: RULE_ID
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2360:1: ( RULE_ID )
+            // ../eu.mondo.sam.domain.ui/src-gen/eu/mondo/sam/domain/ui/contentassist/antlr/internal/InternalBenchmark.g:2361:1: RULE_ID
             {
              before(grammarAccess.getNewMetricAccess().getMetricnameIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NewMetric__MetricnameAssignment_34773); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NewMetric__MetricnameAssignment_34743); 
              after(grammarAccess.getNewMetricAccess().getMetricnameIDTerminalRuleCall_3_0()); 
 
             }
@@ -6319,155 +6319,155 @@ public class InternalBenchmarkParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_ruleNewPhase_in_rule__AttachedPhase__Alternatives1155 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMetricTypeReference_in_rule__AttachedMetric__Alternatives1187 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNewMetric_in_rule__AttachedMetric__Alternatives1204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__MetricType__Alternatives1237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__MetricType__Alternatives1258 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__MetricType__Alternatives1279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Benchmark__Group__0__Impl_in_rule__Benchmark__Group__01312 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_16_in_rule__MetricType__Alternatives1237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__MetricType__Alternatives1258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__MetricType__Alternatives1279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Benchmark__Group__0__Impl_in_rule__Benchmark__Group__01312 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_rule__Benchmark__Group__1_in_rule__Benchmark__Group__01315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__Benchmark__Group__0__Impl1343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Benchmark__Group__1__Impl_in_rule__Benchmark__Group__11374 = new BitSet(new long[]{0x0000000002A48000L});
+    public static final BitSet FOLLOW_19_in_rule__Benchmark__Group__0__Impl1343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Benchmark__Group__1__Impl_in_rule__Benchmark__Group__11374 = new BitSet(new long[]{0x0000000005700000L});
     public static final BitSet FOLLOW_rule__Benchmark__Group__2_in_rule__Benchmark__Group__11377 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Benchmark__PackageNameAssignment_1_in_rule__Benchmark__Group__1__Impl1404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Benchmark__Group__2__Impl_in_rule__Benchmark__Group__21434 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Benchmark__ElementsAssignment_2_in_rule__Benchmark__Group__2__Impl1461 = new BitSet(new long[]{0x0000000002A48002L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__0__Impl_in_rule__Scenario__Group__01498 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Benchmark__ElementsAssignment_2_in_rule__Benchmark__Group__2__Impl1461 = new BitSet(new long[]{0x0000000005700002L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__0__Impl_in_rule__Scenario__Group__01498 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_rule__Scenario__Group__1_in_rule__Scenario__Group__01501 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__Scenario__Group__0__Impl1529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__1__Impl_in_rule__Scenario__Group__11560 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_20_in_rule__Scenario__Group__0__Impl1529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__1__Impl_in_rule__Scenario__Group__11560 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__Scenario__Group__2_in_rule__Scenario__Group__11563 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Scenario__ClassnameAssignment_1_in_rule__Scenario__Group__1__Impl1590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__2__Impl_in_rule__Scenario__Group__21620 = new BitSet(new long[]{0x0000000002A48010L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__2__Impl_in_rule__Scenario__Group__21620 = new BitSet(new long[]{0x0000000005700200L});
     public static final BitSet FOLLOW_rule__Scenario__Group__3_in_rule__Scenario__Group__21623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__Scenario__Group__2__Impl1651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__3__Impl_in_rule__Scenario__Group__31682 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__4_in_rule__Scenario__Group__31685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Scenario__RootPhaseAssignment_3_in_rule__Scenario__Group__3__Impl1712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Scenario__Group__4__Impl_in_rule__Scenario__Group__41742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__Scenario__Group__4__Impl1770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__0__Impl_in_rule__SequencePhase__Group__01811 = new BitSet(new long[]{0x0000000000080010L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__1_in_rule__SequencePhase__Group__01814 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__SequencePhase__Group__0__Impl1842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__1__Impl_in_rule__SequencePhase__Group__11873 = new BitSet(new long[]{0x0000000000080010L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__2_in_rule__SequencePhase__Group__11876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequencePhase__NameAssignment_1_in_rule__SequencePhase__Group__1__Impl1903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__2__Impl_in_rule__SequencePhase__Group__21934 = new BitSet(new long[]{0x0000000002A48010L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__3_in_rule__SequencePhase__Group__21937 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__SequencePhase__Group__2__Impl1965 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__3__Impl_in_rule__SequencePhase__Group__31996 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__4_in_rule__SequencePhase__Group__31999 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2028 = new BitSet(new long[]{0x0000000002A48012L});
-    public static final BitSet FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2040 = new BitSet(new long[]{0x0000000002A48012L});
-    public static final BitSet FOLLOW_rule__SequencePhase__Group__4__Impl_in_rule__SequencePhase__Group__42073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__SequencePhase__Group__4__Impl2101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__0__Impl_in_rule__IterationPhase__Group__02142 = new BitSet(new long[]{0x0000000000080010L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__1_in_rule__IterationPhase__Group__02145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__IterationPhase__Group__0__Impl2173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__1__Impl_in_rule__IterationPhase__Group__12204 = new BitSet(new long[]{0x0000000000080010L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__2_in_rule__IterationPhase__Group__12207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__NameAssignment_1_in_rule__IterationPhase__Group__1__Impl2234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__2__Impl_in_rule__IterationPhase__Group__22265 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__3_in_rule__IterationPhase__Group__22268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__IterationPhase__Group__2__Impl2296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__3__Impl_in_rule__IterationPhase__Group__32327 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__4_in_rule__IterationPhase__Group__32330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__IterationAssignment_3_in_rule__IterationPhase__Group__3__Impl2357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__4__Impl_in_rule__IterationPhase__Group__42387 = new BitSet(new long[]{0x0000000002A48010L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__5_in_rule__IterationPhase__Group__42390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rule__IterationPhase__Group__4__Impl2418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__5__Impl_in_rule__IterationPhase__Group__52449 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__6_in_rule__IterationPhase__Group__52452 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__PhaseAssignment_5_in_rule__IterationPhase__Group__5__Impl2479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IterationPhase__Group__6__Impl_in_rule__IterationPhase__Group__62509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__IterationPhase__Group__6__Impl2537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__0__Impl_in_rule__OptionalPhase__Group__02582 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__1_in_rule__OptionalPhase__Group__02585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__OptionalPhase__Group__0__Impl2613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__1__Impl_in_rule__OptionalPhase__Group__12644 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__2_in_rule__OptionalPhase__Group__12647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__NameAssignment_1_in_rule__OptionalPhase__Group__1__Impl2674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__2__Impl_in_rule__OptionalPhase__Group__22705 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__3_in_rule__OptionalPhase__Group__22708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__OptionalPhase__Group__2__Impl2736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__3__Impl_in_rule__OptionalPhase__Group__32767 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__4_in_rule__OptionalPhase__Group__32770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__ClassnameAssignment_3_in_rule__OptionalPhase__Group__3__Impl2797 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__4__Impl_in_rule__OptionalPhase__Group__42827 = new BitSet(new long[]{0x0000000002A48010L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__5_in_rule__OptionalPhase__Group__42830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__OptionalPhase__Group__4__Impl2858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__5__Impl_in_rule__OptionalPhase__Group__52889 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__6_in_rule__OptionalPhase__Group__52892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__PhaseAssignment_5_in_rule__OptionalPhase__Group__5__Impl2919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OptionalPhase__Group__6__Impl_in_rule__OptionalPhase__Group__62949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__OptionalPhase__Group__6__Impl2977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__0__Impl_in_rule__AtomicPhase__Group__03022 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__1_in_rule__AtomicPhase__Group__03025 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_rule__AtomicPhase__Group__0__Impl3053 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__1__Impl_in_rule__AtomicPhase__Group__13084 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__2_in_rule__AtomicPhase__Group__13087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__NameAssignment_1_in_rule__AtomicPhase__Group__1__Impl3114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__2__Impl_in_rule__AtomicPhase__Group__23145 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__3_in_rule__AtomicPhase__Group__23148 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__AtomicPhase__Group__2__Impl3176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__3__Impl_in_rule__AtomicPhase__Group__33207 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__4_in_rule__AtomicPhase__Group__33210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__ClassnameAssignment_3_in_rule__AtomicPhase__Group__3__Impl3237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__4__Impl_in_rule__AtomicPhase__Group__43267 = new BitSet(new long[]{0x0000000010103800L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__5_in_rule__AtomicPhase__Group__43270 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__AtomicPhase__Group__4__Impl3298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__5__Impl_in_rule__AtomicPhase__Group__53329 = new BitSet(new long[]{0x0000000010103800L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__6_in_rule__AtomicPhase__Group__53332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__MetricsAssignment_5_in_rule__AtomicPhase__Group__5__Impl3359 = new BitSet(new long[]{0x0000000010003802L});
-    public static final BitSet FOLLOW_rule__AtomicPhase__Group__6__Impl_in_rule__AtomicPhase__Group__63390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__AtomicPhase__Group__6__Impl3418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__0__Impl_in_rule__MetricTypeReference__Group__03463 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__1_in_rule__MetricTypeReference__Group__03466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__MetricAssignment_0_in_rule__MetricTypeReference__Group__0__Impl3493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__1__Impl_in_rule__MetricTypeReference__Group__13523 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__2_in_rule__MetricTypeReference__Group__13526 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__MetricTypeReference__Group__1__Impl3554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__2__Impl_in_rule__MetricTypeReference__Group__23585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MetricTypeReference__MetricnameAssignment_2_in_rule__MetricTypeReference__Group__2__Impl3612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__0__Impl_in_rule__NewMetric__Group__03648 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__1_in_rule__NewMetric__Group__03651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__NewMetric__Group__0__Impl3679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__1__Impl_in_rule__NewMetric__Group__13710 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__2_in_rule__NewMetric__Group__13713 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NewMetric__ClassnameAssignment_1_in_rule__NewMetric__Group__1__Impl3740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__2__Impl_in_rule__NewMetric__Group__23770 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__3_in_rule__NewMetric__Group__23773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__NewMetric__Group__2__Impl3801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NewMetric__Group__3__Impl_in_rule__NewMetric__Group__33832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NewMetric__MetricnameAssignment_3_in_rule__NewMetric__Group__3__Impl3859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__03897 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__03900 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__QualifiedName__Group__0__Impl3927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__13956 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl3983 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__04018 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__04021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__QualifiedName__Group_1__0__Impl4049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__14080 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__QualifiedName__Group_1__1__Impl4107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Benchmark__PackageNameAssignment_14145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleElement_in_rule__Benchmark__ElementsAssignment_24176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Scenario__ClassnameAssignment_14207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__Scenario__RootPhaseAssignment_34238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SequencePhase__NameAssignment_14269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__SequencePhase__PhasesAssignment_34300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__IterationPhase__NameAssignment_14331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__IterationPhase__IterationAssignment_34362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__IterationPhase__PhaseAssignment_54393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__OptionalPhase__NameAssignment_14424 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__OptionalPhase__ClassnameAssignment_34455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__OptionalPhase__PhaseAssignment_54486 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__PhaseReference__PhaseAssignment4521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhase_in_rule__NewPhase__PhaseAssignment4556 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AtomicPhase__NameAssignment_14587 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AtomicPhase__ClassnameAssignment_34618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttachedMetric_in_rule__AtomicPhase__MetricsAssignment_54649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetricType_in_rule__MetricTypeReference__MetricAssignment_04680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MetricTypeReference__MetricnameAssignment_24711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__NewMetric__ClassnameAssignment_14742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__NewMetric__MetricnameAssignment_34773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_LBRACE_in_rule__Scenario__Group__2__Impl1650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__3__Impl_in_rule__Scenario__Group__31679 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__4_in_rule__Scenario__Group__31682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Scenario__RootPhaseAssignment_3_in_rule__Scenario__Group__3__Impl1709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Scenario__Group__4__Impl_in_rule__Scenario__Group__41739 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RBRACE_in_rule__Scenario__Group__4__Impl1766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__0__Impl_in_rule__SequencePhase__Group__01805 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__1_in_rule__SequencePhase__Group__01808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__SequencePhase__Group__0__Impl1836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__1__Impl_in_rule__SequencePhase__Group__11867 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__2_in_rule__SequencePhase__Group__11870 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SequencePhase__NameAssignment_1_in_rule__SequencePhase__Group__1__Impl1897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__2__Impl_in_rule__SequencePhase__Group__21928 = new BitSet(new long[]{0x0000000005700200L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__3_in_rule__SequencePhase__Group__21931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_LPAR_in_rule__SequencePhase__Group__2__Impl1958 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__3__Impl_in_rule__SequencePhase__Group__31987 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__4_in_rule__SequencePhase__Group__31990 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2019 = new BitSet(new long[]{0x0000000005700202L});
+    public static final BitSet FOLLOW_rule__SequencePhase__PhasesAssignment_3_in_rule__SequencePhase__Group__3__Impl2031 = new BitSet(new long[]{0x0000000005700202L});
+    public static final BitSet FOLLOW_rule__SequencePhase__Group__4__Impl_in_rule__SequencePhase__Group__42064 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RPAR_in_rule__SequencePhase__Group__4__Impl2091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__0__Impl_in_rule__IterationPhase__Group__02130 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__1_in_rule__IterationPhase__Group__02133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__IterationPhase__Group__0__Impl2161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__1__Impl_in_rule__IterationPhase__Group__12192 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__2_in_rule__IterationPhase__Group__12195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__NameAssignment_1_in_rule__IterationPhase__Group__1__Impl2222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__2__Impl_in_rule__IterationPhase__Group__22253 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__3_in_rule__IterationPhase__Group__22256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_LPAR_in_rule__IterationPhase__Group__2__Impl2283 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__3__Impl_in_rule__IterationPhase__Group__32312 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__4_in_rule__IterationPhase__Group__32315 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__IterationAssignment_3_in_rule__IterationPhase__Group__3__Impl2342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__4__Impl_in_rule__IterationPhase__Group__42372 = new BitSet(new long[]{0x0000000005700200L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__5_in_rule__IterationPhase__Group__42375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__IterationPhase__Group__4__Impl2403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__5__Impl_in_rule__IterationPhase__Group__52434 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__6_in_rule__IterationPhase__Group__52437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__PhaseAssignment_5_in_rule__IterationPhase__Group__5__Impl2464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IterationPhase__Group__6__Impl_in_rule__IterationPhase__Group__62494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RPAR_in_rule__IterationPhase__Group__6__Impl2521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__0__Impl_in_rule__OptionalPhase__Group__02564 = new BitSet(new long[]{0x0000000002000200L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__1_in_rule__OptionalPhase__Group__02567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__OptionalPhase__Group__0__Impl2595 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__1__Impl_in_rule__OptionalPhase__Group__12626 = new BitSet(new long[]{0x0000000002000200L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__2_in_rule__OptionalPhase__Group__12629 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__NameAssignment_1_in_rule__OptionalPhase__Group__1__Impl2656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__2__Impl_in_rule__OptionalPhase__Group__22687 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__3_in_rule__OptionalPhase__Group__22690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__OptionalPhase__Group__2__Impl2718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__3__Impl_in_rule__OptionalPhase__Group__32749 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__4_in_rule__OptionalPhase__Group__32752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__ClassnameAssignment_3_in_rule__OptionalPhase__Group__3__Impl2779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__4__Impl_in_rule__OptionalPhase__Group__42809 = new BitSet(new long[]{0x0000000005700200L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__5_in_rule__OptionalPhase__Group__42812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_LPAR_in_rule__OptionalPhase__Group__4__Impl2839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__5__Impl_in_rule__OptionalPhase__Group__52868 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__6_in_rule__OptionalPhase__Group__52871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__PhaseAssignment_5_in_rule__OptionalPhase__Group__5__Impl2898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__OptionalPhase__Group__6__Impl_in_rule__OptionalPhase__Group__62928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RPAR_in_rule__OptionalPhase__Group__6__Impl2955 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__0__Impl_in_rule__AtomicPhase__Group__02998 = new BitSet(new long[]{0x0000000002000200L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__1_in_rule__AtomicPhase__Group__03001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__AtomicPhase__Group__0__Impl3029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__1__Impl_in_rule__AtomicPhase__Group__13060 = new BitSet(new long[]{0x0000000002000200L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__2_in_rule__AtomicPhase__Group__13063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__NameAssignment_1_in_rule__AtomicPhase__Group__1__Impl3090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__2__Impl_in_rule__AtomicPhase__Group__23121 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__3_in_rule__AtomicPhase__Group__23124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__AtomicPhase__Group__2__Impl3152 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__3__Impl_in_rule__AtomicPhase__Group__33183 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__4_in_rule__AtomicPhase__Group__33186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__ClassnameAssignment_3_in_rule__AtomicPhase__Group__3__Impl3213 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__4__Impl_in_rule__AtomicPhase__Group__43243 = new BitSet(new long[]{0x0000000010070080L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__5_in_rule__AtomicPhase__Group__43246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_METRICS_in_rule__AtomicPhase__Group__4__Impl3273 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__5__Impl_in_rule__AtomicPhase__Group__53302 = new BitSet(new long[]{0x0000000010070080L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__6_in_rule__AtomicPhase__Group__53305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__MetricsAssignment_5_in_rule__AtomicPhase__Group__5__Impl3332 = new BitSet(new long[]{0x0000000010070002L});
+    public static final BitSet FOLLOW_rule__AtomicPhase__Group__6__Impl_in_rule__AtomicPhase__Group__63363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RPAR_in_rule__AtomicPhase__Group__6__Impl3390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__0__Impl_in_rule__MetricTypeReference__Group__03433 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__1_in_rule__MetricTypeReference__Group__03436 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__MetricAssignment_0_in_rule__MetricTypeReference__Group__0__Impl3463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__1__Impl_in_rule__MetricTypeReference__Group__13493 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__2_in_rule__MetricTypeReference__Group__13496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__MetricTypeReference__Group__1__Impl3524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__Group__2__Impl_in_rule__MetricTypeReference__Group__23555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MetricTypeReference__MetricnameAssignment_2_in_rule__MetricTypeReference__Group__2__Impl3582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__0__Impl_in_rule__NewMetric__Group__03618 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__1_in_rule__NewMetric__Group__03621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__NewMetric__Group__0__Impl3649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__1__Impl_in_rule__NewMetric__Group__13680 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__2_in_rule__NewMetric__Group__13683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NewMetric__ClassnameAssignment_1_in_rule__NewMetric__Group__1__Impl3710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__2__Impl_in_rule__NewMetric__Group__23740 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__3_in_rule__NewMetric__Group__23743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__NewMetric__Group__2__Impl3771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NewMetric__Group__3__Impl_in_rule__NewMetric__Group__33802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NewMetric__MetricnameAssignment_3_in_rule__NewMetric__Group__3__Impl3829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__03867 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__03870 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__QualifiedName__Group__0__Impl3897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__13926 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl3953 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__03988 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__03991 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__QualifiedName__Group_1__0__Impl4019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__14050 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__QualifiedName__Group_1__1__Impl4077 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Benchmark__PackageNameAssignment_14115 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleElement_in_rule__Benchmark__ElementsAssignment_24146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Scenario__ClassnameAssignment_14177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__Scenario__RootPhaseAssignment_34208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SequencePhase__NameAssignment_14239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__SequencePhase__PhasesAssignment_34270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__IterationPhase__NameAssignment_14301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__IterationPhase__IterationAssignment_34332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__IterationPhase__PhaseAssignment_54363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__OptionalPhase__NameAssignment_14394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__OptionalPhase__ClassnameAssignment_34425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedPhase_in_rule__OptionalPhase__PhaseAssignment_54456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__PhaseReference__PhaseAssignment4491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhase_in_rule__NewPhase__PhaseAssignment4526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AtomicPhase__NameAssignment_14557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AtomicPhase__ClassnameAssignment_34588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttachedMetric_in_rule__AtomicPhase__MetricsAssignment_54619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetricType_in_rule__MetricTypeReference__MetricAssignment_04650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MetricTypeReference__MetricnameAssignment_24681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__NewMetric__ClassnameAssignment_14712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__NewMetric__MetricnameAssignment_34743 = new BitSet(new long[]{0x0000000000000002L});
 
 }

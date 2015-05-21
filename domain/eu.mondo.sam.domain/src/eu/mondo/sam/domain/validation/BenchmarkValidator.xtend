@@ -126,7 +126,6 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 
 	@Check
 	def checkCycle(Scenario scenario){
-		print("circle check")
 		if (scenario.rootPhase == null){
 			return
 		}
@@ -139,55 +138,4 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 		
 	}
 
-	
-//	def boolean containsCircle(AttachedPhase phase, Set<Element> phases){
-//		print("contains method\n")
-//		if (phase instanceof OptionalPhase){
-//			print("optional")
-//			if (phases.contains(phase)){
-//				return true
-//			}
-//			else{
-//				phases.add(phase)
-//				if (containsCircle(phase.phase, phases)){
-//					return true
-//				}
-//			}
-//		}
-//		if (phase instanceof IterationPhase){
-//			print("iteraiton")
-//			if (phases.contains(phase)){
-//				return true
-//			}
-//			else{
-//				phases.add(phase)
-//				if (containsCircle(phase.phase, phases)){
-//					return true
-//				}
-//			}
-//		}
-//		if (phase instanceof SequencePhase){
-//			print("seq")
-//			if (phases.contains(phase)){
-//				return true
-//			}
-//			else{
-//				phases.add(phase)
-//				for (p : phase.phases){
-//					if (containsCircle(p, phases)){
-//						return true
-//					}
-//				}
-//			}
-//		}
-//		
-//		if (phase instanceof PhaseReference){
-//			if (containsCircle(phase.phase, phases)){
-//				return true
-//			}
-//		}
-//		
-//		return false
-//	}
-	
 }
