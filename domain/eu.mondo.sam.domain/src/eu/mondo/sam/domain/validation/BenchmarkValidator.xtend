@@ -14,6 +14,13 @@ import eu.mondo.sam.domain.benchmark.Scenario
 import eu.mondo.sam.domain.benchmark.Phase
 import eu.mondo.sam.domain.benchmark.PhaseReference
 import eu.mondo.sam.domain.benchmark.NewPhase
+import eu.mondo.sam.domain.benchmark.Element
+import eu.mondo.sam.domain.benchmark.Benchmark
+import java.util.Set
+import java.util.HashSet
+import eu.mondo.sam.domain.benchmark.AttachedPhase
+import java.util.ArrayList
+import java.util.List
 
 /**
  * Custom validation rules. 
@@ -21,6 +28,8 @@ import eu.mondo.sam.domain.benchmark.NewPhase
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
 class BenchmarkValidator extends AbstractBenchmarkValidator {
+
+	
 
 	@Check
 	def checkAtomicPhaseStartsWithCapital(AtomicPhase atomic) {
@@ -36,11 +45,26 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 		}
 	}
 	
+	
+	@Check
+	def checkOptionalPhaseStartsWithCapital(OptionalPhase optional) {
+		if (optional.classname == null){
+			return
+		}
+		if (optional.classname.length == 0){
+			return
+		}
+		if (!Character.isUpperCase(optional.classname.charAt(0))) {
+			warning('The name of the phase should start with capital since it represents a class name.', 
+				BenchmarkPackage.Literals.OPTIONAL_PHASE__CLASSNAME, "invalid_optionalphase")
+		}
+	}
+	
 	@Check
 	def checkMetricStartsWithCapital(NewMetric metric) {
-		if (!Character.isUpperCase(metric.metricname.charAt(0))) {
+		if (!Character.isUpperCase(metric.classname.charAt(0))) {
 			warning('The name of the metric should start with capital since it represents a new class name.', 
-				BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME, "invalid_metric"
+				BenchmarkPackage.Literals.NEW_METRIC__CLASSNAME, "invalid_metric"
 			)
 		}
 	}
@@ -63,6 +87,42 @@ class BenchmarkValidator extends AbstractBenchmarkValidator {
 		}
 	}
 	
+	@Check
+	def checkUniqueClassNames(Scenario scenario){
+		val allElements = (scenario.eContainer as Benchmark).elements
+		if (allElements == null){
+			return
+		}
+		val  List<String> classNames = new ArrayList<String>
+		for (e : allElements){
+			if (e instanceof Scenario){
+				classNames.add(e.classname)
+			}
+			if (e instanceof AtomicPhase){
+				classNames.add(e.classname)
+			}
+			if (e instanceof OptionalPhase){
+				classNames.add(e.classname)
+			}
+			ClassNameResolver::resolve(e, classNames, e)
+		}
+		var match = 0
+		for (i : classNames){
+			for(j : classNames){
+				if (i.equals(j)){
+					match++
+				}
+			}
+			if (match > 1){
+				error("The class names must be unique",
+						BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "not_unique_scenario"
+					)
+				return
+			}
+			match = 0
+		}
+}
+
 //	@Check
 //	def searchCycle(Scenario scenario){
 //		if (scenario.rootPhase == null){

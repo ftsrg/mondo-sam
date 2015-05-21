@@ -5,11 +5,19 @@ package eu.mondo.sam.domain.validation;
 
 import com.google.common.base.Objects;
 import eu.mondo.sam.domain.benchmark.AtomicPhase;
+import eu.mondo.sam.domain.benchmark.Benchmark;
 import eu.mondo.sam.domain.benchmark.BenchmarkPackage;
+import eu.mondo.sam.domain.benchmark.Element;
 import eu.mondo.sam.domain.benchmark.IterationPhase;
 import eu.mondo.sam.domain.benchmark.NewMetric;
+import eu.mondo.sam.domain.benchmark.OptionalPhase;
 import eu.mondo.sam.domain.benchmark.Scenario;
 import eu.mondo.sam.domain.validation.AbstractBenchmarkValidator;
+import eu.mondo.sam.domain.validation.ClassNameResolver;
+import java.util.ArrayList;
+import java.util.List;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -43,14 +51,37 @@ public class BenchmarkValidator extends AbstractBenchmarkValidator {
   }
   
   @Check
+  public void checkOptionalPhaseStartsWithCapital(final OptionalPhase optional) {
+    String _classname = optional.getClassname();
+    boolean _equals = Objects.equal(_classname, null);
+    if (_equals) {
+      return;
+    }
+    String _classname_1 = optional.getClassname();
+    int _length = _classname_1.length();
+    boolean _equals_1 = (_length == 0);
+    if (_equals_1) {
+      return;
+    }
+    String _classname_2 = optional.getClassname();
+    char _charAt = _classname_2.charAt(0);
+    boolean _isUpperCase = Character.isUpperCase(_charAt);
+    boolean _not = (!_isUpperCase);
+    if (_not) {
+      this.warning("The name of the phase should start with capital since it represents a class name.", 
+        BenchmarkPackage.Literals.OPTIONAL_PHASE__CLASSNAME, "invalid_optionalphase");
+    }
+  }
+  
+  @Check
   public void checkMetricStartsWithCapital(final NewMetric metric) {
-    String _metricname = metric.getMetricname();
-    char _charAt = _metricname.charAt(0);
+    String _classname = metric.getClassname();
+    char _charAt = _classname.charAt(0);
     boolean _isUpperCase = Character.isUpperCase(_charAt);
     boolean _not = (!_isUpperCase);
     if (_not) {
       this.warning("The name of the metric should start with capital since it represents a new class name.", 
-        BenchmarkPackage.Literals.ATTACHED_METRIC__METRICNAME, "invalid_metric");
+        BenchmarkPackage.Literals.NEW_METRIC__CLASSNAME, "invalid_metric");
     }
   }
   
@@ -73,6 +104,51 @@ public class BenchmarkValidator extends AbstractBenchmarkValidator {
     if (_lessThan) {
       this.error("The iteration must be higher than 0", 
         BenchmarkPackage.Literals.ITERATION_PHASE__ITERATION, "invalid_iteration");
+    }
+  }
+  
+  @Check
+  public void checkUniqueClassNames(final Scenario scenario) {
+    EObject _eContainer = scenario.eContainer();
+    final EList<Element> allElements = ((Benchmark) _eContainer).getElements();
+    boolean _equals = Objects.equal(allElements, null);
+    if (_equals) {
+      return;
+    }
+    final List<String> classNames = new ArrayList<String>();
+    for (final Element e : allElements) {
+      {
+        if ((e instanceof Scenario)) {
+          String _classname = ((Scenario)e).getClassname();
+          classNames.add(_classname);
+        }
+        if ((e instanceof AtomicPhase)) {
+          String _classname_1 = ((AtomicPhase)e).getClassname();
+          classNames.add(_classname_1);
+        }
+        if ((e instanceof OptionalPhase)) {
+          String _classname_2 = ((OptionalPhase)e).getClassname();
+          classNames.add(_classname_2);
+        }
+        ClassNameResolver.resolve(e, classNames, e);
+      }
+    }
+    int match = 0;
+    for (final String i : classNames) {
+      {
+        for (final String j : classNames) {
+          boolean _equals_1 = i.equals(j);
+          if (_equals_1) {
+            match++;
+          }
+        }
+        if ((match > 1)) {
+          this.error("The class names must be unique", 
+            BenchmarkPackage.Literals.SCENARIO__CLASSNAME, "not_unique_scenario");
+          return;
+        }
+        match = 0;
+      }
     }
   }
 }

@@ -21,27 +21,34 @@ class CapitalNameTest {
   private ValidationTestHelper helper;
  
   @Test
-  def testValidScenarioDeclaration() {
+  def testScenarioDeclaration() {
     val model = parseHelper.parse('package test.pack Scenario name {Atomic ClassName AtomicName Metrics()}')
 	helper.assertWarning(model, BenchmarkPackage.Literals.SCENARIO, "invalid_scenario");
   }
   
   @Test
-  def testValidAtomicPhaseDeclaration() {
+  def testAtomicPhaseDeclaration() {
     val model = parseHelper.parse('package test.pack Scenario ScenarioName {Atomic ClassName atomicName Metrics()}')
     helper.assertNoErrors(model);
 	helper.assertWarning(model, BenchmarkPackage.Literals.ATOMIC_PHASE, "invalid_atomicphase");
   }
   
   @Test
-  def testValidMetricDeclaration() {
+  def testMetricDeclaration() {
     val model = parseHelper.parse('package test.pack Scenario name {
 				Atomic ClassName AtomicName Metrics(
-		new Metric ClassName metricname ID met
+		new Metric ClassName metricname ID Met
 		)
 	}')
 	helper.assertNoErrors(model);
 	helper.assertWarning(model, BenchmarkPackage.Literals.NEW_METRIC, "invalid_metric");
+  }
+  
+  @Test
+  def testOptionalPhaseDeclaration() {
+    val model = parseHelper.parse('package test.pack Scenario ScenarioName {Optional ClassName testOptional (Atomic ClassName AtomicName Metrics())}')
+    helper.assertNoErrors(model);
+	helper.assertWarning(model, BenchmarkPackage.Literals.OPTIONAL_PHASE, "invalid_optionalphase");
   }
   
 }
