@@ -10,7 +10,7 @@ setMethodS3(name = "getState", class = "ToolFilter", overwrite = TRUE, function(
 })
 
 setMethodS3(name = "update", class = "ToolFilter", overwrite = TRUE, function(this){
-  print(values$subTables)
+  
 })
 
 setMethodS3(name = "notify", class = "ToolFilter", overwrite = TRUE, function(this){

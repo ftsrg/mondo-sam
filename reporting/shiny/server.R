@@ -8,8 +8,9 @@ source("../plot_functions.R")
 source("../theme.R")
 source("../util.R")
 # source("../constants.R")
-source("classes/FilterContainer.R")
-source("classes/Selections.R")
+source("classes/FilterContainer.R", echo = FALSE)
+source("classes/Result.R", echo = FALSE)
+source("classes/Selections.R", echo = FALSE)
 source("classes/DataFilter.R", echo = FALSE)
 source("classes/ToolFilter.R", echo = FALSE)
 
@@ -18,6 +19,7 @@ shinyServer(function(input, output, session) {
   
   
   values <- reactiveValues(
+                           result = Result(),
                            filterContainer = FilterContainer(),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
@@ -58,37 +60,27 @@ shinyServer(function(input, output, session) {
     if (is.null(inFile))
       return()
     isolate({
-      
-      
-      values$results <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
+      tempResults <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
                                  quote=input$quote)
-      
       withProgress(message = 'Processing', value = 1.0, {
-        values$unique_cases <- as.character(unique(values$results$CaseName))
-        values$unique_tools <- as.character(unique(values$results$Tool))
-        values$unique_sizes <- as.character(unique(values$results$Size))
-        values$unique_scenarios <- as.character(unique(values$results$Scenario))
-        s <- proc.time()
-        values$subFrames <- NULL
-        createSubFrames(values$results, c("Scenario"))
-        createSubFrames(values$results, c("Tool"))
-        createSubFrames(values$results, c("CaseName"))
-        createSubFrames(values$results, c("Scenario", "Tool"))
-        createSubFrames(values$results, c("Scenario", "CaseName"))
-        createSubFrames(values$results, c("Tool", "CaseName"))
-        createSubFrames(values$results, c("Scenario", "Tool", "CaseName"))
-        t <- proc.time()
-        elapsed <- t-s
-        print(elapsed)
+#         values$unique_cases <- as.character(unique(values$results$CaseName))
+#         values$unique_tools <- as.character(unique(values$results$Tool))
+#         values$unique_sizes <- as.character(unique(values$results$Size))
+#         values$unique_scenarios <- as.character(unique(values$results$Scenario))
+#         s <- proc.time()
+        values$result$setFrame(tempResults)
+        values$result$createSubFrames()
+#         t <- proc.time()
+#         elapsed <- t-s
+#         print(elapsed)
         
         # initialize components
+        values$filterContainer$setResult(values$result)
         values$filterContainer$init()
-        
+
         updateTabsetPanel(session, "reporting", selected = "Results")
 #         print(values$subFrames[["ID.Batch.EMFIncQuery.PosLength"]])
 #         print(names(values$subFrames))
-      
-
       })
     })
   })
@@ -233,27 +225,6 @@ shinyServer(function(input, output, session) {
   })
   
   source('observers.R', local=TRUE)
-
-  createSubFrames <- function(results, selections, id, index=0){
-    if(length(selections) ==0){
-      values$subFrames[[id]] <- results
-    }
-    else {
-      selected <- selections[1]
-      uniqueValues <- unique(results[[selected]])
-      for(value in uniqueValues){
-        if (index == 0){
-          id <- "ID"
-        }
-        newId <- paste(id, value, sep=".")
-        newResults <- results[results[[selected]] == value, ]
-        value <- as.character(value)
-        newSelections <- selections[selections != selected]
-        index <- index + 1
-        createSubFrames(newResults, newSelections, newId, index)
-      }
-    }
-}
 
   getFrameID <- function(limit="Size"){
     isolate({
