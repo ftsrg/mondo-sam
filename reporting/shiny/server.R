@@ -2,16 +2,23 @@ library("ggplot2",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("shiny", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
+library("R.oo", quietly=T, verbose=F, warn.conflicts=FALSE)
 source("../plot.R")
 source("../plot_functions.R")
 source("../theme.R")
 source("../util.R")
-source("../constants.R")
+# source("../constants.R")
+source("classes/FilterContainer.R")
+source("classes/Selections.R")
+source("classes/DataFilter.R", echo = FALSE)
+source("classes/ToolFilter.R", echo = FALSE)
 
 shinyServer(function(input, output, session) {
     
-  values <- reactiveValues( 
-                           selections = c("Scenario", "Tool", "CaseName"),
+  
+  
+  values <- reactiveValues(
+                           filterContainer = FilterContainer(),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
                                             PhaseName="PhaseName", 
@@ -51,6 +58,8 @@ shinyServer(function(input, output, session) {
     if (is.null(inFile))
       return()
     isolate({
+      
+      
       values$results <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
                                  quote=input$quote)
       
@@ -71,10 +80,15 @@ shinyServer(function(input, output, session) {
         t <- proc.time()
         elapsed <- t-s
         print(elapsed)
+        
+        # initialize components
+        values$filterContainer$init()
+        
         updateTabsetPanel(session, "reporting", selected = "Results")
 #         print(values$subFrames[["ID.Batch.EMFIncQuery.PosLength"]])
 #         print(names(values$subFrames))
       
+
       })
     })
   })

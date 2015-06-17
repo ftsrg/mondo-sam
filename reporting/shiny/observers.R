@@ -59,4 +59,5 @@ changeSelections <- observe({
     values$selections <- values$selections[values$selections != input$legend & 
                                              values$selections != input$xdimension]
   })
+  print(values$selections)
 })

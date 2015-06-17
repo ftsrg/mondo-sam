@@ -68,6 +68,7 @@ output$scenario <- renderUI({
   })
   if("Scenario" %in% values$selections == FALSE){
     # display nothing
+    print("values-selections:")
     print(values$selections)
     return()
   }
@@ -88,6 +89,15 @@ output$scenario <- renderUI({
 output$tool <- renderUI({
   print("tool")
   values$toolObserver
+  isolate({
+    values$filterContainer$.tool$display()  
+  })
+  
+  
+  
+  
+  
+  
   values$scenario
   
   isolate({
