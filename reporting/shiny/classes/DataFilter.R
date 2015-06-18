@@ -7,8 +7,7 @@ setConstructorS3(name = "DataFilter", abstract = TRUE, function(selections = NUL
          .container = NULL,
          .selectedState = "",
          .allCurrentStates = "",
-         .allStates = "",
-         .prevState = "")
+         .allStates = "")
 })
 
 
@@ -89,7 +88,6 @@ setMethodS3(name = "update", class = "DataFilter", function(this){
   if(this$.selectedState %in% this$.allCurrentStates == FALSE){
     this$.selectedState <- this$.allCurrentStates[1]
   }
-  this$.prevState <- this$.selectedState
 })
 
 

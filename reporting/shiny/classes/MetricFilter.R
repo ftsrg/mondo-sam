@@ -48,10 +48,6 @@ setMethodS3(name = "update", class = "MetricFilter", overwrite = TRUE, function(
       }
     }
   }
-#     if(this$.selectedState %in% this$.allCurrentStates == FALSE){
-#       this$.selectedState <- NULL
-#     }
-  this$.prevState <- this$.selectedState
 })
 
 

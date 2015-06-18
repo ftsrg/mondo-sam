@@ -42,7 +42,6 @@ setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(t
       }
     }
   }
-  this$.prevState <- this$.selectedState
 })
 
 
