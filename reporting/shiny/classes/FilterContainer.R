@@ -13,7 +13,8 @@ setConstructorS3(name = "FilterContainer", function(){
          .metric = NULL,
          .iteration = NULL,
          .xDimension = NULL,
-         .legend = NULL
+         .legend = NULL,
+         .specificLegend = NULL
          )
 })
 
@@ -67,6 +68,11 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   this$.legend$.allStates <- c("Scenario", "CaseName", "Tool", "Size", "MetricName")
   this$.legend$.selectedState <- "MetricName"
   this$.legend$update()
+  
+  this$.specificLegend <- SpecificLegendFilter(sel)
+  this$.specificLegend$setContainer(this)
+  this$.specificLegend$.allStates <- NULL
+  this$.specificLegend$update()
 
 })
 

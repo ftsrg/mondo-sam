@@ -10,6 +10,10 @@ setMethodS3(name = "notify", class = "MetricFilter", overwrite = TRUE, function(
     this$.container$.iteration$update()
     observers$iterationObserver <- observers$iterationObserver +1
     this$.container$.iteration$notify(observers)
+    
+    this$.container$.specificLegend$update()
+    observers$specificLegendObserver <- observers$specificLegendObserver +1
+    this$.container$.specificLegend$notify(observers)
 })
 
 

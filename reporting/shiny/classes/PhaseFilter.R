@@ -24,7 +24,7 @@ setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(t
   frame <- result$getSubFrame(id)
   
   if (this$enable("Size")){
-    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.currentState)$PhaseName)
+    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState)$PhaseName)
   }
   else{
     uniqueStates <- unique(frame$PhaseName)

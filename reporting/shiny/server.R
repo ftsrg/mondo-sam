@@ -22,6 +22,8 @@ source("classes/MetricFilter.R", echo = FALSE)
 source("classes/IterationFilter.R", echo = FALSE)
 source("classes/XDimensionFilter.R", echo = FALSE)
 source("classes/LegendFilter.R", echo = FALSE)
+source("classes/SpecificLegendFilter.R", echo = FALSE)
+
 options(warn=0)
 
 shinyServer(function(input, output, session) {
@@ -50,6 +52,7 @@ shinyServer(function(input, output, session) {
                            iterationObserver=0,
                            xDimensionObserver=0,
                            legendObserver=0,
+                           specificLegendObserver=0,
                            scenario = "",
                            case = "",
                            tool = "",

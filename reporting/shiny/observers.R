@@ -61,7 +61,11 @@ changeSelections <- observe({
 
 
 changeLegendFilters <- observe({
-  values$legendFilters <- input$legendFilters
+  specificLegend <- input$legendFilters
+  isolate({
+    values$filterContainer$.specificLegend$.selectedState <- specificLegend
+    values$filterContainer$.specificLegend$notify(values)
+  })
 })
 
 
