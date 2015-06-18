@@ -1,5 +1,4 @@
 output$plot <- renderPlot({
-  print("DRAW PLOT")
   # add dependency to "Draw Plot" button
   input$visualize
   isolate({
@@ -62,7 +61,6 @@ output$plot <- renderPlot({
 
 
 output$scenario <- renderUI({
-  print("scenario")
   values$scenarioObserver
   isolate({
     if (!is.null(values$filterContainer$.scenario)){
@@ -73,7 +71,6 @@ output$scenario <- renderUI({
 
 
 output$tool <- renderUI({
-  print("tool")
   values$toolObserver
   isolate({
     if (!is.null(values$filterContainer$.tool)){

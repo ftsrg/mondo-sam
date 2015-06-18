@@ -49,7 +49,6 @@ changeMetrics <- observe({
 })
 
 changeSelections <- observe({
-  print("change selections obs")
   xDimension <- input$xDimension
   legend <- input$legend
   isolate({
@@ -62,7 +61,6 @@ changeSelections <- observe({
 
 
 changeLegendFilters <- observe({
-  print("legend filter obs")
   values$legendFilters <- input$legendFilters
 })
 

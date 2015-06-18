@@ -64,7 +64,7 @@ setMethodS3(name = "enable", class = "DataFilter", function(this, filterName){
 })
 
 
-setMethodS3(name = "notify", class = "DataFilter", abstract = TRUE, function(this, observers){print("data notify")})
+setMethodS3(name = "notify", class = "DataFilter", abstract = TRUE, function(this, observers){})
 
 
 setMethodS3(name = "getIdentifier", class = "DataFilter", abstract = TRUE, function(this){})
