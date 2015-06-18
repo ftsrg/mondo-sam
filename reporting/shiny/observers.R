@@ -97,3 +97,52 @@ changePlotSettingsYScale <- observe({
     values$plotContainer$.plotSettings$.yScale <- scale
   })
 })
+
+changePlotSettingsXLabel <- observe({
+  label <- input$xLabel
+  isolate({
+    values$plotContainer$.plotSettings$.xLabel <- label
+  })
+})
+
+changePlotSettingsYLabel <- observe({
+  label <- input$yLabel
+  isolate({
+    values$plotContainer$.plotSettings$.yLabel <- label
+  })
+})
+
+changePlotSettingsXAxis <- observe({
+  axis <- input$xAxis
+  isolate({
+    values$plotContainer$.plotSettings$.xAxis <- axis
+  })
+})
+
+changePlotSettingsYAxis <- observe({
+  axis <- input$yAxis
+  isolate({
+    values$plotContainer$.plotSettings$.yAxis <- axis
+  })
+})
+
+changePlotSettingsTexts <- observe({
+  enableTexts <- input$showValues
+  isolate({
+    values$plotContainer$.plotSettings$.texts <- enableTexts
+  })
+})
+
+changePlotSettingsLines <- observe({
+  drawLines <- input$drawLines
+  isolate({
+    values$plotContainer$.plotSettings$.lines <- drawLines
+  })
+})
+
+changePlotSettingsTitle <- observe({
+  title <- input$title
+  isolate({
+    values$plotContainer$.plotSettings$.title <- title
+  })
+})
