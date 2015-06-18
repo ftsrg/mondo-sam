@@ -60,6 +60,7 @@ output$plot <- renderPlot({
   })
 })
 
+
 output$scenario <- renderUI({
   print("scenario")
   values$scenarioObserver
@@ -67,6 +68,7 @@ output$scenario <- renderUI({
     values$filterContainer$.scenario$display()  
   })
 })
+
 
 output$tool <- renderUI({
   print("tool")
@@ -76,6 +78,7 @@ output$tool <- renderUI({
   })
 })
 
+
 output$case <- renderUI({
   values$caseObserver
   isolate({
@@ -83,42 +86,14 @@ output$case <- renderUI({
   })
 })
 
+
 output$size <- renderUI({
-#   print("size")
-#   values$sizeObserver
-#   values$case
-#   isolate({
-#     values$phaseObserver <- values$phaseObserver + 1
-#   })
-# 
-#   if("Size" %in% values$selections == FALSE){
-#     # display nothing
-#     return()
-#   }
-#   
-#   isolate({
-#     
-#     id <- getFrameID("Size")
-#     print("print id in size:")
-#     print(id)
-#     if(id == "ID"){
-#       uniqueSizes <- values$unique_sizes
-#     }
-#     else{
-#       uniqueSizes <- unique(values$subFrames[[id]]$Size)
-#     }
-#     size_list <- list()
-#     for(size in uniqueSizes){
-#       size_list <- c(size, size_list)
-#     }
-#     size_list <- sort(as.numeric(size_list))
-#     values$size <- size_list[0]
-#     selectInput("size", "Size",
-#                 choices = size_list,
-#                 selected = size_list[0]
-#     )
-#   })
+  values$sizeObserver
+  isolate({
+    values$filterContainer$.size$display()
+  })
 })
+
 
 output$phases <- renderUI({
 #   print("phase")

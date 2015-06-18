@@ -13,9 +13,10 @@ source("classes/FilterContainer.R", echo = FALSE)
 source("classes/Result.R", echo = FALSE)
 source("classes/Selections.R", echo = FALSE)
 source("classes/DataFilter.R", echo = FALSE)
-source("classes/ToolFilter.R", echo = FALSE)
 source("classes/ScenarioFilter.R", echo = FALSE)
+source("classes/ToolFilter.R", echo = FALSE)
 source("classes/CaseFilter.R", echo = FALSE)
+source("classes/SizeFilter.R", echo = FALSE)
 options(warn=0)
 
 shinyServer(function(input, output, session) {
@@ -174,7 +175,7 @@ shinyServer(function(input, output, session) {
   # observer for title
   appendTitle <- observe({
     # create dependency to the titleInsert button
-    if(input$titleInsert == 0)
+    if (input$titleInsert == 0)
       return()
     isolate({
       titleTemplate <- toupper(input$titleTemplate)
@@ -186,7 +187,7 @@ shinyServer(function(input, output, session) {
   # observer for the filename
   changeFilename <- observe({
     # create dependency to the publishInsert button
-    if(input$publishInsert == 0)
+    if (input$publishInsert == 0)
       return()
     
     publishTemplate <- toupper(isolate(input$publishTemplate))
@@ -197,8 +198,9 @@ shinyServer(function(input, output, session) {
   # observer for publishing, saving the plots 
   publish <- observe({
     # create dependency to publish button
-    if(input$publish == 0)
+    if (input$publish == 0){
       return()
+    }
     isolate({
       filename <- input$filename
       format <- input$format

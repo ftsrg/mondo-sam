@@ -7,13 +7,15 @@ setConstructorS3(name = "FilterContainer", function(){
          .result = NULL,
          .scenario = NULL,
          .tool = NULL,
-         .case = NULL
+         .case = NULL,
+         .size = NULL,
+         .phases = NULL,
+         .metrics = NULL
          )
 })
 
 
 setMethodS3(name = "init", class = "FilterContainer", function(this){
-  print("Initialize")
   sel <- Selections()
   this$.selections <- sel
   
@@ -31,6 +33,11 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   this$.case$setContainer(this)
   this$.case$.allStates <- unique(this$.result$.frame$CaseName)
   this$.case$update()
+  
+  this$.size <- SizeFilter(sel)
+  this$.size$setContainer(this)
+  this$.size$.allStates <- unique(this$.result$.frame$Size)
+  this$.size$update()
 })
 
 
@@ -44,7 +51,6 @@ setMethodS3(name = "setResult", class = "FilterContainer", function(this, result
 
 
 setMethodS3(name = "getFrameID", class = "FilterContainer", function(this, limit = "Size"){
-  print("getFrameid start")
   id <- "ID"
   for(select in this$.selections$.defaultSelections){
     if(select == limit){
@@ -54,7 +60,6 @@ setMethodS3(name = "getFrameID", class = "FilterContainer", function(this, limit
       id <- paste(id, this$getValue(select), sep=".")
     }
   }
-  print("getFrameid end")
   return(id)
 })
 
@@ -64,12 +69,12 @@ setMethodS3(name = "getValue", class = "FilterContainer", function(this, selecte
     return(this$.scenario$.selectedState)
   }
   if(selected == "CaseName"){
-#     return(this$.case$.currentState)
+    return(this$.case$.selectedState)
   }
   if(selected == "Tool"){
     return(this$.tool$.selectedState)
   }
   if(selected == "Size"){
-#     return(this$.size$.currentState)
+    return(this$.size$.selectedState)
   }
 })

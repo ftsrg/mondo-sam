@@ -14,6 +14,7 @@ setMethodS3(name = "setFrame", class = "Result", function(this, results){
   this$.frame <- results
 })
 
+
 setMethodS3(name = "createSubFrames", class = "Result", function(this){
   if (is.null(this$.frame)){
     throw("Null frame attribute in Result - createSubFrames")

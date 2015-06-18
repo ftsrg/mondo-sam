@@ -26,11 +26,15 @@ changeCase <- observe({
   })
 })
 
-
-
 changeSize <- observe({
-  values$size <- input$size
+  print("size observer")
+  size <- input$size
+  isolate({
+    values$filterContainer$.size$.selectedState <- size
+    values$filterContainer$.size$notify(values)
+  })
 })
+
 
 changePhases <- observe({
   print("phases obs")

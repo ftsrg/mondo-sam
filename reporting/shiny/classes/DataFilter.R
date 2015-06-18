@@ -74,7 +74,7 @@ setMethodS3(name = "getIdentifier", class = "DataFilter", abstract = TRUE, funct
 setMethodS3(name = "update", class = "DataFilter", function(this){
   result <- this$.container$.result
   id <- this$.container$getFrameID(this$getIdentifier())
-  if(id == "ID"){
+  if (id == "ID"){
     uniqueStates <- this$.allStates
   }
   else{
