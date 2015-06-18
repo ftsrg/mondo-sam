@@ -1,5 +1,4 @@
 changeScenario <- observe({
-  print("scen observ")
   scenario <- input$scenario
   isolate({
     values$filterContainer$.scenario$.selectedState <- scenario
@@ -9,7 +8,6 @@ changeScenario <- observe({
 })
 
 changeTool <- observe({
-  print("tool observer")
   tool <- input$tool
   isolate({
     values$filterContainer$.tool$.selectedState <- tool
@@ -18,7 +16,6 @@ changeTool <- observe({
 })
 
 changeCase <- observe({
-  print("case observer")
   case <- input$case
   isolate({
     values$filterContainer$.case$.selectedState <- case
@@ -27,7 +24,6 @@ changeCase <- observe({
 })
 
 changeSize <- observe({
-  print("size observer")
   size <- input$size
   isolate({
     values$filterContainer$.size$.selectedState <- size
@@ -37,7 +33,6 @@ changeSize <- observe({
 
 
 changePhases <- observe({
-  print("phase observer")
   phases <- input$phases
   isolate({
     values$filterContainer$.phase$.selectedState <- phases
@@ -46,8 +41,11 @@ changePhases <- observe({
 })
 
 changeMetrics <- observe({
-  print("metrics obs")
-  values$metrics <- input$metrics
+  metrics <- input$metrics
+  isolate({
+    values$filterContainer$.metric$.selectedState <- metrics
+    values$filterContainer$.metric$notify(values)
+  })
 })
 
 changeSelections <- observe({

@@ -110,96 +110,18 @@ output$phases <- renderUI({
       values$filterContainer$.phase$display()
     }
   })
-  
-  
-  
-#   print("phase")
-#   # add dependency to phaseObserver
-#   values$phaseObserver
-#   values$size
-#   isolate({
-#     values$metricObserver <- values$metricObserver + 1
-#   })
-# 
-#   isolate({
-#     
-#     # id identifies the certanly used data frame
-#     id <- getFrameID()
-#     frame <- values$subFrames[[id]]
-#     if (is.null(frame)){
-#       return()
-#     }
-#     if ("Size" %in% values$selections){
-#       uniquePhases <- unique(subset(frame, Size == input$size)$PhaseName)
-#     }
-#     else{
-#       uniquePhases <- unique(frame$PhaseName)
-#     }
-#     
-#     phaseList <- list()
-#     for(phase in uniquePhases){
-#       phaseList <- c(phase, phase, phaseList)
-#     }
-#     values$phases <- ""
-#     selectizeInput("phases", "Phases",
-#                    choices = phaseList,
-#                    multiple = TRUE,
-#                    selected = NULL)
-#   })
 })
 
+
 output$metrics <- renderUI({
-#   print("metric")
-#   values$metricObserver
-#   values$phases
-# 
-#   isolate({
-#     values$iterationObserver <- values$iterationObserver + 1
-#     
-#     if ("Size" %in% values$selections){
-#       # id identifies the certanly used data frame
-#       id <- getFrameID()
-#       frame <- values$subFrames[[id]]
-#       if (is.null(frame)){
-#         return()
-#       }
-#       uniqueMetrics <- unique(subset(frame, Size == input$size & PhaseName %in% input$phases)$MetricName)
-#     }
-#     else{
-#       print(input$phases)
-#       if (is.null(input$phases) || input$phases == ""){
-#         return()
-#       }
-#       # id identifies the certanly used data frame
-#       id <- getFrameID()
-#       frame <- values$subFrames[[id]]
-#       if (is.null(frame)){
-#         return()
-#       }
-#       uniqueMetrics <- unique(subset(frame, PhaseName %in% input$phases)$MetricName)
-#     }
-#     
-#     metricList <- list()
-#     for(metric in uniqueMetrics){
-#       metricList <- c(metric, metricList)
-#     }
-#     if (length(metricList) == 1){
-#       values$metrics <- c(metricList[1])
-#       selectizeInput("metrics", "Metrics",
-#                      choices = metricList,
-#                      multiple = TRUE,
-#                      selected = metricList[1])
-#     }
-#     else{
-#       values$metrics <- ""
-#       selectizeInput("metrics", "Metrics",
-#                      choices = metricList,
-#                      multiple = TRUE,
-#                      selected = NULL)
-#     }
-#     
-#   })
+  values$metricObserver
+  isolate({
+    if (!is.null(values$filterContainer$.metric)){
+      values$filterContainer$.metric$display()
+    }
+  })
 })
+
 
 output$iteration <- renderUI({
 #   print("iteration")

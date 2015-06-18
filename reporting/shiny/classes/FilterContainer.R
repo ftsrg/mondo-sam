@@ -10,7 +10,7 @@ setConstructorS3(name = "FilterContainer", function(){
          .case = NULL,
          .size = NULL,
          .phase = NULL,
-         .metrics = NULL,
+         .metric = NULL,
          .xDimension = NULL,
          .legend = NULL
          )
@@ -45,6 +45,11 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   this$.phase$setContainer(this)
   this$.phase$.allStates <- unique(this$.result$.frame$PhaseName)
   this$.phase$update()
+  
+  this$.metric <- MetricFilter(sel)
+  this$.metric$setContainer(this)
+  this$.metric$.allStates <- unique(this$.result$.frame$MetricName)
+  this$.metric$update()
   
   this$.xDimension <- XDimensionFilter(sel)
   this$.xDimension$setContainer(this)

@@ -7,9 +7,9 @@ setConstructorS3(name = "PhaseFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "PhaseFilter", overwrite = TRUE, function(this, observers){
-  #   this$.container$.tool$update()
-  #   observers$toolObserver <- observers$toolObserver +1
-  #   this$.container$.tool$notify(observers)
+    this$.container$.metric$update()
+    observers$metricObserver <- observers$metricObserver +1
+    this$.container$.metric$notify(observers)
 })
 
 
@@ -20,7 +20,7 @@ setMethodS3(name = "getIdentifier", class = "PhaseFilter", overwrite = TRUE, fun
 
 setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(this){
   result <- this$.container$.result
-  id <- this$.container$getFrameID(this$getIdentifier())
+  id <- this$.container$getFrameID()
   frame <- result$getSubFrame(id)
   
   if (this$enable("Size")){
@@ -35,8 +35,11 @@ setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(t
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }
   if (!is.null(this$.selectedState)){
-    if(this$.selectedState %in% this$.allCurrentStates == FALSE){
-      this$.selectedState <- NULL
+    prevStates <- this$.selectedState
+    for (state in prevStates){
+      if (state %in% this$.allCurrentStates){
+        this$.selectedState <- c(state, this$.selectedState)
+      }
     }
   }
   this$.prevState <- this$.selectedState
@@ -44,10 +47,6 @@ setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(t
 
 
 setMethodS3(name = "display", class = "PhaseFilter", overwrite = TRUE, function(this){
-  if(!this$enable("PhaseName")){
-    # display nothing
-    return()
-  }
   selectizeInput("phases", "Phases",
                  choices = this$.allCurrentStates,
                  multiple = TRUE,
