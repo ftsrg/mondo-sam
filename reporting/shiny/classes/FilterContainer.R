@@ -5,8 +5,10 @@ setConstructorS3(name = "FilterContainer", function(){
   extend(Object(), "FilterContainer",
          .selections = NULL,
          .result = NULL,
+         .scenario = NULL,
          .tool = NULL,
-         .scenario = NULL)
+         .case = NULL
+         )
 })
 
 
@@ -25,8 +27,10 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   this$.tool$.allStates <- unique(this$.result$.frame$Tool)
   this$.tool$update()
   
-  
-  
+  this$.case <- CaseFilter(sel)
+  this$.case$setContainer(this)
+  this$.case$.allStates <- unique(this$.result$.frame$CaseName)
+  this$.case$update()
 })
 
 

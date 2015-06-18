@@ -74,20 +74,22 @@ setMethodS3(name = "getIdentifier", class = "DataFilter", abstract = TRUE, funct
 setMethodS3(name = "update", class = "DataFilter", function(this){
   result <- this$.container$.result
   id <- this$.container$getFrameID(this$getIdentifier())
-  print(id)
   if(id == "ID"){
     uniqueStates <- this$.allStates
   }
   else{
     uniqueStates <- unique(result$getSubFrame(id)[[this$getIdentifier()]])
   }
-  print(uniqueStates)
+  
   this$.allCurrentStates <- list()
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }
   
-  this$.selectedState <- this$.allCurrentStates[1]
+  if(this$.selectedState %in% this$.allCurrentStates == FALSE){
+    this$.selectedState <- this$.allCurrentStates[1]
+  }
+  this$.prevState <- this$.selectedState
 })
 
 

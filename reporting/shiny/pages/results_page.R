@@ -66,31 +66,6 @@ output$scenario <- renderUI({
   isolate({
     values$filterContainer$.scenario$display()  
   })
-  
-  
-  
-  
-#   isolate({
-#     values$toolObserver <- values$toolObserver + 1
-#   })
-#   if("Scenario" %in% values$selections == FALSE){
-#     # display nothing
-#     print("values-selections:")
-#     print(values$selections)
-#     return()
-#   }
-#   isolate({
-#     
-#     scenario_list <- list()
-#     for(scen in values$unique_scenarios){
-#       scenario_list <- c(scen, scenario_list)
-#     }
-#     values$scenario = scenario_list[1]
-#     selectInput("scenario", "Scenarios",
-#                 choices = scenario_list,
-#                 selected = scenario_list[1]
-#     )
-#   })
 })
 
 output$tool <- renderUI({
@@ -99,79 +74,13 @@ output$tool <- renderUI({
   isolate({
     values$filterContainer$.tool$display()  
   })
-  
-  
-#   
-#   
-#   
-#   
-#   values$scenario
-#   
-#   isolate({
-#     values$caseObserver <- values$caseObserver + 1
-#   })
-#   isolate({
-#     if(is.null(input$scenario)){
-#       print(input$scenario)
-#       print("null scenario in tool")
-#       return()
-#     }
-#   })
-#   if("Tool" %in% values$selections == FALSE){
-#     # display nothing
-#     return()
-#   }
-# 
-#   isolate({
-#     
-#     id <- getFrameID("Tool")
-#     if(id == "ID"){
-#       uniqueTools <- values$unique_tools
-#     }
-#     else{
-#       uniqueTools <- unique(values$subFrames[[id]]$Tool)
-#     }
-#     tool_list <- list()
-#     for(tool in uniqueTools){
-#       tool_list <- c(tool, tool_list)
-#     }
-#     values$tool <- tool_list[1]
-#     selectInput("tool", "Tool",
-#                 choices = tool_list,
-#                 selected = tool_list[1])
-#   })
 })
 
 output$case <- renderUI({
-#   print("case")
-#   values$caseObserver
-#   values$tool
-#   isolate({
-#     values$sizeObserver <- values$sizeObserver + 1
-#   })
-#   if("CaseName" %in% values$selections == FALSE){
-#     # display nothing
-#     return()
-#   }
-#   
-#   isolate({
-#     id <- getFrameID("CaseName")
-#     if(id == "ID"){
-#       uniqueCases <- values$unique_cases
-#     }
-#     else{
-#       uniqueCases <- unique(values$subFrames[[id]]$CaseName)
-#     }
-#     case_list <- list()
-#     for(case in uniqueCases){
-#       case_list <- c(case, case_list)
-#     }
-#     values$case <- case_list[0]
-#     return(selectInput("case", "Case",
-#                        choices = case_list,
-#                        selected = case_list[0]
-#     ))
-#   })
+  values$caseObserver
+  isolate({
+    values$filterContainer$.case$display()
+  })
 })
 
 output$size <- renderUI({

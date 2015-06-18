@@ -1,7 +1,7 @@
 library("R.oo", , quietly = TRUE)
 
 
-setConstructorS3(name = "ScenarioFilter", abstract = TRUE, function(selections = NULL){
+setConstructorS3(name = "ScenarioFilter", function(selections = NULL){
   extend(DataFilter(selections), "ScenarioFilter")
 })
 
@@ -9,7 +9,7 @@ setConstructorS3(name = "ScenarioFilter", abstract = TRUE, function(selections =
 setMethodS3(name = "notify", class = "ScenarioFilter", overwrite = TRUE, function(this, observers){
   print("scenario notify")
   this$.container$.tool$update()
-  observers$toolObserver <- observers$toolObserver +1
+  observers$toolObserver <- observers$toolObserver + 1
   this$.container$.tool$notify(observers)
 })
 

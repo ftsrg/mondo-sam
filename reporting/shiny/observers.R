@@ -2,20 +2,31 @@ changeScenario <- observe({
   print("scen observ")
   scenario <- input$scenario
   isolate({
-    
     values$filterContainer$.scenario$.selectedState <- scenario
     values$filterContainer$.scenario$notify(values)  
   })
   
 })
 
-changeCase <- observe({
-  values$case <- input$case
+changeTool <- observe({
+  print("tool observer")
+  tool <- input$tool
+  isolate({
+    values$filterContainer$.tool$.selectedState <- tool
+    values$filterContainer$.tool$notify(values)
+  })
 })
 
-changeTool <- observe({
-  values$tool <- input$tool
+changeCase <- observe({
+  print("case observer")
+  case <- input$case
+  isolate({
+    values$filterContainer$.case$.selectedState <- case
+    values$filterContainer$.case$notify(values)
+  })
 })
+
+
 
 changeSize <- observe({
   values$size <- input$size

@@ -15,6 +15,7 @@ source("classes/Selections.R", echo = FALSE)
 source("classes/DataFilter.R", echo = FALSE)
 source("classes/ToolFilter.R", echo = FALSE)
 source("classes/ScenarioFilter.R", echo = FALSE)
+source("classes/CaseFilter.R", echo = FALSE)
 options(warn=0)
 
 shinyServer(function(input, output, session) {

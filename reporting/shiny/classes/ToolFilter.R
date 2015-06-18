@@ -1,13 +1,17 @@
 library("R.oo", , quietly = TRUE)
 
 
-setConstructorS3(name = "ToolFilter", abstract = TRUE, function(selections = NULL){
+setConstructorS3(name = "ToolFilter", function(selections = NULL){
   extend(DataFilter(selections), "ToolFilter")
+  
 })
 
 
 setMethodS3(name = "notify", class = "ToolFilter", overwrite = TRUE, function(this, observers){
   print("tool notify")
+  this$.container$.case$update()
+  observers$caseObserver <- observers$caseObserver + 1
+  this$.container$.case$notify(observers)
 })
 
 
