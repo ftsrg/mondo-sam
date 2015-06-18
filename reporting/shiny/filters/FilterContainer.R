@@ -65,7 +65,7 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   
   this$.legend <- LegendFilter(sel)
   this$.legend$setContainer(this)
-  this$.legend$.allStates <- c("Scenario", "CaseName", "Tool", "Size", "MetricName")
+  this$.legend$.allStates <- c("Scenario", "CaseName", "Tool", "MetricName")
   this$.legend$.selectedState <- "MetricName"
   this$.legend$update()
   

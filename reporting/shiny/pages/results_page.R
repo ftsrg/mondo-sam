@@ -8,28 +8,6 @@ output$plot <- renderPlot({
     
     withProgress(message = 'Creating plot', value = 1.0, {
       plot <- values$plotContainer$createPlot(values$filterContainer)
-      print(plot)
-#       settings <- PlotSettings()
-#       
-#       settings <- setLegend(settings, legend)
-#       title <- injectValues(frame, input$title)
-#       settings <- setTitle(settings, title)
-#       settings <- setDimensions(settings, input$xdimension, "MetricValue")
-#       settings <- setLabels(settings, input$xlabel, input$ylabel)
-#       settings <- setAxis(settings, input$xaxis, input$yaxis)
-#       settings <- setYScale(settings, input$yscale)
-#       settings <- showTexts(settings, input$showValues)
-#       settings <- drawLines(settings, input$drawLines)
-      
-#       phases <- config$Plot[row, ]$Summarize_Function
-#       phases <- list(input$phase)
-#       extensions <- config$Plot[row, ]$Extensions
-#       extensions <- list("png")
-#       filename <- paste(filename, "Function", row, sep="-")
-
-#       mappingPath <<- "../mapping.json"
-
-#       plot <- generatePlot(frame, settings, input$phases)
     })
   })
 })
