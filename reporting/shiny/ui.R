@@ -39,13 +39,12 @@ shinyUI(navbarPage("Reporting", id="reporting",
                             )
                    ),
                    # Dimensions panel
-                   tabPanel(
-                     "Dimensions",
-                     selectInput("xdimension", label="X Dimension",
-                                 choices = c("Scenario", "CaseName", "Tool", "Size", "Iteration"), 
-                                 selected = "Size"),
-                     # change selections list too if the selected element is modified
+                   tabPanel("Dimensions", id="dimensions",
+                     uiOutput("xDimension"),
                      uiOutput("legend"),
+                     selectInput("legendPosition", label="Legend Position",
+                                 c("Top", "Right", "Bottom", "Left"),
+                                 selected="Right"),
                      uiOutput("legendFilters")
                      ),
                    # Plot settings panel

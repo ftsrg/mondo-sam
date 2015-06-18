@@ -17,6 +17,8 @@ source("classes/ScenarioFilter.R", echo = FALSE)
 source("classes/ToolFilter.R", echo = FALSE)
 source("classes/CaseFilter.R", echo = FALSE)
 source("classes/SizeFilter.R", echo = FALSE)
+source("classes/XDimensionFilter.R", echo = FALSE)
+source("classes/LegendFilter.R", echo = FALSE)
 options(warn=0)
 
 shinyServer(function(input, output, session) {
@@ -150,25 +152,25 @@ shinyServer(function(input, output, session) {
   })
     
   changeTemplates <- observe({
-    dimension <- input$xdimension
-    isolate({
-      if (dimension != "Size"){
-        values$templates <- c(values$templates, Size="Size")
-        updateSelectInput(session, "titleTemplate", label="Template",
-                          choices=values$templates)
-        updateSelectInput(session, "publishTemplate", label="Template",
-                          choices=values$templates)
-      }
-      else {
-        if ("Size" %in% names(values$templates)){
-          values$templates <- values$templates[ - which(names(values$templates) == "Size")]
-          updateSelectInput(session, "titleTemplate", label="Template",
-                            choices=values$templates)
-          updateSelectInput(session, "publishTemplate", label="Template",
-                            choices=values$templates)
-        }
-      }
-    })
+#     dimension <- input$xDimension
+#     isolate({
+#       if (dimension != "Size"){
+#         values$templates <- c(values$templates, Size="Size")
+#         updateSelectInput(session, "titleTemplate", label="Template",
+#                           choices=values$templates)
+#         updateSelectInput(session, "publishTemplate", label="Template",
+#                           choices=values$templates)
+#       }
+#       else {
+#         if ("Size" %in% names(values$templates)){
+#           values$templates <- values$templates[ - which(names(values$templates) == "Size")]
+#           updateSelectInput(session, "titleTemplate", label="Template",
+#                             choices=values$templates)
+#           updateSelectInput(session, "publishTemplate", label="Template",
+#                             choices=values$templates)
+#         }
+#       }
+#     })
     
   })
 

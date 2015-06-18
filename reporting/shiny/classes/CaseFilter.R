@@ -7,7 +7,6 @@ setConstructorS3(name = "CaseFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "CaseFilter", overwrite = TRUE, function(this, observers){
-  print("case notify")
   this$.container$.size$update()
   observers$sizeObserver <- observers$sizeObserver + 1
   this$.container$.size$notify(observers)

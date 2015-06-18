@@ -46,15 +46,19 @@ changeMetrics <- observe({
   values$metrics <- input$metrics
 })
 
-changeXDimension <- observe({
-  print("xdim obs")
-  values$xDimension <- input$xdimension
+changeSelections <- observe({
+  print("change selections obs")
+  xDimension <- input$xDimension
+  legend <- input$legend
+  isolate({
+    values$filterContainer$.xDimension$setState(xDimension)
+    values$filterContainer$.legend$setState(legend)
+    values$filterContainer$.selections$changeSelections(xDimension, legend)
+    values$scenarioObserver <- values$scenarioObserver + 1
+    values$filterContainer$.scenario$notify(values)
+  })
 })
 
-changeLegend <- observe({
-  print("legend changed obs")
-  values$selectedLegend <- input$legend
-})
 
 changeLegendFilters <- observe({
   print("legend filter obs")
@@ -69,16 +73,16 @@ changeIteration <- observe({
   
 })
 
-changeSelections <- observe({
-  print("change selections observer")
-  # add dependencies
-  input$xdimension
-  input$legend
-  
-  isolate({
-    values$selections <- values$defaultSelections
-    values$selections <- values$selections[values$selections != input$legend & 
-                                             values$selections != input$xdimension]
-  })
-  print(values$selections)
-})
+# changeSelections <- observe({
+#   print("change selections observer")
+#   # add dependencies
+#   input$xdimension
+#   input$legend
+#   
+#   isolate({
+#     values$selections <- values$defaultSelections
+#     values$selections <- values$selections[values$selections != input$legend & 
+#                                              values$selections != input$xdimension]
+#   })
+#   print(values$selections)
+# })

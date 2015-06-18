@@ -7,7 +7,6 @@ setConstructorS3(name = "SizeFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "SizeFilter", overwrite = TRUE, function(this, observers){
-  print("size notify")
   #   this$.container$.tool$update()
   #   observers$toolObserver <- observers$toolObserver +1
   #   this$.container$.tool$notify(observers)
@@ -24,6 +23,7 @@ setMethodS3(name = "display", class = "SizeFilter", overwrite = TRUE, function(t
     # display nothing
     return()
   }
+  this$.allCurrentStates <- sort(as.numeric(this$.allCurrentStates))
   selectInput("size", "Size",
               choices = this$.allCurrentStates,
               selected = this$.selectedState)

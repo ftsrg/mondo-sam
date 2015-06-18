@@ -19,7 +19,7 @@ setMethodS3(name = "changeSelections", class = "Selections", function(this, ...)
   if (length(args) == 0){
     throw("Arguments were not given for changing selections.")
   }
-  if (length(args) >= length(this$.selections)){
+  if (length(args) > length(this$.selections)){
     throw("Too many arguments were given for changing selections.")
   }
   

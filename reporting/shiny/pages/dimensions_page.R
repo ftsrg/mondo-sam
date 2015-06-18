@@ -1,12 +1,12 @@
-output$legend <- renderUI({
-  print("legend ui")
-  isolate({
-    values$selectedLegend <- "MetricName"
-  })
-  selectInput("legend", label="Legend",
-              choices = c("Scenario", "CaseName", "Tool", "Size", "MetricName"), 
-              selected = "MetricName")
+output$xDimension <- renderUI({
+  values$filterContainer$.xDimension$display()
 })
+
+
+output$legend <- renderUI({
+  values$filterContainer$.legend$display()
+})
+
 
 output$legendFilters <- renderUI({
   print("legend filter ui")

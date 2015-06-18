@@ -7,7 +7,6 @@ setConstructorS3(name = "ScenarioFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "ScenarioFilter", overwrite = TRUE, function(this, observers){
-  print("scenario notify")
   this$.container$.tool$update()
   observers$toolObserver <- observers$toolObserver + 1
   this$.container$.tool$notify(observers)
