@@ -52,6 +52,7 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   this$.legend$.allStates <- c("Scenario", "CaseName", "Tool", "Size", "MetricName")
   this$.legend$.selectedState <- "MetricName"
   this$.legend$update()
+
 })
 
 
@@ -91,4 +92,12 @@ setMethodS3(name = "getValue", class = "FilterContainer", function(this, selecte
   if(selected == "Size"){
     return(this$.size$.selectedState)
   }
+})
+
+
+setMethodS3(name = "notifyFilters", class = "FilterContainer", function(this, observers){
+  observers$scenarioObserver <- observers$scenarioObserver + 1
+  observers$xDimensionObserver <- observers$xDimensionObserver + 1
+  observers$legend <- observers$legend + 1
+  this$.scenario$notify(observers)
 })

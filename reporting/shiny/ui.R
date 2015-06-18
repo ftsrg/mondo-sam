@@ -39,7 +39,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                             )
                    ),
                    # Dimensions panel
-                   tabPanel("Dimensions", id="dimensions",
+                   tabPanel("Dimensions", id="dimensions", 
                      uiOutput("xDimension"),
                      uiOutput("legend"),
                      selectInput("legendPosition", label="Legend Position",

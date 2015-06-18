@@ -45,6 +45,8 @@ shinyServer(function(input, output, session) {
                            phaseObserver=0, 
                            metricObserver=0,
                            iterationObserver=0,
+                           xDimensionObserver=0,
+                           legendObserver=0,
                            scenario = "",
                            case = "",
                            tool = "",
@@ -71,10 +73,6 @@ shinyServer(function(input, output, session) {
       tempResults <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
                                  quote=input$quote)
       withProgress(message = 'Processing', value = 1.0, {
-#         values$unique_cases <- as.character(unique(values$results$CaseName))
-#         values$unique_tools <- as.character(unique(values$results$Tool))
-#         values$unique_sizes <- as.character(unique(values$results$Size))
-#         values$unique_scenarios <- as.character(unique(values$results$Scenario))
 #         s <- proc.time()
         values$result$setFrame(tempResults)
         values$result$createSubFrames()
@@ -87,8 +85,7 @@ shinyServer(function(input, output, session) {
         values$filterContainer$init()
 
         updateTabsetPanel(session, "reporting", selected = "Results")
-#         print(values$subFrames[["ID.Batch.EMFIncQuery.PosLength"]])
-#         print(names(values$subFrames))
+        values$filterContainer$notifyFilters(values)
       })
     })
   })

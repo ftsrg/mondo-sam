@@ -1,10 +1,16 @@
 output$xDimension <- renderUI({
-  values$filterContainer$.xDimension$display()
+  values$xDimensionObserver
+  if (!is.null(values$filterContainer$.xDimension)){
+    values$filterContainer$.xDimension$display()
+  }
 })
 
 
 output$legend <- renderUI({
-  values$filterContainer$.legend$display()
+  values$legend
+  if (!is.null(values$filterContainer$.legend)){
+    values$filterContainer$.legend$display()
+  }
 })
 
 

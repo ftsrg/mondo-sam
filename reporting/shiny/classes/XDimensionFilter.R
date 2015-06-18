@@ -7,9 +7,6 @@ setConstructorS3(name = "XDimensionFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "XDimensionFilter", overwrite = TRUE, function(this, observers){
-  #   this$.container$.tool$update()
-  #   observers$toolObserver <- observers$toolObserver +1
-  #   this$.container$.tool$notify(observers)
 })
 
 

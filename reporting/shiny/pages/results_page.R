@@ -65,7 +65,9 @@ output$scenario <- renderUI({
   print("scenario")
   values$scenarioObserver
   isolate({
-    values$filterContainer$.scenario$display()  
+    if (!is.null(values$filterContainer$.scenario)){
+      values$filterContainer$.scenario$display()  
+    }
   })
 })
 
@@ -74,7 +76,9 @@ output$tool <- renderUI({
   print("tool")
   values$toolObserver
   isolate({
-    values$filterContainer$.tool$display()  
+    if (!is.null(values$filterContainer$.tool)){
+      values$filterContainer$.tool$display()  
+    }
   })
 })
 
@@ -82,7 +86,9 @@ output$tool <- renderUI({
 output$case <- renderUI({
   values$caseObserver
   isolate({
-    values$filterContainer$.case$display()
+    if (!is.null(values$filterContainer$.case)){
+      values$filterContainer$.case$display()
+    }
   })
 })
 
@@ -90,7 +96,9 @@ output$case <- renderUI({
 output$size <- renderUI({
   values$sizeObserver
   isolate({
-    values$filterContainer$.size$display()
+    if (!is.null(values$filterContainer$.size)){
+      values$filterContainer$.size$display()
+    }
   })
 })
 
