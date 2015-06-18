@@ -5,9 +5,9 @@ setConstructorS3(name = "DataFilter", abstract = TRUE, function(selections = NUL
   extend(Object(), "DataFilter",
          .selections = selections,
          .container = NULL,
-         .selectedState = "",
-         .allCurrentStates = "",
-         .allStates = "")
+         .selectedState = NULL,
+         .allCurrentStates = NULL,
+         .allStates = NULL)
 })
 
 
@@ -84,8 +84,10 @@ setMethodS3(name = "update", class = "DataFilter", function(this){
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }
-  
-  if(this$.selectedState %in% this$.allCurrentStates == FALSE){
+  if (is.null(this$.selectedState)){
+    this$.selectedState <- this$.allCurrentStates[1]
+  }
+  else if (this$.selectedState %in% this$.allCurrentStates == FALSE){
     this$.selectedState <- this$.allCurrentStates[1]
   }
 })

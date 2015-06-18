@@ -124,65 +124,10 @@ output$metrics <- renderUI({
 
 
 output$iteration <- renderUI({
-#   print("iteration")
-#   values$metrics
-#   values$iterationObserver
-#   
-#   isolate({
-#     values$iterations <- c(1,1)
-#     
-#     if (is.null(input$phases) || is.null(input$s)){
-#       return()
-#     }
-#     phase <- input$phases
-#     metric <- input$metrics
-#     if (phase == "" || metric == ""){
-#       return()
-#     }
-#     
-#     if ("Size" %in% values$selections){
-#       size <- input$size
-#       if (is.null(size)  || size == ""){
-#         return()
-#       }
-#       # id identifies the certainly used data frame
-#       id <- getFrameID()
-#       frame <- values$subFrames[[id]]
-#       if (is.null(frame)){
-#         return()
-#       }
-#       subFrame <- (subset(frame, Size == size & PhaseName %in% phase & MetricName %in% metric))
-#     }
-#     else{
-#       id <- getFrameID()
-#       frame <- values$subFrames[[id]]
-#       if (is.null(frame)){
-#         return()
-#       }
-#       subFrame <- (subset(frame, PhaseName %in% phase & MetricName %in% metric))
-#     }
-#     maxIteration <- max(subFrame$Iteration)
-#     
-#     
-#     if(maxIteration > 1){
-#       if (values$iterations[[1]] == 0){
-#         minRange <- 1
-#         maxRange <- 1
-#       }
-#       else {
-#         minRange <- values$iterations[[1]]
-#         maxRange <- values$iterations[[2]]
-#       }
-#       sliderInput("iteration", "Iterations",
-#                   min=1,
-#                   max=maxIteration,
-#                   value=c(minRange, maxRange),
-#                   step=1
-#       )
-#     }
-#     else if (is.null(input$iteration) == FALSE){
-#       values$iterations <- c(0,0) # set to default
-#       return() # to remove slider
-#     }
-#       })
+  values$iterationObserver
+  isolate({
+    if (!is.null(values$filterContainer$.iteration)){
+      values$filterContainer$.iteration$display()
+    }
+  })
 })

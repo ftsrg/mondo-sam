@@ -66,24 +66,11 @@ changeLegendFilters <- observe({
   values$legendFilters <- input$legendFilters
 })
 
-changeIteration <- observe({
-  print("iter obs")
-  if (is.null(input$iteration))
-    return()
-  values$iterations <- input$iteration
-  
-})
 
-# changeSelections <- observe({
-#   print("change selections observer")
-#   # add dependencies
-#   input$xdimension
-#   input$legend
-#   
-#   isolate({
-#     values$selections <- values$defaultSelections
-#     values$selections <- values$selections[values$selections != input$legend & 
-#                                              values$selections != input$xdimension]
-#   })
-#   print(values$selections)
-# })
+changeIteration <- observe({
+  iterations <- input$iteration
+  isolate({
+    values$filterContainer$.iteration$.selectedState <- iterations
+    values$filterContainer$.iteration$notify(values)
+  })
+})

@@ -7,9 +7,9 @@ setConstructorS3(name = "MetricFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "MetricFilter", overwrite = TRUE, function(this, observers){
-  #   this$.container$.tool$update()
-  #   observers$toolObserver <- observers$toolObserver +1
-  #   this$.container$.tool$notify(observers)
+    this$.container$.iteration$update()
+    observers$iterationObserver <- observers$iterationObserver +1
+    this$.container$.iteration$notify(observers)
 })
 
 
@@ -26,6 +26,7 @@ setMethodS3(name = "update", class = "MetricFilter", overwrite = TRUE, function(
   if (is.null(this$.container$.phase$.selectedState)){
     this$.allCurrentStates <- NULL
     this$.selectedState <- NULL
+    return()
   }
   
   if (this$enable("Size")){
