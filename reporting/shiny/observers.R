@@ -1,5 +1,11 @@
 changeScenario <- observe({
-  values$scenario <- input$scenario
+  print("scen observ")
+  scenario <- input$scenario
+  isolate({
+    
+    values$filterContainer$.scenario$.selectedState <- scenario
+    values$filterContainer$.scenario$notify(values)  
+  })
   
 })
 

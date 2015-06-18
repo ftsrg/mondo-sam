@@ -8,11 +8,14 @@ source("../plot_functions.R")
 source("../theme.R")
 source("../util.R")
 # source("../constants.R")
+options(warn=-1)
 source("classes/FilterContainer.R", echo = FALSE)
 source("classes/Result.R", echo = FALSE)
 source("classes/Selections.R", echo = FALSE)
 source("classes/DataFilter.R", echo = FALSE)
 source("classes/ToolFilter.R", echo = FALSE)
+source("classes/ScenarioFilter.R", echo = FALSE)
+options(warn=0)
 
 shinyServer(function(input, output, session) {
     
@@ -51,9 +54,10 @@ shinyServer(function(input, output, session) {
                            settings = PlotSettings(theme="Default")
                           )
   
- 
+  
+  
+  
 # load results and make reactiv values
-  # the various subframes can be accessed by the following formula: values$subtables[[casename]][[scenario]][[phasename]]
   output$load <- renderUI({
     inFile <- input$file
     
@@ -225,37 +229,6 @@ shinyServer(function(input, output, session) {
   })
   
   source('observers.R', local=TRUE)
-
-  getFrameID <- function(limit="Size"){
-    isolate({
-      id <- "ID"
-      for(select in values$defaultSelections){
-        if(select == limit){
-          return(id)
-        }
-        if (select %in% values$selections){
-          id <- paste(id, getValue(select), sep=".")
-        }
-      }
-    })
-  }
-  
-  getValue <- function(selected){
-    isolate({
-      if(selected == "Scenario"){
-        return(input$scenario)
-      }
-      if(selected == "CaseName"){
-        return(input$case)
-      }
-      if(selected == "Tool"){
-        return(input$tool)
-      }
-      if(selected == "Size"){
-        return(input$size)
-      }
-    })
-  }
 
 
 source('pages/results_page.R', local=TRUE)

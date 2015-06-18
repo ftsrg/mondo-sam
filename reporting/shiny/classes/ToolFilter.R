@@ -5,18 +5,24 @@ setConstructorS3(name = "ToolFilter", abstract = TRUE, function(selections = NUL
   extend(DataFilter(selections), "ToolFilter")
 })
 
-setMethodS3(name = "getState", class = "ToolFilter", overwrite = TRUE, function(this){
-  print("overwrote")
+
+setMethodS3(name = "notify", class = "ToolFilter", overwrite = TRUE, function(this, observers){
+  print("tool notify")
 })
 
-setMethodS3(name = "update", class = "ToolFilter", overwrite = TRUE, function(this){
-  
+
+setMethodS3(name = "getIdentifier", class = "ToolFilter", overwrite = TRUE, function(this){
+  return("Tool")
 })
 
-setMethodS3(name = "notify", class = "ToolFilter", overwrite = TRUE, function(this){
-  
-})
 
 setMethodS3(name = "display", class = "ToolFilter", overwrite = TRUE, function(this){
-  print("Disply called")
+  if(!this$enable("Tool")){
+    # display nothing
+    return()
+  }
+  selectInput("tool", "Tool",
+              choices = this$.allCurrentStates,
+              selected = this$.selectedState)
+  
 })

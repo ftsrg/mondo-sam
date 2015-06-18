@@ -48,3 +48,14 @@ setMethodS3(name = "splitFrames", class = "Result", private = TRUE, function(thi
     }
   }
 })
+
+
+setMethodS3(name = "getSubFrame", class = "Result", function(this, id){
+  if (is.null(id)){
+    throw("Null id parameter in Result - getSubFrame")
+  }
+  return(this$.subFrames[[id]])
+})
+
+
+

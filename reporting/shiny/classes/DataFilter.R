@@ -5,25 +5,26 @@ setConstructorS3(name = "DataFilter", abstract = TRUE, function(selections = NUL
   extend(Object(), "DataFilter",
          .selections = selections,
          .container = NULL,
-         .currentState = "",
+         .selectedState = "",
+         .allCurrentStates = "",
          .allStates = "",
          .prevState = "")
 })
 
 
 setMethodS3(name = "getState", class = "DataFilter", function(this){
-  if (is.null(this$.currentState)){
+  if (is.null(this$.selectedState)){
     throw("Null state in DataFilter - getState")
   }
-  this$.currentState
+  this$.selectedState
 })
 
 
 setMethodS3(name = "setState", class = "DataFilter", function(this, state){
-  if (is.null(.currentState)){
+  if (is.null(state)){
     throw("Null value in DataFilter - setState")
   }
-  this$.currentState <- state
+  this$.selectedState <- state
 })
 
 
@@ -57,17 +58,37 @@ setMethodS3(name = "setContainer", class = "DataFilter", function(this, containe
 
 
 setMethodS3(name = "enable", class = "DataFilter", function(this, filterName){
-  if(filterName %in% this$.selections$getSelections == FALSE){
+  if(filterName %in% this$.selections$getSelections() == FALSE){
     return(FALSE)
   }
   return(TRUE)
 })
 
 
-setMethodS3(name = "notify", class = "DataFilter", abstract = TRUE, function(this){})
+setMethodS3(name = "notify", class = "DataFilter", abstract = TRUE, function(this, observers){print("data notify")})
 
 
-setMethodS3(name = "update", class = "DataFilter", abstract = TRUE, function(this){})
+setMethodS3(name = "getIdentifier", class = "DataFilter", abstract = TRUE, function(this){})
+
+
+setMethodS3(name = "update", class = "DataFilter", function(this){
+  result <- this$.container$.result
+  id <- this$.container$getFrameID(this$getIdentifier())
+  print(id)
+  if(id == "ID"){
+    uniqueStates <- this$.allStates
+  }
+  else{
+    uniqueStates <- unique(result$getSubFrame(id)[[this$getIdentifier()]])
+  }
+  print(uniqueStates)
+  this$.allCurrentStates <- list()
+  for(state in uniqueStates){
+    this$.allCurrentStates <- c(state, this$.allCurrentStates)
+  }
+  
+  this$.selectedState <- this$.allCurrentStates[1]
+})
 
 
 setMethodS3(name = "display", class = "DataFilter", abstract = TRUE, function(this){})
