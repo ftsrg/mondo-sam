@@ -48,6 +48,9 @@ setMethodS3(name = "update", class = "MetricFilter", overwrite = TRUE, function(
       }
     }
   }
+  else if (length(this$.allCurrentStates) == 1){
+    this$.selectedState <- this$.allCurrentStates[1]
+  }
 })
 
 
