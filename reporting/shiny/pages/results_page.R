@@ -104,6 +104,15 @@ output$size <- renderUI({
 
 
 output$phases <- renderUI({
+  values$phaseObserver
+  isolate({
+    if (!is.null(values$filterContainer$.phase)){
+      values$filterContainer$.phase$display()
+    }
+  })
+  
+  
+  
 #   print("phase")
 #   # add dependency to phaseObserver
 #   values$phaseObserver

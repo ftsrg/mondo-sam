@@ -2,8 +2,8 @@ library("R.oo", , quietly = TRUE)
 
 setConstructorS3(name = "Selections", function(){
   extend(Object(), "Selections", 
-         .selections = c("Scenario", "Tool", "CaseName"),
-         .defaultSelections = c("Scenario", "Tool", "CaseName", "Size")
+         .selections = c("Scenario", "Tool", "CaseName", "PhaseName"),
+         .defaultSelections = c("Scenario", "Tool", "CaseName", "Size", "PhaseName")
          )
 })
 

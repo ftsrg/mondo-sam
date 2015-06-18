@@ -7,9 +7,9 @@ setConstructorS3(name = "SizeFilter", function(selections = NULL){
 
 
 setMethodS3(name = "notify", class = "SizeFilter", overwrite = TRUE, function(this, observers){
-  #   this$.container$.tool$update()
-  #   observers$toolObserver <- observers$toolObserver +1
-  #   this$.container$.tool$notify(observers)
+    this$.container$.phase$update()
+    observers$phaseObserver <- observers$phaseObserver +1
+    this$.container$.phase$notify(observers)
 })
 
 

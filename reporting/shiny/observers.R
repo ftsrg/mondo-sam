@@ -37,8 +37,12 @@ changeSize <- observe({
 
 
 changePhases <- observe({
-  print("phases obs")
-  values$phases <- input$phases
+  print("phase observer")
+  phases <- input$phases
+  isolate({
+    values$filterContainer$.phase$.selectedState <- phases
+    values$filterContainer$.phase$notify(values)
+  })
 })
 
 changeMetrics <- observe({
