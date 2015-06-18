@@ -43,8 +43,11 @@ shinyUI(navbarPage("Reporting", id="reporting",
                      uiOutput("xDimension"),
                      uiOutput("legend"),
                      selectInput("legendPosition", label="Legend Position",
-                                 c("Top", "Right", "Bottom", "Left"),
-                                 selected="Right"),
+                                 c("Top" = "top", "Right" = "right", "Bottom" = "bottom", "Left" = "left"),
+                                 selected="bottom"),
+                     selectInput("legendDirection", label="Legend Direction",
+                                 c("Vertical" = "vertical", "Horizontal" = "horizontal"),
+                                 selected="vertical"),
                      uiOutput("legendFilters")
                      ),
                    # Plot settings panel

@@ -160,3 +160,19 @@ changePlotSettingsTitle <- observe({
     values$plotContainer$.plotSettings$.title <- title
   })
 })
+
+
+changeThemeLegendPosition <- observe({
+  position <- input$legendPosition
+  isolate({
+    values$plotContainer$.theme$.legendPosition <- position
+  })
+})
+
+
+changeThemeLegendDirection <- observe({
+  direction <- input$legendDirection
+  isolate({
+    values$plotContainer$.theme$.legendDirection <- direction
+  })
+})
