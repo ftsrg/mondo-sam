@@ -4,8 +4,8 @@ changeScenario <- observe({
     values$filterContainer$.scenario$.selectedState <- scenario
     values$filterContainer$.scenario$notify(values)  
   })
-  
 })
+
 
 changeTool <- observe({
   tool <- input$tool
@@ -15,6 +15,7 @@ changeTool <- observe({
   })
 })
 
+
 changeCase <- observe({
   case <- input$case
   isolate({
@@ -22,6 +23,7 @@ changeCase <- observe({
     values$filterContainer$.case$notify(values)
   })
 })
+
 
 changeSize <- observe({
   size <- input$size
@@ -40,6 +42,7 @@ changePhases <- observe({
   })
 })
 
+
 changeMetrics <- observe({
   metrics <- input$metrics
   isolate({
@@ -47,6 +50,7 @@ changeMetrics <- observe({
     values$filterContainer$.metric$notify(values)
   })
 })
+
 
 changeSelections <- observe({
   xDimension <- input$xDimension
@@ -77,12 +81,14 @@ changeIteration <- observe({
   })
 })
 
+
 changePlotSettingsLegend <- observe({
   legend <- input$legend
   isolate({
     values$plotContainer$.plotSettings$.legend <- legend
   })
 })
+
 
 changePlotSettingsXDimension <- observe({
   dim <- input$xDimension
@@ -91,12 +97,14 @@ changePlotSettingsXDimension <- observe({
   })
 })
 
+
 changePlotSettingsYScale <- observe({
   scale <- input$yScale
   isolate({
     values$plotContainer$.plotSettings$.yScale <- scale
   })
 })
+
 
 changePlotSettingsXLabel <- observe({
   label <- input$xLabel
@@ -105,12 +113,14 @@ changePlotSettingsXLabel <- observe({
   })
 })
 
+
 changePlotSettingsYLabel <- observe({
   label <- input$yLabel
   isolate({
     values$plotContainer$.plotSettings$.yLabel <- label
   })
 })
+
 
 changePlotSettingsXAxis <- observe({
   axis <- input$xAxis
@@ -119,12 +129,14 @@ changePlotSettingsXAxis <- observe({
   })
 })
 
+
 changePlotSettingsYAxis <- observe({
   axis <- input$yAxis
   isolate({
     values$plotContainer$.plotSettings$.yAxis <- axis
   })
 })
+
 
 changePlotSettingsTexts <- observe({
   enableTexts <- input$showValues
@@ -133,12 +145,14 @@ changePlotSettingsTexts <- observe({
   })
 })
 
+
 changePlotSettingsLines <- observe({
   drawLines <- input$drawLines
   isolate({
     values$plotContainer$.plotSettings$.lines <- drawLines
   })
 })
+
 
 changePlotSettingsTitle <- observe({
   title <- input$title

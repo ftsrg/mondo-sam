@@ -51,8 +51,6 @@ setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterC
     frame <- subset(frame, Iteration >= filterContainer$.iteration$.selectedState[1] & Iteration <= filterContainer$.iteration$.selectedState[2])
   }
   
-  print(nrow(frame))
-  
   plot <- this$generatePlot(frame)
   this$.plots <- c(plot, this$.plots)
   return(plot)

@@ -8,6 +8,9 @@ output$plot <- renderPlot({
     
     withProgress(message = 'Creating plot', value = 1.0, {
       plot <- values$plotContainer$createPlot(values$filterContainer)
+      
+      # draw the plot
+      print(plot)
     })
   })
 })
