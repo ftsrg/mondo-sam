@@ -27,13 +27,13 @@ setMethodS3(name = "update", class = "IterationFilter", overwrite = TRUE, functi
   }
   
   if (this$enable("Size")){
-    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState 
-                                  & PhaseName %in% this$.container$.phase$.selectedState
-                                  & MetricName %in% this$.container$.metric$.selectedState)$Iteration)
+    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState & 
+                                  PhaseName %in% this$.container$.phase$.selectedState & 
+                                  MetricName %in% this$.container$.metric$.selectedState)$Iteration)
   }
   else {
-    uniqueStates <- unique(subset(frame, PhaseName %in% this$.container$.phase$.selectedState
-                                  & MetricName %in% this$.container$.metric$.selectedState)$Iteration)
+    uniqueStates <- unique(subset(frame, PhaseName %in% this$.container$.phase$.selectedState & 
+                                  MetricName %in% this$.container$.metric$.selectedState)$Iteration)
   }
   
   maxIteration <- max(uniqueStates)

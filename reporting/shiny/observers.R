@@ -76,3 +76,24 @@ changeIteration <- observe({
     values$filterContainer$.iteration$notify(values)
   })
 })
+
+changePlotSettingsLegend <- observe({
+  legend <- input$legend
+  isolate({
+    values$plotContainer$.plotSettings$.legend <- legend
+  })
+})
+
+changePlotSettingsXDimension <- observe({
+  dim <- input$xDimension
+  isolate({
+    values$plotContainer$.plotSettings$.xDimension <- dim
+  })
+})
+
+changePlotSettingsYScale <- observe({
+  scale <- input$yScale
+  isolate({
+    values$plotContainer$.plotSettings$.yScale <- scale
+  })
+})

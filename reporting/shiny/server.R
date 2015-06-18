@@ -3,35 +3,37 @@ library("plyr",  quietly=T, verbose=F, warn.conflicts=FALSE)
 library("shiny", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("R.oo", quietly=T, verbose=F, warn.conflicts=FALSE)
-source("../plot.R")
-source("../plot_functions.R")
-source("../theme.R")
-source("../util.R")
-# source("../constants.R")
+# source("../plot.R")
+# source("../plot_functions.R")
+# source("../theme.R")
+# source("../util.R")
+
 options(warn=-1)
-source("classes/FilterContainer.R", echo = FALSE)
-source("classes/Result.R", echo = FALSE)
-source("classes/Selections.R", echo = FALSE)
-source("classes/DataFilter.R", echo = FALSE)
-source("classes/ScenarioFilter.R", echo = FALSE)
-source("classes/ToolFilter.R", echo = FALSE)
-source("classes/CaseFilter.R", echo = FALSE)
-source("classes/SizeFilter.R", echo = FALSE)
-source("classes/PhaseFilter.R", echo = FALSE)
-source("classes/MetricFilter.R", echo = FALSE)
-source("classes/IterationFilter.R", echo = FALSE)
-source("classes/XDimensionFilter.R", echo = FALSE)
-source("classes/LegendFilter.R", echo = FALSE)
-source("classes/SpecificLegendFilter.R", echo = FALSE)
+source("filters/FilterContainer.R", echo = FALSE)
+source("Result.R", echo = FALSE)
+source("filters/Selections.R", echo = FALSE)
+source("filters/DataFilter.R", echo = FALSE)
+source("filters/ScenarioFilter.R", echo = FALSE)
+source("filters/ToolFilter.R", echo = FALSE)
+source("filters/CaseFilter.R", echo = FALSE)
+source("filters/SizeFilter.R", echo = FALSE)
+source("filters/PhaseFilter.R", echo = FALSE)
+source("filters/MetricFilter.R", echo = FALSE)
+source("filters/IterationFilter.R", echo = FALSE)
+source("filters/XDimensionFilter.R", echo = FALSE)
+source("filters/LegendFilter.R", echo = FALSE)
+source("filters/SpecificLegendFilter.R", echo = FALSE)
+source("plot/PlotContainer.R", echo = FALSE)
+source("plot/PlotSettings.R", echo = FALSE)
+source("plot/Theme.R", echo = FALSE)
 
 options(warn=0)
 
 shinyServer(function(input, output, session) {
     
-  
-  
   values <- reactiveValues(
                            result = Result(),
+                           plotContainer = PlotContainer(),
                            filterContainer = FilterContainer(),
                            templates = list(CaseName="CaseName", 
                                             Scenario="Scenario", 
@@ -46,11 +48,9 @@ shinyServer(function(input, output, session) {
                            iterationObserver=0,
                            xDimensionObserver=0,
                            legendObserver=0,
-                           specificLegendObserver=0,
-                           settings = PlotSettings(theme="Default")
+                           specificLegendObserver=0
+#                            settings = PlotSettings(theme="Default")
                           )
-  
-  
   
   
 # load results and make reactiv values
@@ -73,7 +73,9 @@ shinyServer(function(input, output, session) {
         # initialize components
         values$filterContainer$setResult(values$result)
         values$filterContainer$init()
-
+        
+        values$plotContainer$.plotSettings$init(input, values$filterContainer)
+        
         updateTabsetPanel(session, "reporting", selected = "Results")
         values$filterContainer$notifyFilters(values)
       })
@@ -222,13 +224,12 @@ shinyServer(function(input, output, session) {
   
   source('observers.R', local=TRUE)
 
+  source('pages/results_page.R', local=TRUE)
 
-source('pages/results_page.R', local=TRUE)
+  source('pages/dimensions_page.R', local=TRUE) 
 
-source('pages/dimensions_page.R', local=TRUE) 
+  source('pages/plot_settings_page.R', local=TRUE)
 
-source('pages/plot_settings_page.R', local=TRUE)
-
-source('pages/publishing_page.R', local=TRUE) 
+  source('pages/publishing_page.R', local=TRUE) 
   
 })

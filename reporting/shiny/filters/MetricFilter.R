@@ -34,8 +34,8 @@ setMethodS3(name = "update", class = "MetricFilter", overwrite = TRUE, function(
   }
   
   if (this$enable("Size")){
-    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState 
-                                  & PhaseName %in% this$.container$.phase$.selectedState)$MetricName)
+    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState & 
+                                  PhaseName %in% this$.container$.phase$.selectedState)$MetricName)
   }
   else {
     uniqueStates <- unique(subset(frame, PhaseName %in% this$.container$.phase$.selectedState)$MetricName)

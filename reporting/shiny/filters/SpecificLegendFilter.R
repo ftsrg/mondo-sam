@@ -22,13 +22,13 @@ setMethodS3(name = "update", class = "SpecificLegendFilter", overwrite = TRUE, f
   frame <- result$getSubFrame(id)
   
   if (this$enable("Size")){
-    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState 
-                                  & PhaseName %in% this$.container$.phase$.selectedState
-                                  & MetricName %in% this$.container$.metric$.selectedState)[[this$.container$.legend$.selectedState]])
+    uniqueStates <- unique(subset(frame, Size == this$.container$.size$.selectedState & 
+                                  PhaseName %in% this$.container$.phase$.selectedState & 
+                                  MetricName %in% this$.container$.metric$.selectedState)[[this$.container$.legend$.selectedState]])
   }
   else {
-    uniqueStates <- unique(subset(frame, PhaseName %in% this$.container$.phase$.selectedState
-                                  & MetricName %in% this$.container$.metric$.selectedState)[[this$.container$.legend$.selectedState]])
+    uniqueStates <- unique(subset(frame, PhaseName %in% this$.container$.phase$.selectedState & 
+                                  MetricName %in% this$.container$.metric$.selectedState)[[this$.container$.legend$.selectedState]])
   }
   
   if (length(uniqueStates) == 0){
