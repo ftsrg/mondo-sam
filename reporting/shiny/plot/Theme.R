@@ -13,7 +13,11 @@ setConstructorS3(name = "Theme", function(){
          .xVjust = NULL,
          .yVjust = NULL,
          .legendPosition = NULL,
-         .legendDirection = NULL
+         .legendDirection = NULL,
+         .pointSize = NULL,
+         .pointSizeDefault = NULL,
+         .lineSize = NULL,
+         .lineSizeDefault = NULL
          )
 })
 
@@ -33,6 +37,10 @@ setMethodS3(name = "init", class = "Theme", function(this){
   this$.yVjust <- 0.5
   this$.legendPosition <- "bottom"
   this$.legendDirection <- "vertical"
+  this$.lineSizeDefault <- 1
+  this$.lineSize <- this$.lineSizeDefault
+  this$.pointSizeDefault <- 2
+  this$.pointSize <- this$.pointSizeDefault
 })
 
 

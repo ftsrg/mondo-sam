@@ -186,6 +186,22 @@ changeThemeLegendDirection <- observe({
 })
 
 
+changeThemePointSize <- observe({
+  size <- input$pointSize
+  isolate({
+    values$plotContainer$.theme$.pointSize <- size
+  })
+})
+
+
+changeThemeLineSize <- observe({
+  size <- input$lineSize
+  isolate({
+    values$plotContainer$.theme$.lineSize <- size
+  })
+})
+
+
 changeThemeTextSize <- observe({
   size <- input$textSize
   isolate({

@@ -69,6 +69,7 @@ shinyServer(function(input, output, session) {
         
         initialize()
         
+        updateSelectInput(session, "theme", selected = values$plotContainer$.theme$.style)
         updateTabsetPanel(session, "reporting", selected = "Results")
         values$filterContainer$notifyFilters(values)
       })
@@ -174,7 +175,7 @@ shinyServer(function(input, output, session) {
 
   source('pages/plot_settings_page.R', local = TRUE)
 
-  source('pages/themes.R', local = TRUE)
+  source('pages/themes_page.R', local = TRUE)
 
   source('pages/publishing_page.R', local = TRUE) 
   

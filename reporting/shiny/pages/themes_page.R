@@ -58,8 +58,40 @@ output$textSize <- renderUI({
     }
     if (theme == "specific"){
       sliderInput("textSize", label="Text Size",
-                   value = size, min = 1, max = 30, step = 1)
+                  value = size, min = 1, max = 30, step = 1)
     }
+  })
+})
+
+
+output$pointSize <- renderUI({
+  theme <- input$theme
+  if (is.null(theme)){
+    return()
+  }
+  isolate({
+    size <- values$plotContainer$.theme$.pointSize
+    if (is.null(size)){
+      return()
+    }
+    sliderInput("pointSize", label="Point Size",
+                value = size, min = 1, max = 16, step = 1)
+  })
+})
+
+
+output$lineSize <- renderUI({
+  theme <- input$theme
+  if (is.null(theme)){
+    return()
+  }
+  isolate({
+    size <- values$plotContainer$.theme$.lineSize
+    if (is.null(size)){
+      return()
+    }
+    sliderInput("lineSize", label="Line Size",
+                value = size, min = 1, max = 16, step = 1)
   })
 })
 

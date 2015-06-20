@@ -110,20 +110,20 @@ setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, func
     this$.theme$getTheme()
   
   if (this$.theme$.style == "black"){
-    points <- geom_point(aes_string(shape = this$.plotSettings$.legend), size=this$.plotSettings$.pointSize)
+    points <- geom_point(aes_string(shape = this$.plotSettings$.legend), size=this$.theme$.pointSize)
   }
   else {
-    points <- geom_point(aes_string(shape = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.plotSettings$.pointSize)
+    points <- geom_point(aes_string(shape = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.theme$.pointSize)
   }
   
   plot <- plot + points
   
   if (this$.plotSettings$.lines){
     if (this$.theme$.style == "black"){
-      lines <- geom_line(aes_string(group = this$.plotSettings$.legend), size=this$.plotSettings$.lineSize)
+      lines <- geom_line(aes_string(group = this$.plotSettings$.legend), size=this$.theme$.lineSize)
     }
     else {
-      lines <- geom_line(aes_string(group = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.plotSettings$.lineSize)
+      lines <- geom_line(aes_string(group = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.theme$.lineSize)
     }
     plot <- plot + lines
   }
