@@ -42,37 +42,55 @@ shinyUI(navbarPage("Reporting", id="reporting",
                    tabPanel("Dimensions", id="dimensions", 
                      uiOutput("xDimension"),
                      uiOutput("legend"),
-                     selectInput("legendPosition", label="Legend Position",
-                                 c("Top" = "top", "Right" = "right", "Bottom" = "bottom", "Left" = "left"),
-                                 selected="bottom"),
-                     selectInput("legendDirection", label="Legend Direction",
-                                 c("Vertical" = "vertical", "Horizontal" = "horizontal"),
-                                 selected="vertical"),
                      uiOutput("legendFilters")
                      ),
                    # Plot settings panel
-                   tabPanel(
-                     "Plot settings",
-                     selectInput("xAxis", label="X-axis",
-                                 c("Continuous" = "con", "Log2" = "log2", "Factor" = "factor"),
-                                 selected="log2"),
-                     selectInput("yAxis", label="Y-axis",
-                                 c("Continuous" = "con", "Log2" = "log2", "Factor" = "factor"),
-                                 selected="log2"),
-                     sliderInput("yScale", "Y-Axis Scale", min = -15, max = 15, value = 0, step = 1),
-                     selectInput("theme", label="Themes",
-                                 choices=c("Default", "Black and White")),
-                     textInput("title", "Title", value="SCENARIO CASENAME PHASENAME"),
-                     uiOutput("titleTemplate"),
-                     actionButton("titleInsert", "Insert Title"),
-                     textInput("xLabel", label="X-axis label"),
-                     textInput("yLabel", label="Y-axis label"),
-                     checkboxInput("showValues", label="Show Values", value=FALSE),
-                     checkboxInput("drawLines", label="Draw Lines", value=TRUE)
+                   navbarMenu(
+                     "Plot Settings",
+                     tabPanel("Labels",
+                              fluidRow(
+                                column(4,
+                                       textInput("title", "Title", value="SCENARIO CASENAME PHASENAME"),
+                                       uiOutput("titleTemplate")
+                                ),
+                                column(4, offset = 2, 
+                                       textInput("xLabel", label="X-Axis Label"),
+                                       textInput("yLabel", label="Y-Axis Label")
+                                )
+                              ),
+                              fluidRow(
+                                column(2, offset = 1, 
+                                       actionButton("titleInsert", "Insert Title"))
+                              )
+                     ),
+                     tabPanel("Scales and Data",
+                              selectInput("xAxis", label="X-axis",
+                                          c("Continuous" = "con", "Log2" = "log2", "Factor" = "factor"),
+                                          selected="log2"),
+                              selectInput("yAxis", label="Y-axis",
+                                          c("Continuous" = "con", "Log2" = "log2", "Factor" = "factor"),
+                                          selected="log2"),
+                              sliderInput("yScale", "Y-Axis Scale", min = -15, max = 15, value = 0, step = 1),
+                              checkboxInput("showValues", label="Show Values", value=FALSE),
+                              checkboxInput("drawLines", label="Draw Lines", value=TRUE)
+                     ),
+                     tabPanel("Theme",
+                              uiOutput("theme"),
+                              uiOutput("legendPosition"),
+                              uiOutput("legendDirection"),
+                              uiOutput("textSize"),
+                              uiOutput("textFont"),
+                              uiOutput("xTextSize"),
+                              uiOutput("yTextSize"),
+                              uiOutput("xHjust"),
+                              uiOutput("yHjust"),
+                              uiOutput("xVjust"),
+                              uiOutput("yVjust")
+                     )
                    ),
                    # Publish panel
                    tabPanel(
-                     "Publish",
+                     "Publishing",
                      textInput("filename", label="Filename", value="CASENAME-SCENARIO"),
                      uiOutput("publishTemplate"),
                      actionButton("publishInsert", label="Insert Filename"),

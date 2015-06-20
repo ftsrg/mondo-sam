@@ -25,6 +25,8 @@ source("plot/Theme.R", echo = FALSE)
 
 options(warn=0)
 
+options(shiny.maxRequestSize = 50*1024^2)
+
 shinyServer(function(input, output, session) {
     
   values <- reactiveValues(
@@ -65,11 +67,7 @@ shinyServer(function(input, output, session) {
 #         elapsed <- t-s
 #         print(elapsed)
         
-        # initialize components
-        values$filterContainer$setResult(values$result)
-        values$filterContainer$init()
-        
-        values$plotContainer$.plotSettings$init(input, values$filterContainer)
+        initialize()
         
         updateTabsetPanel(session, "reporting", selected = "Results")
         values$filterContainer$notifyFilters(values)
@@ -77,6 +75,15 @@ shinyServer(function(input, output, session) {
     })
   })
   
+  # initialize components
+  initialize <- function () {
+    values$filterContainer$setResult(values$result)
+    values$filterContainer$init()
+    
+    values$plotContainer$.plotSettings$init(input, values$filterContainer)
+    values$plotContainer$.theme$init()
+  }
+
 
   changeTemplates <- observe({
 #     dimension <- input$xDimension
@@ -157,17 +164,18 @@ shinyServer(function(input, output, session) {
       }
       
     })
-    
   })
   
-  source('observers.R', local=TRUE)
+  source('observers.R', local = TRUE)
 
-  source('pages/results_page.R', local=TRUE)
+  source('pages/results_page.R', local = TRUE)
 
-  source('pages/dimensions_page.R', local=TRUE) 
+  source('pages/dimensions_page.R', local = TRUE) 
 
-  source('pages/plot_settings_page.R', local=TRUE)
+  source('pages/plot_settings_page.R', local = TRUE)
 
-  source('pages/publishing_page.R', local=TRUE) 
+  source('pages/themes.R', local = TRUE)
+
+  source('pages/publishing_page.R', local = TRUE) 
   
 })
