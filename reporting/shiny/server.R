@@ -33,20 +33,20 @@ shinyServer(function(input, output, session) {
                            result = Result(),
                            plotContainer = PlotContainer(),
                            filterContainer = FilterContainer(),
-                           templates = list(CaseName="CaseName", 
-                                            Scenario="Scenario", 
-                                            PhaseName="PhaseName", 
-                                            MetricName="MetricName"),
-                           scenarioObserver=0, 
-                           toolObserver=0, 
-                           caseObserver=0, 
-                           sizeObserver=0, 
-                           phaseObserver=0, 
-                           metricObserver=0,
-                           iterationObserver=0,
-                           xDimensionObserver=0,
-                           legendObserver=0,
-                           specificLegendObserver=0
+                           templates = list(CaseName = "CaseName", 
+                                            Scenario = "Scenario", 
+                                            PhaseName = "PhaseName", 
+                                            MetricName = "MetricName"),
+                           scenarioObserver = 0, 
+                           toolObserver = 0, 
+                           caseObserver = 0, 
+                           sizeObserver = 0, 
+                           phaseObserver = 0, 
+                           metricObserver = 0,
+                           iterationObserver = 0,
+                           xDimensionObserver = 0,
+                           legendObserver = 0,
+                           specificLegendObserver = 0
                           )
   
   
@@ -57,8 +57,8 @@ shinyServer(function(input, output, session) {
     if (is.null(inFile))
       return()
     isolate({
-      tempResults <- read.csv(inFile$datapath, header=TRUE, sep=input$sep, 
-                                 quote=input$quote)
+      tempResults <- read.csv(inFile$datapath, header = TRUE, sep = input$sep, 
+                                 quote = input$quote)
       withProgress(message = 'Processing', value = 1.0, {
 #         s <- proc.time()
         values$result$setFrame(tempResults)
