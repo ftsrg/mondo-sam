@@ -103,15 +103,29 @@ setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, func
   }
   
   plot <- ggplot(data,aes_string(x = this$.plotSettings$.xDimension, y = this$.plotSettings$.yDimension)) +
-    geom_point(aes_string(shape = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.plotSettings$.pointSize) +
     scale_shape_manual(values=1:nlevels(data[[this$.plotSettings$.legend]])) +
     ylab(this$.plotSettings$.yLabel) +
     xlab(this$.plotSettings$.xLabel) +
     ggtitle(label = this$.plotSettings$.title) +
     this$.theme$getTheme()
   
+  if (this$.theme$.style == "black"){
+    points <- geom_point(aes_string(shape = this$.plotSettings$.legend), size=this$.plotSettings$.pointSize)
+  }
+  else {
+    points <- geom_point(aes_string(shape = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.plotSettings$.pointSize)
+  }
+  
+  plot <- plot + points
+  
   if (this$.plotSettings$.lines){
-    plot <- plot + geom_line(aes_string(group = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.plotSettings$.lineSize)
+    if (this$.theme$.style == "black"){
+      lines <- geom_line(aes_string(group = this$.plotSettings$.legend), size=this$.plotSettings$.lineSize)
+    }
+    else {
+      lines <- geom_line(aes_string(group = this$.plotSettings$.legend, colour=this$.plotSettings$.legend), size=this$.plotSettings$.lineSize)
+    }
+    plot <- plot + lines
   }
   
   if(this$.plotSettings$.xAxis != "factor"){
