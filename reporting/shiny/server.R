@@ -76,6 +76,7 @@ shinyServer(function(input, output, session) {
     })
   })
   
+
   # initialize components
   initialize <- function () {
     values$filterContainer$setResult(values$result)

@@ -93,14 +93,33 @@ shinyUI(navbarPage("Reporting", id="reporting",
                    # Publish panel
                    tabPanel(
                      "Publishing",
-                     textInput("filename", label="Filename", value="CASENAME-SCENARIO"),
-                     uiOutput("publishTemplate"),
-                     actionButton("publishInsert", label="Insert Filename"),
-                     selectInput("format","File Format",
-                                 choices=c("PDF", "PNG")),
-                     checkboxGroupInput("publishGroup",label="Publish Settings",
-                                        choices=list("All Scenarios"="scenarios", "All Cases"="cases")),
-                     actionButton("publish",label="Save Diagrams")
+                     sidebarLayout(
+                       sidebarPanel(
+                         selectInput("format", label = "File Format",
+                                     choices = c("PDF", "PNG")),
+                         checkboxGroupInput("publishGroup", label = "Publish Settings",
+                                            choices = list("All Scenarios" = "scenarios", "All Cases" = "cases")),
+                         actionButton("publish", label = "Save Diagrams"),
+                         textOutput("response")
+                       ),
+                       mainPanel(
+                         tabsetPanel(
+                           tabPanel("Location",
+                                    tags$p("Current directory:"),
+                                    textOutput("cwd"),
+                                    tags$p(),
+                                    textInput("location", label = "Add Location", value = "../../diagrams")
+                           ),
+                           tabPanel("Filename",
+                                    tags$p(),
+                                    checkboxInput("automaticFilename", label = "Generate Automatically", value = TRUE),
+                                    uiOutput("filename"),
+                                    uiOutput("publishTemplate"),
+                                    uiOutput("publishInsert")
+                           )
+                         )
+                       )
                      )
+                   )
 )
 )
