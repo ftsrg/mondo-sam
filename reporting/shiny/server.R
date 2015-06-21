@@ -109,66 +109,14 @@ shinyServer(function(input, output, session) {
 #     })
     
   })
+   
+  source('observers/filters.R', local = TRUE)
 
-  # observer for title
-  appendTitle <- observe({
-    # create dependency to the titleInsert button
-    if (input$titleInsert == 0)
-      return()
-    isolate({
-      titleTemplate <- toupper(input$titleTemplate)
-      oldTitle <- input$title
-      updateTextInput(session, "title", value = paste(oldTitle, titleTemplate))
-    })
-  })
-  
-  # observer for the filename
-  changeFilename <- observe({
-    # create dependency to the publishInsert button
-    if (input$publishInsert == 0)
-      return()
-    
-    publishTemplate <- toupper(isolate(input$publishTemplate))
-    oldFilename <- isolate(input$filename)
-    updateTextInput(session, "filename", value = paste(oldFilename, publishTemplate, sep=''))
-  })
-  
-  # observer for publishing, saving the plots 
-  publish <- observe({
-    # create dependency to publish button
-    if (input$publish == 0){
-      return()
-    }
-    isolate({
-      filename <- input$filename
-      format <- input$format
-      file <- paste("../../diagrams/", filename, ".", tolower(format), sep='')
-      file <- gsub("CASENAME", input$case, file)
-      file <- gsub("METRICNAME", input$metrics, file)
-      if ("scenarios" %in% input$publishGroup == TRUE){
-        for(scenario in names(values$subtables)){
-          sub <- createSubFrame(scenario)
-          if (is.null(sub))
-            return()
-          
-          if (values$mix == TRUE){
-            phases <- ""
-            for(p in input$mixphase)
-              phases  <- paste(phases, p, sep=' ')
-            file <- gsub("PHASENAME", phases, file)
-          }
-          file <- gsub("PHASENAME", input$phase, file)
-          newFile <- gsub("SCENARIO", scenario, file)
-          plot <- createPlot(sub,values$settings)
-          print(newFile)
-          ggsave(plot = plot,filename = newFile, width=14, height=7, dpi=192)
-        }
-      }
-      
-    })
-  })
-  
-  source('observers.R', local = TRUE)
+  source('observers/plotsettings.R', local = TRUE)
+
+  source('observers/theme.R', local = TRUE)
+
+  source('observers/publishing.R', local = TRUE)
 
   source('pages/results_page.R', local = TRUE)
 
