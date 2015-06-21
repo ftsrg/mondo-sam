@@ -75,19 +75,30 @@ shinyUI(navbarPage("Reporting", id="reporting",
                               checkboxInput("drawLines", label="Draw Lines", value=TRUE)
                      ),
                      tabPanel("Theme",
-                              uiOutput("theme"),
-                              uiOutput("legendPosition"),
-                              uiOutput("legendDirection"),
-                              uiOutput("pointSize"),
-                              uiOutput("lineSize"),
-                              uiOutput("textSize"),
-                              uiOutput("textFont"),
-                              uiOutput("xTextSize"),
-                              uiOutput("yTextSize"),
-                              uiOutput("xHjust"),
-                              uiOutput("yHjust"),
-                              uiOutput("xVjust"),
-                              uiOutput("yVjust")
+                              fluidRow(
+                                column(
+                                  4, 
+                                  uiOutput("theme"),
+                                  uiOutput("legendPosition"),
+                                  uiOutput("legendDirection"),
+                                  uiOutput("pointSize"),
+                                  uiOutput("lineSize")
+                                ),
+                                column(4, offset = 0,
+                                       uiOutput("textSize"),
+                                       uiOutput("textFont"),
+                                       tags$p(),
+                                       uiOutput("xTextSize"),
+                                       tags$p(),
+                                       uiOutput("yTextSize")
+                                ),
+                                column(4, offset = 0,
+                                       uiOutput("xHjust"),
+                                       uiOutput("yHjust"),
+                                       uiOutput("xVjust"),
+                                       uiOutput("yVjust")
+                                       )
+                              )
                      )
                    ),
                    # Publish panel
