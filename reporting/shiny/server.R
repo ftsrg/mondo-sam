@@ -38,7 +38,8 @@ shinyServer(function(input, output, session) {
                            publisher = Publisher(),
                            templates = list(CaseName = "CaseName", 
                                             Scenario = "Scenario", 
-                                            MetricName = "MetricName"),
+                                            Tool = "Tool",
+                                            Size = "Size"),
                            scenarioObserver = 0, 
                            toolObserver = 0, 
                            caseObserver = 0, 
@@ -89,29 +90,6 @@ shinyServer(function(input, output, session) {
     values$plotContainer$.theme$init()
   }
 
-
-  changeTemplates <- observe({
-#     dimension <- input$xDimension
-#     isolate({
-#       if (dimension != "Size"){
-#         values$templates <- c(values$templates, Size="Size")
-#         updateSelectInput(session, "titleTemplate", label="Template",
-#                           choices=values$templates)
-#         updateSelectInput(session, "publishTemplate", label="Template",
-#                           choices=values$templates)
-#       }
-#       else {
-#         if ("Size" %in% names(values$templates)){
-#           values$templates <- values$templates[ - which(names(values$templates) == "Size")]
-#           updateSelectInput(session, "titleTemplate", label="Template",
-#                             choices=values$templates)
-#           updateSelectInput(session, "publishTemplate", label="Template",
-#                             choices=values$templates)
-#         }
-#       }
-#     })
-    
-  })
    
   source('observers/filters.R', local = TRUE)
 
