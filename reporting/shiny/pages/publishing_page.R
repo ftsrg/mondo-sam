@@ -11,6 +11,11 @@ output$filename <- renderUI({
 })
 
 
+output$publishGroup <- renderUI({
+  checkboxGroupInput("publishGroup", label = "Publish Settings",
+                   choices = list("All Scenarios" = "scenarios", "All Cases" = "cases"))
+})
+
 output$publishTemplate <- renderUI({
   enable <- input$automaticFilename
   if (!enable){

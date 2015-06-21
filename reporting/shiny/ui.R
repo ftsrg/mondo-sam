@@ -107,9 +107,8 @@ shinyUI(navbarPage("Reporting", id="reporting",
                      sidebarLayout(
                        sidebarPanel(
                          selectInput("format", label = "File Format",
-                                     choices = c("PDF", "PNG")),
-                         checkboxGroupInput("publishGroup", label = "Publish Settings",
-                                            choices = list("All Scenarios" = "scenarios", "All Cases" = "cases")),
+                                     choices = c("PDF", "PNG", "TIFF", "BMP", "TEX", "SVG", "EPS")),
+                         uiOutput("publishGroup"),
                          actionButton("publish", label = "Save Diagrams"),
                          textOutput("response")
                        ),
