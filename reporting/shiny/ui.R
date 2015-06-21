@@ -108,7 +108,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                     tags$p("Current directory:"),
                                     textOutput("cwd"),
                                     tags$p(),
-                                    textInput("location", label = "Add Location", value = "../../diagrams")
+                                    textInput("location", label = "Add Location", value = "../../diagrams/")
                            ),
                            tabPanel("Filename",
                                     tags$p(),
@@ -116,7 +116,16 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                     uiOutput("filename"),
                                     uiOutput("publishTemplate"),
                                     uiOutput("publishInsert")
-                           )
+                           ),
+                           tabPanel("Settings",
+                                    tags$p(),
+                                    numericInput(inputId = "diagramWidth", label = "Diagram Width (cm)", 
+                                                 value = 14, min = 1, max = 50),
+                                    numericInput(inputId = "diagramHeight", label = "Diagram Height (cm)", 
+                                                 value = 7, min = 1, max = 50),
+                                    numericInput(inputId = "diagramDPI", label = "Diagram DPI", 
+                                                 value = 300, min = 150, max = 1000)
+                                    )
                          )
                        )
                      )

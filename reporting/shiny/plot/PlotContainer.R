@@ -85,7 +85,7 @@ setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, func
   maxValue <- max(data$MetricValue)
   if (minValue == 0){
     print("The minimum metricvalue equals with 0. The plot cannot be generated.")
-    return()
+    return(NULL)
   }
   
   if (this$.plotSettings$.xAxis == "factor"){
