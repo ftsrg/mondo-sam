@@ -4,7 +4,7 @@ library("shiny", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("R.oo", quietly=T, verbose=F, warn.conflicts=FALSE)
 
-# options(warn=-1)
+options(warn=-1)
 source("filters/FilterContainer.R", echo = FALSE)
 source("Result.R", echo = FALSE)
 source("Publisher.R", echo = FALSE)
@@ -25,7 +25,7 @@ source("plot/PlotContainer.R", echo = FALSE)
 source("plot/PlotSettings.R", echo = FALSE)
 source("plot/Theme.R", echo = FALSE)
 
-# options(warn=0)
+options(warn=0)
 
 options(shiny.maxRequestSize = 50*1024^2)
 
