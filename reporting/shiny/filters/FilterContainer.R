@@ -122,6 +122,15 @@ setMethodS3(name = "getFilter", class = "FilterContainer", function(this, select
 })
 
 
+setMethodS3(name = "injectStates", class = "FilterContainer", function(this, text){
+  text <- gsub(pattern = "SCENARIO", replacement = this$.scenario$.selectedState, text)
+  text <- gsub(pattern = "CASENAME", replacement = this$.case$.selectedState, text)
+  text <- gsub(pattern = "TOOL", replacement = this$.tool$.selectedState, text)
+  text <- gsub(pattern = "SIZE", replacement = this$.size$.selectedState, text)
+  return(text)
+})
+
+
 setMethodS3(name = "notifyFilters", class = "FilterContainer", function(this, observers){
   observers$scenarioObserver <- observers$scenarioObserver + 1
   observers$xDimensionObserver <- observers$xDimensionObserver + 1

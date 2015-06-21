@@ -51,13 +51,13 @@ setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterC
     frame <- subset(frame, Iteration >= filterContainer$.iteration$.selectedState[1] & Iteration <= filterContainer$.iteration$.selectedState[2])
   }
   
-  plot <- this$generatePlot(frame)
+  plot <- this$generatePlot(frame, filterContainer)
   this$.plots <- c(plot, this$.plots)
   return(plot)
 })
 
 
-setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, function(this, data){
+setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, function(this, data, filterContainer){
   data$MetricValue <- data$MetricValue * (10 ** this$.plotSettings$.yScale)
   
   header <- names(data)
@@ -112,11 +112,14 @@ setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, func
     xLabel <- this$.plotSettings$.xDimension
   }
   
+  title <- this$.plotSettings$.title
+  title <- filterContainer$injectStates(title)
+  
   plot <- ggplot(data,aes_string(x = this$.plotSettings$.xDimension, y = this$.plotSettings$.yDimension)) +
     scale_shape_manual(values=1:nlevels(data[[this$.plotSettings$.legend]])) +
     ylab(this$.plotSettings$.yLabel) +
     xlab(xLabel) +
-    ggtitle(label = this$.plotSettings$.title) +
+    ggtitle(label = title) +
     this$.theme$getTheme()
   
   if (this$.theme$.style == "black"){

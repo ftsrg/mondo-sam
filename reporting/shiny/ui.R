@@ -50,7 +50,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                      tabPanel("Labels",
                               fluidRow(
                                 column(4,
-                                       textInput("title", "Title", value="SCENARIO CASENAME PHASENAME"),
+                                       textInput("title", "Title", value="SCENARIO CASENAME"),
                                        uiOutput("titleTemplate")
                                 ),
                                 column(4, offset = 2, 

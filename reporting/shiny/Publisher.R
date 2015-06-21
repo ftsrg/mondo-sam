@@ -84,5 +84,6 @@ setMethodS3(name = "determineFilename", class = "Publisher", private = TRUE, fun
   else {
     this$.filename <- this$.defaultFilename
   }
+  this$.filename <- filterContainer$injectStates(this$.filename)
   this$.filename <- paste(this$.filename, ".", tolower(this$.format), sep='')
 })

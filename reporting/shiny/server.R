@@ -38,7 +38,6 @@ shinyServer(function(input, output, session) {
                            publisher = Publisher(),
                            templates = list(CaseName = "CaseName", 
                                             Scenario = "Scenario", 
-                                            PhaseName = "PhaseName", 
                                             MetricName = "MetricName"),
                            scenarioObserver = 0, 
                            toolObserver = 0, 
