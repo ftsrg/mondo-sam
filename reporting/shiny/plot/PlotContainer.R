@@ -102,10 +102,20 @@ setMethodS3(name = "generatePlot", class = "PlotContainer", private = TRUE, func
     data[this$.plotSettings$.legend] <- as.character(data[[this$.plotSettings$.legend]])
   }
   
+  xLabel <- this$.plotSettings$.xLabel
+  if (!is.null(xLabel)){
+    if (xLabel == ""){
+      xLabel <- this$.plotSettings$.xDimension
+    }
+  }
+  else {
+    xLabel <- this$.plotSettings$.xDimension
+  }
+  
   plot <- ggplot(data,aes_string(x = this$.plotSettings$.xDimension, y = this$.plotSettings$.yDimension)) +
     scale_shape_manual(values=1:nlevels(data[[this$.plotSettings$.legend]])) +
     ylab(this$.plotSettings$.yLabel) +
-    xlab(this$.plotSettings$.xLabel) +
+    xlab(xLabel) +
     ggtitle(label = this$.plotSettings$.title) +
     this$.theme$getTheme()
   
