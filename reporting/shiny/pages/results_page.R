@@ -1,347 +1,83 @@
 output$plot <- renderPlot({
-  print("DRAW PLOT")
   # add dependency to "Draw Plot" button
   input$visualize
   isolate({
-    if (is.null(input$metric) | is.null(input$phase) | is.null(input$scenario) | is.null(input$case))
+    if (is.null(values$filterContainer$.specificLegend$.selectedState)){
       return(NULL)
+    }
     
     withProgress(message = 'Creating plot', value = 1.0, {
-      frameID = getFrameID()
-      frame <- values$subFrames[[frameID]]
-      if (is.null(frame)){
-        return()
-      }
-      
-      if ("Size" %in% values$selections){
-        size <- input$size
-        if (size == ""){
-          return()
-        }
-        frame <- subset(frame, Size == input$size)
-      }
-      if (input$metric == ""){
-        return()
-      }
-      if (input$phase == ""){
-        return()
-      }
-      frame <- subset(frame, MetricName %in% input$metric & PhaseName %in% input$phase)
-      legend <- input$legend
-      frame <- frame[which(frame[[legend]] %in% input$legendFilters), ]
-      if (values$iterations[1] > 0){
-        frame <- subset(frame, Iteration >= values$iterations[1] & Iteration <= values$iterations[2])
-      }
-      print(nrow(frame))
-      settings <- PlotSettings()
-      
-      settings <- setLegend(settings, legend)
-      title <- injectValues(frame, input$title)
-      settings <- setTitle(settings, title)
-      settings <- setDimensions(settings, input$xdimension, "MetricValue")
-      settings <- setLabels(settings, input$xlabel, input$ylabel)
-      settings <- setAxis(settings, input$xaxis, input$yaxis)
-      settings <- setYScale(settings, input$yscale)
-      settings <- showTexts(settings, input$showValues)
-      settings <- drawLines(settings, input$drawLines)
-      
-      frame$MetricValue <- frame$MetricValue * (10 ** input$yscale)
-      
-#       phases <- config$Plot[row, ]$Summarize_Function
-#       phases <- list(input$phase)
-#       extensions <- config$Plot[row, ]$Extensions
-      extensions <- list("png")
-#       filename <- paste(filename, "Function", row, sep="-")
-
-      mappingPath <<- "../mapping.json"
-      plot <- generatePlot(frame, settings, input$phase)
-      print(plot)
+      plot(values$plotContainer$createPlot(values$filterContainer))
     })
   })
 })
 
+
 output$scenario <- renderUI({
-  print("scenario")
-#   values$scenarioObserver
+  values$scenarioObserver
   isolate({
-    values$toolObserver <- values$toolObserver + 1
-  })
-  if("Scenario" %in% values$selections == FALSE){
-    # display nothing
-    return()
-  }
-  isolate({
-    
-    scenario_list <- list()
-    for(scen in values$unique_scenarios){
-      scenario_list <- c(scen, scenario_list)
+    if (!is.null(values$filterContainer$.scenario)){
+      values$filterContainer$.scenario$display()  
     }
-    selectInput("scenario", "Scenarios",
-                choices = scenario_list,
-                selected = scenario_list[1]
-    )
   })
 })
+
 
 output$tool <- renderUI({
-  print("tool")
   values$toolObserver
-
   isolate({
-    values$caseObserver <- values$caseObserver + 1
-  })
-  if(is.null(input$scenario)){
-    print(input$scenario)
-    print("null scenario in tool")
-    return()
-  }
-  if("Tool" %in% values$selections == FALSE){
-    # display nothing
-    return()
-  }
-
-  
-  isolate({
-    
-    id <- getFrameID("Tool")
-    if(id == "ID"){
-      uniqueTools <- values$unique_tools
+    if (!is.null(values$filterContainer$.tool)){
+      values$filterContainer$.tool$display()  
     }
-    else{
-      uniqueTools <- unique(values$subFrames[[id]]$Tool)
-    }
-    tool_list <- list()
-    for(tool in uniqueTools){
-      tool_list <- c(tool, tool_list)
-    }
-    selectInput("tool", "Tool",
-                choices = tool_list,
-                selected = tool_list[1])
   })
 })
+
 
 output$case <- renderUI({
-  print("case")
   values$caseObserver
-  input$tool
   isolate({
-    values$sizeObserver <- values$sizeObserver + 1
-  })
-  if("CaseName" %in% values$selections == FALSE){
-    # display nothing
-    return()
-  }
-#   if(is.null(input$tool)){
-#     print("null tool in case")
-#     return()
-#   }
-  #     input$scenario
-  
-  isolate({
-    id <- getFrameID("CaseName")
-    if(id == "ID"){
-      uniqueCases <- values$unique_cases
+    if (!is.null(values$filterContainer$.case)){
+      values$filterContainer$.case$display()
     }
-    else{
-      uniqueCases <- unique(values$subFrames[[id]]$CaseName)
-    }
-    case_list <- list()
-    for(case in uniqueCases){
-      case_list <- c(case, case_list)
-    }
-    return(selectInput("case", "Case",
-                       choices = case_list,
-                       selected = case_list[0]
-    ))
   })
 })
+
 
 output$size <- renderUI({
-  print("size")
   values$sizeObserver
-  input$case
   isolate({
-    values$phaseObserver <- values$phaseObserver + 1
-  })
-
-  if("Size" %in% values$selections == FALSE){
-    # display nothing
-    return()
-  }
-  #     input$scenario
-  #     input$tool
-  
-  isolate({
-    
-    id <- getFrameID("Size")
-    print("print id in size:")
-    print(id)
-#     print(values$subFrames[[id]])
-    if(id == "ID"){
-      uniqueSizes <- values$unique_sizes
+    if (!is.null(values$filterContainer$.size)){
+      values$filterContainer$.size$display()
     }
-    else{
-      uniqueSizes <- unique(values$subFrames[[id]]$Size)
-    }
-    size_list <- list()
-    for(size in uniqueSizes){
-      size_list <- c(size, size_list)
-    }
-    size_list <- sort(as.numeric(size_list))
-    selectInput("size", "Size",
-                choices = size_list,
-                selected = size_list[0]
-    )
   })
 })
 
-output$phase <- renderUI({
-  print("phase")
-  # add dependency to phaseObserver
+
+output$phases <- renderUI({
   values$phaseObserver
-  input$size
   isolate({
-    values$metricObserver <- values$metricObserver + 1
-  })
-
-  isolate({
-    
-    # id identifies the certanly used data frame
-    id <- getFrameID()
-    frame <- values$subFrames[[id]]
-    if (is.null(frame)){
-      return()
+    if (!is.null(values$filterContainer$.phase)){
+      values$filterContainer$.phase$display()
     }
-    if ("Size" %in% values$selections){
-      uniquePhases <- unique(subset(frame, Size == input$size)$PhaseName)
-    }
-    else{
-      uniquePhases <- unique(frame$PhaseName)
-    }
-    
-    phaseList <- list()
-    for(phase in uniquePhases){
-      phaseList <- c(phase, phase, phaseList)
-    }
-    
-    selectizeInput("phase", "Phases",
-                   choices = phaseList,
-                   multiple = TRUE,
-                   selected = NULL)
   })
 })
 
-output$metric <- renderUI({
-  print("metric")
+
+output$metrics <- renderUI({
   values$metricObserver
-  input$phase
-
   isolate({
-    values$iterationObserver <- values$iterationObserver + 1
-    
-    if ("Size" %in% values$selections){
-      # id identifies the certanly used data frame
-      id <- getFrameID()
-      frame <- values$subFrames[[id]]
-      if (is.null(frame)){
-        return()
-      }
-      uniqueMetrics <- unique(subset(frame, Size == input$size & PhaseName %in% input$phase)$MetricName)
+    if (!is.null(values$filterContainer$.metric)){
+      values$filterContainer$.metric$display()
     }
-    else{
-      print(input$phase)
-      if (is.null(input$phase) || input$phase == ""){
-        return()
-      }
-      # id identifies the certanly used data frame
-      id <- getFrameID()
-      frame <- values$subFrames[[id]]
-      if (is.null(frame)){
-        return()
-      }
-      uniqueMetrics <- unique(subset(frame, PhaseName %in% input$phase)$MetricName)
-    }
-    
-    metricList <- list()
-    for(metric in uniqueMetrics){
-      metricList <- c(metric, metricList)
-    }
-    if (length(metricList) == 1){
-      selectizeInput("metric", "Metrics",
-                     choices = metricList,
-                     multiple = TRUE,
-                     selected = metricList[1])
-    }
-    else{
-      selectizeInput("metric", "Metrics",
-                     choices = metricList,
-                     multiple = TRUE,
-                     selected = NULL)
-    }
-    
   })
 })
+
 
 output$iteration <- renderUI({
-  print("iteration")
-  input$metric
   values$iterationObserver
-  
   isolate({
-    values$iterations <- c(1,1)
-    
-    if (is.null(input$phase) || is.null(input$metric)){
-      return()
+    if (!is.null(values$filterContainer$.iteration)){
+      values$filterContainer$.iteration$display()
     }
-    phase <- input$phase
-    metric <- input$metric
-    if (phase == "" || metric == ""){
-      return()
-    }
-    
-    if ("Size" %in% values$selections){
-      size <- input$size
-      if (is.null(size)  || size == ""){
-        return()
-      }
-      # id identifies the certainly used data frame
-      id <- getFrameID()
-      frame <- values$subFrames[[id]]
-      if (is.null(frame)){
-        return()
-      }
-      subFrame <- (subset(frame, Size == size & PhaseName %in% phase & MetricName %in% metric))
-    }
-    else{
-      id <- getFrameID()
-      frame <- values$subFrames[[id]]
-      if (is.null(frame)){
-        return()
-      }
-      subFrame <- (subset(frame, PhaseName %in% input$phase & MetricName %in% metric))
-    }
-    maxIteration <- max(subFrame$Iteration)
-    
-    
-    if(maxIteration > 1){
-      if (values$iterations[[1]] == 0){
-        minRange <- 1
-        maxRange <- 1
-      }
-      else {
-        minRange <- values$iterations[[1]]
-        maxRange <- values$iterations[[2]]
-      }
-      sliderInput("iteration", "Iterations",
-                  min=1,
-                  max=maxIteration,
-                  value=c(minRange, maxRange),
-                  step=1
-      )
-    }
-    else if (is.null(input$iteration) == FALSE){
-      values$iterations <- c(0,0) # set to default
-      return() # to remove slider
-    }
-      })
+  })
 })
