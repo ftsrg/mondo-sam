@@ -59,6 +59,9 @@ changeSelections <- observe({
     values$filterContainer$.xDimension$setState(xDimension)
     values$filterContainer$.legend$setState(legend)
     values$filterContainer$.selections$changeSelections(xDimension, legend)
+    
+    values$filterContainer$.publishing$update()
+    
     values$filterContainer$notifyFilters(values)
   })
 })

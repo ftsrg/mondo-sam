@@ -14,7 +14,8 @@ setConstructorS3(name = "FilterContainer", function(){
          .iteration = NULL,
          .xDimension = NULL,
          .legend = NULL,
-         .specificLegend = NULL
+         .specificLegend = NULL,
+         .publishing = NULL
          )
 })
 
@@ -74,6 +75,11 @@ setMethodS3(name = "init", class = "FilterContainer", function(this){
   this$.specificLegend$.allStates <- NULL
   this$.specificLegend$update()
 
+  this$.publishing <- PublishingFilter(sel)
+  this$.publishing$setContainer(this)
+  this$.publishing$.allStates <- sel$.defaultSelections
+  this$.publishing$update()
+  
 })
 
 
@@ -93,25 +99,25 @@ setMethodS3(name = "getFrameID", class = "FilterContainer", function(this, limit
       return(id)
     }
     if (select %in% this$.selections$.selections){
-      id <- paste(id, this$getValue(select), sep=".")
+      id <- paste(id, this$getFilter(select)$.selectedState, sep=".")
     }
   }
   return(id)
 })
 
 
-setMethodS3(name = "getValue", class = "FilterContainer", function(this, selected){
+setMethodS3(name = "getFilter", class = "FilterContainer", function(this, selected){
   if(selected == "Scenario"){
-    return(this$.scenario$.selectedState)
+    return(this$.scenario)
   }
   if(selected == "CaseName"){
-    return(this$.case$.selectedState)
+    return(this$.case)
   }
   if(selected == "Tool"){
-    return(this$.tool$.selectedState)
+    return(this$.tool)
   }
   if(selected == "Size"){
-    return(this$.size$.selectedState)
+    return(this$.size)
   }
 })
 
@@ -119,6 +125,8 @@ setMethodS3(name = "getValue", class = "FilterContainer", function(this, selecte
 setMethodS3(name = "notifyFilters", class = "FilterContainer", function(this, observers){
   observers$scenarioObserver <- observers$scenarioObserver + 1
   observers$xDimensionObserver <- observers$xDimensionObserver + 1
-  observers$legend <- observers$legend + 1
+  observers$legend <- observers$legend +1
+  observers$publishingObserver <- observers$publishingObserver + 1
+  
   this$.scenario$notify(observers)
 })

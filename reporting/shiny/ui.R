@@ -108,7 +108,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                        sidebarPanel(
                          selectInput("format", label = "File Format",
                                      choices = c("PDF", "PNG", "TIFF", "BMP", "TEX", "SVG", "EPS")),
-                         uiOutput("publishGroup"),
+                         uiOutput("publishFilter"),
                          actionButton("publish", label = "Save Diagrams"),
                          textOutput("response")
                        ),
@@ -118,7 +118,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                     tags$p("Current directory:"),
                                     textOutput("cwd"),
                                     tags$p(),
-                                    textInput("location", label = "Add Location", value = "../../diagrams/")
+                                    textInput("location", label = "Add Location", value = "../diagrams/")
                            ),
                            tabPanel("Filename",
                                     tags$p(),

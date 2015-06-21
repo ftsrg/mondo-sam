@@ -7,6 +7,7 @@ library("R.oo", quietly=T, verbose=F, warn.conflicts=FALSE)
 options(warn=-1)
 source("filters/FilterContainer.R", echo = FALSE)
 source("Result.R", echo = FALSE)
+source("Publisher.R", echo = FALSE)
 source("filters/Selections.R", echo = FALSE)
 source("filters/DataFilter.R", echo = FALSE)
 source("filters/ScenarioFilter.R", echo = FALSE)
@@ -19,6 +20,7 @@ source("filters/IterationFilter.R", echo = FALSE)
 source("filters/XDimensionFilter.R", echo = FALSE)
 source("filters/LegendFilter.R", echo = FALSE)
 source("filters/SpecificLegendFilter.R", echo = FALSE)
+source("filters/PublishingFilter.R", echo = FALSE)
 source("plot/PlotContainer.R", echo = FALSE)
 source("plot/PlotSettings.R", echo = FALSE)
 source("plot/Theme.R", echo = FALSE)
@@ -33,6 +35,7 @@ shinyServer(function(input, output, session) {
                            result = Result(),
                            plotContainer = PlotContainer(),
                            filterContainer = FilterContainer(),
+                           publisher = Publisher(),
                            templates = list(CaseName = "CaseName", 
                                             Scenario = "Scenario", 
                                             PhaseName = "PhaseName", 
@@ -46,7 +49,8 @@ shinyServer(function(input, output, session) {
                            iterationObserver = 0,
                            xDimensionObserver = 0,
                            legendObserver = 0,
-                           specificLegendObserver = 0
+                           specificLegendObserver = 0,
+                           publishingObserver = 0
                           )
   
   

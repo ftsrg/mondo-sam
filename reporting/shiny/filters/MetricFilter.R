@@ -8,11 +8,11 @@ setConstructorS3(name = "MetricFilter", function(selections = NULL){
 
 setMethodS3(name = "notify", class = "MetricFilter", overwrite = TRUE, function(this, observers){
     this$.container$.iteration$update()
-    observers$iterationObserver <- observers$iterationObserver +1
+    observers$iterationObserver <- observers$iterationObserver + 1
     this$.container$.iteration$notify(observers)
     
     this$.container$.specificLegend$update()
-    observers$specificLegendObserver <- observers$specificLegendObserver +1
+    observers$specificLegendObserver <- observers$specificLegendObserver + 1
     this$.container$.specificLegend$notify(observers)
 })
 

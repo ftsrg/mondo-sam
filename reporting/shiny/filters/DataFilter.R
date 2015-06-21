@@ -7,7 +7,8 @@ setConstructorS3(name = "DataFilter", abstract = TRUE, function(selections = NUL
          .container = NULL,
          .selectedState = NULL,
          .allCurrentStates = NULL,
-         .allStates = NULL)
+         .allStates = NULL,
+         .storage = NULL)
 })
 
 
@@ -61,6 +62,16 @@ setMethodS3(name = "enable", class = "DataFilter", function(this, filterName){
     return(FALSE)
   }
   return(TRUE)
+})
+
+
+setMethodS3(name = "storeState", class = "DataFilter", function(this){
+  this$.storage <- this$.selectedState
+})
+
+
+setMethodS3(name = "popState", class = "DataFilter", function(this){
+  this$.selectedState <- this$.storage
 })
 
 
