@@ -1,8 +1,10 @@
 changeScenario <- observe({
   scenario <- input$scenario
   isolate({
-    values$filterContainer$.scenario$.selectedState <- scenario
-    values$filterContainer$.scenario$notify(values)  
+    if (!is.null(values$filterContainer$.scenario)){
+      values$filterContainer$.scenario$.selectedState <- scenario
+      values$filterContainer$.scenario$notify(values)  
+    }
   })
 })
 
@@ -10,8 +12,10 @@ changeScenario <- observe({
 changeTool <- observe({
   tool <- input$tool
   isolate({
-    values$filterContainer$.tool$.selectedState <- tool
-    values$filterContainer$.tool$notify(values)
+    if (!is.null(values$filterContainer$.tool)){
+      values$filterContainer$.tool$.selectedState <- tool
+      values$filterContainer$.tool$notify(values)
+    }
   })
 })
 
@@ -19,8 +23,10 @@ changeTool <- observe({
 changeCase <- observe({
   case <- input$case
   isolate({
-    values$filterContainer$.case$.selectedState <- case
-    values$filterContainer$.case$notify(values)
+    if (!is.null(values$filterContainer$.case)){
+      values$filterContainer$.case$.selectedState <- case
+      values$filterContainer$.case$notify(values)
+    }
   })
 })
 
@@ -28,8 +34,10 @@ changeCase <- observe({
 changeSize <- observe({
   size <- input$size
   isolate({
-    values$filterContainer$.size$.selectedState <- size
-    values$filterContainer$.size$notify(values)
+    if (!is.null(values$filterContainer$.size)){
+      values$filterContainer$.size$.selectedState <- size
+      values$filterContainer$.size$notify(values)
+    }
   })
 })
 
@@ -37,8 +45,10 @@ changeSize <- observe({
 changePhases <- observe({
   phases <- input$phases
   isolate({
-    values$filterContainer$.phase$.selectedState <- phases
-    values$filterContainer$.phase$notify(values)
+    if (!is.null(values$filterContainer$.phase)){
+      values$filterContainer$.phase$.selectedState <- phases
+      values$filterContainer$.phase$notify(values)
+    }
   })
 })
 
@@ -46,8 +56,10 @@ changePhases <- observe({
 changeMetrics <- observe({
   metrics <- input$metrics
   isolate({
-    values$filterContainer$.metric$.selectedState <- metrics
-    values$filterContainer$.metric$notify(values)
+    if (!is.null(values$filterContainer$.metric)){
+      values$filterContainer$.metric$.selectedState <- metrics
+      values$filterContainer$.metric$notify(values)
+    }
   })
 })
 
@@ -56,13 +68,15 @@ changeSelections <- observe({
   xDimension <- input$xDimension
   legend <- input$legend
   isolate({
-    values$filterContainer$.xDimension$setState(xDimension)
-    values$filterContainer$.legend$setState(legend)
-    values$filterContainer$.selections$changeSelections(xDimension, legend)
-    
-    values$filterContainer$.publishing$update()
-    
-    values$filterContainer$notifyFilters(values)
+    if (!is.null(values$filterContainer$.xDimension)){
+      values$filterContainer$.xDimension$setState(xDimension)
+      values$filterContainer$.legend$setState(legend)
+      values$filterContainer$.selections$changeSelections(xDimension, legend)
+      
+      values$filterContainer$.publishing$update()
+      
+      values$filterContainer$notifyFilters(values)
+    }
   })
 })
 
@@ -70,8 +84,10 @@ changeSelections <- observe({
 changeLegendFilters <- observe({
   specificLegend <- input$legendFilters
   isolate({
-    values$filterContainer$.specificLegend$.selectedState <- specificLegend
-    values$filterContainer$.specificLegend$notify(values)
+    if (!is.null(values$filterContainer$.specificLegend)){
+      values$filterContainer$.specificLegend$.selectedState <- specificLegend
+      values$filterContainer$.specificLegend$notify(values)
+    }
   })
 })
 
@@ -79,7 +95,9 @@ changeLegendFilters <- observe({
 changeIteration <- observe({
   iterations <- input$iteration
   isolate({
-    values$filterContainer$.iteration$.selectedState <- iterations
-    values$filterContainer$.iteration$notify(values)
+    if (!is.null(values$filterContainer$.iteration)){
+      values$filterContainer$.iteration$.selectedState <- iterations
+      values$filterContainer$.iteration$notify(values)
+    }
   })
 })

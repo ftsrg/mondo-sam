@@ -1,13 +1,18 @@
 # observer for changing the filename
 changeFilename <- observe({
   # create dependency to the publishInsert button
+  if (is.null(input$publishInsert)){
+    return()
+  }
   if (input$publishInsert == 0){
     return()
   }
   isolate({
-    publishTemplate <- toupper(input$publishTemplate)
-    oldFilename <- input$filename
-    updateTextInput(session, "filename", value = paste(oldFilename, publishTemplate, sep = ''))
+    if (!is.null(input$publishTemplate)){
+      publishTemplate <- toupper(input$publishTemplate)
+      oldFilename <- input$filename
+      updateTextInput(session, "filename", value = paste(oldFilename, publishTemplate, sep = ''))
+    }
   })
 })
 
