@@ -45,7 +45,7 @@ output$publishInsert <- renderUI({
 output$response <- renderText({
   input$publish
   isolate({
-    if (!file.exists(input$location)){
+    if (is.na(file.info(input$location)[1,"isdir"])){
       return("Location does not exist")
     }
     else {

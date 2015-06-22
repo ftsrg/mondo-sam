@@ -25,7 +25,7 @@ publish <- observe({
   }
   isolate({
     location <- input$location
-    if (!file.exists(location)){
+    if (is.na(file.info(location)[1,"isdir"])){
       return()
     }
     withProgress(message = 'Publish Plots', value = 1.0, {
