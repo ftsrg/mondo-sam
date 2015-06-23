@@ -33,6 +33,16 @@ setMethodS3(name = "publish", class = "Publisher", function(this, filterContaine
 })
 
 
+setMethodS3(name = "import", class = "Publisher", function(this, config){
+  this$.format <- updateConfigData(this$.format, config, "Extension")
+  this$.automaticFilename <- updateConfigData(this$.automaticFilename, config, "Automatic_Filename")
+  this$.defaultFilename <- updateConfigData(this$.filename, config, "Specified_Filename")
+  this$.diagramWidth <- updateConfigData(this$.diagramWidth, config, "Diagram_Width")
+  this$.diagramHeight <- updateConfigData(this$.diagramHeight, config, "Diagram_Height")
+  this$.diagramDPI <- updateConfigData(this$.diagramDPI, config, "Diagram_DPI")
+})
+
+
 setMethodS3(name = "publishOne", class = "Publisher", private = TRUE, function(this, filterContainer, plotContainer){
   plot <- plotContainer$createPlot(filterContainer)
   if (is.null(plot)){

@@ -20,6 +20,38 @@ setMethodS3(name = "pop", class = "PlotContainer", function(){
 })
 
 
+setMethodS3(name = "import", class = "PlotContainer", function(this, config){
+  this$.plotSettings$.title <- updateConfigData(this$.plotSettings$.title, config, "Title")
+  
+  this$.plotSettings$.yScale <- updateConfigData(this$.plotSettings$.yScale, config, "Metric_Scale")
+  
+  this$.plotSettings$.xLabel <- updateConfigData(this$.plotSettings$.xLabel, config, "X_Label")
+  this$.plotSettings$.yLabel <- updateConfigData(this$.plotSettings$.yLabel, config, "Y_Label")
+  this$.plotSettings$.xAxis <- updateConfigData(this$.plotSettings$.xAxis, config, "X_Axis_Scale")
+  this$.plotSettings$.yAxis <- updateConfigData(this$.plotSettings$.yAxis, config, "Y_Axis_Scale")
+  
+  this$.plotSettings$.texts <- updateConfigData(this$.plotSettings$.texts, config, "Show_Values")
+  this$.plotSettings$.lines <- updateConfigData(this$.plotSettings$.lines, config, "Draw_Lines")
+  
+  this$.theme$.legendPosition <- updateConfigData(this$.theme$.legendPosition, config, "Legend_Position")
+  this$.theme$.legendDirection <- updateConfigData(this$.theme$.legendDirection, config, "Legend_Direction")
+  
+  this$.theme$.style <- updateConfigData(this$.theme$.style, config, "Theme")
+  
+  this$.theme$.pointSize <- updateConfigData(this$.theme$.pointSize, config, "Point_Size")
+  this$.theme$.lineSize <- updateConfigData(this$.theme$.lineSize, config, "Line_Size")
+  this$.theme$.textSize <- updateConfigData(this$.theme$.textSize, config, "Text_Size")
+  this$.theme$.family <- updateConfigData(this$.theme$.family, config, "Text_Font")
+  
+  this$.theme$.xTextSize <- updateConfigData(this$.theme$.xTextSize, config, "X_Text_Size")
+  this$.theme$.yTextSize <- updateConfigData(this$.theme$.yTextSize, config, "Y_Text_Size")
+  this$.theme$.xHjust <- updateConfigData(this$.theme$.xHjust, config, "X_Axis_Horizontal_Justice")
+  this$.theme$.xVjust <- updateConfigData(this$.theme$.xVjust, config, "X_Axis_Vertical_Justice")
+  this$.theme$.yHjust <- updateConfigData(this$.theme$.yHjust, config, "Y_Axis_Horizontal_Justice")
+  this$.theme$.yVjust <- updateConfigData(this$.theme$.yVjust, config, "Y_Axis_Vertical_Justice")
+})
+
+
 setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterContainer){
   if (is.null(filterContainer$.specificLegend$.selectedState)){
     return(NULL)

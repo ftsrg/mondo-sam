@@ -134,8 +134,24 @@ setMethodS3(name = "injectStates", class = "FilterContainer", function(this, tex
 setMethodS3(name = "notifyFilters", class = "FilterContainer", function(this, observers){
   observers$scenarioObserver <- observers$scenarioObserver + 1
   observers$xDimensionObserver <- observers$xDimensionObserver + 1
-  observers$legend <- observers$legend +1
+  observers$legend <- observers$legend + 1
   observers$publishingObserver <- observers$publishingObserver + 1
   
   this$.scenario$notify(observers)
+})
+
+
+setMethodS3(name = "import", class = "FilterContainer", function(this, config){
+  this$.xDimension$.selectedState <- updateConfigData(this$.xDimension$.selectedState, config, "X_Dimension")
+  this$.legend$.selectedState <- updateConfigData(this$.legend$.selectedState, config, "Legend")
+  this$.specificLegend$.selectedState <- updateConfigData(this$.specificLegend$.selectedState, config, "Legend_Filters")
+  specLegend <- this$.specificLegend$.selectedState
+  if (is.null(specLegend) | is.na(specLegend)){
+    this$.specificLegend$.selectedState <- unique(this$.result$.frame[[this$.legend$.selectedState]])
+  }
+  this$.phase$.selectedState <- updateConfigData(this$.phase$.selectedState, config, "Summarize_Function")
+  
+  this$.metric$.selectedState <- updateConfigData(this$.metric$.selectedState, config, "Metrics")
+  this$.iteration[1] <- updateConfigData(this$.iteration[1], config, "Min_Iteration")
+  this$.iteration[2] <- updateConfigData(this$.iteration[2], config, "Max_Iteration")
 })
