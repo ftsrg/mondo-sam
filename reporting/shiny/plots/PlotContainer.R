@@ -45,7 +45,7 @@ setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterC
   }
   # filter legends
   frame <- frame[which(frame[[filterContainer$.legend$.selectedState]] %in% filterContainer$.specificLegend$.selectedState), ]
-  
+
   # filter iterations
   if (!is.null(filterContainer$.iteration$.selectedState)){
     frame <- subset(frame, Iteration >= filterContainer$.iteration$.selectedState[1] & Iteration <= filterContainer$.iteration$.selectedState[2])

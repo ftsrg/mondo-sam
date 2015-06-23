@@ -50,7 +50,7 @@ setMethodS3(name = "publishAll", class = "Publisher", private = TRUE, function(t
     plot <- plotContainer$createPlot(filterContainer)
     if (!is.null(plot)){
       this$determineFilename(filterContainer)
-      
+
       ggsave(plot, filename = this$.filename, path = this$.location, width = this$.diagramWidth, 
              height = this$.diagramHeight, dpi = this$.diagramDPI)
     }

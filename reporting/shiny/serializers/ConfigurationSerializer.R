@@ -1,6 +1,9 @@
 setConstructorS3(name = "ConfigurationSerializer", function(){
   extend(Object(), "ConfigurationSerializer",
-         .jsonData = NULL)
+         .jsonData = NULL,
+         .filterContainer = NULL,
+         .plotContainer = NULL,
+         .publisher = NULL)
 })
 
 
@@ -9,47 +12,54 @@ setMethodS3(name = "export", class = "ConfigurationSerializer", function(this){
 })
 
 
-setMethodS3(name = "import", class = "ConfigurationSerializer", function(this, filterContainer, plotContainer, publisher){
-  this$adjustConfigData(filterContainer$.xDimension$.selectedState, config, "X_Dimension")
-  this$adjustConfigData(filterContainer$.legend$.selectedState, config, "Legend")
-  this$adjustConfigData(filterContainer$.specificLegend$.selectedState, config, "Legend_Filters")
-  this$adjustConfigData(filterContainer$.phase$.selectedState, config, "Summarize_Function")
-  this$adjustConfigData(plotContainer$.plotSettings$.title, config, "Title")
-  this$adjustConfigData(filterContainer$.metric$.selectedState, config, "Metrics")
-  this$adjustConfigData(plotContainer$.plotSettings$.yScale, config, "Metric_Scale")
-  this$adjustConfigData(filterContainer$.iteration[1], config, "Min_Iteration")
-  this$adjustConfigData(filterContainer$.iteration[2], config, "Max_Iteration")
-  this$adjustConfigData(plotContainer$.plotSettings$.xLabel, config, "X_Label")
-  this$adjustConfigData(plotContainer$.plotSettings$.yLabel, config, "Y_Label")
-  this$adjustConfigData(plotContainer$.plotSettings$.xAxis, config, "X_Axis_Scale")
-  this$adjustConfigData(plotContainer$.plotSettings$.yAxis, config, "Y_Axis_Scale")
-  this$adjustConfigData(publisher$.format, config, "Extension")
-  this$adjustConfigData(plotContainer$.plotSettings$.texts, config, "Show_Values")
-  this$adjustConfigData(plotContainer$.plotSettings$.lines, config, "Draw_Lines")
-  this$adjustConfigData(plotContainer$.theme$.legendPosition, config, "Legend_Position")
-  this$adjustConfigData(plotContainer$.theme$.legendDirection, config, "Legend_Direction")
-  this$adjustConfigData(plotContainer$.theme$.style, config, "Theme")
-  this$adjustConfigData(plotContainer$.theme$.pointSize, config, "Point_Size")
-  this$adjustConfigData(plotContainer$.theme$.lineSize, config, "Line_Size")
-  this$adjustConfigData(plotContainer$.theme$.textSize, config, "Text_Size")
-  this$adjustConfigData(plotContainer$.theme$.family, config, "Text_Font")
-  this$adjustConfigData(plotContainer$.theme$.xTextSize, config, "X_Text_Size")
-  this$adjustConfigData(plotContainer$.theme$.yTextSize, config, "Y_Text_Size")
-  this$adjustConfigData(plotContainer$.theme$.xHjust, config, "X_Axis_Horizontal_Justice")
-  this$adjustConfigData(plotContainer$.theme$.xVjust, config, "X_Axis_Vertical_Justice")
-  this$adjustConfigData(plotContainer$.theme$.yHjust, config, "Y_Axis_Horizontal_Justice")
-  this$adjustConfigData(plotContainer$.theme$.yVjust, config, "Y_Axis_Vertical_Justice")
-  this$adjustConfigData(publisher$.automaticFilename, config, "Automatic_Filename")
-  this$adjustConfigData(publisher$.filename, config, "Specified_Filename")
-  this$adjustConfigData(publisher$.diagramWidth, config, "Diagram_Width")
-  this$adjustConfigData(publisher$.diagramHeight, config, "Diagram_Height")
-  this$adjustConfigData(publisher$.diagramDPI, config, "Diagram_DPI")
+setMethodS3(name = "import", class = "ConfigurationSerializer", function(this, config){
+  this$.filterContainer$.xDimension$.selectedState <- this$updateConfigData(this$.filterContainer$.xDimension$.selectedState, config, "X_Dimension")
+  this$.filterContainer$.legend$.selectedState <- this$updateConfigData(this$.filterContainer$.legend$.selectedState, config, "Legend")
+  this$.filterContainer$.specificLegend$.selectedState <- this$updateConfigData(this$.filterContainer$.specificLegend$.selectedState, config, "Legend_Filters")
+  legend <- this$.filterContainer$.specificLegend$.selectedState
+  if (is.null(legend) | is.na(legend)){
+    this$.filterContainer$.specificLegend$.selectedState <- unique(this$.filterContainer$.result$.frame[[this$.filterContainer$.legend$.selectedState]])
+  }
+  this$.filterContainer$.phase$.selectedState <- this$updateConfigData(this$.filterContainer$.phase$.selectedState, config, "Summarize_Function")
+  this$.plotContainer$.plotSettings$.title <- this$updateConfigData(this$.plotContainer$.plotSettings$.title, config, "Title")
+  this$.filterContainer$.metric$.selectedState <- this$updateConfigData(this$.filterContainer$.metric$.selectedState, config, "Metrics")
+  this$.plotContainer$.plotSettings$.yScale <- this$updateConfigData(this$.plotContainer$.plotSettings$.yScale, config, "Metric_Scale")
+  this$.filterContainer$.iteration[1] <- this$updateConfigData(this$.filterContainer$.iteration[1], config, "Min_Iteration")
+  this$.filterContainer$.iteration[2] <- this$updateConfigData(this$.filterContainer$.iteration[2], config, "Max_Iteration")
+  this$.plotContainer$.plotSettings$.xLabel <- this$updateConfigData(this$.plotContainer$.plotSettings$.xLabel, config, "X_Label")
+  this$.plotContainer$.plotSettings$.yLabel <- this$updateConfigData(this$.plotContainer$.plotSettings$.yLabel, config, "Y_Label")
+  this$.plotContainer$.plotSettings$.xAxis <- this$updateConfigData(this$.plotContainer$.plotSettings$.xAxis, config, "X_Axis_Scale")
+  this$.plotContainer$.plotSettings$.yAxis <- this$updateConfigData(this$.plotContainer$.plotSettings$.yAxis, config, "Y_Axis_Scale")
+  this$.publisher$.format <- this$updateConfigData(this$.publisher$.format, config, "Extension")
+  this$.plotContainer$.plotSettings$.texts <- this$updateConfigData(this$.plotContainer$.plotSettings$.texts, config, "Show_Values")
+  this$.plotContainer$.plotSettings$.lines <- this$updateConfigData(this$.plotContainer$.plotSettings$.lines, config, "Draw_Lines")
+  this$.plotContainer$.theme$.legendPosition <- this$updateConfigData(this$.plotContainer$.theme$.legendPosition, config, "Legend_Position")
+  this$.plotContainer$.theme$.legendDirection <- this$updateConfigData(this$.plotContainer$.theme$.legendDirection, config, "Legend_Direction")
+  this$.plotContainer$.theme$.style <- this$updateConfigData(this$.plotContainer$.theme$.style, config, "Theme")
+  this$.plotContainer$.theme$.pointSize <- this$updateConfigData(this$.plotContainer$.theme$.pointSize, config, "Point_Size")
+  this$.plotContainer$.theme$.lineSize <- this$updateConfigData(this$.plotContainer$.theme$.lineSize, config, "Line_Size")
+  this$.plotContainer$.theme$.textSize <- this$updateConfigData(this$.plotContainer$.theme$.textSize, config, "Text_Size")
+  this$.plotContainer$.theme$.family <- this$updateConfigData(this$.plotContainer$.theme$.family, config, "Text_Font")
+  this$.plotContainer$.theme$.xTextSize <- this$updateConfigData(this$.plotContainer$.theme$.xTextSize, config, "X_Text_Size")
+  this$.plotContainer$.theme$.yTextSize <- this$updateConfigData(this$.plotContainer$.theme$.yTextSize, config, "Y_Text_Size")
+  this$.plotContainer$.theme$.xHjust <- this$updateConfigData(this$.plotContainer$.theme$.xHjust, config, "X_Axis_Horizontal_Justice")
+  this$.plotContainer$.theme$.xVjust <- this$updateConfigData(this$.plotContainer$.theme$.xVjust, config, "X_Axis_Vertical_Justice")
+  this$.plotContainer$.theme$.yHjust <- this$updateConfigData(this$.plotContainer$.theme$.yHjust, config, "Y_Axis_Horizontal_Justice")
+  this$.plotContainer$.theme$.yVjust <- this$updateConfigData(this$.plotContainer$.theme$.yVjust, config, "Y_Axis_Vertical_Justice")
+  this$.publisher$.automaticFilename <- this$updateConfigData(this$.publisher$.automaticFilename, config, "Automatic_Filename")
+  this$.publisher$.defaultFilename <- this$updateConfigData(this$.publisher$.filename, config, "Specified_Filename")
+  this$.publisher$.diagramWidth <- this$updateConfigData(this$.publisher$.diagramWidth, config, "Diagram_Width")
+  this$.publisher$.diagramHeight <- this$updateConfigData(this$.publisher$.diagramHeight, config, "Diagram_Height")
+  this$.publisher$.diagramDPI <- this$updateConfigData(this$.publisher$.diagramDPI, config, "Diagram_DPI")
 })
 
 
-setMethodS3(name = "adjustConfigData", class = "ConfigurationSerializer", private = TRUE, function(this, data, configuration, key){
+setMethodS3(name = "updateConfigData", class = "ConfigurationSerializer", private = TRUE, function(this, oldData, configuration, key){
   if (key %in% names(configuration)){
-    data <- configuration[[key]]
+    return(configuration[[key]])
+  }
+  else {
+    return(oldData)
   }
 })
 

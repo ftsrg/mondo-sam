@@ -1,12 +1,35 @@
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("ggplot2",quietly=T, verbose=F, warn.conflicts=FALSE)
 library("plyr", quietly=T, verbose=F, warn.conflicts=FALSE)
-source("plot_functions.R")
-source("plot.R")
-source("theme.R")
-source("util.R")
+library("R.oo", quietly=T, verbose=F, warn.conflicts=FALSE)
+# source("plot_functions.R")
+# source("plot.R")
+# source("theme.R")
+# source("util.R")
+options(warn = -1)
 source("constants.R")
 source("validation.R")
+source("shiny/filters/FilterContainer.R", echo = FALSE)
+source("shiny/results/Result.R", echo = FALSE)
+source("shiny/results/Publisher.R", echo = FALSE)
+source("shiny/filters/Selections.R", echo = FALSE)
+source("shiny/filters/DataFilter.R", echo = FALSE)
+source("shiny/filters/ScenarioFilter.R", echo = FALSE)
+source("shiny/filters/ToolFilter.R", echo = FALSE)
+source("shiny/filters/CaseFilter.R", echo = FALSE)
+source("shiny/filters/SizeFilter.R", echo = FALSE)
+source("shiny/filters/PhaseFilter.R", echo = FALSE)
+source("shiny/filters/MetricFilter.R", echo = FALSE)
+source("shiny/filters/IterationFilter.R", echo = FALSE)
+source("shiny/filters/XDimensionFilter.R", echo = FALSE)
+source("shiny/filters/LegendFilter.R", echo = FALSE)
+source("shiny/filters/SpecificLegendFilter.R", echo = FALSE)
+source("shiny/filters/PublishingFilter.R", echo = FALSE)
+source("shiny/plots/PlotContainer.R", echo = FALSE)
+source("shiny/plots/PlotSettings.R", echo = FALSE)
+source("shiny/plots/Theme.R", echo = FALSE)
+source("shiny/serializers/ConfigurationSerializer.R", echo = FALSE)
+options(warn = 1)
 
 args <- commandArgs(trailingOnly = TRUE)
 if(!is.na(args[1])){
@@ -19,41 +42,53 @@ if(!is.na(args[3])){
   configPath <- args[3]
 }
 # else: use the default paths
-results <-read.csv(resultsPath, header=TRUE, sep=',')
+data <-read.csv(resultsPath, header=TRUE, sep=',')
 
 config <- fromJSON(configPath)
 
 # validation
-validate(results, config)
+validate(data, config)
   
 if (file.exists(diagramsPath) == FALSE){
   dir.create(diagramsPath)
 }
 
+
+result <- Result()
+plotContainer <- PlotContainer()
+filterContainer <- FilterContainer()
+publisher <- Publisher()
+serializer <- ConfigurationSerializer
+
+publisher$.location <- diagramsPath
+
 for(row in 1:nrow(config$Plot)){
-  selections <- defaultSelections
-  phases <- config$Plot[row, ]$Summarize_Function
-  x_dimension <- config$Plot[row, ]$X_Dimension
-  legend <- config$Plot[row, ]$Legend
-  metrics <- config$Plot[row, ]$Metrics
+  result$setFrame(data)
   
-  subData <- subset(results, MetricName %in% c(unlist(metrics)))
-  # scale down or up
-  subData$MetricValue <- subData$MetricValue * (10** config$Plot[row, ]$Metric_Scale)
+  result$.frame <- subset(result$.frame, MetricName %in% config$Plot[row, ]$Metrics & 
+                            PhaseName %in% config$Plot[row, ]$Summarize_Function)
+  result$createSubFrames()
   
-  # filter by iteration
-  iterations <- unique(subData$Iteration)
-  if (config$Plot[row, ]$Max_Iteration < 0){
-    maxIter <- max(iterations)
-  }
-  else{
-    maxIter <- config$Plot[row, ]$Max_Iteration
-  }
-  minIter <- config$Plot[row, ]$Min_Iteration
+  filterContainer$setResult(result)
+  filterContainer$init()
   
-  subData <- subset(subData, Iteration >= minIter & Iteration <= maxIter)
-  selections <- selections[selections != legend & selections != x_dimension]
+  plotContainer$.plotSettings$init(filterContainer)
+  plotContainer$.theme$init()
   
-  filename <- paste(diagramsPath, "Plot", sep="")
-  report(subData, selections, config, row, filename)
+  serializer$.filterContainer <- filterContainer
+  serializer$.plotContainer <- plotContainer
+  serializer$.publisher <- publisher
+  
+  serializer$import(config$Plot[row, ])
+  
+  filterContainer$.selections$changeSelections(filterContainer$.legend$.selectedState, filterContainer$.xDimension$.selectedState)
+  
+  filterContainer$.scenario$update()
+  filterContainer$.tool$update()
+  filterContainer$.case$update()
+  filterContainer$.size$update()
+  filterContainer$.iteration$update()
+  
+  publisher$publish(filterContainer, plotContainer, filterContainer$.selections$.selections)
+
 }

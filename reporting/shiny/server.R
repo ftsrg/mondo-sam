@@ -55,12 +55,13 @@ shinyServer(function(input, output, session) {
                           )
   
   
-# load results and make reactiv values
+# load results
   output$load <- renderUI({
     inFile <- input$file
     
-    if (is.null(inFile))
+    if (is.null(inFile)){
       return()
+    }
     isolate({
       tempResults <- read.csv(inFile$datapath, header = TRUE, sep = input$sep, 
                                  quote = input$quote)
@@ -83,7 +84,7 @@ shinyServer(function(input, output, session) {
     values$filterContainer$setResult(values$result)
     values$filterContainer$init()
     
-    values$plotContainer$.plotSettings$init(input, values$filterContainer)
+    values$plotContainer$.plotSettings$init(values$filterContainer)
     values$plotContainer$.theme$init()
   }
 
