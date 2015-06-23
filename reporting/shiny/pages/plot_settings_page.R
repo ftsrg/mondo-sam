@@ -11,7 +11,7 @@ output$exportConfiguration <- downloadHandler(
     paste("config", "json", sep = ".")
   },
   content = function(file) {
-    write(values$serializer$convertToJSON(input, values$plotContainer, values$filterContainer), file = file)
+    write(values$serializer$convertToJSON(values$plotContainer, values$filterContainer, values$publisher), file = file)
   },
   contentType = "application/json"
 )
