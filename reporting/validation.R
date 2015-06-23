@@ -2,18 +2,20 @@ validate <- function(results, config){
   header = names(results)
   for(row in 1:nrow(config$Plot)){
     metric_scale <- config$Plot[row, ]$Metric_Scale
-    if (is.numeric(metric_scale) == FALSE){
+    if (!is.numeric(metric_scale)){
       cat("Incorrect parameter was given: Metric-Scale parameter is not numeric.\n")
       quit()
     }
     
-    if (is.numeric(config$Plot[row, ]$Min_Iteration) == FALSE){
-      cat("Incorrect parameter was given: Min_Iteration parameter is not numeric.\n")
+    minIter <- config$Plot[row, ]$Min_Iteration
+    if (!is.numeric(minIter) & !is.na(minIter)){
+      cat("Incorrect parameter was given: Min_Iteration parameter is not numeric or null.\n")
       quit()
     }
     
-    if (is.numeric(config$Plot[row, ]$Max_Iteration) == FALSE){
-      cat("Incorrect parameter was given: Max_Iteration parameter is not numeric.\n")
+    maxIter <- config$Plot[row, ]$Max_Iteration
+    if (!is.numeric(maxIter) & !is.na(maxIter)){
+      cat("Incorrect parameter was given: Max_Iteration parameter is not numeric or null.\n")
       quit()
     }
     
@@ -58,9 +60,9 @@ validate <- function(results, config){
       cat(choices, "\n")
       quit()
     }
-    
   }
 }
+
 
 validMetric <- function(results, metrics){
   for(m in unlist(metrics)){
@@ -70,6 +72,7 @@ validMetric <- function(results, metrics){
   }
   return(TRUE)
 }
+
 
 validPhase <- function(results, phases){
   uniquePhases <- unique(results$PhaseName)
