@@ -37,7 +37,7 @@ setMethodS3(name = "update", class = "SpecificLegendFilter", overwrite = TRUE, f
     return()
   }
   
-  this$.allCurrentStates <- list()
+  this$.allCurrentStates <- c()
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }

@@ -14,16 +14,16 @@ setConstructorS3(name = "PlotSettings", function(){
          )
 })
 
-setMethodS3(name = "init", class = "PlotSettings", function(this, settings, filters){
+setMethodS3(name = "init", class = "PlotSettings", function(this, filters){
   this$.xDimension <- filters$.xDimension$.selectedState
   this$.yDimension <- "MetricValue"
   this$.legend <- filters$.legend$.selectedState
-  this$.xLabel <- settings$xLabel
-  this$.yLabel <- settings$yLabel
-  this$.title <- settings$title
-  this$.xAxis <- settings$xAxis
-  this$.yAxis <- settings$yAxis
-  this$.yScale <- settings$yScale
-  this$.texts <- settings$showValues
-  this$.lines <- settings$drawLines
+  this$.xLabel <- ""
+  this$.yLabel <- ""
+  this$.title <- ""
+  this$.xAxis <- "log2"
+  this$.yAxis <- "log2"
+  this$.yScale <- 0
+  this$.texts <- FALSE
+  this$.lines <- TRUE
 })

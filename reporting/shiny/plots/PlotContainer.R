@@ -20,6 +20,69 @@ setMethodS3(name = "pop", class = "PlotContainer", function(){
 })
 
 
+setMethodS3(name = "import", class = "PlotContainer", function(this, config){
+  this$.plotSettings$.xDimension <- updateConfigData(this$.plotSettings$.xDimension, config, "X_Dimension")
+  this$.plotSettings$.yDimension <- "MetricValue"
+  this$.plotSettings$.legend <- updateConfigData(this$.plotSettings$.xDimension, config, "Legend")
+  this$.plotSettings$.title <- updateConfigData(this$.plotSettings$.title, config, "Title")
+  
+  this$.plotSettings$.yScale <- updateConfigData(this$.plotSettings$.yScale, config, "Metric_Scale")
+  
+  this$.plotSettings$.xLabel <- updateConfigData(this$.plotSettings$.xLabel, config, "X_Label")
+  this$.plotSettings$.yLabel <- updateConfigData(this$.plotSettings$.yLabel, config, "Y_Label")
+  this$.plotSettings$.xAxis <- updateConfigData(this$.plotSettings$.xAxis, config, "X_Axis_Scale")
+  this$.plotSettings$.yAxis <- updateConfigData(this$.plotSettings$.yAxis, config, "Y_Axis_Scale")
+  
+  this$.plotSettings$.texts <- updateConfigData(this$.plotSettings$.texts, config, "Show_Values")
+  this$.plotSettings$.lines <- updateConfigData(this$.plotSettings$.lines, config, "Draw_Lines")
+  
+  this$.theme$.legendPosition <- updateConfigData(this$.theme$.legendPosition, config, "Legend_Position")
+  this$.theme$.legendDirection <- updateConfigData(this$.theme$.legendDirection, config, "Legend_Direction")
+  
+  this$.theme$.style <- updateConfigData(this$.theme$.style, config, "Theme")
+  
+  this$.theme$.pointSize <- updateConfigData(this$.theme$.pointSize, config, "Point_Size")
+  this$.theme$.lineSize <- updateConfigData(this$.theme$.lineSize, config, "Line_Size")
+  this$.theme$.textSize <- updateConfigData(this$.theme$.textSize, config, "Text_Size")
+  this$.theme$.family <- updateConfigData(this$.theme$.family, config, "Text_Font")
+  
+  this$.theme$.xTextSize <- updateConfigData(this$.theme$.xTextSize, config, "X_Text_Size")
+  this$.theme$.yTextSize <- updateConfigData(this$.theme$.yTextSize, config, "Y_Text_Size")
+  this$.theme$.xHjust <- updateConfigData(this$.theme$.xHjust, config, "X_Axis_Horizontal_Justice")
+  this$.theme$.xVjust <- updateConfigData(this$.theme$.xVjust, config, "X_Axis_Vertical_Justice")
+  this$.theme$.yHjust <- updateConfigData(this$.theme$.yHjust, config, "Y_Axis_Horizontal_Justice")
+  this$.theme$.yVjust <- updateConfigData(this$.theme$.yVjust, config, "Y_Axis_Vertical_Justice")
+})
+
+
+setMethodS3(name = "export", class = "PlotContainer", function(this){
+  data <- list(
+    "Title" = this$.plotSettings$.title,
+    "Metric_Scale" = this$.plotSettings$.yScale,
+    "X_Label" = this$.plotSettings$.xLabel,
+    "Y_Label" = this$.plotSettings$.yLabel,
+    "X_Axis_Scale" = this$.plotSettings$.xAxis,
+    "Y_Axis_Scale" = this$.plotSettings$.yAxis,
+    "Show_Values" = this$.plotSettings$.texts,
+    "Draw_Lines" = this$.plotSettings$.lines,
+    "Legend_Position" = this$.theme$.legendPosition,
+    "Legend_Direction" = this$.theme$.legendDirection,
+    "Theme" = this$.theme$.style,
+    "Point_Size" = this$.theme$.pointSize,
+    "Line_Size" = this$.theme$.lineSize,
+    "Text_Size" = this$.theme$.textSize,
+    "Text_Font" = this$.theme$.family,
+    "X_Text_Size" = this$.theme$.xTextSize,
+    "Y_Text_Size" = this$.theme$.yTextSize,
+    "X_Axis_Horizontal_Justice" = this$.theme$.xHjust,
+    "X_Axis_Vertical_Justice" = this$.theme$.xVjust,
+    "Y_Axis_Horizontal_Justice" = this$.theme$.yHjust,
+    "Y_Axis_Vertical_Justice" = this$.theme$.yVjust
+    )
+  return(data)
+})
+
+
 setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterContainer){
   if (is.null(filterContainer$.specificLegend$.selectedState)){
     return(NULL)
@@ -50,7 +113,6 @@ setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterC
   if (!is.null(filterContainer$.iteration$.selectedState)){
     frame <- subset(frame, Iteration >= filterContainer$.iteration$.selectedState[1] & Iteration <= filterContainer$.iteration$.selectedState[2])
   }
-  
   plot <- this$generatePlot(frame, filterContainer)
   this$.plots <- c(plot, this$.plots)
   return(plot)

@@ -4,10 +4,10 @@ library("shiny", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("jsonlite", quietly=T, verbose=F, warn.conflicts=FALSE)
 library("R.oo", quietly=T, verbose=F, warn.conflicts=FALSE)
 
-options(warn=-1)
+options(warn = -1)
 source("filters/FilterContainer.R", echo = FALSE)
-source("Result.R", echo = FALSE)
-source("Publisher.R", echo = FALSE)
+source("results/Result.R", echo = FALSE)
+source("results/Publisher.R", echo = FALSE)
 source("filters/Selections.R", echo = FALSE)
 source("filters/DataFilter.R", echo = FALSE)
 source("filters/ScenarioFilter.R", echo = FALSE)
@@ -21,13 +21,13 @@ source("filters/XDimensionFilter.R", echo = FALSE)
 source("filters/LegendFilter.R", echo = FALSE)
 source("filters/SpecificLegendFilter.R", echo = FALSE)
 source("filters/PublishingFilter.R", echo = FALSE)
-source("plot/PlotContainer.R", echo = FALSE)
-source("plot/PlotSettings.R", echo = FALSE)
-source("plot/Theme.R", echo = FALSE)
+source("plots/PlotContainer.R", echo = FALSE)
+source("plots/PlotSettings.R", echo = FALSE)
+source("plots/Theme.R", echo = FALSE)
+source("serializers/ConfigurationSerializer.R", echo = FALSE)
+source("options.R", echo = FALSE)
+options(warn = 0)
 
-options(warn=0)
-
-options(shiny.maxRequestSize = 50*1024^2)
 
 shinyServer(function(input, output, session) {
     
@@ -35,6 +35,7 @@ shinyServer(function(input, output, session) {
                            result = Result(),
                            plotContainer = PlotContainer(),
                            filterContainer = FilterContainer(),
+                           serializer = ConfigurationSerializer(),
                            publisher = Publisher(),
                            templates = list(CaseName = "CaseName", 
                                             Scenario = "Scenario", 
@@ -54,22 +55,19 @@ shinyServer(function(input, output, session) {
                           )
   
   
-# load results and make reactiv values
+# load results
   output$load <- renderUI({
     inFile <- input$file
     
-    if (is.null(inFile))
+    if (is.null(inFile)){
       return()
+    }
     isolate({
       tempResults <- read.csv(inFile$datapath, header = TRUE, sep = input$sep, 
                                  quote = input$quote)
       withProgress(message = 'Processing', value = 1.0, {
-#         s <- proc.time()
         values$result$setFrame(tempResults)
         values$result$createSubFrames()
-#         t <- proc.time()
-#         elapsed <- t-s
-#         print(elapsed)
         
         initialize()
         
@@ -86,7 +84,7 @@ shinyServer(function(input, output, session) {
     values$filterContainer$setResult(values$result)
     values$filterContainer$init()
     
-    values$plotContainer$.plotSettings$init(input, values$filterContainer)
+    values$plotContainer$.plotSettings$init(values$filterContainer)
     values$plotContainer$.theme$init()
   }
 
