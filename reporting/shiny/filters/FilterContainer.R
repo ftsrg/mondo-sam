@@ -163,12 +163,33 @@ setMethodS3(name = "import", class = "FilterContainer", function(this, config){
 
 
 setMethodS3(name = "export", class = "FilterContainer", function(this){
+  if (length(this$.specificLegend$.selectedState) > 1){
+    legendFilter <- this$.specificLegend$.selectedState
+  }
+  else{
+    legendFilter <- list(this$.specificLegend$.selectedState)
+  }
+  
+  if (length(this$.phase$.selectedState) > 1){
+    phases <- this$.phase$.selectedState
+  }
+  else{
+    phases <- list(this$.phase$.selectedState)
+  }
+  
+  if (length(this$.metric$.selectedState) > 1){
+    metrics <- this$.metric$.selectedState
+  }
+  else{
+    metrics <- list(this$.metric$.selectedState)
+  }
+  
   data <- list(
     "X_Dimension" = this$.xDimension$.selectedState,
     "Legend" = this$.legend$.selectedState,
-    "Legend_Filters" = list(unlist(this$.specificLegend$.selectedState)),
-    "Summarize_Function" = list(this$.phase$.selectedState),
-    "Metrics" = list(this$.metric$.selectedState),
+    "Legend_Filters" = legendFilter,
+    "Summarize_Function" = phases,
+    "Metrics" = metrics,
     "Min_Iteration" = this$.iteration[1], 
     "Max_Iteration" = this$.iteration[2]
     )

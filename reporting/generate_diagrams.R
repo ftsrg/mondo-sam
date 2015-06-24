@@ -105,6 +105,6 @@ for(row in 1:nrow(config$Plot)){
   filterContainer$.size$update()
   filterContainer$.iteration$update()
   
-  publisher$publish(filterContainer, plotContainer, filterContainer$.selections$.selections)
+  publisher$publish(filterContainer, plotContainer, filterContainer$.selections$.selections, verbose = TRUE)
 
 }

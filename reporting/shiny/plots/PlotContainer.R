@@ -107,15 +107,12 @@ setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterC
                       MetricName %in% filterContainer$.metric$.selectedState)
   }
   # filter legends
-  print(filterContainer$.specificLegend$.selectedState)
   frame <- frame[which(frame[[filterContainer$.legend$.selectedState]] %in% filterContainer$.specificLegend$.selectedState), ]
-  print(nrow(frame))
   
   # filter iterations
   if (!is.null(filterContainer$.iteration$.selectedState)){
     frame <- subset(frame, Iteration >= filterContainer$.iteration$.selectedState[1] & Iteration <= filterContainer$.iteration$.selectedState[2])
   }
-  print(nrow(frame))
   plot <- this$generatePlot(frame, filterContainer)
   this$.plots <- c(plot, this$.plots)
   return(plot)
