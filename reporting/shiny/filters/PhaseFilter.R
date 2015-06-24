@@ -36,6 +36,7 @@ setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(t
   }
   if (!is.null(this$.selectedState)){
     prevStates <- this$.selectedState
+    this$.selectedState <- c()
     for (state in prevStates){
       if (state %in% this$.allCurrentStates){
         this$.selectedState <- c(state, this$.selectedState)

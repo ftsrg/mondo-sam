@@ -144,9 +144,14 @@ setMethodS3(name = "notifyFilters", class = "FilterContainer", function(this, ob
 setMethodS3(name = "import", class = "FilterContainer", function(this, config){
   this$.xDimension$.selectedState <- updateConfigData(this$.xDimension$.selectedState, config, "X_Dimension")
   this$.legend$.selectedState <- updateConfigData(this$.legend$.selectedState, config, "Legend")
+  
   this$.specificLegend$.selectedState <- updateConfigData(this$.specificLegend$.selectedState, config, "Legend_Filters")
+  
   specLegend <- this$.specificLegend$.selectedState
-  if (is.null(specLegend) | is.na(specLegend)){
+  if (is.null(config$Legend_Filters)){
+    this$.specificLegend$.selectedState <- unique(this$.result$.frame[[this$.legend$.selectedState]])
+  }
+  else if (is.na(config$Legend_Filters)){
     this$.specificLegend$.selectedState <- unique(this$.result$.frame[[this$.legend$.selectedState]])
   }
   this$.phase$.selectedState <- updateConfigData(this$.phase$.selectedState, config, "Summarize_Function")
@@ -154,4 +159,18 @@ setMethodS3(name = "import", class = "FilterContainer", function(this, config){
   this$.metric$.selectedState <- updateConfigData(this$.metric$.selectedState, config, "Metrics")
   this$.iteration[1] <- updateConfigData(this$.iteration[1], config, "Min_Iteration")
   this$.iteration[2] <- updateConfigData(this$.iteration[2], config, "Max_Iteration")
+})
+
+
+setMethodS3(name = "export", class = "FilterContainer", function(this){
+  data <- list(
+    "X_Dimension" = this$.xDimension$.selectedState,
+    "Legend" = this$.legend$.selectedState,
+    "Legend_Filters" = list(unlist(this$.specificLegend$.selectedState)),
+    "Summarize_Function" = list(this$.phase$.selectedState),
+    "Metrics" = list(this$.metric$.selectedState),
+    "Min_Iteration" = this$.iteration[1], 
+    "Max_Iteration" = this$.iteration[2]
+    )
+  return(data)
 })

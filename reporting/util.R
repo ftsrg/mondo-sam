@@ -69,6 +69,9 @@ updateConfigData <- function(oldData, configuration, key){
   if (key %in% names(configuration)){
     value <- configuration[[key]]
     if (!is.na(value)){
+      if (is.list(value)){
+        return(unlist(value))
+      }
       return(value)
     }
   }

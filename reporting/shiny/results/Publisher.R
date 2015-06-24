@@ -1,14 +1,14 @@
 setConstructorS3(name = "Publisher", function(){
   extend(Object(), "Publisher",
-         .automaticFilename = NULL,
+         .automaticFilename = TRUE,
          .filename = NULL,
          .defaultFilename = NULL,
-         .format = NULL,
+         .format = "PDF",
          .location = NULL,
          .time = NULL,
-         .diagramWidth = NULL,
-         .diagramHeight = NULL,
-         .diagramDPI = NULL)
+         .diagramWidth = 14,
+         .diagramHeight = 7,
+         .diagramDPI = 300)
 })
 
 
@@ -42,6 +42,18 @@ setMethodS3(name = "import", class = "Publisher", function(this, config){
   this$.diagramDPI <- updateConfigData(this$.diagramDPI, config, "Diagram_DPI")
 })
 
+
+setMethodS3(name = "export", class = "Publisher", function(this){
+  data <- list(
+    "Extension" = this$.format,
+    "Automatic_Filename" = this$.automaticFilename,
+    "Specified_Filename" = this$.filename,
+    "Diagram_Width" = this$.diagramWidth,
+    "Diagram_Height" = this$.diagramHeight,
+    "Diagram_DPI" = this$.diagramDPI
+  )
+  return(data)
+})
 
 setMethodS3(name = "publishOne", class = "Publisher", private = TRUE, function(this, filterContainer, plotContainer){
   plot <- plotContainer$createPlot(filterContainer)

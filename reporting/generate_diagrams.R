@@ -62,8 +62,27 @@ publisher$.location <- diagramsPath
 for(row in 1:nrow(config$Plot)){
   result$setFrame(data)
   
-  result$.frame <- subset(result$.frame, MetricName %in% config$Plot[row, ]$Metrics & 
-                            PhaseName %in% config$Plot[row, ]$Summarize_Function)
+  legend <- config$Plot[row, ]$Legend
+  specLegends <- unlist(config$Plot[row, ]$Legend_Filters)
+  if (is.list(specLegends)){
+    specLegends <- unlist(specLegends)
+  }
+  if (!is.na(specLegends)){
+    result$.frame <- result$.frame[which(result$.frame[[legend]] %in% specLegends), ]
+  }
+
+  metrics <- config$Plot[row, ]$Metrics
+  if (is.list(metrics)){
+    metrics <- unlist(metrics)
+  }
+  
+  phases <- config$Plot[row, ]$Summarize_Function
+  if (is.list(phases)){
+    phases <- unlist(phases)
+  }
+  result$.frame <- subset(result$.frame, MetricName %in% metrics & 
+                            PhaseName %in% phases)
+
   result$createSubFrames()
   
   filterContainer$setResult(result)
