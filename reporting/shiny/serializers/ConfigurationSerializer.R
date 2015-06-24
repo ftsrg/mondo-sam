@@ -7,8 +7,8 @@ setConstructorS3(name = "ConfigurationSerializer", function(){
 })
 
 
-setMethodS3(name = "export", class = "ConfigurationSerializer", function(this){
-  
+setMethodS3(name = "export", class = "ConfigurationSerializer", function(this, file){
+  write(this$.jsonData, file = file)
 })
 
 

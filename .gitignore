@@ -8,3 +8,5 @@ __pycache__/
 .pydevproject
 reporting/diagrams/*.*
 !reporting/diagrams/.gitignore
+reporting/shiny/tests/temp/*.*
+!reporting/shiny/tests/temp/.gitignore
