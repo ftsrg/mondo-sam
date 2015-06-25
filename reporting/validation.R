@@ -30,6 +30,17 @@ validate <- function(results, config){
       quit()
     }
     
+    if ("Legend_Filters" %in% names(config$Plot[row, ])){
+      uniqueLegendValues <- unique(results[[legend]])
+      for (l in config$Plot[row, ]$Legend_Filters){
+        if (l %in% uniqueLegendValues == FALSE){
+          cat("Invalid Legend_Filter value: ", l, "\nThe possible choices are the following:")
+          print(uniqueLegendValues)
+          quit()
+        }
+      }
+    }
+    
     parameterExists(config$Plot[row, ], "X_Dimension")
     dimension <- config$Plot[row, ]$X_Dimension
     if (dimension %in% header == FALSE){

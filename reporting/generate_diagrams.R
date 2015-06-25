@@ -63,7 +63,12 @@ for(row in 1:nrow(config$Plot)){
   result$setFrame(data)
   
   legend <- config$Plot[row, ]$Legend
-  specLegends <- unlist(config$Plot[row, ]$Legend_Filters)
+  if ("Legend_Filters" %in% names(config$Plot[row, ])){
+    specLegends <- unlist(config$Plot[row, ]$Legend_Filters)    
+  }
+  else {
+    specLegends <- NA
+  }
   if (is.list(specLegends)){
     specLegends <- unlist(specLegends)
   }
