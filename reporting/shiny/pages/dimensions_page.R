@@ -7,7 +7,7 @@ output$xDimension <- renderUI({
 
 
 output$legend <- renderUI({
-  values$legend
+  values$legendObserver
   if (!is.null(values$filterContainer$.legend)){
     values$filterContainer$.legend$display()
   }

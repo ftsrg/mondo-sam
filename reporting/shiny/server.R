@@ -26,7 +26,7 @@ source("plots/PlotSettings.R", echo = FALSE)
 source("plots/Theme.R", echo = FALSE)
 source("serializers/ConfigurationSerializer.R", echo = FALSE)
 source("options.R", echo = FALSE)
-options(warn = 0)
+options(warn = 1)
 
 
 shinyServer(function(input, output, session) {
@@ -72,7 +72,9 @@ shinyServer(function(input, output, session) {
         initialize()
         
         updateSelectInput(session, "theme", selected = values$plotContainer$.theme$.style)
+        updateCheckboxInput(session, "selectAllFilter", value = values$filterContainer$.specificLegend$.selectAll)
         updateTabsetPanel(session, "reporting", selected = "Results")
+        
         values$filterContainer$updateFilters()
         values$filterContainer$notifyViews(values)
       })

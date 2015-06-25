@@ -40,9 +40,17 @@ shinyUI(navbarPage("Reporting", id="reporting",
                    ),
                    # Dimensions panel
                    tabPanel("Dimensions", id="dimensions", 
-                     uiOutput("xDimension"),
-                     uiOutput("legend"),
-                     uiOutput("legendFilters")
+                            fluidRow(
+                              column(4,
+                                     uiOutput("xDimension"),
+                                     uiOutput("legend")
+                              ),
+                              column(4,
+                                     checkboxInput("selectAllFilter", label="Allways Select All", value = TRUE),
+                                     tags$p(),
+                                     uiOutput("legendFilters")
+                              )
+                            )
                      ),
                    # Plot settings panel
                    navbarMenu(
@@ -54,8 +62,8 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                        uiOutput("titleTemplate")
                                 ),
                                 column(4, offset = 2, 
-                                       textInput("xLabel", label="X-Axis Label"),
-                                       textInput("yLabel", label="Y-Axis Label")
+                                       textInput("xLabel", label = "X-Axis Label"),
+                                       textInput("yLabel", label = "Y-Axis Label")
                                 )
                               ),
                               fluidRow(
@@ -69,10 +77,10 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                           selected="log2"),
                               selectInput("yAxis", label="Y-axis",
                                           c("Continuous" = "con", "Log2" = "log2", "Factor" = "factor"),
-                                          selected="log2"),
+                                          selected = "log2"),
                               sliderInput("yScale", "Y-Axis Scale", min = -15, max = 15, value = 0, step = 1),
-                              checkboxInput("showValues", label="Show Values", value=FALSE),
-                              checkboxInput("drawLines", label="Draw Lines", value=TRUE)
+                              checkboxInput("showValues", label = "Show Values", value=FALSE),
+                              checkboxInput("drawLines", label = "Draw Lines", value=TRUE)
                      ),
                      tabPanel("Theme",
                               fluidRow(

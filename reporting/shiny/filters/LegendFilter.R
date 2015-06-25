@@ -12,7 +12,7 @@ setMethodS3(name = "updateNext", class = "LegendFilter", abstract = TRUE, functi
 
 
 setMethodS3(name = "notifyView", class = "LegendFilter", overwrite = TRUE, function(this, observers){
-  observers$legend <- observers$legend + 1
+  observers$legendObserver <- observers$legendObserver + 1
 })
 
 

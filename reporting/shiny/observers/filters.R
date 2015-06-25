@@ -94,6 +94,20 @@ changeSelections <- observe({
 })
 
 
+changeLegendFiltersSelection <- observe({
+  value <- input$selectAllFilter
+  isolate({
+    if (!is.null(values$filterContainer$.specificLegend)){
+      values$filterContainer$.specificLegend$.selectAll <- value
+      if (value){
+        values$filterContainer$.specificLegend$update()
+        values$filterContainer$.specificLegend$notifyView(values)
+      }
+    }
+  })
+})
+
+
 changeLegendFilters <- observe({
   specificLegend <- input$legendFilters
   isolate({

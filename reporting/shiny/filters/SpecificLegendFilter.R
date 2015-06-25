@@ -2,7 +2,8 @@ library("R.oo", , quietly = TRUE)
 
 
 setConstructorS3(name = "SpecificLegendFilter", function(selections = NULL){
-  extend(DataFilter(selections), "SpecificLegendFilter")
+  extend(DataFilter(selections), "SpecificLegendFilter",
+         .selectAll = TRUE)
 })
 
 
@@ -52,15 +53,32 @@ setMethodS3(name = "update", class = "SpecificLegendFilter", overwrite = TRUE, f
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }
-  this$.selectedState <- this$.allCurrentStates
+  
+  if (this$.selectAll){
+    this$.selectedState <- this$.allCurrentStates
+  }
+  else if (!is.null(this$.selectedState)){
+    prevStates <- this$.selectedState
+    this$.selectedState <- c()
+    for (state in prevStates){
+      if (state %in% this$.allCurrentStates){
+        this$.selectedState <- c(state, this$.selectedState)
+      }
+    }
+  }
+  
+  # if it is still empty
+  if (is.null(this$.selectedState)){
+    this$.selectedState <- this$.allCurrentStates
+  }
 })
 
   
 setMethodS3(name = "display", class = "SpecificLegendFilter", overwrite = TRUE, function(this){
-  if (is.null(this$.selectedState)){
+  if (is.null(this$.allCurrentStates)){
     return()
   }
   
-  checkboxGroupInput("legendFilters",label="Filters",
+  checkboxGroupInput("legendFilters",label="Legend Filters",
                      choices=this$.allCurrentStates, selected=this$.selectedState)
 })
