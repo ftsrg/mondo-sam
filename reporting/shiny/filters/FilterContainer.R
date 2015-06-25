@@ -190,8 +190,8 @@ setMethodS3(name = "export", class = "FilterContainer", function(this){
     "Legend_Filters" = legendFilter,
     "Summarize_Function" = phases,
     "Metrics" = metrics,
-    "Min_Iteration" = this$.iteration[1], 
-    "Max_Iteration" = this$.iteration[2]
+    "Min_Iteration" = this$.iteration$.selectedState[1], 
+    "Max_Iteration" = this$.iteration$.selectedState[2]
     )
   return(data)
 })
