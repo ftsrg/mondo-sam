@@ -14,27 +14,7 @@ setMethodS3(name = "runTests", class = "SerializerTester", overwrite = TRUE, fun
   this$testNullValues()
   this$testSingleValues()
   this$testMultiplePhases()
-  this$testGeneration()
-})
-
-
-setMethodS3(name = "generate", class = "SerializerTester", function(this){
-  data <- read.csv("../example/example.csv", header=TRUE, sep=',')
-  
-  config <- fromJSON("./temp/config.json")
-  
-  validate(data, config)
-  
-  this$.publisher$.location <- "./temp/"
-  
-  generatePlots(this$.filterContainer$.result, 
-                data,
-                config,
-                this$.plotContainer, 
-                this$.filterContainer, 
-                this$.publisher, 
-                this$.serializer)
-  
+#   this$testGeneration()
 })
 
 
@@ -110,15 +90,6 @@ setMethodS3(name = "testMultiplePhases", class = "SerializerTester", private = T
   
   this$isList(26, config, "Metrics")
   this$lengthEquals(27, config, "Metrics", 1)
-})
-
-
-setMethodS3(name = "testGeneration", class = "SerializerTester", private = TRUE, function(this){
-  this$setFilters(xDimension = "Size", legend = "Tool", scenario = "User", case = "PosLength", phase = c("Check", "Read"), metric = "Time")
-  jsonData <- this$.serializer$convertToJSON(this$.plotContainer, this$.filterContainer, this$.publisher)
-  this$.serializer$export("temp/config.json")
-  
-  this$generate()
 })
 
 

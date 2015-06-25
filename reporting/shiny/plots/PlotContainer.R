@@ -3,6 +3,7 @@ setConstructorS3(name = "PlotContainer", function(){
          .plotSettings = PlotSettings(),
          .theme = Theme(),
          .plots = list(),
+         .plotClass = NULL,
          .mappingJson = FALSE)
 })
 
@@ -114,7 +115,9 @@ setMethodS3(name = "createPlot", class = "PlotContainer", function(this, filterC
     frame <- subset(frame, Iteration >= filterContainer$.iteration$.selectedState[1] & Iteration <= filterContainer$.iteration$.selectedState[2])
   }
   plot <- this$generatePlot(frame, filterContainer)
-  this$.plots <- c(plot, this$.plots)
+  this$.plotClass <- Plot()
+  this$.plotClass$.data <- plot$data
+  this$.plots <- c(this$.plotClass, this$.plots)
   return(plot)
 })
 

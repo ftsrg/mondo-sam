@@ -31,6 +31,7 @@ setMethodS3(name = "setFilters", class = "BasicTester", function(this, scenario 
                                                                  specificLegend = NULL){
   this$.filterContainer$.xDimension.selectedState <- xDimension
   this$.filterContainer$.legend$.selectedState <- legend
+  this$.filterContainer$.selections$changeSelections(xDimension, legend)
   this$.filterContainer$.scenario$update()
   this$.filterContainer$.scenario$.selectedState <- scenario
   this$.filterContainer$.tool$update()
