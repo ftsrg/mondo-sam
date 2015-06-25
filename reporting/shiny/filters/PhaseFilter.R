@@ -30,12 +30,13 @@ setMethodS3(name = "update", class = "PhaseFilter", overwrite = TRUE, function(t
     uniqueStates <- unique(frame$PhaseName)
   }
   
-  this$.allCurrentStates <- list()
+  this$.allCurrentStates <- c()
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }
   if (!is.null(this$.selectedState)){
     prevStates <- this$.selectedState
+    this$.selectedState <- c()
     for (state in prevStates){
       if (state %in% this$.allCurrentStates){
         this$.selectedState <- c(state, this$.selectedState)

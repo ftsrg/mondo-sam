@@ -99,7 +99,10 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                        uiOutput("yVjust")
                                        )
                               )
-                     )
+                     ),
+                     tabPanel("Export",
+                              downloadButton("exportConfiguration", "Export Configuration")
+                       )
                    ),
                    # Publish panel
                    tabPanel(
