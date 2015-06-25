@@ -55,6 +55,13 @@ After converting the results to the right CSV format (see above), it becomes fea
 
 #### Interactive Reporting
 
+Besides the primary dependencies, it is necessary to install further R packages:
+   ```
+   cd reporting/shiny
+   
+   sudo R -f install.R  
+   ```
+
 In order to launch the application, run the following script from the `reporting` directory:
  * `./interactive.sh`
 
