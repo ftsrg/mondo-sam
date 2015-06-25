@@ -41,7 +41,7 @@ setMethodS3(name = "update", class = "MetricFilter", overwrite = TRUE, function(
     uniqueStates <- unique(subset(frame, PhaseName %in% this$.container$.phase$.selectedState)$MetricName)
   }
   
-  this$.allCurrentStates <- list()
+  this$.allCurrentStates <- c()
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }

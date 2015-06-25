@@ -47,7 +47,7 @@ setMethodS3(name = "export", class = "Publisher", function(this){
   data <- list(
     "Extension" = this$.format,
     "Automatic_Filename" = this$.automaticFilename,
-    "Specified_Filename" = this$.filename,
+    "Specified_Filename" = this$.defaultFilename,
     "Diagram_Width" = this$.diagramWidth,
     "Diagram_Height" = this$.diagramHeight,
     "Diagram_DPI" = this$.diagramDPI
