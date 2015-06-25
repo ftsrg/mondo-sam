@@ -15,6 +15,11 @@ setMethodS3(name = "setFrame", class = "Result", function(this, results){
 })
 
 
+setMethodS3(name = "clearSubFrames", class = "Result", function(this){
+  this$.subFrames <- NULL
+})
+
+
 setMethodS3(name = "createSubFrames", class = "Result", function(this){
   if (is.null(this$.frame)){
     throw("Null frame attribute in Result - createSubFrames")
@@ -30,7 +35,7 @@ setMethodS3(name = "createSubFrames", class = "Result", function(this){
 
 
 setMethodS3(name = "splitFrames", class = "Result", private = TRUE, function(this, results, selections, id, index=0){
-  if(length(selections) ==0){
+  if(length(selections) == 0){
     this$.subFrames[[id]] <- results
   }
   else {

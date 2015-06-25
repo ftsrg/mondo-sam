@@ -3,10 +3,7 @@ library("shiny")
 shinyUI(navbarPage("Reporting", id="reporting",
                    # Source panel
                    tabPanel("Source",
-                            fileInput('file', 'Choose CSV File',
-                                      accept=c('text/csv', 
-                                               'text/comma-separated-values,text/plain', 
-                                               '.csv')),
+                            uiOutput("file"),
                             uiOutput("load"),
                             tags$hr(),
                             radioButtons('sep', 'Separator',

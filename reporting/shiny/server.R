@@ -26,7 +26,7 @@ source("plots/PlotSettings.R", echo = FALSE)
 source("plots/Theme.R", echo = FALSE)
 source("serializers/ConfigurationSerializer.R", echo = FALSE)
 source("options.R", echo = FALSE)
-options(warn = 1)
+options(warn = 0)
 
 
 shinyServer(function(input, output, session) {
@@ -51,14 +51,26 @@ shinyServer(function(input, output, session) {
                            xDimensionObserver = 0,
                            legendObserver = 0,
                            specificLegendObserver = 0,
-                           publishingObserver = 0
+                           publishingObserver = 0,
+                           uploadObserver = 0
                           )
+  
+  output$file <- renderUI({
+    values$uploadObserver
+    fileInput('file', 'Choose CSV File',
+              accept=c('text/csv',
+                       'text/comma-separated-values',
+                       'text/tab-separated-values',
+                       'text/plain',
+                       '.csv',
+                       '.tsv'))
+  })
+  
   
   
 # load results
   output$load <- renderUI({
     inFile <- input$file
-    
     if (is.null(inFile)){
       return()
     }
@@ -67,12 +79,17 @@ shinyServer(function(input, output, session) {
                                  quote = input$quote)
       withProgress(message = 'Processing', value = 1.0, {
         values$result$setFrame(tempResults)
+        values$result$clearSubFrames()
         values$result$createSubFrames()
         
-        initialize()
-        
-        updateSelectInput(session, "theme", selected = values$plotContainer$.theme$.style)
-        updateCheckboxInput(session, "selectAllFilter", value = values$filterContainer$.specificLegend$.selectAll)
+        if (values$uploadObserver == 0){
+          initialize()
+        }
+        values$uploadObserver <- values$uploadObserver + 1
+        if (values$uploadObserver == 0){
+          updateSelectInput(session, "theme", selected = values$plotContainer$.theme$.style)
+          updateCheckboxInput(session, "selectAllFilter", value = values$filterContainer$.specificLegend$.selectAll)
+        }
         updateTabsetPanel(session, "reporting", selected = "Results")
         
         values$filterContainer$updateFilters()
@@ -90,8 +107,7 @@ shinyServer(function(input, output, session) {
     values$plotContainer$.plotSettings$init(values$filterContainer)
     values$plotContainer$.theme$init()
   }
-
-   
+     
   source('observers/filters.R', local = TRUE)
 
   source('observers/plotsettings.R', local = TRUE)
