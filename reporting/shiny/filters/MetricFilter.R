@@ -6,15 +6,26 @@ setConstructorS3(name = "MetricFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "MetricFilter", overwrite = TRUE, function(this, observers){
-    this$.container$.iteration$update()
-    observers$iterationObserver <- observers$iterationObserver + 1
-    this$.container$.iteration$notify(observers)
-    
-    this$.container$.specificLegend$update()
-    observers$specificLegendObserver <- observers$specificLegendObserver + 1
-    this$.container$.specificLegend$notify(observers)
+setMethodS3(name = "updateNext", class = "MetricFilter", abstract = TRUE, function(this){
+  this$.container$.iteration$update()
+  this$.container$.iteration$updateNext()
+  this$.container$.specificLegend$update()
+  this$.container$.specificLegend$updateNext()
 })
+
+
+setMethodS3(name = "notifyView", class = "MetricFilter", overwrite = TRUE, function(this, observers){
+  observers$metricObserver <- observers$metricObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "MetricFilter", overwrite = TRUE, function(this, observers){
+  this$.container$.iteration$notifyView(observers)
+  this$.container$.iteration$notifyNextView(observers)
+  this$.container$.specificLegend$notifyView(observers)
+  this$.container$.specificLegend$notifyNextView(observers)
+})
+
 
 
 setMethodS3(name = "getIdentifier", class = "MetricFilter", overwrite = TRUE, function(this){

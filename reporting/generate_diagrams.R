@@ -99,11 +99,7 @@ for(row in 1:nrow(config$Plot)){
   
   filterContainer$.selections$changeSelections(filterContainer$.legend$.selectedState, filterContainer$.xDimension$.selectedState)
   
-  filterContainer$.scenario$update()
-  filterContainer$.tool$update()
-  filterContainer$.case$update()
-  filterContainer$.size$update()
-  filterContainer$.iteration$update()
+  filterContainer$updateFilters()
   
   publisher$publish(filterContainer, plotContainer, filterContainer$.selections$.selections, verbose = TRUE)
 

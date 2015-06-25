@@ -131,13 +131,26 @@ setMethodS3(name = "injectStates", class = "FilterContainer", function(this, tex
 })
 
 
-setMethodS3(name = "notifyFilters", class = "FilterContainer", function(this, observers){
-  observers$scenarioObserver <- observers$scenarioObserver + 1
-  observers$xDimensionObserver <- observers$xDimensionObserver + 1
-  observers$legend <- observers$legend + 1
-  observers$publishingObserver <- observers$publishingObserver + 1
+setMethodS3(name = "notifyViews", class = "FilterContainer", function(this, observers){
+  this$.xDimension$notifyView(observers)
+  this$.xDimension$notifyNextView(observers)
   
-  this$.scenario$notify(observers)
+  this$.legend$notifyView(observers)
+  this$.legend$notifyNextView(observers)
+  
+  this$.publishing$notifyView(observers)
+  this$.publishing$notifyNextView(observers)
+  
+  this$.scenario$notifyView(observers)
+  this$.scenario$notifyNextView(observers)
+})
+
+
+setMethodS3(name = "updateFilters", class = "FilterContainer", function(this){
+  this$.publishing$update()
+  this$.publishing$updateNext()
+  this$.scenario$update()
+  this$.scenario$updateNext()
 })
 
 

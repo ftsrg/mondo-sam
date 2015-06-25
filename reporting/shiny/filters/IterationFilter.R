@@ -1,4 +1,4 @@
-library("R.oo", , quietly = TRUE)
+library("R.oo", quietly = TRUE)
 
 
 setConstructorS3(name = "IterationFilter", function(selections = NULL){
@@ -6,7 +6,18 @@ setConstructorS3(name = "IterationFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "IterationFilter", overwrite = TRUE, function(this, observers){
+setMethodS3(name = "updateNext", class = "IterationFilter", abstract = TRUE, function(this){
+  # empty
+})
+
+
+setMethodS3(name = "notifyView", class = "IterationFilter", overwrite = TRUE, function(this, observers){
+  observers$iterationObserver <- observers$iterationObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "IterationFilter", overwrite = TRUE, function(this, observers){
+  # empty
 })
 
 

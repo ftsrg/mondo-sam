@@ -6,10 +6,20 @@ setConstructorS3(name = "PhaseFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "PhaseFilter", overwrite = TRUE, function(this, observers){
-    this$.container$.metric$update()
-    observers$metricObserver <- observers$metricObserver +1
-    this$.container$.metric$notify(observers)
+setMethodS3(name = "updateNext", class = "PhaseFilter", abstract = TRUE, function(this){
+  this$.container$.metric$update()
+  this$.container$.metric$updateNext()
+})
+
+
+setMethodS3(name = "notifyView", class = "PhaseFilter", overwrite = TRUE, function(this, observers){
+  observers$phaseObserver <- observers$phaseObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "PhaseFilter", overwrite = TRUE, function(this, observers){
+  this$.container$.metric$notifyView(observers)
+  this$.container$.metric$notifyNextView(observers)
 })
 
 

@@ -73,7 +73,8 @@ shinyServer(function(input, output, session) {
         
         updateSelectInput(session, "theme", selected = values$plotContainer$.theme$.style)
         updateTabsetPanel(session, "reporting", selected = "Results")
-        values$filterContainer$notifyFilters(values)
+        values$filterContainer$updateFilters()
+        values$filterContainer$notifyViews(values)
       })
     })
   })

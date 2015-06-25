@@ -6,10 +6,20 @@ setConstructorS3(name = "CaseFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "CaseFilter", overwrite = TRUE, function(this, observers){
+setMethodS3(name = "updateNext", class = "CaseFilter", abstract = TRUE, function(this){
   this$.container$.size$update()
-  observers$sizeObserver <- observers$sizeObserver + 1
-  this$.container$.size$notify(observers)
+  this$.container$.size$updateNext()
+})
+
+
+setMethodS3(name = "notifyView", class = "CaseFilter", overwrite = TRUE, function(this, observers){
+  observers$caseObserver <- observers$caseObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "CaseFilter", overwrite = TRUE, function(this, observers){
+  this$.container$.size$notifyView(observers)
+  this$.container$.size$notifyNextView(observers)
 })
 
 

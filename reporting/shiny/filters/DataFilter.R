@@ -78,7 +78,10 @@ setMethodS3(name = "popState", class = "DataFilter", function(this){
 })
 
 
-setMethodS3(name = "notify", class = "DataFilter", abstract = TRUE, function(this, observers){})
+setMethodS3(name = "notifyView", class = "DataFilter", abstract = TRUE, function(this, observers){})
+
+
+setMethodS3(name = "notifyNextView", class = "DataFilter", abstract = TRUE, function(this, observers){})
 
 
 setMethodS3(name = "getIdentifier", class = "DataFilter", abstract = TRUE, function(this){})
@@ -94,10 +97,11 @@ setMethodS3(name = "update", class = "DataFilter", function(this){
     uniqueStates <- unique(result$getSubFrame(id)[[this$getIdentifier()]])
   }
   
-  this$.allCurrentStates <- list()
+  this$.allCurrentStates <- c()
   for(state in uniqueStates){
     this$.allCurrentStates <- c(state, this$.allCurrentStates)
   }
+  
   if (is.null(this$.selectedState)){
     this$.selectedState <- this$.allCurrentStates[1]
   }
@@ -105,6 +109,9 @@ setMethodS3(name = "update", class = "DataFilter", function(this){
     this$.selectedState <- this$.allCurrentStates[1]
   }
 })
+
+
+setMethodS3(name = "updateNext", class = "DataFilter", abstract = TRUE, function(this){})
 
 
 setMethodS3(name = "display", class = "DataFilter", abstract = TRUE, function(this){})

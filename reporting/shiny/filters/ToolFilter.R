@@ -7,10 +7,20 @@ setConstructorS3(name = "ToolFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "ToolFilter", overwrite = TRUE, function(this, observers){
+setMethodS3(name = "updateNext", class = "ToolFilter", abstract = TRUE, function(this){
   this$.container$.case$update()
-  observers$caseObserver <- observers$caseObserver + 1
-  this$.container$.case$notify(observers)
+  this$.container$.case$updateNext()
+})
+
+
+setMethodS3(name = "notifyView", class = "ToolFilter", overwrite = TRUE, function(this, observers){
+  observers$toolObserver <- observers$toolObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "ToolFilter", overwrite = TRUE, function(this, observers){
+  this$.container$.case$notifyView(observers)
+  this$.container$.case$notifyNextView(observers)
 })
 
 

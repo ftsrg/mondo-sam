@@ -6,10 +6,20 @@ setConstructorS3(name = "SizeFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "SizeFilter", overwrite = TRUE, function(this, observers){
-    this$.container$.phase$update()
-    observers$phaseObserver <- observers$phaseObserver +1
-    this$.container$.phase$notify(observers)
+setMethodS3(name = "updateNext", class = "SizeFilter", abstract = TRUE, function(this){
+  this$.container$.phase$update()
+  this$.container$.phase$updateNext()
+})
+
+
+setMethodS3(name = "notifyView", class = "SizeFilter", overwrite = TRUE, function(this, observers){
+  observers$sizeObserver <- observers$sizeObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "SizeFilter", overwrite = TRUE, function(this, observers){
+  this$.container$.phase$notifyView(observers)
+  this$.container$.phase$notifyNextView(observers)
 })
 
 
@@ -20,7 +30,6 @@ setMethodS3(name = "getIdentifier", class = "SizeFilter", overwrite = TRUE, func
 
 setMethodS3(name = "display", class = "SizeFilter", overwrite = TRUE, function(this){
   if(!this$enable("Size")){
-    # display nothing
     return()
   }
   this$.allCurrentStates <- sort(as.numeric(this$.allCurrentStates))

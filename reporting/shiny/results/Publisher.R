@@ -92,12 +92,14 @@ setMethodS3(name = "publishAll", class = "Publisher", private = TRUE, function(t
       filter$.selectedState <- state
        
       # update the rest of the selections
-      filterPos <- which(selections == publishFilters[1])[1]
-      for (i in 1:length(selections)){
-        if (i > filterPos){
-          filterContainer$getFilter(selections[i])$update()
-        }
-      }
+      filter$update()
+      filter$updateNext()
+#       filterPos <- which(selections == publishFilters[1])[1]
+#       for (i in 1:length(selections)){
+#         if (i > filterPos){
+#           filterContainer$getFilter(selections[i])$update()
+#         }
+#       }
       this$publishAll(newFilters, filterContainer, plotContainer, verbose)
     }
   }

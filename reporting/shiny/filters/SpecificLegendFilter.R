@@ -6,7 +6,18 @@ setConstructorS3(name = "SpecificLegendFilter", function(selections = NULL){
 })
 
 
-setMethodS3(name = "notify", class = "SpecificLegendFilter", overwrite = TRUE, function(this, observers){
+setMethodS3(name = "updateNext", class = "SpecificLegendFilter", abstract = TRUE, function(this){
+  # empty
+})
+
+
+setMethodS3(name = "notifyView", class = "SpecificLegendFilter", overwrite = TRUE, function(this, observers){
+  observers$specificLegendObserver <- observers$specificLegendObserver + 1
+})
+
+
+setMethodS3(name = "notifyNextView", class = "SpecificLegendFilter", overwrite = TRUE, function(this, observers){
+  # empty
 })
 
 
