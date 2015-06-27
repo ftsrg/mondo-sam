@@ -43,7 +43,7 @@ shinyUI(navbarPage("Reporting", id="reporting",
                                      uiOutput("legend")
                               ),
                               column(4,
-                                     checkboxInput("selectAllFilter", label="Allways Select All", value = TRUE),
+                                     checkboxInput("selectAllFilter", label="Always Select All", value = TRUE),
                                      tags$p(),
                                      uiOutput("legendFilters")
                               )
