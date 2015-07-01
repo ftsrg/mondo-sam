@@ -11,24 +11,24 @@ import eu.mondo.sam.test.TestDataToken;
 
 public class DeclarationPhase extends AtomicPhase {
 
-    public DeclarationPhase(String phaseName) {
-	super(phaseName);
-    }
+	public DeclarationPhase(String phaseName) {
+		super(phaseName);
+	}
 
-    @Override
-    public void execute(DataToken token, PhaseResult result) {
-	ScalarMetric scalar = new ScalarMetric("Value");
-	MemoryMetric memory = new MemoryMetric("Memory");
-	TestDataToken testToken = (TestDataToken) token;
+	@Override
+	public void execute(DataToken token, PhaseResult result) {
+		ScalarMetric scalar = new ScalarMetric("Value");
+		MemoryMetric memory = new MemoryMetric("Memory");
+		TestDataToken testToken = (TestDataToken) token;
 
-	Random random = new Random();
-	int randomNumber = random.nextInt(1000);
-	testToken.setNumber(randomNumber);
+		Random random = new Random();
+		int randomNumber = random.nextInt(1000);
+		testToken.setNumber(randomNumber);
 
-	MemoryMetric.setNumberOfGC(1);
-	memory.measure();
-	scalar.setValue(randomNumber);
-	result.addMetrics(scalar, memory);
-    }
+		MemoryMetric.setNumberOfGC(1);
+		memory.measure();
+		scalar.setValue(randomNumber);
+		result.addMetrics(scalar, memory);
+	}
 
 }

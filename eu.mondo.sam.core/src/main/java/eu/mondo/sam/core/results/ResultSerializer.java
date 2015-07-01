@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public interface ResultSerializer {
 
-    public void serialize(BenchmarkResult benchmarkResult, String fileName)
-	    throws IOException;
+	public void serialize(BenchmarkResult benchmarkResult, String fileName)
+			throws IOException;
 }

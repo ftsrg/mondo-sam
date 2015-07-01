@@ -13,54 +13,54 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class MetricResult {
 
-    /**
-     * Identifies the metric.
-     */
-    @JsonProperty("MetricName")
-    private String metricName;
+	/**
+	 * Identifies the metric.
+	 */
+	@JsonProperty("MetricName")
+	private String metricName;
 
-    /**
-     * Represents the measured value of a metric.
-     */
-    @JsonProperty("MetricValue")
-    private String value;
+	/**
+	 * Represents the measured value of a metric.
+	 */
+	@JsonProperty("MetricValue")
+	private String value;
 
-    /**
-     * Returns the name of the metric.
-     * 
-     * @return metricName
-     */
-    public String getName() {
-	return metricName;
-    }
+	/**
+	 * Returns the name of the metric.
+	 * 
+	 * @return metricName
+	 */
+	public String getName() {
+		return metricName;
+	}
 
-    /**
-     * Returns the measured value of the metric.
-     * 
-     * @return value
-     */
-    public String getValue() {
-	return value;
-    }
+	/**
+	 * Returns the measured value of the metric.
+	 * 
+	 * @return value
+	 */
+	public String getValue() {
+		return value;
+	}
 
-    /**
-     * Adjusts the name identifier of the metric.
-     * 
-     * @param name
-     *            recommended to be the same name, as in the BenchmarkMetric
-     *            object to which this class belongs
-     */
-    public void setName(String name) {
-	this.metricName = name;
-    }
+	/**
+	 * Adjusts the name identifier of the metric.
+	 * 
+	 * @param name
+	 *                recommended to be the same name, as in the
+	 *                BenchmarkMetric object to which this class belongs
+	 */
+	public void setName(String name) {
+		this.metricName = name;
+	}
 
-    /**
-     * Adjusts the value of the measurement of a BenchmarkMetric instance.
-     * 
-     * @param value
-     *            the exact value of measurement as String
-     */
-    public void setValue(String value) {
-	this.value = value;
-    }
+	/**
+	 * Adjusts the value of the measurement of a BenchmarkMetric instance.
+	 * 
+	 * @param value
+	 *                the exact value of measurement as String
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
 }

@@ -12,36 +12,36 @@ package eu.mondo.sam.core.phases;
  */
 public abstract class ConditionalPhase implements BenchmarkPhase {
 
-    /**
-     * A BenchmarkPhase implementation.
-     */
-    protected BenchmarkPhase phase;
+	/**
+	 * A BenchmarkPhase implementation.
+	 */
+	protected BenchmarkPhase phase;
 
-    /**
-     * Represents a precondition method for accessing the phase variable. The
-     * subclasses have to define.
-     * 
-     * @return True if the defined condition proves right, or False in the other
-     *         case.
-     */
-    public abstract boolean condition();
+	/**
+	 * Represents a precondition method for accessing the phase variable.
+	 * The subclasses have to define.
+	 * 
+	 * @return True if the defined condition proves right, or False in the
+	 *         other case.
+	 */
+	public abstract boolean condition();
 
-    /**
-     * Sets the phase field.
-     * 
-     * @param phase
-     *            BenchmarkPhase implementation.
-     */
-    public void setPhase(BenchmarkPhase phase) {
-	this.phase = phase;
-    }
+	/**
+	 * Sets the phase field.
+	 * 
+	 * @param phase
+	 *                BenchmarkPhase implementation.
+	 */
+	public void setPhase(BenchmarkPhase phase) {
+		this.phase = phase;
+	}
 
-    /**
-     * Returns the phase field.
-     * 
-     * @return a BenchmarkPhase object.
-     */
-    public BenchmarkPhase getPhase() {
-	return phase;
-    }
+	/**
+	 * Returns the phase field.
+	 * 
+	 * @return a BenchmarkPhase object.
+	 */
+	public BenchmarkPhase getPhase() {
+		return phase;
+	}
 }

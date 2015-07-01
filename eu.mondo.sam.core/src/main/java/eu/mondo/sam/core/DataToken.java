@@ -12,13 +12,13 @@ import eu.mondo.sam.core.phases.BenchmarkPhase;
  */
 public interface DataToken {
 
-    /**
-     * Initializes the necessary resources.
-     */
-    public void init();
+	/**
+	 * Initializes the necessary resources.
+	 */
+	public void init();
 
-    /**
-     * Disposes the resources which are used by the DataToken.
-     */
-    public void destroy();
+	/**
+	 * Disposes the resources which are used by the DataToken.
+	 */
+	public void destroy();
 }

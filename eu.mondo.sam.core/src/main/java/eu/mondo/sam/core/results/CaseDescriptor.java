@@ -11,131 +11,132 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class CaseDescriptor {
 
-    /**
-     * Specifies the name of the current case during benchmarking. The case
-     * affect mostly a functionality of phases.
-     */
-    @JsonProperty("CaseName")
-    protected String caseName;
+	/**
+	 * Specifies the name of the current case during benchmarking. The case
+	 * affect mostly a functionality of phases.
+	 */
+	@JsonProperty("CaseName")
+	protected String caseName;
 
-    /**
-     * Specifies an index for the current running of benchmark. The measurements
-     * with the same configurations have to differ by the runIndex value.
-     */
-    @JsonProperty("RunIndex")
-    protected int runIndex;
+	/**
+	 * Specifies an index for the current running of benchmark. The
+	 * measurements with the same configurations have to differ by the
+	 * runIndex value.
+	 */
+	@JsonProperty("RunIndex")
+	protected int runIndex;
 
-    /**
-     * Identifies the scenario after its name.
-     */
-    @JsonProperty("Scenario")
-    protected String scenario;
+	/**
+	 * Identifies the scenario after its name.
+	 */
+	@JsonProperty("Scenario")
+	protected String scenario;
 
-    /**
-     * Represents the name of the measured tool.
-     */
-    @JsonProperty("Tool")
-    protected String tool;
+	/**
+	 * Represents the name of the measured tool.
+	 */
+	@JsonProperty("Tool")
+	protected String tool;
 
-    /**
-     * Specifies the size of the used model during benchmarking.
-     */
-    @JsonProperty("Size")
-    protected int size;
+	/**
+	 * Specifies the size of the used model during benchmarking.
+	 */
+	@JsonProperty("Size")
+	protected int size;
 
-    /**
-     * Returns the identifier of benchmark case.
-     * 
-     * @return caseName identifier of benchmark case
-     */
-    public String getCaseName() {
-	return caseName;
-    }
+	/**
+	 * Returns the identifier of benchmark case.
+	 * 
+	 * @return caseName identifier of benchmark case
+	 */
+	public String getCaseName() {
+		return caseName;
+	}
 
-    /**
-     * Adjusts a benchmark case.
-     * 
-     * @param caseName
-     *            a String identifier
-     */
-    public void setCaseName(String caseName) {
-	this.caseName = caseName;
-    }
+	/**
+	 * Adjusts a benchmark case.
+	 * 
+	 * @param caseName
+	 *                a String identifier
+	 */
+	public void setCaseName(String caseName) {
+		this.caseName = caseName;
+	}
 
-    /**
-     * Returns the value of the current index of running.
-     * 
-     * @return runIndex current index of running
-     */
-    public int getRunIndex() {
-	return runIndex;
-    }
+	/**
+	 * Returns the value of the current index of running.
+	 * 
+	 * @return runIndex current index of running
+	 */
+	public int getRunIndex() {
+		return runIndex;
+	}
 
-    /**
-     * Sets the the current index of benchmark running.
-     * 
-     * @param runIndex
-     *            current index
-     */
-    public void setRunIndex(int runIndex) {
-	this.runIndex = runIndex;
-    }
+	/**
+	 * Sets the the current index of benchmark running.
+	 * 
+	 * @param runIndex
+	 *                current index
+	 */
+	public void setRunIndex(int runIndex) {
+		this.runIndex = runIndex;
+	}
 
-    /**
-     * Returns name identifier of scenario.
-     * 
-     * @return scenario identifier of scenario
-     */
-    public String getScenario() {
-	return scenario;
-    }
+	/**
+	 * Returns name identifier of scenario.
+	 * 
+	 * @return scenario identifier of scenario
+	 */
+	public String getScenario() {
+		return scenario;
+	}
 
-    /**
-     * Adjusts a benchmark scenario.
-     * 
-     * @param scenario
-     *            a String identifier
-     */
-    public void setScenario(String scenario) {
-	this.scenario = scenario;
-    }
+	/**
+	 * Adjusts a benchmark scenario.
+	 * 
+	 * @param scenario
+	 *                a String identifier
+	 */
+	public void setScenario(String scenario) {
+		this.scenario = scenario;
+	}
 
-    /**
-     * Returns name identifier of tool.
-     * 
-     * @return tool identifier of tool
-     */
-    public String getTool() {
-	return tool;
-    }
+	/**
+	 * Returns name identifier of tool.
+	 * 
+	 * @return tool identifier of tool
+	 */
+	public String getTool() {
+		return tool;
+	}
 
-    /**
-     * Adjusts the name the measured tool.
-     * 
-     * @param tool
-     *            a String identifier
-     */
-    public void setTool(String tool) {
-	this.tool = tool;
-    }
+	/**
+	 * Adjusts the name the measured tool.
+	 * 
+	 * @param tool
+	 *                a String identifier
+	 */
+	public void setTool(String tool) {
+		this.tool = tool;
+	}
 
-    /**
-     * Returns the size of the currently used model.
-     * 
-     * @return size the size of the used model
-     */
-    public int getSize() {
-	return size;
-    }
+	/**
+	 * Returns the size of the currently used model.
+	 * 
+	 * @return size the size of the used model
+	 */
+	public int getSize() {
+		return size;
+	}
 
-    /**
-     * Sets the size of the model on which the benchmark executes.
-     * 
-     * @param size
-     *            an integer value of size
-     */
-    public void setSize(int size) {
-	this.size = size;
-    }
+	/**
+	 * Sets the size of the model on which the benchmark executes.
+	 * 
+	 * @param size
+	 *                an integer value of size
+	 */
+	public void setSize(int size) {
+		this.size = size;
+	}
 
 }

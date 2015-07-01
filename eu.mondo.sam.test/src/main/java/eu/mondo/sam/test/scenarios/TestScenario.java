@@ -4,12 +4,12 @@ import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.results.CaseDescriptor;
 import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 
-public class TestScenario extends BenchmarkScenario{
+public class TestScenario extends BenchmarkScenario {
 
 	public void build() {
 	}
-	
-	public void setRootPhase(BenchmarkPhase phase){
+
+	public void setRootPhase(BenchmarkPhase phase) {
 		this.rootPhase = phase;
 	}
 

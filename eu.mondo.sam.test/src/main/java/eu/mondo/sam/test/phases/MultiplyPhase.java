@@ -9,29 +9,29 @@ import eu.mondo.sam.test.TestDataToken;
 
 public class MultiplyPhase extends AtomicPhase {
 
-    public MultiplyPhase(String phaseName) {
-	super(phaseName);
-    }
-
-    @Override
-    public void execute(DataToken token, PhaseResult result) {
-	TimeMetric timer = new TimeMetric("Time");
-	MemoryMetric memory = new MemoryMetric("Memory");
-
-	TestDataToken testToken = (TestDataToken) token;
-
-	int number = testToken.getNumber();
-
-	timer.startMeasure();
-	for (int i = 1; i < 10; i++) {
-	    number *= 2;
+	public MultiplyPhase(String phaseName) {
+		super(phaseName);
 	}
-	timer.stopMeasure();
-	memory.measure();
 
-	testToken.setNumber(number);
-	result.addMetrics(timer, memory);
+	@Override
+	public void execute(DataToken token, PhaseResult result) {
+		TimeMetric timer = new TimeMetric("Time");
+		MemoryMetric memory = new MemoryMetric("Memory");
 
-    }
+		TestDataToken testToken = (TestDataToken) token;
+
+		int number = testToken.getNumber();
+
+		timer.startMeasure();
+		for (int i = 1; i < 10; i++) {
+			number *= 2;
+		}
+		timer.stopMeasure();
+		memory.measure();
+
+		testToken.setNumber(number);
+		result.addMetrics(timer, memory);
+
+	}
 
 }
