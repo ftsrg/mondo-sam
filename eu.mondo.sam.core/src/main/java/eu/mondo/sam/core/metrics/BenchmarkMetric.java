@@ -26,6 +26,10 @@ public abstract class BenchmarkMetric {
 		this.metricName = name;
 	}
 
+	public BenchmarkMetric() {
+
+	}
+
 	/**
 	 * Returns the name of the BenchmarkMetric instance,
 	 * 
@@ -33,6 +37,15 @@ public abstract class BenchmarkMetric {
 	 */
 	public String getMetricName() {
 		return metricName;
+	}
+
+	/**
+	 * Adjusts metric name.
+	 * 
+	 * @param metricName
+	 */
+	public void setMetricName(String metricName) {
+		this.metricName = metricName;
 	}
 
 	/**
