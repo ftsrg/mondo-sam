@@ -28,7 +28,10 @@ The first step is to define the own scenario and phase implementations. For furt
 ### Results
 
 Every benchmark result is saved to a JSON file. In order to convert the results to a CSV file, run the following:
- * `./reporting/convert_results.py`  
+```bash
+./reporting/convert_results.py
+```
+
 To add specific paths, use the optional arguments. For more information, see `convert_results.py -h`
 
 The operation above is also necessary for the reporting mechanism.
