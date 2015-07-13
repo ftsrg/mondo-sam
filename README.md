@@ -38,35 +38,40 @@ The operation above is also necessary for the reporting mechanism.
 There is a chance to visualise the measurement results on diagrams. At first, install R and the required packages:
 
 1. **Ubuntu**  
-   ```
+   ```bash
    sudo apt-get install -y r-base r-base-dev  
-   
    cd reporting  
-   
    sudo R -f install.R  
    ```
+   
 2. **Windows**
  * Download and install [R](http://cran.r-project.org/bin/windows/base/)
  * Adjust the system environment variables
- * In an admin command prompt, run: `
-   * `R -f install.R`
+ * In a command prompt with administrator rights, run:
+   ```
+   R -f install.R
+   ```
 
 After converting the results to the right CSV format (see above), it becomes feasible to start the reporting. The first option is that to use the interactive application.
 
 #### Interactive Reporting
 
 Besides the primary dependencies, it is necessary to install further R packages:
-   ```
-   cd reporting/shiny
-   
-   sudo R -f install.R  
-   ```
+```bash
+cd reporting/shiny
+sudo R -f install.R  
+```
 
 In order to launch the application, run the following script from the `reporting` directory:
- * `./interactive.sh`
+```bash
+./interactive.sh
+```
 
 It is possible to run the application in terminal (from the `reporting` directory again): 
- * `R -e "shiny::runApp('./shiny/', launch.browser=TRUE)"`  
+```bash
+R -e "shiny::runApp('./shiny/', launch.browser=TRUE)"
+```
+
 To run the application from a different source, just change the path parameter (*./shiny/*).
 
 
@@ -79,7 +84,9 @@ The second option is that to run the plot generation scripts directly without in
 At first, adjust the reporting configuration settings in the `reporting/config.json` file. These parameters determine exactly what kind of plots will be generated. For further information, read the reporting [section](https://github.com/FTSRG/mondo-sam/wiki/Reporting) on wiki.
 
 Finally, it is already possible to generate the diagrams. The easiest way for this to use the Python wrapper module:
- * `./reporting/report.py --source source_csv_path -- output output_folder_path --config config_json_path`
+```bash
+./reporting/report.py --source source_csv_path -- output output_folder_path --config config_json_path`
+```
 
 Insert valid parameters instead the paths. The wrapper module actually invokes the `reporting/generate_diagrams.R` script, however it is still recommended to use it for two reasons. The Python script:
  1. solves the working directory problem and
