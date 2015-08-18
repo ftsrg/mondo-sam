@@ -133,4 +133,4 @@ if __name__ == "__main__":
     json_objects = load_results(args.source)
     write_json_objects(json_objects, args.jsonfile)
     convert_results_to_csv(json_objects, args.csvfile)
-    print("The results has been written successfully.")
+    print("The results have been written successfully.")
