@@ -39,7 +39,7 @@ public class BenchmarkResult {
 	private static List<ResultSerializer> serializers;
 
 	/**
-	 * Instantiates the paseResults list and the serializers as well.
+	 * Instantiates the phaseResults list and the serializers as well.
 	 */
 	public BenchmarkResult() {
 		phaseResults = new ArrayList<PhaseResult>();
