@@ -12,6 +12,11 @@ import os
 import glob
 import argparse
 import csv
+import re
+
+def natural_key(string_):
+    """See http://www.codinghorror.com/blog/archives/001018.html"""
+    return [int(s) if s.isdigit() else s for s in re.split(r'(\d+)', string_)]
 
 
 def set_working_directory(path=None):
@@ -41,7 +46,7 @@ def load_results(path):
     Parameters:
     @param path: the locations of json files
     """
-    file_paths = glob.glob(path + "/*.json")
+    file_paths = sorted(glob.glob(path + "/*.json"), key=natural_key)
     json_objects = list()
     for file_path in file_paths:
         with open(file_path) as file:
