@@ -12,7 +12,7 @@ MONDO-SAM provides a common framework for benchmark developers written in Java, 
  * **R** (3.0.2+)
  
 Optionally:
- * *Maven 3*
+ * **Maven 3**
 
 Basically, the framework works as an Eclipse plugin project, but it supports Maven nature as well.
 
@@ -28,6 +28,7 @@ The first step is to define the own scenario and phase implementations. For furt
 ### Results
 
 Every benchmark result is saved to a JSON file. In order to convert the results to a CSV file, run the following:
+
 ```bash
 ./reporting/convert_results.py
 ```
@@ -41,6 +42,7 @@ The operation above is also necessary for the reporting mechanism.
 There is a chance to visualise the measurement results on diagrams. At first, install R and the required packages:
 
 1. **Ubuntu**  
+   
    ```bash
    sudo apt-get install -y r-base r-base-dev  
    cd reporting  
@@ -59,7 +61,8 @@ After converting the results to the right CSV format (see above), it becomes fea
 
 #### Interactive Reporting
 
-Besides the primary dependencies, it is necessary to install further R packages:
+Besides the primary dependencies, it is necessary to install additional R packages:
+
 ```bash
 cd reporting/shiny
 sudo R -f install.R  
@@ -71,11 +74,12 @@ In order to launch the application, run the following script from the `reporting
 ```
 
 It is possible to run the application in terminal (from the `reporting` directory again): 
+
 ```bash
 R -e "shiny::runApp('./shiny/', launch.browser=TRUE)"
 ```
 
-To run the application from a different source, just change the path parameter (*./shiny/*).
+To run the application from a different source, just change the path parameter (`./shiny/`).
 
 
 Or, import the `reporting/shiny/server.R` file into [RStudio](http://www.rstudio.com/) and click on the `Run App` button. However, note that some features are not available in RStudio, for example, it is not feasible to export the configurations.
@@ -87,6 +91,7 @@ The second option is that to run the plot generation scripts directly without in
 At first, adjust the reporting configuration settings in the `reporting/config.json` file. These parameters determine exactly what kind of plots will be generated. For further information, read the reporting [section](https://github.com/FTSRG/mondo-sam/wiki/Reporting) on wiki.
 
 Finally, it is already possible to generate the diagrams. The easiest way for this to use the Python wrapper module:
+
 ```bash
 ./reporting/report.py --source source_csv_path -- output output_folder_path --config config_json_path`
 ```
