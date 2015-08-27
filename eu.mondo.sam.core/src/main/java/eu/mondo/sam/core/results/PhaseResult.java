@@ -22,20 +22,20 @@ public class PhaseResult {
 	 * Represents a name identifier of the phase implementation.
 	 */
 	@JsonProperty("PhaseName")
-	private String phaseName;
+	protected String phaseName;
 
 	/**
 	 * Defines an unambiguous order of executions of phases. It is the recommended manner, that every
 	 * instance of this class has a unique sequence identifier.
 	 */
 	@JsonProperty("Sequence")
-	private String sequence;
+	protected String sequence;
 
 	/**
 	 * Contains MetricResult objects as a list.
 	 */
 	@JsonProperty("Metrics")
-	private List<MetricResult> metrics;
+	protected List<MetricResult> metrics;
 
 	/**
 	 * Instantiates a metrics list.

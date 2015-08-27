@@ -5,8 +5,8 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.base.Stopwatch;
 
 /**
- * Defines an implementation for measuring time. The inherited getValue method provides the exact value of the metric. The dimension of time
- * is nanosecond by default.
+ * Defines an implementation for measuring time. The inherited getValue method provides the exact value of the
+ * metric. The dimension of time is nanosecond by default.
  * 
  * @author Zsolt Kovari
  *
@@ -14,20 +14,21 @@ import com.google.common.base.Stopwatch;
 public class TimeMetric extends BenchmarkMetric {
 
 	/**
-	 * Responsible for measuring time. The operation of this class is based on the StopWatch functionality.
+	 * Responsible for measuring time. The operation of this class is based on the StopWatch
+	 * functionality.
 	 */
-	private Stopwatch stopwatch;
+	protected Stopwatch stopwatch;
 
 	/**
 	 * Indicates the dimension of the measured metric. Default is nanosecond.
 	 */
-	private static TimeUnit timeUnit = TimeUnit.NANOSECONDS;
+	protected static TimeUnit timeUnit = TimeUnit.NANOSECONDS;
 
 	/**
 	 * Initializes the metricName variable after the given parameter.
 	 * 
 	 * @param name
-	 *            Name of the current BenchmarkMetric implementation.
+	 *                Name of the current BenchmarkMetric implementation.
 	 */
 	public TimeMetric(final String name) {
 		super(name);
@@ -48,7 +49,7 @@ public class TimeMetric extends BenchmarkMetric {
 	 * Adjusts the dimension of the measured time based on the given parameter.
 	 * 
 	 * @param timeUnit
-	 *            represents the dimension, e.g. TimeUnit.MILLISECONDS.
+	 *                represents the dimension, e.g. TimeUnit.MILLISECONDS.
 	 * @see TimeUnit
 	 */
 	public static void setTimeUnit(final TimeUnit timeUnit) {
