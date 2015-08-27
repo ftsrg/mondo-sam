@@ -10,9 +10,13 @@ import org.codehaus.jackson.map.SerializationConfig;
 
 import eu.mondo.sam.core.results.BenchmarkResult;
 
-public class JsonPublisher extends Publisher {
+public class JsonPublisher implements Publisher {
 
 	protected FilenameFactory factory;
+
+	protected String resultPath;
+
+	protected String extension;
 
 	public JsonPublisher(FilenameFactory factory) {
 		this.factory = factory;
@@ -30,7 +34,7 @@ public class JsonPublisher extends Publisher {
 		mapper.configure(SerializationConfig.Feature.AUTO_DETECT_FIELDS, false);
 		mapper.configure(SerializationConfig.Feature.AUTO_DETECT_GETTERS, false);
 
-		String filePath = resultPath + factory.getFilename() + ".json";
+		String filePath = getFullname();
 		try {
 			File dir = new File(resultPath);
 			dir.mkdir();
@@ -40,6 +44,26 @@ public class JsonPublisher extends Publisher {
 		} catch (JsonMappingException e) {
 			throw new IOException(e);
 		}
+	}
+
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	public String getResultPath() {
+		return resultPath;
+	}
+
+	public void setResultPath(String resultPath) {
+		this.resultPath = resultPath;
+	}
+
+	public String getFullname() {
+		return resultPath + factory.getFilename() + extension;
 	}
 
 }

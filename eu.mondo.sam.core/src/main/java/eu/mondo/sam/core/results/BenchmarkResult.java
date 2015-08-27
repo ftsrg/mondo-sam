@@ -2,6 +2,7 @@ package eu.mondo.sam.core.results;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -187,6 +188,10 @@ public class BenchmarkResult {
 
 	public List<Publisher> getPublishers() {
 		return publishers;
+	}
+
+	public boolean addAllPublishers(Collection<? extends Publisher> publishers) {
+		return this.publishers.addAll(publishers);
 	}
 
 }
