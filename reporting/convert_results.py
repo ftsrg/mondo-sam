@@ -96,7 +96,7 @@ def convert_results_to_csv(json_objects, csvpath):
                     row.update({"Iteration": phases_dict[phase["PhaseName"]]})
                 else:
                     phases_dict.update({phase["PhaseName"]: 1})
-                    row.update({"Iteration": 1})
+                    row.update({"Iteration": 0})
 
                 for metric in phase["Metrics"]:
                     for k in metric.keys():
