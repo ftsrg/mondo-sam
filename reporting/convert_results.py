@@ -76,6 +76,7 @@ def convert_results_to_csv(json_objects, csvpath):
             headers.update(keys)
             headers.add("Iteration")
         
+        headers = sorted(headers)
         writer = csv.DictWriter(csvfile, headers)
         writer.writeheader()
 
@@ -96,7 +97,7 @@ def convert_results_to_csv(json_objects, csvpath):
                     row.update({"Iteration": phases_dict[phase["PhaseName"]]})
                 else:
                     phases_dict.update({phase["PhaseName"]: 1})
-                    row.update({"Iteration": 0})
+                    row.update({"Iteration": phases_dict[phase["PhaseName"]]})
 
                 for metric in phase["Metrics"]:
                     for k in metric.keys():
