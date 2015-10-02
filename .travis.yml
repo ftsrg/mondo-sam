@@ -1,1 +1,8 @@
-language: java
+language: r
+r_binary_packages:
+  - ggplot2
+  - jsonlite
+  - R.oo
+  - plyr
+scripts:
+  - mvn test

@@ -9,7 +9,7 @@ MONDO-SAM provides a common framework for benchmark developers written in Java, 
 
  * **Java SE 1.6**
  * **Python 3** (tested with 3.4)
- * **R** (3.0.2+)
+ * **R** (3.2+)
  
 Optionally:
  * **Maven 3**
