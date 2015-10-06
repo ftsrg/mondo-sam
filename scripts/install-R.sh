@@ -1,4 +1,4 @@
-#!/bin/bas
+#!/bin/bash
 
 # trusty for 14.04, utopic for 14.10, vivid for 15.04
 DISTRIBUTION=trusty
