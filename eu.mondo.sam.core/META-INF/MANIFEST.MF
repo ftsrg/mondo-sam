@@ -7,6 +7,7 @@ Export-Package: eu.mondo.sam.core,
  eu.mondo.sam.core.metrics,
  eu.mondo.sam.core.phases,
  eu.mondo.sam.core.phases.iterators,
+ eu.mondo.sam.core.publishers,
  eu.mondo.sam.core.results,
  eu.mondo.sam.core.scenarios
 Require-Bundle: com.google.guava;bundle-version="15.0.0",
