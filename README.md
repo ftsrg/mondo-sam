@@ -43,6 +43,8 @@ There is a chance to visualise the measurement results on diagrams. At first, in
 
 1. **Ubuntu**  
    
+   Install R 3.2+.
+
    ```bash
    sudo apt-get install -y r-base r-base-dev  
    cd reporting  
