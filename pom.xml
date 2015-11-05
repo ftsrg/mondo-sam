@@ -16,16 +16,13 @@
   		<module>eu.mondo.sam.test</module>
 	</modules>
 
-
   <dependencies>
-
 		<dependency>
   		<groupId>com.fasterxml.jackson.core</groupId>
   		<artifactId>jackson-databind</artifactId>
   		<version>2.4.4</version>
-	</dependency>
-
-	 </dependencies>
+   </dependency>
+  </dependencies>
 
 	<build>
 		<plugins>
