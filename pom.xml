@@ -2,7 +2,7 @@
  	<modelVersion>4.0.0</modelVersion>
  	<groupId>eu.mondo.sam</groupId>
   	<artifactId>eu.mondo.sam</artifactId>
-  	<version>1.0.0-SNAPSHOT</version>
+  	<version>0.2.0-SNAPSHOT</version>
   	<packaging>pom</packaging>
 
 
@@ -16,6 +16,16 @@
   		<module>eu.mondo.sam.test</module>
 	</modules>
 
+
+  <dependencies>
+
+		<dependency>
+  		<groupId>com.fasterxml.jackson.core</groupId>
+  		<artifactId>jackson-databind</artifactId>
+  		<version>2.4.4</version>
+	</dependency>
+
+	 </dependencies>
 
 	<build>
 		<plugins>
@@ -33,7 +43,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -55,43 +65,8 @@
 						</execution>
 					</executions>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-dependency-plugin
-										</artifactId>
-										<versionRange>
-											[2.1,)
-										</versionRange>
-										<goals>
-											<goal>
-												copy-dependencies
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-
 
 </project>
