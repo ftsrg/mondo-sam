@@ -1,9 +1,8 @@
 package eu.mondo.sam.core.metrics;
 
 /**
- * Defines an implementation for measuring memory. The inherited getValue method
- * provides the exact value of the metric. The dimension of the value is
- * represented in kilobytes.
+ * Defines an implementation for measuring memory. The inherited getValue method provides the exact value of
+ * the metric. The dimension of the value is represented in kilobytes.
  * 
  * @author Zsolt Kovari
  *
@@ -13,11 +12,10 @@ public class MemoryMetric extends BenchmarkMetric {
 	/**
 	 * Represents the measured value of used memory.
 	 */
-	private long memory;
+	protected long memory;
 
 	/**
-	 * Represents the number of calls of garbage collection before measure
-	 * memory. Default value is 0.
+	 * Represents the number of calls of garbage collection before measure memory. Default value is 0.
 	 */
 	private static int numberOfGC = 0;
 
@@ -42,16 +40,14 @@ public class MemoryMetric extends BenchmarkMetric {
 	}
 
 	/**
-	 * Calls GC as many times as numberOfGC is adjusted, then measures the
-	 * used memory.
+	 * Calls GC as many times as numberOfGC is adjusted, then measures the used memory.
 	 */
 	public void measure() {
 		for (int i = 0; i < MemoryMetric.numberOfGC; i++) {
 			Runtime.getRuntime().gc();
 		}
 
-		memory = Runtime.getRuntime().totalMemory()
-				- Runtime.getRuntime().freeMemory();
+		memory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 	}
 
 	/**
@@ -64,8 +60,7 @@ public class MemoryMetric extends BenchmarkMetric {
 	}
 
 	/**
-	 * Adjusts the number of invocations of garbage collection that is
-	 * called before the measurement.
+	 * Adjusts the number of invocations of garbage collection that is called before the measurement.
 	 * 
 	 * @param numberOfGC
 	 */

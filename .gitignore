@@ -8,3 +8,5 @@ __pycache__/
 .pydevproject
 reporting/diagrams/*.*
 !reporting/diagrams/.gitignore
+.classpath
+.project
