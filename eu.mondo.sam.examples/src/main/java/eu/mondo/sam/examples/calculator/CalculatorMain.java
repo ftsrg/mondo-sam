@@ -5,10 +5,11 @@ import java.io.IOException;
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.publishers.DefaultFilenameFactory;
+import eu.mondo.sam.core.publishers.FilePublisher;
 import eu.mondo.sam.core.publishers.FilenameFactory;
-import eu.mondo.sam.core.publishers.JsonPublisher;
 import eu.mondo.sam.core.publishers.Publisher;
 import eu.mondo.sam.core.results.BenchmarkResult;
+import eu.mondo.sam.core.results.formatters.JsonResultFormatter;
 
 public class CalculatorMain {
 
@@ -23,8 +24,13 @@ public class CalculatorMain {
 
 		BenchmarkResult result = new BenchmarkResult();
 		FilenameFactory factory = new DefaultFilenameFactory(scenario.getCaseDescriptor());
-		Publisher publisher = new JsonPublisher(factory);
-		result.addPublisher(publisher);		
+		// @formatter:off
+		Publisher publisher = new FilePublisher.Builder()
+						.filenameFactory(factory)
+						.formatter(new JsonResultFormatter())
+						.build();
+		// @formatter:on
+		result.addPublisher(publisher);
 
 		engine.runBenchmark(result, scenario, token);
 	}
