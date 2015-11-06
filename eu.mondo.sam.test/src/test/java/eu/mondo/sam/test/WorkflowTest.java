@@ -9,9 +9,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import eu.mondo.sam.core.BenchmarkEngine;
+import eu.mondo.sam.core.DataToken;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
+import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.test.phases.ClearancePhase;
 import eu.mondo.sam.test.phases.DeclarationPhase;
 import eu.mondo.sam.test.scenarios.TestScenario;
@@ -36,17 +38,20 @@ public class WorkflowTest {
 	@BeforeClass
 	public static void init() {
 		declaration = new DeclarationPhase("Declaration");
+
 		token = new TestDataToken();
+
 		engine = new BenchmarkEngine();
+		BenchmarkResult.removeAllSerializers();
 	}
 
 	public int measuredPhases() {
 		return engine.getBenchmarkResult().getPhaseResults().size();
 	}
 
-	public void runBenchmark(final BenchmarkPhase rootPhase) throws IOException {
+	public void runBenchmark(BenchmarkPhase rootPhase) throws IOException {
 		scenario.setRootPhase(rootPhase);
-		engine.runBenchmark(scenario, token);
+		engine.runBenchmark(scenario, (DataToken) token);
 	}
 
 	@Before
@@ -74,7 +79,8 @@ public class WorkflowTest {
 
 	@Test
 	public void sequenceTest() throws IOException {
-		sequence.addPhases(declaration, declaration, declaration, declaration);
+		sequence.addPhases(declaration, declaration, declaration,
+				declaration);
 
 		runBenchmark(sequence);
 		assertEquals(4, measuredPhases());
@@ -114,7 +120,8 @@ public class WorkflowTest {
 	@Test
 	public void complexSequenceTest() throws IOException {
 		sequence3.addPhases(declaration, declaration);
-		sequence2.addPhases(declaration, declaration, declaration, sequence3);
+		sequence2.addPhases(declaration, declaration, declaration,
+				sequence3);
 		sequence.addPhases(declaration, sequence2, declaration);
 
 		runBenchmark(sequence);

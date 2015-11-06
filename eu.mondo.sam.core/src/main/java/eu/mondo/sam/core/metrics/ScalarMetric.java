@@ -1,8 +1,8 @@
 package eu.mondo.sam.core.metrics;
 
 /**
- * Defines an implementation for providing scalar values. The inherited getValue method provides the exact
- * value of the metric.
+ * Defines an implementation for providing scalar values. The inherited getValue
+ * method provides the exact value of the metric.
  * 
  * @author Zsolt Kovari
  *
@@ -12,7 +12,7 @@ public class ScalarMetric extends BenchmarkMetric {
 	/**
 	 * Represents the exact value of metric, by default is 0.
 	 */
-	protected long value;
+	private long value;
 
 	/**
 	 * Initializes the metricName variable after the given parameter.

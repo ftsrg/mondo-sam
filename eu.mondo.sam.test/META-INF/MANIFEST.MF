@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: eu.mondo.sam.test
+Bundle-Version: 1.0.0.qualifier
+Export-Package: eu.mondo.sam.test
+Require-Bundle: eu.mondo.sam.core;bundle-version="1.0.0"
