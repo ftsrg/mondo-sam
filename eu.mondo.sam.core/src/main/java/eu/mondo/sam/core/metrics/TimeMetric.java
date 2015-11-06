@@ -5,8 +5,9 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.base.Stopwatch;
 
 /**
- * Defines an implementation for measuring time. The inherited getValue method provides the exact value of the
- * metric. The dimension of time is nanosecond by default.
+ * Defines an implementation for measuring time. The inherited getValue method
+ * provides the exact value of the metric. The dimension of time is nanosecond
+ * by default.
  * 
  * @author Zsolt Kovari
  *
@@ -14,15 +15,16 @@ import com.google.common.base.Stopwatch;
 public class TimeMetric extends BenchmarkMetric {
 
 	/**
-	 * Responsible for measuring time. The operation of this class is based on the StopWatch
-	 * functionality.
+	 * Responsible for measuring time. The operation of this class is based
+	 * on the StopWatch functionality.
 	 */
-	protected Stopwatch stopwatch;
+	private Stopwatch stopwatch;
 
 	/**
-	 * Indicates the dimension of the measured metric. Default is nanosecond.
+	 * Indicates the dimension of the measured metric. Default is
+	 * nanosecond.
 	 */
-	protected static TimeUnit timeUnit = TimeUnit.NANOSECONDS;
+	private static TimeUnit timeUnit = TimeUnit.NANOSECONDS;
 
 	/**
 	 * Initializes the metricName variable after the given parameter.
@@ -30,7 +32,7 @@ public class TimeMetric extends BenchmarkMetric {
 	 * @param name
 	 *                Name of the current BenchmarkMetric implementation.
 	 */
-	public TimeMetric(final String name) {
+	public TimeMetric(String name) {
 		super(name);
 	}
 
@@ -41,18 +43,19 @@ public class TimeMetric extends BenchmarkMetric {
 	 */
 	@Override
 	public String getValue() {
-		final long elapsedTime = stopwatch.elapsed(timeUnit);
+		long elapsedTime = stopwatch.elapsed(timeUnit);
 		return Long.toString(elapsedTime);
 	}
 
 	/**
-	 * Adjusts the dimension of the measured time based on the given parameter.
+	 * Adjusts the dimension of the measured time based on the given
+	 * parameter.
 	 * 
 	 * @param timeUnit
 	 *                represents the dimension, e.g. TimeUnit.MILLISECONDS.
 	 * @see TimeUnit
 	 */
-	public static void setTimeUnit(final TimeUnit timeUnit) {
+	public static void setTimeUnit(TimeUnit timeUnit) {
 		TimeMetric.timeUnit = timeUnit;
 	}
 
@@ -68,13 +71,6 @@ public class TimeMetric extends BenchmarkMetric {
 	 */
 	public void stopMeasure() {
 		stopwatch.stop();
-	}
-
-	/**
-	 * Continues the measurement.
-	 */
-	public void continueMeasure() {
-		stopwatch.start();
 	}
 
 }
