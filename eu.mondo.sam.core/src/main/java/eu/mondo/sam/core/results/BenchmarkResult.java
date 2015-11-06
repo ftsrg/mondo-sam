@@ -34,14 +34,9 @@ public class BenchmarkResult {
 	protected final List<PhaseResult> phaseResults;
 
 	/**
-	 * Includes of ResultSerializer instances. The elements in the list are responsible for the process of
-	 * publishing benchmark results. By default, this list contains a JsonSerializer object.
-	 * 
-	 * @deprecated use {@link #publishers} instead.
+	 * Includes of {@Publisher} instances. The elements in the list are responsible for the process of
+	 * publishing benchmark results.
 	 */
-	@Deprecated
-	protected final List<ResultSerializer> serializers;
-
 	protected final List<Publisher> publishers;
 
 	/**
@@ -49,7 +44,6 @@ public class BenchmarkResult {
 	 */
 	public BenchmarkResult() {
 		phaseResults = new ArrayList<PhaseResult>();
-		serializers = new ArrayList<ResultSerializer>();
 		publishers = new ArrayList<Publisher>();
 	}
 
@@ -63,54 +57,6 @@ public class BenchmarkResult {
 		this.phaseResults.add(result);
 	}
 
-	/**
-	 * Extends the serializers list with a new component.
-	 * 
-	 * @param serializer
-	 *                A ResultSerializer instance.
-	 * 
-	 * @deprecated use {@link #addPublisher(Publisher)} instead.
-	 */
-	@Deprecated
-	public void addSerializer(final ResultSerializer serializer) {
-		serializers.add(serializer);
-	}
-
-	/**
-	 * Returns the list of ResultSerializer objects.
-	 * 
-	 * @return serializers
-	 * 
-	 * @deprecated use {@link #getPublishers()} instead.
-	 */
-	@Deprecated
-	public List<ResultSerializer> getSerializers() {
-		return serializers;
-	}
-
-	/**
-	 * Invokes the ResultSerializer, after collects the necessary parameters from the CaseDescriptor so as
-	 * to create an appropriate filename.
-	 * 
-	 * @throws IOException
-	 * 
-	 * @deprecated use {@link #publish()} instead.
-	 */
-	@Deprecated
-	public void publishResults() throws IOException {
-		final String tool = caseDescriptor.getTool();
-		final String scenario = caseDescriptor.getScenario();
-		final String benchCase = caseDescriptor.getCaseName();
-		final int size = caseDescriptor.getSize();
-		final int runIndex = caseDescriptor.getRunIndex();
-		final String fileName = tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index"
-				+ runIndex;
-
-		for (final ResultSerializer serializer : serializers) {
-			serializer.serialize(this, fileName);
-		}
-	}
-
 	public void publish() throws IOException {
 		for (final Publisher publisher : publishers) {
 			publisher.publish(this);
@@ -122,29 +68,6 @@ public class BenchmarkResult {
 	 */
 	public void removeResults() {
 		phaseResults.clear();
-	}
-
-	/**
-	 * Removes every ResultSerializer instance from the serializers list.
-	 */
-	@Deprecated
-	public void removeAllSerializers() {
-		serializers.clear();
-	}
-
-	/**
-	 * Removes a ResutSerializer instance from the serializers list.
-	 * 
-	 * @param serializer
-	 *                represents a ResultSerializer object that will be removed
-	 * 
-	 * @deprecated use {@link #removePublisher(Publisher)} instead.
-	 */
-	@Deprecated
-	public void removeSerializer(final ResultSerializer serializer) {
-		if (serializers.contains(serializer)) {
-			serializers.remove(serializer);
-		}
 	}
 
 	/**

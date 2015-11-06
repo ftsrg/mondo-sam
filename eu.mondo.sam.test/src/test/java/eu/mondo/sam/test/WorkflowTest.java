@@ -12,6 +12,7 @@ import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
+import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.test.phases.ClearancePhase;
 import eu.mondo.sam.test.phases.DeclarationPhase;
 import eu.mondo.sam.test.scenarios.TestScenario;
@@ -23,6 +24,7 @@ public class WorkflowTest {
 
 	private TestScenario scenario;
 	private static TestDataToken token;
+	private static BenchmarkResult result;
 
 	private IterationPhase iteration;
 	private IterationPhase iteration2;
@@ -38,15 +40,16 @@ public class WorkflowTest {
 		declaration = new DeclarationPhase("Declaration");
 		token = new TestDataToken();
 		engine = new BenchmarkEngine();
+		result = new BenchmarkResult();
 	}
 
 	public int measuredPhases() {
-		return engine.getBenchmarkResult().getPhaseResults().size();
+		return result.getPhaseResults().size();
 	}
 
 	public void runBenchmark(final BenchmarkPhase rootPhase) throws IOException {
 		scenario.setRootPhase(rootPhase);
-		engine.runBenchmark(scenario, token);
+		engine.runBenchmark(result, scenario, token);
 	}
 
 	@Before

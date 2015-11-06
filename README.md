@@ -21,10 +21,11 @@ mvn eclipse:eclipse
 Set the value of the `M2_REPO` variable in your Eclipse workspace. There are multiple ways to achieve this:
 
 1. Use the `eclispe:configure-workspace` command.
-```bash
-ECLIPSE_WORKSPACE=/path/to/your/workspace
-mvn eclipse:configure-workspace -Declipse.workspace="$ECLIPSE_WORKSPACE"
-```
+
+  ```bash
+  ECLIPSE_WORKSPACE=/path/to/your/workspace
+  mvn eclipse:configure-workspace -Declipse.workspace="$ECLIPSE_WORKSPACE"
+  ```
 
 1. Go to **Window** | **Preferences**, **Java** | **Build Path** | **Classpath Variables** and add the `M2_REPO` variable. It should point to the absolute path of the `repository` directory, e.g. `/home/username/.m2/repository`.
 
