@@ -21,64 +21,7 @@ import eu.mondo.sam.core.scenarios.BenchmarkScenario;
  */
 public class BenchmarkEngine {
 
-	/**
-	 * Refers a BenchmarkResult instance which is responsible to store the results of every executed phase
-	 * and also save them to an external file.
-	 */
-	@Deprecated
-	private BenchmarkResult benchmarkResult;
-
-	/**
-	 * Instantiates the benchmarkResult variable.
-	 */
 	public BenchmarkEngine() {
-		benchmarkResult = new BenchmarkResult();
-	}
-
-	/**
-	 * Initializes the DataToken at first then builds hierarchy of phases.
-	 * 
-	 * Executes the AtomicPhase objects' operations in the same order as the BenchmarkScenario provides
-	 * them. Always instantiate a new PhaseResult object for the phases. Finally publish the results via
-	 * the BenchmarkResult object.
-	 * 
-	 * @deprecated use {@link #runBenchmark(BenchmarkResult, BenchmarkScenario, DataToken)} instead.
-	 * 
-	 * @param scenario
-	 *                An instance of BenchmarkScenario,
-	 * @param token
-	 *                DataToken implementation which acts like a communication unit between phases.
-	 * @throws IOException
-	 */
-	@Deprecated
-	public void runBenchmark(BenchmarkScenario scenario, DataToken token) throws IOException {
-		token.init();
-		scenario.build();
-		benchmarkResult.removeResults();
-		benchmarkResult.setCaseDescriptor(scenario.getCaseDescriptor());
-
-		int sequence = 1;
-		scenario.resetIterator();
-		while (scenario.hasNextPhase()) {
-			AtomicPhase phase = scenario.getNextPhase();
-			if (phase == null) {
-				continue;
-			}
-			PhaseResult phaseResult = new PhaseResult();
-			phaseResult.setPhaseName(phase.getPhaseName());
-
-			phase.execute(token, phaseResult);
-
-			phaseResult.setSequence(sequence);
-
-			if (phaseResult.numberOfMetrics() > 0) {
-				benchmarkResult.addResults(phaseResult);
-				sequence++;
-			}
-		}
-
-		benchmarkResult.publishResults();
-		token.destroy();
 	}
 
 	public void runBenchmark(final BenchmarkResult result, final BenchmarkScenario scenario,
@@ -112,13 +55,4 @@ public class BenchmarkEngine {
 		token.destroy();
 	}
 
-	/**
-	 * Returns a BenchmarkResult object.
-	 * 
-	 * @return BenchmarkResult, cannot be null.
-	 */
-	@Deprecated
-	public BenchmarkResult getBenchmarkResult() {
-		return benchmarkResult;
-	}
 }

@@ -21,17 +21,12 @@ public class CalculatorMain {
 		scenario.getCaseDescriptor();
 		scenario.setRootPhase(declarationPhase);
 
-		//ResultSerializer serializer = new JsonSerializer(); // deprecated
 		BenchmarkResult result = new BenchmarkResult();
 		FilenameFactory factory = new DefaultFilenameFactory(scenario.getCaseDescriptor());
 		Publisher publisher = new JsonPublisher(factory);
-		result.addPublisher(publisher);
-		
-		// result.addSerializer(serializer); // deprecated
+		result.addPublisher(publisher);		
 
 		engine.runBenchmark(result, scenario, token);
-		// result.publishResults(); // deprecated
-
 	}
 
 }
