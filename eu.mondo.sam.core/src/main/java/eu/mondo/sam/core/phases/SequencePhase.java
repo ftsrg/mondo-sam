@@ -2,6 +2,7 @@ package eu.mondo.sam.core.phases;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import eu.mondo.sam.core.phases.iterators.SequencePhaseIterator;
 
@@ -17,7 +18,7 @@ public class SequencePhase implements BenchmarkPhase {
 	/**
 	 * Contains BenchmarkPhase instances as a list.
 	 */
-	protected LinkedList<BenchmarkPhase> phases;
+	protected List<BenchmarkPhase> phases;
 
 	/**
 	 * Instantiates the LinkedList which consist of BenchmarkPhase objects.
@@ -55,7 +56,7 @@ public class SequencePhase implements BenchmarkPhase {
 	 * 
 	 * @return the phases attribute. Cannot be null.
 	 */
-	public LinkedList<BenchmarkPhase> getPhases() {
+	public List<BenchmarkPhase> getPhases() {
 		return phases;
 	}
 

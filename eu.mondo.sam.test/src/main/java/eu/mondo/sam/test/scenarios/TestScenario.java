@@ -15,12 +15,16 @@ public class TestScenario extends BenchmarkScenario {
 
 	@Override
 	public CaseDescriptor getCaseDescriptor() {
-		CaseDescriptor descriptor = new CaseDescriptor();
-		descriptor.setCaseName("TestCase");
-		descriptor.setRunIndex(1);
-		descriptor.setScenario("TestScenario");
-		descriptor.setSize(1);
-		descriptor.setTool("TestTool");
-		return descriptor;
+		// CaseDescriptor descriptor = new CaseDescriptor();
+		// descriptor.setCaseName("TestCase");
+		// descriptor.setRunIndex(1);
+		// descriptor.setScenario("TestScenario");
+		// descriptor.setSize(1);
+		// descriptor.setTool("TestTool");
+		// return descriptor;
+		CaseDescriptor caseDescriptor = new CaseDescriptor.Builder()
+				.caseName("TestCase").runIndex(1).scenario("TestScenario")
+				.size(1).tool("TestTool").build();
+		return caseDescriptor;
 	}
 }
