@@ -9,6 +9,11 @@ import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.results.PhaseResult;
 import eu.mondo.sam.test.TestDataToken;
 
+/**
+ * TODO add Javadoc
+ * @author szarnyasg
+ *
+ */
 public class DeclarationPhase extends AtomicPhase {
 
 	public DeclarationPhase(String phaseName) {

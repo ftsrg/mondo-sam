@@ -42,7 +42,7 @@ public class SequencePhaseIterator implements Iterator<BenchmarkPhase> {
 	 */
 	public SequencePhaseIterator(SequencePhase phase) {
 		this.sequencePhase = phase;
-		this.iterator = sequencePhase.getPhases().getFirst().iterator();
+		this.iterator = sequencePhase.getPhases().get(0).iterator();
 	}
 
 	/**
@@ -58,8 +58,7 @@ public class SequencePhaseIterator implements Iterator<BenchmarkPhase> {
 		// if returned the last AtomicPhase before
 		if (index == size) {
 			index = 0;
-			iterator = sequencePhase.getPhases().getFirst()
-					.iterator();
+			iterator = sequencePhase.getPhases().get(0).iterator();
 		}
 
 		AtomicPhase atomic = (AtomicPhase) iterator.next();
