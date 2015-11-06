@@ -4,13 +4,14 @@ import java.io.IOException;
 
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
+import eu.mondo.sam.core.publishers.CsvPublisher;
 import eu.mondo.sam.core.publishers.DefaultFilenameFactory;
 import eu.mondo.sam.core.publishers.FilenameFactory;
 import eu.mondo.sam.core.publishers.JsonPublisher;
 import eu.mondo.sam.core.publishers.Publisher;
 import eu.mondo.sam.core.results.BenchmarkResult;
 
-public class CalculatorMain {
+public class CalculatorExampleMain {
 
 	public static void main(String[] args) throws IOException {
 		BenchmarkEngine engine = new BenchmarkEngine();
@@ -22,9 +23,13 @@ public class CalculatorMain {
 		scenario.setRootPhase(declarationPhase);
 
 		BenchmarkResult result = new BenchmarkResult();
-		FilenameFactory factory = new DefaultFilenameFactory(scenario.getCaseDescriptor());
-		Publisher publisher = new JsonPublisher(factory);
-		result.addPublisher(publisher);		
+		FilenameFactory factory = new DefaultFilenameFactory(
+				scenario.getCaseDescriptor());
+		Publisher jsonPublisher = new JsonPublisher(factory);
+		Publisher csvPublisher = new CsvPublisher(factory);
+
+		result.addPublisher(jsonPublisher);
+		result.addPublisher(csvPublisher);
 
 		engine.runBenchmark(result, scenario, token);
 	}

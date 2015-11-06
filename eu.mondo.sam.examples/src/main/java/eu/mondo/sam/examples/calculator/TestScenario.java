@@ -20,4 +20,5 @@ public class TestScenario extends BenchmarkScenario {
 				.size(1).tool("TestTool").build();
 		return caseDescriptor;
 	}
+	
 }
