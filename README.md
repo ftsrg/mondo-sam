@@ -108,7 +108,7 @@ At first, adjust the reporting configuration settings in the `reporting/config.j
 Finally, it is already possible to generate the diagrams. The easiest way for this to use the Python wrapper module:
 
 ```bash
-./reporting/report.py --source source_csv_path -- output output_folder_path --config config_json_path`
+./reporting/report.py --source source_csv_path --output output_folder_path --config config_json_path`
 ```
 
 Insert valid parameters instead the paths. The wrapper module actually invokes the `reporting/generate_diagrams.R` script, however it is still recommended to use it for two reasons. The Python script:
