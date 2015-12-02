@@ -35,6 +35,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<instructions>
+						<_nouses>true</_nouses>
+					</instructions>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
