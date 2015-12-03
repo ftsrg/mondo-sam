@@ -2,6 +2,7 @@ package eu.mondo.sam.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.junit.Before;
@@ -41,7 +42,7 @@ public class WorkflowTest {
 
 		token = new TestDataToken();
 
-		engine = new BenchmarkEngine();
+		engine = new BenchmarkEngine(new File("."));
 		BenchmarkResult.removeAllSerializers();
 	}
 
