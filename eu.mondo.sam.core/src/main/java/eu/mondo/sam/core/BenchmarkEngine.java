@@ -1,5 +1,6 @@
 package eu.mondo.sam.core;
 
+import java.io.File;
 import java.io.IOException;
 
 import eu.mondo.sam.core.phases.AtomicPhase;
@@ -32,8 +33,8 @@ public class BenchmarkEngine {
 	/**
 	 * Instantiates the benchmarkResult variable.
 	 */
-	public BenchmarkEngine() {
-		benchmarkResult = new BenchmarkResult();
+	public BenchmarkEngine(File baseDirectory) {
+		benchmarkResult = new BenchmarkResult(baseDirectory);
 	}
 
 	/**

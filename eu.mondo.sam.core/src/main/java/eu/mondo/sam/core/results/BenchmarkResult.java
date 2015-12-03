@@ -1,5 +1,6 @@
 package eu.mondo.sam.core.results;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,8 @@ public class BenchmarkResult {
 	@JsonProperty("PhaseResults")
 	private List<PhaseResult> phaseResults;
 
+	private final File resultsDirectory;
+
 	/**
 	 * Includes of ResultSerializer instances. The elements in the list are
 	 * responsible for the process of publishing benchmark results. By
@@ -40,8 +43,10 @@ public class BenchmarkResult {
 
 	/**
 	 * Instantiates the phaseResults list and the serializers as well.
+	 * @param baseDirectory 
 	 */
-	public BenchmarkResult() {
+	public BenchmarkResult(File baseDirectory) {
+		this.resultsDirectory = new File(baseDirectory, "results");
 		phaseResults = new ArrayList<PhaseResult>();
 		serializers = new ArrayList<ResultSerializer>();
 
@@ -90,11 +95,11 @@ public class BenchmarkResult {
 		String benchCase = caseDescriptor.getCaseName();
 		int size = caseDescriptor.getSize();
 		int runIndex = caseDescriptor.getRunIndex();
-		String fileName = tool + "-" + benchCase + "-" + scenario
-				+ "-Size" + size + "-Index" + runIndex;
+		File file = new File(resultsDirectory, tool + "-" + benchCase + "-" + scenario
+				+ "-Size" + size + "-Index" + runIndex);
 
 		for (ResultSerializer serializer : serializers) {
-			serializer.serialize(this, fileName);
+			serializer.serialize(this, file);
 		}
 	}
 

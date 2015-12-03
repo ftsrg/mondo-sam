@@ -17,36 +17,6 @@ import org.codehaus.jackson.map.SerializationConfig;
 public class JsonSerializer implements ResultSerializer {
 
 	/**
-	 * Represents the location of the output folder where the results will
-	 * be saved. The default value is: the ../results/json/ directory.
-	 */
-	private static String resultPath;
-
-	static {
-		resultPath = "../results/json/";
-	}
-
-	/**
-	 * Returns the location where the output files will be saved.
-	 * 
-	 * @return resultPath
-	 */
-	public static String getResultPath() {
-		return resultPath;
-	}
-
-	/**
-	 * Adjusts a new location of resultPath which determines the exact
-	 * folder to where the results will be saved.
-	 * 
-	 * @param resultPath
-	 *                a valid and existing path
-	 */
-	public static void setResultPath(String resultPath) {
-		JsonSerializer.resultPath = resultPath;
-	}
-
-	/**
 	 * Saves the benchmark results to a new JSON file based on the folder
 	 * and filename parameters. In the case of an already existing file,
 	 * overrides the content of its.
@@ -66,7 +36,7 @@ public class JsonSerializer implements ResultSerializer {
 	 * @throws IOException
 	 *                 if some error occur during the JSON serialization
 	 */
-	public void serialize(BenchmarkResult benchmarkResult, String fileName)
+	public void serialize(BenchmarkResult benchmarkResult, File file)
 			throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		// to enable standard indentation ("pretty-printing"):
@@ -82,12 +52,10 @@ public class JsonSerializer implements ResultSerializer {
 		mapper.configure(
 				SerializationConfig.Feature.AUTO_DETECT_GETTERS,
 				false);
-		String filePath = resultPath + fileName + ".json";
 
+		file.mkdirs();
 		try {
-			File dir = new File(resultPath);
-			dir.mkdir();
-			mapper.writeValue(new File(filePath), benchmarkResult);
+			mapper.writeValue(new File(file.getAbsolutePath() + ".json"), benchmarkResult);
 		} catch (JsonGenerationException e) {
 			throw new IOException(e);
 		} catch (JsonMappingException e) {
