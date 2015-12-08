@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
+import eu.mondo.sam.core.publishers.CsvPublisher;
 import eu.mondo.sam.core.publishers.DefaultFilenameFactory;
 import eu.mondo.sam.core.publishers.FilePublisher;
 import eu.mondo.sam.core.publishers.FilenameFactory;
@@ -11,7 +12,7 @@ import eu.mondo.sam.core.publishers.Publisher;
 import eu.mondo.sam.core.results.BenchmarkResult;
 import eu.mondo.sam.core.results.formatters.JsonResultFormatter;
 
-public class CalculatorMain {
+public class CalculatorExampleMain {
 
 	public static void main(String[] args) throws IOException {
 		BenchmarkEngine engine = new BenchmarkEngine();
