@@ -10,7 +10,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import eu.mondo.sam.core.BenchmarkEngine;
-import eu.mondo.sam.core.DataToken;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.phases.IterationPhase;
 import eu.mondo.sam.core.phases.SequencePhase;
@@ -26,6 +25,7 @@ public class WorkflowTest {
 
 	private TestScenario scenario;
 	private static TestDataToken token;
+	private static BenchmarkResult result;
 
 	private IterationPhase iteration;
 	private IterationPhase iteration2;
@@ -39,20 +39,19 @@ public class WorkflowTest {
 	@BeforeClass
 	public static void init() {
 		declaration = new DeclarationPhase("Declaration");
-
 		token = new TestDataToken();
+		engine = new BenchmarkEngine();
 
-		engine = new BenchmarkEngine(new File("."));
-		BenchmarkResult.removeAllSerializers();
+		result = new BenchmarkResult(new File("."));
 	}
 
 	public int measuredPhases() {
-		return engine.getBenchmarkResult().getPhaseResults().size();
+		return result.getPhaseResults().size();
 	}
 
-	public void runBenchmark(BenchmarkPhase rootPhase) throws IOException {
+	public void runBenchmark(final BenchmarkPhase rootPhase) throws IOException {
 		scenario.setRootPhase(rootPhase);
-		engine.runBenchmark(scenario, (DataToken) token);
+		engine.runBenchmark(result, scenario, token);
 	}
 
 	@Before
@@ -80,8 +79,7 @@ public class WorkflowTest {
 
 	@Test
 	public void sequenceTest() throws IOException {
-		sequence.addPhases(declaration, declaration, declaration,
-				declaration);
+		sequence.addPhases(declaration, declaration, declaration, declaration);
 
 		runBenchmark(sequence);
 		assertEquals(4, measuredPhases());
@@ -121,8 +119,7 @@ public class WorkflowTest {
 	@Test
 	public void complexSequenceTest() throws IOException {
 		sequence3.addPhases(declaration, declaration);
-		sequence2.addPhases(declaration, declaration, declaration,
-				sequence3);
+		sequence2.addPhases(declaration, declaration, declaration, sequence3);
 		sequence.addPhases(declaration, sequence2, declaration);
 
 		runBenchmark(sequence);

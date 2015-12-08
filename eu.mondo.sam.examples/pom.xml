@@ -6,7 +6,7 @@
 		<artifactId>eu.mondo.sam</artifactId>
 		<version>0.2.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>eu.mondo.sam.test</artifactId>
+	<artifactId>eu.mondo.sam.examples</artifactId>
 
 	<dependencies>
 
@@ -15,13 +15,7 @@
 			<artifactId>eu.mondo.sam.core</artifactId>
 			<version>0.2.0-SNAPSHOT</version>
 		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
-
+		
 	</dependencies>
 
 </project>

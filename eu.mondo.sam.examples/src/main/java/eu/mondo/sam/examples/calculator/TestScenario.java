@@ -1,4 +1,4 @@
-package eu.mondo.sam.test.scenarios;
+package eu.mondo.sam.examples.calculator;
 
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.results.CaseDescriptor;
@@ -20,4 +20,5 @@ public class TestScenario extends BenchmarkScenario {
 				.size(1).tool("TestTool").build();
 		return caseDescriptor;
 	}
+	
 }

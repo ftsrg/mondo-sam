@@ -139,4 +139,52 @@ public class CaseDescriptor {
 		this.size = size;
 	}
 
+	public static class Builder {
+		private String caseName;
+		private int runIndex;
+		private String scenario;
+		private String tool;
+		private int size;		
+		
+		public Builder() {
+		}
+		
+		public Builder caseName(String caseName) {
+			this.caseName = caseName;
+			return this;			
+		}
+		
+		public Builder runIndex(int runIndex) {
+			this.runIndex = runIndex;
+			return this;
+		}
+		
+		public Builder scenario(String scenario) {
+			this.scenario = scenario;
+			return this;
+		}
+		
+		public Builder tool(String tool) {
+			this.tool = tool;
+			return this;
+		}
+		
+		public Builder size(int size) {
+			this.size = size;
+			return this;
+		}
+		
+		public CaseDescriptor build() {
+			return new CaseDescriptor(this);
+		}
+	}
+
+	private CaseDescriptor(Builder builder) {
+		caseName = builder.caseName;
+		runIndex = builder.runIndex;
+		scenario = builder.scenario;
+		tool = builder.tool;
+		size = builder.size;
+	}
+
 }
