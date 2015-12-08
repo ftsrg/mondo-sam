@@ -40,6 +40,7 @@ public class WorkflowTest {
 		declaration = new DeclarationPhase("Declaration");
 		token = new TestDataToken();
 		engine = new BenchmarkEngine();
+
 		result = new BenchmarkResult();
 	}
 

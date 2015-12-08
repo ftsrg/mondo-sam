@@ -6,10 +6,11 @@ import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
 import eu.mondo.sam.core.publishers.CsvPublisher;
 import eu.mondo.sam.core.publishers.DefaultFilenameFactory;
+import eu.mondo.sam.core.publishers.FilePublisher;
 import eu.mondo.sam.core.publishers.FilenameFactory;
-import eu.mondo.sam.core.publishers.JsonPublisher;
 import eu.mondo.sam.core.publishers.Publisher;
 import eu.mondo.sam.core.results.BenchmarkResult;
+import eu.mondo.sam.core.results.formatters.JsonResultFormatter;
 
 public class CalculatorExampleMain {
 
@@ -23,13 +24,14 @@ public class CalculatorExampleMain {
 		scenario.setRootPhase(declarationPhase);
 
 		BenchmarkResult result = new BenchmarkResult();
-		FilenameFactory factory = new DefaultFilenameFactory(
-				scenario.getCaseDescriptor());
-		Publisher jsonPublisher = new JsonPublisher(factory);
-		Publisher csvPublisher = new CsvPublisher(factory);
-
-		result.addPublisher(jsonPublisher);
-		result.addPublisher(csvPublisher);
+		FilenameFactory factory = new DefaultFilenameFactory(scenario.getCaseDescriptor());
+		// @formatter:off
+		Publisher publisher = new FilePublisher.Builder()
+						.filenameFactory(factory)
+						.formatter(new JsonResultFormatter())
+						.build();
+		// @formatter:on
+		result.addPublisher(publisher);
 
 		engine.runBenchmark(result, scenario, token);
 	}
