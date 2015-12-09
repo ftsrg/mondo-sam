@@ -5,32 +5,33 @@ import java.io.IOException;
 
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.phases.BenchmarkPhase;
+import eu.mondo.sam.core.publishers.CsvPublisher;
 import eu.mondo.sam.core.publishers.DefaultFilenameFactory;
-import eu.mondo.sam.core.publishers.FilePublisher;
 import eu.mondo.sam.core.publishers.FilenameFactory;
 import eu.mondo.sam.core.publishers.Publisher;
 import eu.mondo.sam.core.results.BenchmarkResult;
-import eu.mondo.sam.core.results.formatters.JsonResultFormatter;
 
 public class CalculatorExampleMain {
 
-	public static void main(String[] args) throws IOException {
-		BenchmarkEngine engine = new BenchmarkEngine();
-		NumberToken token = new NumberToken();
-		BenchmarkPhase declarationPhase = new DeclarationPhase("Declaration");
+	public static void main(final String[] args) throws IOException {
+		final BenchmarkEngine engine = new BenchmarkEngine();
+		final NumberToken token = new NumberToken();
+		final BenchmarkPhase declarationPhase = new CalculationPhase("Declaration");
 
-		TestScenario scenario = new TestScenario();
+		final TestScenario scenario = new TestScenario();
 		scenario.getCaseDescriptor();
 		scenario.setRootPhase(declarationPhase);
 
-		BenchmarkResult result = new BenchmarkResult(new File("."));
-		FilenameFactory factory = new DefaultFilenameFactory(scenario.getCaseDescriptor());
+		final BenchmarkResult result = new BenchmarkResult(new File("."));
+		final FilenameFactory factory = new DefaultFilenameFactory(scenario.getCaseDescriptor());
 		// @formatter:off
-		Publisher publisher = new FilePublisher.Builder()
-						.filenameFactory(factory)
-						.formatter(new JsonResultFormatter())
-						.build();
+//		Publisher publisher = new FilePublisher.Builder()
+//						.filenameFactory(factory)
+//						.formatter(new JsonResultFormatter())
+//						.build();
 		// @formatter:on
+		final Publisher publisher = new CsvPublisher(factory);
+		
 		result.addPublisher(publisher);
 
 		engine.runBenchmark(result, scenario, token);

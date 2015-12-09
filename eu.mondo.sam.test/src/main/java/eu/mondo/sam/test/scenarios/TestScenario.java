@@ -16,7 +16,7 @@ public class TestScenario extends BenchmarkScenario {
 	@Override
 	public CaseDescriptor getCaseDescriptor() {
 		CaseDescriptor caseDescriptor = new CaseDescriptor.Builder()
-				.caseName("TestCase").runIndex(1).scenario("TestScenario")
+				.case_("TestCase").run(1).scenario("TestScenario")
 				.size(1).tool("TestTool").build();
 		return caseDescriptor;
 	}

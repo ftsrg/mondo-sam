@@ -14,17 +14,17 @@ public class DefaultFilenameFactory implements FilenameFactory {
 	public String getFilename() {
 		final String tool = caseDescriptor.getTool();
 		final String scenario = caseDescriptor.getScenario();
-		final String benchCase = caseDescriptor.getCaseName();
-		final int size = caseDescriptor.getSize();
-		final int runIndex = caseDescriptor.getRunIndex();
-		return tool + "-" + benchCase + "-" + scenario + "-Size" + size + "-Index" + runIndex;
+		final String case_ = caseDescriptor.getCase();
+		final String artifact = caseDescriptor.getArtifact();
+		final int run = caseDescriptor.getRun();
+		return tool + "-" + case_ + "-" + scenario + "-Size" + artifact + "-Index" + run;
 	}
 
 	public CaseDescriptor getCaseDescriptor() {
 		return caseDescriptor;
 	}
 
-	public void setCaseDescriptor(CaseDescriptor caseDescriptor) {
+	public void setCaseDescriptor(final CaseDescriptor caseDescriptor) {
 		this.caseDescriptor = caseDescriptor;
 	}
 

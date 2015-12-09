@@ -8,6 +8,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
 import eu.mondo.sam.core.results.BenchmarkResult;
+import eu.mondo.sam.core.results.MetricResult;
+import eu.mondo.sam.core.results.PhaseResult;
 
 public class CsvPublisher implements Publisher {
 
@@ -17,7 +19,7 @@ public class CsvPublisher implements Publisher {
 
 	protected String extension;
 
-	public CsvPublisher(FilenameFactory factory) {
+	public CsvPublisher(final FilenameFactory factory) {
 		this.factory = factory;
 		resultPath = "../results/csv/";
 		extension = ".csv";
@@ -26,24 +28,48 @@ public class CsvPublisher implements Publisher {
 	@Override
 	public void publish(final BenchmarkResult benchmarkResult)
 			throws IOException {
-		CSVFormat format = CSVFormat.DEFAULT.withHeader(//
+		final CSVFormat format = CSVFormat.DEFAULT.withHeader(//
 				"Scenario", //
 				"Tool", //
-				"CaseName", //
-				"Size", //
-				"RunIndex", //
-				"Sequence", //
-				"PhaseName", //
+				"Run", //
+				"Case", //
+				"Artifact", //
+				"Phase", //
 				"Iteration", //
-				"MetricName", //
-				"MetricValue");
-		Appendable out = System.out;
+				"Metric", //
+				"Value");
+		final Appendable out = System.out;
 		
+		// CSV rows
+		// Scenario, Tool, Run, Case attributes
 		try (CSVPrinter csvPrinter = new CSVPrinter(out, format))  {		
-			// TODO generate a row for each metric
-			List<String> record = new ArrayList<>();
-			record.add("...");
-			csvPrinter.printRecord(record);
+			final List<String> record1 = new ArrayList<>();
+			record1.add(benchmarkResult.getCaseDescriptor().getScenario());
+			record1.add(benchmarkResult.getCaseDescriptor().getTool());
+			record1.add(Integer.toString(benchmarkResult.getCaseDescriptor().getRun()));
+			record1.add(benchmarkResult.getCaseDescriptor().getCase());
+			record1.add(benchmarkResult.getCaseDescriptor().getArtifact());
+						
+			// Phase, Iteration attributes
+			for (final PhaseResult phaseResult : benchmarkResult.getPhaseResults()) {
+				final List<String> record2 = new ArrayList<>(record1);
+			
+				record2.add(phaseResult.getPhaseName());
+				record2.add(phaseResult.getSequence());
+
+				// Metric, Value attributes
+				for (final MetricResult metricResult : phaseResult.getMetrics()) {
+					final List<String> record3 = new ArrayList<>(record2);
+					
+					final String metricName = metricResult.getName();
+					final String value = metricResult.getValue();
+					
+					record3.add(metricName);
+					record3.add(value);
+			
+					csvPrinter.printRecord(record3);
+				}
+			}
 		}
 	}
 
@@ -51,7 +77,7 @@ public class CsvPublisher implements Publisher {
 		return extension;
 	}
 
-	public void setExtension(String extension) {
+	public void setExtension(final String extension) {
 		this.extension = extension;
 	}
 
@@ -59,7 +85,7 @@ public class CsvPublisher implements Publisher {
 		return resultPath;
 	}
 
-	public void setResultPath(String resultPath) {
+	public void setResultPath(final String resultPath) {
 		this.resultPath = resultPath;
 	}
 

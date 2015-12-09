@@ -8,11 +8,13 @@ import eu.mondo.sam.core.results.CaseDescriptor;
 public class CommandLinePublisher implements Publisher {
 
 	@Override
-	public void publish(BenchmarkResult benchmarkResult) throws IOException {
-		CaseDescriptor desc = benchmarkResult.getCaseDescriptor();
-		System.out.println("Running benchmark: " + desc.getScenario() + " scenario, "
-				+ desc.getTool() + ", " + desc.getCaseName() + ", " + desc.getSize());
-
+	public void publish(final BenchmarkResult benchmarkResult) throws IOException {
+		final CaseDescriptor desc = benchmarkResult.getCaseDescriptor();
+		System.out.println("Running benchmark: " + //
+				desc.getScenario() + " scenario, " + //
+				desc.getTool() + ", " + //
+				desc.getCase() + ", " + //
+				desc.getArtifact());
 	}
 
 }
