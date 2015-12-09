@@ -6,18 +6,19 @@ import eu.mondo.sam.core.scenarios.BenchmarkScenario;
 
 public class TestScenario extends BenchmarkScenario {
 
+	@Override
 	public void build() {
 	}
 
-	public void setRootPhase(BenchmarkPhase phase) {
+	public void setRootPhase(final BenchmarkPhase phase) {
 		this.rootPhase = phase;
 	}
 
 	@Override
 	public CaseDescriptor getCaseDescriptor() {
-		CaseDescriptor caseDescriptor = new CaseDescriptor.Builder()
+		final CaseDescriptor caseDescriptor = new CaseDescriptor.Builder()
 				.case_("TestCase").run(1).scenario("TestScenario")
-				.size(1).tool("TestTool").build();
+				.artifact("1").tool("TestTool").build();
 		return caseDescriptor;
 	}
 }
