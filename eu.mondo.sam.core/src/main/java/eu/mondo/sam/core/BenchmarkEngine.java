@@ -33,8 +33,8 @@ public class BenchmarkEngine {
 	/**
 	 * Instantiates the benchmarkResult variable.
 	 */
-	public BenchmarkEngine(File baseDirectory) {
-		benchmarkResult = new BenchmarkResult(baseDirectory);
+	public BenchmarkEngine(File resultsDirectory) {
+		benchmarkResult = new BenchmarkResult(resultsDirectory);
 	}
 
 	/**

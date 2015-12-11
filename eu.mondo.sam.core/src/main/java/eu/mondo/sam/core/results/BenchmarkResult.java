@@ -43,10 +43,10 @@ public class BenchmarkResult {
 
 	/**
 	 * Instantiates the phaseResults list and the serializers as well.
-	 * @param baseDirectory 
+	 * @param resultsDirectory the directory where the results should be output 
 	 */
-	public BenchmarkResult(File baseDirectory) {
-		this.resultsDirectory = new File(baseDirectory, "results");
+	public BenchmarkResult(File resultsDirectory) {
+		this.resultsDirectory = resultsDirectory;
 		phaseResults = new ArrayList<PhaseResult>();
 		serializers = new ArrayList<ResultSerializer>();
 
