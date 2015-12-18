@@ -53,7 +53,7 @@ public class JsonSerializer implements ResultSerializer {
 				SerializationConfig.Feature.AUTO_DETECT_GETTERS,
 				false);
 
-		file.mkdirs();
+		file.getParentFile().mkdirs();
 		try {
 			mapper.writeValue(new File(file.getAbsolutePath() + ".json"), benchmarkResult);
 		} catch (JsonGenerationException e) {
