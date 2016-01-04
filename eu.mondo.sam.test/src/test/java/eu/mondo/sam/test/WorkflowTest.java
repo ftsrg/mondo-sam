@@ -2,9 +2,11 @@ package eu.mondo.sam.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,12 +39,12 @@ public class WorkflowTest {
 	private ClearancePhase optional;
 
 	@BeforeClass
-	public static void init() {
+	public static void init() throws IllegalArgumentException, IOException {
 		declaration = new DeclarationPhase("Declaration");
 
 		token = new TestDataToken();
 
-		engine = new BenchmarkEngine(new File("."));
+		engine = new BenchmarkEngine(FileSystem.getLocal(new Configuration()), new Path("."));
 		BenchmarkResult.removeAllSerializers();
 	}
 

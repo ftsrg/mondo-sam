@@ -1,8 +1,10 @@
 package eu.mondo.sam.core.results;
 
-import java.io.File;
 import java.io.IOException;
 
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -28,15 +30,11 @@ public class JsonSerializer implements ResultSerializer {
 	 * @param benchmarkResult
 	 *                an initialized BenchmarkResult object with properly
 	 *                used JsonProperty annotations
-	 * @param folderPath
-	 *                the location of the output directory
-	 * @param fileName
-	 *                the name of the file without the extension
 	 * 
 	 * @throws IOException
 	 *                 if some error occur during the JSON serialization
 	 */
-	public void serialize(BenchmarkResult benchmarkResult, File file)
+	public void serialize(BenchmarkResult benchmarkResult, FileSystem fileSystem, Path resultFilePathWithoutExtension)
 			throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		// to enable standard indentation ("pretty-printing"):
@@ -53,9 +51,10 @@ public class JsonSerializer implements ResultSerializer {
 				SerializationConfig.Feature.AUTO_DETECT_GETTERS,
 				false);
 
-		file.mkdirs();
 		try {
-			mapper.writeValue(new File(file.getAbsolutePath() + ".json"), benchmarkResult);
+			Path resultFilePath = resultFilePathWithoutExtension.suffix(".json");
+			FSDataOutputStream outputStream = fileSystem.create(resultFilePath, true);
+			mapper.writeValue(outputStream, benchmarkResult);
 		} catch (JsonGenerationException e) {
 			throw new IOException(e);
 		} catch (JsonMappingException e) {

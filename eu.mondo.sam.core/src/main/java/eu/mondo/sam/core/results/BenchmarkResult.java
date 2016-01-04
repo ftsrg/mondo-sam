@@ -1,10 +1,11 @@
 package eu.mondo.sam.core.results;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -32,7 +33,8 @@ public class BenchmarkResult {
 	@JsonProperty("PhaseResults")
 	private List<PhaseResult> phaseResults;
 
-	private final File resultsDirectory;
+	private final FileSystem fileSystem;
+	private final Path resultsPath;
 
 	/**
 	 * Includes of ResultSerializer instances. The elements in the list are
@@ -45,8 +47,9 @@ public class BenchmarkResult {
 	 * Instantiates the phaseResults list and the serializers as well.
 	 * @param resultsDirectory the directory where the results should be output 
 	 */
-	public BenchmarkResult(File resultsDirectory) {
-		this.resultsDirectory = resultsDirectory;
+	public BenchmarkResult(FileSystem fileSystem, Path resultsPath) {
+		this.fileSystem = fileSystem;
+		this.resultsPath = resultsPath;
 		phaseResults = new ArrayList<PhaseResult>();
 		serializers = new ArrayList<ResultSerializer>();
 
@@ -95,11 +98,12 @@ public class BenchmarkResult {
 		String benchCase = caseDescriptor.getCaseName();
 		int size = caseDescriptor.getSize();
 		int runIndex = caseDescriptor.getRunIndex();
-		File file = new File(resultsDirectory, tool + "-" + benchCase + "-" + scenario
+		Path fileNamePath = new Path(tool + "-" + benchCase + "-" + scenario
 				+ "-Size" + size + "-Index" + runIndex);
+		Path resultFilePath = Path.mergePaths(resultsPath, fileNamePath);
 
 		for (ResultSerializer serializer : serializers) {
-			serializer.serialize(this, file);
+			serializer.serialize(this, fileSystem, resultFilePath);
 		}
 	}
 
