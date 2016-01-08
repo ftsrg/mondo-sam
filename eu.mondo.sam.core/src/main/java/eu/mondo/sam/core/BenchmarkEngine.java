@@ -1,9 +1,7 @@
 package eu.mondo.sam.core;
 
 import java.io.IOException;
-
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
+import java.nio.file.Path;
 
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.results.BenchmarkResult;
@@ -35,8 +33,8 @@ public class BenchmarkEngine {
 	/**
 	 * Instantiates the benchmarkResult variable.
 	 */
-	public BenchmarkEngine(FileSystem fileSystem, Path resultsPath) {
-		benchmarkResult = new BenchmarkResult(fileSystem, resultsPath);
+	public BenchmarkEngine(Path resultsPath) {
+		benchmarkResult = new BenchmarkResult(resultsPath);
 	}
 
 	/**

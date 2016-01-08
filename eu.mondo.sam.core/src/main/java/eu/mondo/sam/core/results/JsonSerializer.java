@@ -1,10 +1,12 @@
 package eu.mondo.sam.core.results;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -34,7 +36,7 @@ public class JsonSerializer implements ResultSerializer {
 	 * @throws IOException
 	 *                 if some error occur during the JSON serialization
 	 */
-	public void serialize(BenchmarkResult benchmarkResult, FileSystem fileSystem, Path resultFilePathWithoutExtension)
+	public void serialize(BenchmarkResult benchmarkResult, Path resultFilePathWithoutExtension)
 			throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		// to enable standard indentation ("pretty-printing"):
@@ -52,9 +54,13 @@ public class JsonSerializer implements ResultSerializer {
 				false);
 
 		try {
-			Path resultFilePath = resultFilePathWithoutExtension.suffix(".json");
-			FSDataOutputStream outputStream = fileSystem.create(resultFilePath, true);
+			String fileNameWithExtension = resultFilePathWithoutExtension.getFileName().toString() + ".json";
+			Path resultFilePath = resultFilePathWithoutExtension.resolveSibling(fileNameWithExtension);
+			Path tempFilePath = Files.createTempFile(null, null);
+			OutputStream outputStream = Files.newOutputStream(tempFilePath, StandardOpenOption.CREATE);
 			mapper.writeValue(outputStream, benchmarkResult);
+			outputStream.close();
+			Files.copy(tempFilePath, resultFilePath, StandardCopyOption.REPLACE_EXISTING);
 		} catch (JsonGenerationException e) {
 			throw new IOException(e);
 		} catch (JsonMappingException e) {
