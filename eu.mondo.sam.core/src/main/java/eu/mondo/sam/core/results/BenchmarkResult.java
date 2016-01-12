@@ -1,11 +1,13 @@
 package eu.mondo.sam.core.results;
 
 import java.io.IOException;
-import java.nio.file.Path;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import eu.mondo.sam.core.util.UriUtils;
 
 /**
  * Contains the results of the entire benchmark process, as consists of
@@ -32,7 +34,7 @@ public class BenchmarkResult {
 	@JsonProperty("PhaseResults")
 	private List<PhaseResult> phaseResults;
 
-	private final Path resultsPath;
+	private final URI resultsPath;
 
 	/**
 	 * Includes of ResultSerializer instances. The elements in the list are
@@ -45,7 +47,7 @@ public class BenchmarkResult {
 	 * Instantiates the phaseResults list and the serializers as well.
 	 * @param resultsPath the directory where the results should be output 
 	 */
-	public BenchmarkResult(Path resultsPath) {
+	public BenchmarkResult(URI resultsPath) {
 		this.resultsPath = resultsPath;
 		phaseResults = new ArrayList<PhaseResult>();
 		serializers = new ArrayList<ResultSerializer>();
@@ -97,7 +99,7 @@ public class BenchmarkResult {
 		int runIndex = caseDescriptor.getRunIndex();
 		String fileName = tool + "-" + benchCase + "-" + scenario
 				+ "-Size" + size + "-Index" + runIndex;
-		Path resultFilePath = resultsPath.resolve(fileName);
+		URI resultFilePath = UriUtils.appendSegment(resultsPath, fileName);
 
 		for (ResultSerializer serializer : serializers) {
 			serializer.serialize(this, resultFilePath);

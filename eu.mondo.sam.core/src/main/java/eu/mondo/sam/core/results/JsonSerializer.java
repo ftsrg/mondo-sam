@@ -1,16 +1,18 @@
 package eu.mondo.sam.core.results;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
+import java.net.URI;
 
+import org.apache.commons.io.FileUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
+
+import eu.mondo.sam.core.util.FileOperations;
+import eu.mondo.sam.core.util.UriUtils;
 
 /**
  * Responsible for publishing the results of benchmarking.
@@ -36,7 +38,7 @@ public class JsonSerializer implements ResultSerializer {
 	 * @throws IOException
 	 *                 if some error occur during the JSON serialization
 	 */
-	public void serialize(BenchmarkResult benchmarkResult, Path resultFilePathWithoutExtension)
+	public void serialize(BenchmarkResult benchmarkResult, URI resultFilePathWithoutExtension)
 			throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		// to enable standard indentation ("pretty-printing"):
@@ -54,13 +56,12 @@ public class JsonSerializer implements ResultSerializer {
 				false);
 
 		try {
-			String fileNameWithExtension = resultFilePathWithoutExtension.getFileName().toString() + ".json";
-			Path resultFilePath = resultFilePathWithoutExtension.resolveSibling(fileNameWithExtension);
-			Path tempFilePath = Files.createTempFile(null, null);
-			OutputStream outputStream = Files.newOutputStream(tempFilePath, StandardOpenOption.CREATE);
+			URI resultFilePath = UriUtils.appendSuffix(resultFilePathWithoutExtension, ".json");
+			File tempFile = File.createTempFile("mondo-sam", null);
+			OutputStream outputStream = FileUtils.openOutputStream(tempFile);
 			mapper.writeValue(outputStream, benchmarkResult);
 			outputStream.close();
-			Files.copy(tempFilePath, resultFilePath, StandardCopyOption.REPLACE_EXISTING);
+			FileOperations.copy(tempFile, resultFilePath);
 		} catch (JsonGenerationException e) {
 			throw new IOException(e);
 		} catch (JsonMappingException e) {

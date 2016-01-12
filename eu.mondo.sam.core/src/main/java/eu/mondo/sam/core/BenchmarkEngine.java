@@ -1,7 +1,7 @@
 package eu.mondo.sam.core;
 
 import java.io.IOException;
-import java.nio.file.Path;
+import java.net.URI;
 
 import eu.mondo.sam.core.phases.AtomicPhase;
 import eu.mondo.sam.core.results.BenchmarkResult;
@@ -33,7 +33,7 @@ public class BenchmarkEngine {
 	/**
 	 * Instantiates the benchmarkResult variable.
 	 */
-	public BenchmarkEngine(Path resultsPath) {
+	public BenchmarkEngine(URI resultsPath) {
 		benchmarkResult = new BenchmarkResult(resultsPath);
 	}
 

@@ -42,7 +42,7 @@ public class WorkflowTest {
 
 		token = new TestDataToken();
 
-		engine = new BenchmarkEngine(new File(".").toPath());
+		engine = new BenchmarkEngine(new File(".").toURI());
 		BenchmarkResult.removeAllSerializers();
 	}
 
