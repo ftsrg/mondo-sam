@@ -3,6 +3,6 @@
 	<target name="default">
 		<mkdir dir="META-INF"/>
 		<copy file="target/classes/META-INF/MANIFEST.MF" tofile="META-INF/MANIFEST.MF"
-			overwrite="true" />
+			overwrite="true" preservelastmodified="true"/>
 	</target>
 </project>
