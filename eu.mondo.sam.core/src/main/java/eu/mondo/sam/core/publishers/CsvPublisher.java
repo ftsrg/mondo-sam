@@ -1,5 +1,6 @@
 package eu.mondo.sam.core.publishers;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,50 +27,43 @@ public class CsvPublisher implements Publisher {
 	}
 
 	@Override
-	public void publish(final BenchmarkResult benchmarkResult)
-			throws IOException {
-		final CSVFormat format = CSVFormat.DEFAULT.withHeader(//
-				"Scenario", //
-				"Tool", //
-				"Run", //
-				"Case", //
-				"Artifact", //
-				"Phase", //
-				"Iteration", //
-				"Metric", //
-				"Value");
-		final Appendable out = System.out;
-		
+	public void publish(final BenchmarkResult benchmarkResult) throws IOException {
+		final CSVFormat format = CSVFormat.DEFAULT;
+		FileWriter fileWriter = new FileWriter("results.csv", true);
+
 		// CSV rows
 		// Scenario, Tool, Run, Case attributes
-		try (CSVPrinter csvPrinter = new CSVPrinter(out, format))  {		
+		CSVPrinter csvPrinter = new CSVPrinter(fileWriter, format);
+		try {
 			final List<String> record1 = new ArrayList<>();
 			record1.add(benchmarkResult.getCaseDescriptor().getScenario());
 			record1.add(benchmarkResult.getCaseDescriptor().getTool());
 			record1.add(Integer.toString(benchmarkResult.getCaseDescriptor().getRun()));
 			record1.add(benchmarkResult.getCaseDescriptor().getCase());
 			record1.add(benchmarkResult.getCaseDescriptor().getArtifact());
-						
+
 			// Phase, Iteration attributes
 			for (final PhaseResult phaseResult : benchmarkResult.getPhaseResults()) {
 				final List<String> record2 = new ArrayList<>(record1);
-			
+
 				record2.add(phaseResult.getPhaseName());
 				record2.add(phaseResult.getSequence());
 
 				// Metric, Value attributes
 				for (final MetricResult metricResult : phaseResult.getMetrics()) {
 					final List<String> record3 = new ArrayList<>(record2);
-					
+
 					final String metricName = metricResult.getName();
 					final String value = metricResult.getValue();
-					
+
 					record3.add(metricName);
 					record3.add(value);
-			
+
 					csvPrinter.printRecord(record3);
 				}
 			}
+		} finally {
+			csvPrinter.close();
 		}
 	}
 
