@@ -16,20 +16,16 @@ public class CsvPublisher implements Publisher {
 
 	protected FilenameFactory factory;
 
-	protected String resultPath;
-
-	protected String extension;
+	protected String resultPath = "../results/results.csv";;
 
 	public CsvPublisher(final FilenameFactory factory) {
 		this.factory = factory;
-		resultPath = "../results/csv/";
-		extension = ".csv";
 	}
 
 	@Override
 	public void publish(final BenchmarkResult benchmarkResult) throws IOException {
 		final CSVFormat format = CSVFormat.DEFAULT;
-		FileWriter fileWriter = new FileWriter("results.csv", true);
+		FileWriter fileWriter = new FileWriter(resultPath, true);
 
 		// CSV rows
 		// Scenario, Tool, Run, Case attributes
@@ -67,24 +63,8 @@ public class CsvPublisher implements Publisher {
 		}
 	}
 
-	public String getExtension() {
-		return extension;
-	}
-
-	public void setExtension(final String extension) {
-		this.extension = extension;
-	}
-
 	public String getResultPath() {
 		return resultPath;
-	}
-
-	public void setResultPath(final String resultPath) {
-		this.resultPath = resultPath;
-	}
-
-	public String getFullname() {
-		return resultPath + factory.getFilename() + extension;
 	}
 
 }
