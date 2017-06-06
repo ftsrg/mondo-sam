@@ -45,7 +45,7 @@ config <- fromJSON(configPath)
 
 # validation
 validate(data, config)
-  
+
 if (file.exists(diagramsPath) == FALSE){
   dir.create(diagramsPath)
 }
@@ -61,10 +61,10 @@ publisher$.location <- diagramsPath
 
 for(row in 1:nrow(config$Plot)){
   result$setFrame(data)
-  
+
   legend <- config$Plot[row, ]$Legend
   if ("Legend_Filters" %in% names(config$Plot[row, ])){
-    specLegends <- unlist(config$Plot[row, ]$Legend_Filters)    
+    specLegends <- unlist(config$Plot[row, ]$Legend_Filters)
   }
   else {
     specLegends <- NA
@@ -72,7 +72,7 @@ for(row in 1:nrow(config$Plot)){
   if (is.list(specLegends)){
     specLegends <- unlist(specLegends)
   }
-  if (!is.na(specLegends)){
+  if (!is.null(specLegends) && !is.na(specLegends)){
     result$.frame <- result$.frame[which(result$.frame[[legend]] %in% specLegends), ]
   }
 
@@ -80,32 +80,32 @@ for(row in 1:nrow(config$Plot)){
   if (is.list(metrics)){
     metrics <- unlist(metrics)
   }
-  
+
   phases <- config$Plot[row, ]$Summarize_Function
   if (is.list(phases)){
     phases <- unlist(phases)
   }
-  result$.frame <- subset(result$.frame, MetricName %in% metrics & 
+  result$.frame <- subset(result$.frame, MetricName %in% metrics &
                             PhaseName %in% phases)
 
   result$createSubFrames()
-  
+
   filterContainer$setResult(result)
   filterContainer$init()
-  
+
   plotContainer$.plotSettings$init(filterContainer)
   plotContainer$.theme$init()
-  
+
   serializer$.filterContainer <- filterContainer
   serializer$.plotContainer <- plotContainer
   serializer$.publisher <- publisher
-  
+
   serializer$import(config$Plot[row, ])
-  
+
   filterContainer$.selections$changeSelections(filterContainer$.legend$.selectedState, filterContainer$.xDimension$.selectedState)
-  
+
   filterContainer$updateFilters()
-  
+
   publisher$publish(filterContainer, plotContainer, filterContainer$.selections$.selections, verbose = TRUE)
 
 }

@@ -7,21 +7,21 @@ validate <- function(results, config){
       cat("Incorrect parameter was given: Metric-Scale parameter is not numeric.\n")
       quit()
     }
-    
+
     parameterExists(config$Plot[row, ], "Min_Iteration")
     minIter <- config$Plot[row, ]$Min_Iteration
     if (!is.numeric(minIter) & !is.na(minIter)){
       cat("Incorrect parameter was given: Min_Iteration parameter is not numeric or null.\n")
       quit()
     }
-    
+
     parameterExists(config$Plot[row, ], "Max_Iteration")
     maxIter <- config$Plot[row, ]$Max_Iteration
     if (!is.numeric(maxIter) & !is.na(maxIter)){
       cat("Incorrect parameter was given: Max_Iteration parameter is not numeric or null.\n")
       quit()
     }
-    
+
     parameterExists(config$Plot[row, ], "Legend")
     legend <- config$Plot[row, ]$Legend
     if (legend %in% header == FALSE){
@@ -29,18 +29,22 @@ validate <- function(results, config){
       cat(header, "\n")
       quit()
     }
-    
+
     if ("Legend_Filters" %in% names(config$Plot[row, ])){
+      legendFilters <- config$Plot[row, ]$Legend_Filters
       uniqueLegendValues <- unique(results[[legend]])
-      for (l in config$Plot[row, ]$Legend_Filters){
-        if (l %in% uniqueLegendValues == FALSE){
-          cat("Invalid Legend_Filter value: ", l, "\nThe possible choices are the following:")
+      if(is.list(legendFilters)){
+        legendFilters <- unlist(legendFilters)
+      }
+      if(!is.null(legendFilters)){
+        if (validLegend(results, legendFilters, uniqueLegendValues) == FALSE){
+          cat("Invalid Legend_Filters value given! \nThe possible choices are the following:")
           print(uniqueLegendValues)
           quit()
         }
       }
     }
-    
+
     parameterExists(config$Plot[row, ], "X_Dimension")
     dimension <- config$Plot[row, ]$X_Dimension
     if (dimension %in% header == FALSE){
@@ -48,15 +52,15 @@ validate <- function(results, config){
       cat(header, "\n")
       quit()
     }
-    
+
     parameterExists(config$Plot[row, ], "Summarize_Function")
     phases <- config$Plot[row, ]$Summarize_Function
     if (validPhase(results, phases) == FALSE){
       cat("Non existing phasename was given! \nThe available phasenames are the following: ")
       print(levels(results$PhaseName))
-      quit()  
+      quit()
     }
-    
+
     parameterExists(config$Plot[row, ], "Metrics")
     metrics <- config$Plot[row, ]$Metrics
     if (validMetric(results, metrics) == FALSE){
@@ -64,7 +68,7 @@ validate <- function(results, config){
       print(levels(results$MetricName))
       quit()
     }
-    
+
     parameterExists(config$Plot[row, ], "X_Axis_Scale")
     xScale <- config$Plot[row, ]$X_Axis_Scale
     parameterExists(config$Plot[row, ], "Y_Axis_Scale")
@@ -101,6 +105,14 @@ validMetric <- function(results, metrics){
   return(TRUE)
 }
 
+validLegend <- function(results, legendFilters, uniqueLegendValues){
+  for (l in unlist(legendFilters)){
+    if (l %in% uniqueLegendValues == FALSE){
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+}
 
 validPhase <- function(results, phases){
   uniquePhases <- unique(results$PhaseName)
